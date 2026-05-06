@@ -1,0 +1,175 @@
+---
+const destinos = [
+	{ id: "servicios", label: "Servicios", subtitle: "Lo que hacemos" },
+	{ id: "sobre", label: "Sobre RAIL", subtitle: "Quiénes somos" },
+	{ id: "contacto", label: "Contacto", subtitle: "Empezar un proyecto" },
+];
+---
+
+<section id="network" class="network" aria-label="Próximo destino">
+	<div class="network__inner">
+		<div class="network__rail" aria-hidden="true"></div>
+		<div class="network__node" aria-hidden="true"></div>
+
+		<div class="network__choice">
+			<p class="network__prompt label-caps">Próximo destino</p>
+			<ul class="network__destinos">
+				{
+					destinos.map((d) => (
+						<li>
+							<button
+								class="destino"
+								data-destino={d.id}
+								type="button"
+							>
+								<span class="destino__label">{d.label}</span>
+								<span class="destino__subtitle">
+									{d.subtitle}
+								</span>
+							</button>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	.network {
+		position: relative;
+		z-index: 2;
+		height: 200vh;
+		background: var(--surface);
+	}
+
+	.network__inner {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow: hidden;
+	}
+
+	.network__rail {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 2px;
+		height: 50vh;
+		transform: translateX(-50%);
+		background: linear-gradient(
+			to bottom,
+			transparent 0%,
+			var(--outline) 18%,
+			var(--outline) 100%
+		);
+	}
+
+	.network__node {
+		position: absolute;
+		top: 50vh;
+		left: 50%;
+		width: 18px;
+		height: 18px;
+		border: 3px solid var(--on-surface);
+		border-radius: 50%;
+		background: var(--tertiary);
+		transform: translate(-50%, -50%) scale(0.4);
+		opacity: 0;
+		z-index: 2;
+	}
+
+	.network__choice {
+		position: absolute;
+		top: calc(50vh + 60px);
+		left: 0;
+		right: 0;
+		padding: 0 var(--margin-edge);
+		text-align: center;
+		opacity: 0;
+	}
+
+	.network__prompt {
+		margin: 0 0 var(--stack-md);
+		color: var(--on-surface-variant);
+	}
+
+	.network__destinos {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		gap: var(--stack-md);
+		flex-wrap: wrap;
+	}
+
+	.destino {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 4px;
+		min-width: 200px;
+		padding: 16px 24px;
+		background: transparent;
+		border: 1px solid var(--on-surface);
+		border-radius: var(--r);
+		color: var(--on-surface);
+		text-align: left;
+		transition:
+			background 200ms ease,
+			border-color 200ms ease,
+			transform 200ms ease;
+	}
+
+	.destino:hover {
+		background: var(--tertiary);
+		border-color: var(--tertiary);
+		transform: translateY(-2px);
+	}
+
+	.destino__label {
+		font-family: "Inter", sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+	}
+
+	.destino__subtitle {
+		font-size: 13px;
+		font-weight: 400;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.destino:hover .destino__subtitle {
+		color: var(--on-tertiary);
+	}
+
+	@media (max-width: 768px) {
+		.network__choice {
+			padding: 0 var(--stack-md);
+		}
+
+		.network__destinos {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.destino {
+			width: 100%;
+			max-width: 280px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.network__node {
+			opacity: 1;
+			transform: translate(-50%, -50%);
+		}
+
+		.network__choice {
+			opacity: 1;
+		}
+	}
+</style>

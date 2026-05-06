@@ -1,9 +1,8 @@
 ---
 const navItems = [
-	{ label: "Expertise", href: "#expertise" },
-	{ label: "Solutions", href: "#solutions" },
-	{ label: "Case Studies", href: "#case-studies" },
-	{ label: "About", href: "/about" },
+	{ label: "Servicios", destino: "servicios" },
+	{ label: "Sobre RAIL", destino: "sobre" },
+	{ label: "Contacto", destino: "contacto" },
 ];
 ---
 
@@ -16,13 +15,19 @@ const navItems = [
 		<nav class="nav" aria-label="Primary">
 			{
 				navItems.map((item) => (
-					<a href={item.href} class="nav__link label-caps">
+					<button
+						data-destino={item.destino}
+						type="button"
+						class="nav__link label-caps"
+					>
 						{item.label}
-					</a>
+					</button>
 				))
 			}
 		</nav>
-		<a href="#contact" class="cta label-caps">Start a Project</a>
+		<button data-destino="contacto" type="button" class="cta label-caps">
+			Empezar proyecto
+		</button>
 	</div>
 </header>
 
@@ -149,15 +154,6 @@ const navItems = [
 	const brand = document.querySelector(".brand") as HTMLElement | null;
 
 	if (glow && header && brand) {
-		// Map section id → nav link element
-		const sectionLinks = new Map<string, HTMLElement>();
-		document.querySelectorAll<HTMLElement>(".nav__link").forEach((link) => {
-			const href = link.getAttribute("href");
-			if (href?.startsWith("#")) {
-				sectionLinks.set(href.slice(1), link);
-			}
-		});
-
 		// Returns center X of el relative to header left edge
 		function targetLeft(el: HTMLElement): number {
 			const elRect = el.getBoundingClientRect();
@@ -169,25 +165,10 @@ const navItems = [
 			glow!.style.left = `${targetLeft(el)}px`;
 		}
 
-		// Which section has scrolled past the viewport midpoint?
-		const sections = [...sectionLinks.entries()]
-			.map(([id, link]) => ({ el: document.getElementById(id), link }))
-			.filter((s): s is { el: HTMLElement; link: HTMLElement } => s.el !== null);
-
-		function getActiveLink(): HTMLElement {
-			const mid = window.innerHeight / 2;
-			let active: HTMLElement | null = null;
-			for (const { el, link } of sections) {
-				if (el.getBoundingClientRect().top <= mid) active = link;
-			}
-			return active ?? brand!;
-		}
-
 		function update() {
-			moveGlow(getActiveLink());
+			moveGlow(brand!);
 		}
 
-		window.addEventListener("scroll", update, { passive: true });
 		window.addEventListener("resize", update);
 
 		// Initial position after layout settles

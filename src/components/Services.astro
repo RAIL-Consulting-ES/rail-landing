@@ -1,0 +1,341 @@
+---
+const stations = [
+	{
+		number: "01",
+		label: "WEB",
+		description:
+			"Diseño y desarrollo de páginas web a medida. Landings, corporativas y e-commerce.",
+	},
+	{
+		number: "02",
+		label: "ERP/CRM",
+		description:
+			"Sistemas internos hechos a vuestra medida, no a la del software.",
+	},
+	{
+		number: "03",
+		label: "AUTOMATIZACIÓN",
+		description:
+			"Procesos que se ejecutan solos. Con IA cuando aporta. Sin IA cuando no.",
+	},
+	{
+		number: "04",
+		label: "CONSULTORÍA",
+		description:
+			"Auditoría, decisiones de stack y acompañamiento técnico.",
+	},
+];
+---
+
+<section
+	id="services"
+	class="services"
+	aria-label="Ramal Servicios"
+	data-branch="servicios"
+	hidden
+>
+	<div class="services__inner">
+		<button
+			class="services__back"
+			data-back="true"
+			type="button"
+			aria-label="Volver al nodo central"
+		>
+			<span aria-hidden="true">←</span> Volver
+		</button>
+
+		<header class="services__head">
+			<p class="services__eyebrow label-caps">Ramal · Servicios</p>
+			<h2 class="services__title">Cuatro paradas. Una sola vía.</h2>
+			<p class="services__lead">
+				Estos son los servicios que ofrecemos en RAIL.
+			</p>
+		</header>
+
+		<div class="services__track">
+			<div class="services__rail" aria-hidden="true"></div>
+
+			<svg
+				class="services__train"
+				viewBox="0 0 60 140"
+				width="60"
+				height="140"
+				aria-hidden="true"
+			>
+				<defs>
+					<linearGradient id="trainBodyH" x1="0" y1="0" x2="1" y2="0">
+						<stop offset="0%" stop-color="#1b1b1b"></stop>
+						<stop offset="50%" stop-color="#2a2a2a"></stop>
+						<stop offset="100%" stop-color="#1b1b1b"></stop>
+					</linearGradient>
+				</defs>
+				<ellipse cx="30" cy="138" rx="18" ry="1.5" fill="#000" opacity="0.12"></ellipse>
+				<path
+					d="M 14 6 Q 14 2, 18 2 L 42 2 Q 46 2, 46 6 L 46 110 Q 46 130, 30 138 Q 14 130, 14 110 Z"
+					fill="url(#trainBodyH)"
+					stroke="#0a0a0a"
+					stroke-width="0.5"></path>
+				<circle cx="30" cy="128" r="2.5" fill="#93c572"></circle>
+				<circle cx="30" cy="128" r="1.2" fill="#ffffff"></circle>
+				<path d="M 22 105 L 38 105 L 36 118 L 24 118 Z" fill="#0a0a0a" opacity="0.85"></path>
+				<rect x="20" y="22" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"></rect>
+				<rect x="20" y="38" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"></rect>
+				<rect x="20" y="54" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"></rect>
+				<rect x="20" y="70" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"></rect>
+				<rect x="20" y="86" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"></rect>
+				<line x1="14" y1="100" x2="46" y2="100" stroke="#93c572" stroke-width="1.5"></line>
+			</svg>
+
+			<ul class="services__stations">
+				{
+					stations.map((s) => (
+						<li class="station" data-station={s.number}>
+							<span class="station__dot" aria-hidden="true" />
+							<span class="station__number label-caps">
+								{s.number}
+							</span>
+							<span class="station__label">{s.label}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div class="services__detail" data-active-station="01">
+			{
+				stations.map((s) => (
+					<p
+						class="services__detail-text"
+						data-detail-for={s.number}
+					>
+						{s.description}
+					</p>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.services {
+		position: relative;
+		z-index: 2;
+		height: 500vh;
+		background: var(--surface);
+	}
+
+	.services__inner {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow: hidden;
+		padding: 0 var(--margin-edge);
+	}
+
+	.services__back {
+		position: absolute;
+		top: 100px;
+		left: var(--margin-edge);
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 8px 12px;
+		color: var(--on-surface-variant);
+		font-size: 14px;
+		z-index: 3;
+		transition: color 200ms ease;
+	}
+
+	.services__back:hover {
+		color: var(--on-surface);
+	}
+
+	.services__head {
+		max-width: 720px;
+		margin-top: 140px;
+	}
+
+	.services__eyebrow {
+		margin: 0 0 var(--stack-sm);
+		color: var(--on-surface-variant);
+	}
+
+	.services__title {
+		margin: 0;
+		font-size: clamp(40px, 5vw, 64px);
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: var(--on-surface);
+	}
+
+	.services__lead {
+		margin: var(--stack-sm) 0 0;
+		max-width: 56ch;
+		font-size: 18px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.services__track {
+		position: relative;
+		margin-top: var(--stack-lg);
+		height: 140px;
+	}
+
+	.services__rail {
+		position: absolute;
+		top: calc(50% + 35px);
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: var(--outline);
+		z-index: 1;
+	}
+
+	.services__train {
+		position: absolute;
+		top: calc(50% + 35px);
+		left: 10%;
+		transform: translate(-50%, -50%) rotate(-90deg);
+		z-index: 3;
+		will-change: transform, left;
+	}
+
+	.services__stations {
+		position: relative;
+		z-index: 2;
+		list-style: none;
+		margin: 0;
+		padding: 20px 10% 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		height: 100%;
+	}
+
+	.station {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.station__number {
+		order: 1;
+		color: var(--on-surface-variant);
+	}
+
+	.station__label {
+		order: 2;
+		font-size: 16px;
+		font-weight: 600;
+		color: var(--on-surface);
+	}
+
+	.station__dot {
+		order: 3;
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		background: var(--tertiary);
+		border: 3px solid var(--on-surface);
+		margin-top: 25px;
+	}
+
+	.services__detail {
+		position: relative;
+		max-width: 56ch;
+		margin: var(--stack-lg) auto 0;
+		min-height: 80px;
+		text-align: center;
+	}
+
+	.services__detail-text {
+		position: absolute;
+		inset: 0;
+		margin: 0;
+		font-size: 18px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+		opacity: 0;
+		transition: opacity 300ms ease;
+	}
+
+	.services__detail[data-active-station="01"] [data-detail-for="01"],
+	.services__detail[data-active-station="02"] [data-detail-for="02"],
+	.services__detail[data-active-station="03"] [data-detail-for="03"],
+	.services__detail[data-active-station="04"] [data-detail-for="04"] {
+		opacity: 1;
+	}
+
+	@media (max-width: 768px) {
+		.services__train {
+			display: none;
+		}
+
+		.services__inner {
+			padding: 0 var(--stack-md);
+		}
+
+		.services__back {
+			left: var(--stack-md);
+		}
+
+		.services__track {
+			height: auto;
+			margin-top: var(--stack-md);
+		}
+
+		.services__rail {
+			top: 0;
+			bottom: 0;
+			left: 12px;
+			right: auto;
+			width: 2px;
+			height: auto;
+		}
+
+		.services__stations {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--stack-md);
+			padding: var(--stack-sm) 0 var(--stack-sm) 32px;
+			height: auto;
+		}
+
+		.station {
+			flex-direction: row;
+			align-items: center;
+			gap: 12px;
+		}
+
+		.station__dot {
+			order: 0;
+			margin-top: 0;
+			margin-left: -28px;
+		}
+
+		.station__number {
+			order: 1;
+		}
+
+		.station__label {
+			order: 2;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.services__detail {
+			min-height: auto;
+		}
+
+		.services__detail-text {
+			position: static;
+			inset: auto;
+			opacity: 1;
+			margin-bottom: var(--stack-sm);
+		}
+	}
+</style>

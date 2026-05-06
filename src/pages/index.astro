@@ -2,34 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Network from "../components/Network.astro";
+import Services from "../components/Services.astro";
+import Train from "../components/Train.astro";
 ---
 
 <Layout title="RAIL — Engineering the Future">
 	<Header />
+	<Train />
 	<Hero />
-	<section id="expertise" class="next-placeholder">
-		<div class="next-placeholder__inner">
-			<p class="label-caps">Next Section</p>
-		</div>
-	</section>
+	<Network />
+	<Services />
 </Layout>
-
-<style>
-	.next-placeholder {
-		position: relative;
-		z-index: 2;
-		min-height: 100vh;
-		background: var(--surface-container-low);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.next-placeholder__inner {
-		color: var(--on-surface-variant);
-	}
-</style>
 
 <script>
 	import "../scripts/hero.ts";
+	import "../scripts/network.ts";
+	import "../scripts/branch.ts";
 </script>

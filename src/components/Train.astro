@@ -1,0 +1,66 @@
+---
+---
+
+<div class="train-wrapper" aria-hidden="true">
+	<svg
+		class="train"
+		viewBox="0 0 60 140"
+		width="60"
+		height="140"
+	>
+		<defs>
+			<linearGradient id="trainBody" x1="0" y1="0" x2="1" y2="0">
+				<stop offset="0%" stop-color="#1b1b1b"></stop>
+				<stop offset="50%" stop-color="#2a2a2a"></stop>
+				<stop offset="100%" stop-color="#1b1b1b"></stop>
+			</linearGradient>
+		</defs>
+
+		<ellipse cx="30" cy="138" rx="18" ry="1.5" fill="#000" opacity="0.12"
+		></ellipse>
+
+		<path
+			d="M 14 6 Q 14 2, 18 2 L 42 2 Q 46 2, 46 6 L 46 110 Q 46 130, 30 138 Q 14 130, 14 110 Z"
+			fill="url(#trainBody)"
+			stroke="#0a0a0a"
+			stroke-width="0.5"></path>
+
+		<circle cx="30" cy="128" r="2.5" fill="#93c572"></circle>
+		<circle cx="30" cy="128" r="1.2" fill="#ffffff"></circle>
+
+		<path
+			d="M 22 105 L 38 105 L 36 118 L 24 118 Z"
+			fill="#0a0a0a"
+			opacity="0.85"></path>
+
+		<rect x="20" y="22" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"
+		></rect>
+		<rect x="20" y="38" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"
+		></rect>
+		<rect x="20" y="54" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"
+		></rect>
+		<rect x="20" y="70" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"
+		></rect>
+		<rect x="20" y="86" width="20" height="8" rx="2" fill="#0a0a0a" opacity="0.7"
+		></rect>
+
+		<line x1="14" y1="100" x2="46" y2="100" stroke="#93c572" stroke-width="1.5"
+		></line>
+	</svg>
+</div>
+
+<style>
+	.train-wrapper {
+		position: fixed;
+		top: calc(50vh - 152px);
+		left: 50%;
+		z-index: 50;
+		pointer-events: none;
+		will-change: transform;
+	}
+
+	.train {
+		display: block;
+		will-change: transform, opacity;
+	}
+</style>
