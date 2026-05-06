@@ -1,0 +1,95 @@
+---
+const navItems = [
+	{ label: "Expertise", href: "#expertise" },
+	{ label: "Solutions", href: "#solutions" },
+	{ label: "Case Studies", href: "#case-studies" },
+	{ label: "About", href: "/about" },
+];
+---
+
+<header class="site-header">
+	<div class="site-header__inner">
+		<a href="/" class="brand">RAIL</a>
+		<nav class="nav" aria-label="Primary">
+			{
+				navItems.map((item) => (
+					<a href={item.href} class="nav__link label-caps">
+						{item.label}
+					</a>
+				))
+			}
+		</nav>
+		<a href="#contact" class="cta label-caps">Start a Project</a>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		background: color-mix(in srgb, var(--surface) 75%, transparent);
+		backdrop-filter: saturate(180%) blur(14px);
+		-webkit-backdrop-filter: saturate(180%) blur(14px);
+		border-bottom: 1px solid var(--outline-variant);
+	}
+
+	.site-header__inner {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		padding: 16px var(--margin-edge);
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: var(--stack-md);
+	}
+
+	.brand {
+		font-weight: 800;
+		font-size: 20px;
+		letter-spacing: -0.02em;
+		color: var(--on-surface);
+	}
+
+	.nav {
+		display: flex;
+		justify-content: center;
+		gap: var(--stack-md);
+	}
+
+	.nav__link {
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.nav__link:hover {
+		color: var(--on-surface);
+	}
+
+	.cta {
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		padding: 12px 20px;
+		border-radius: var(--r);
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
+	}
+
+	.cta:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	@media (max-width: 768px) {
+		.site-header__inner {
+			padding: 14px var(--stack-md);
+			grid-template-columns: auto auto;
+		}
+		.nav {
+			display: none;
+		}
+	}
+</style>
