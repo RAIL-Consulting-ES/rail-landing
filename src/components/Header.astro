@@ -8,7 +8,10 @@ const navItems = [
 ---
 
 <header class="site-header">
-	<div class="site-header__inner">
+	<div class="rail" aria-hidden="true">
+		<div class="rail__glow" id="railGlow"></div>
+	</div>
+	<div class="rail__card">
 		<a href="/" class="brand">RAIL</a>
 		<nav class="nav" aria-label="Primary">
 			{
@@ -30,20 +33,50 @@ const navItems = [
 		left: 0;
 		right: 0;
 		z-index: 100;
-		background: color-mix(in srgb, var(--surface) 75%, transparent);
-		backdrop-filter: saturate(180%) blur(14px);
-		-webkit-backdrop-filter: saturate(180%) blur(14px);
-		border-bottom: 1px solid var(--outline-variant);
+		display: grid;
+		place-items: center;
+		padding: 12px var(--margin-edge);
 	}
 
-	.site-header__inner {
+	.rail {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.rail__glow {
+		position: absolute;
+		top: 50%;
+		left: 0px;
+		transform: translate(-50%, -50%);
+		width: 160px;
+		height: 80px;
+		background: radial-gradient(
+			ellipse,
+			rgba(147, 197, 114, 0.55) 0%,
+			rgba(147, 197, 114, 0.18) 45%,
+			transparent 70%
+		);
+		border-radius: 50%;
+		transition: left 500ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.rail__card {
+		position: relative;
+		z-index: 1;
+		width: 100%;
 		max-width: var(--container-max);
-		margin: 0 auto;
-		padding: 16px var(--margin-edge);
+		padding: 14px var(--gutter);
 		display: grid;
 		grid-template-columns: auto 1fr auto;
 		align-items: center;
 		gap: var(--stack-md);
+		background: color-mix(in srgb, var(--surface) 75%, transparent);
+		backdrop-filter: saturate(180%) blur(14px);
+		-webkit-backdrop-filter: saturate(180%) blur(14px);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r);
+		box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
 	}
 
 	.brand {
@@ -84,12 +117,80 @@ const navItems = [
 	}
 
 	@media (max-width: 768px) {
-		.site-header__inner {
-			padding: 14px var(--stack-md);
+		.site-header {
+			padding: 12px var(--stack-md);
+		}
+
+		.rail__card {
+			padding: 12px var(--stack-md);
 			grid-template-columns: auto auto;
 		}
+
+		.rail__glow {
+			width: 80px;
+			height: 40px;
+		}
+
 		.nav {
 			display: none;
 		}
 	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.rail__glow {
+			transition: none;
+		}
+	}
 </style>
+
+<script>
+	const glow = document.getElementById("railGlow") as HTMLElement | null;
+	const header = document.querySelector(".site-header") as HTMLElement | null;
+	const brand = document.querySelector(".brand") as HTMLElement | null;
+
+	if (glow && header && brand) {
+		// Map section id → nav link element
+		const sectionLinks = new Map<string, HTMLElement>();
+		document.querySelectorAll<HTMLElement>(".nav__link").forEach((link) => {
+			const href = link.getAttribute("href");
+			if (href?.startsWith("#")) {
+				sectionLinks.set(href.slice(1), link);
+			}
+		});
+
+		// Returns center X of el relative to header left edge
+		function targetLeft(el: HTMLElement): number {
+			const elRect = el.getBoundingClientRect();
+			const headerRect = header!.getBoundingClientRect();
+			return elRect.left + elRect.width / 2 - headerRect.left;
+		}
+
+		function moveGlow(el: HTMLElement) {
+			glow!.style.left = `${targetLeft(el)}px`;
+		}
+
+		// Which section has scrolled past the viewport midpoint?
+		const sections = [...sectionLinks.entries()]
+			.map(([id, link]) => ({ el: document.getElementById(id), link }))
+			.filter((s): s is { el: HTMLElement; link: HTMLElement } => s.el !== null);
+
+		function getActiveLink(): HTMLElement {
+			const mid = window.innerHeight / 2;
+			let active: HTMLElement | null = null;
+			for (const { el, link } of sections) {
+				if (el.getBoundingClientRect().top <= mid) active = link;
+			}
+			return active ?? brand!;
+		}
+
+		function update() {
+			moveGlow(getActiveLink());
+		}
+
+		window.addEventListener("scroll", update, { passive: true });
+		window.addEventListener("resize", update);
+
+		// Initial position after layout settles
+		requestAnimationFrame(update);
+	}
+</script>
