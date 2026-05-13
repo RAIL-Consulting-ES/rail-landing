@@ -1,0 +1,183 @@
+---
+import casesData from "../data/cases.json";
+import type { CaseStudy } from "../types/case";
+
+const cases: CaseStudy[] = casesData;
+---
+
+<section class="cases" id="cases" data-cases-root>
+	<div class="cases__track">
+		<div class="cases__stage">
+			<canvas class="cases__trail" data-cases-trail layoutsubtree></canvas>
+			<canvas class="cases__three" data-cases-three></canvas>
+
+			<div class="cases__cta" data-cases-cta>
+				<h2 class="cases__cta-title">¿Listo para tu caso?</h2>
+				<a href="#contact" class="cases__cta-btn">Hablemos</a>
+			</div>
+
+			<div class="cases__fallback" data-cases-fallback>
+				<h2 class="cases__fallback-title">Case Studies</h2>
+				<div class="cases__fallback-grid">
+					{
+						cases.map((c) => (
+							<a href={`/case/${c.slug}`} class="case-card">
+								<img src={c.image} alt="" loading="lazy" />
+								<h3>{c.title}</h3>
+								<p>{c.description}</p>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="application/json" data-cases-data set:html={JSON.stringify(cases)} />
+</section>
+
+<style>
+	.cases {
+		position: relative;
+		z-index: 4;
+		margin-top: -200vh;
+		pointer-events: none;
+	}
+
+	.cases__track {
+		height: var(--cases-track, 1000vh);
+	}
+
+	.cases__stage {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow: hidden;
+		background-color: transparent;
+		opacity: 0;
+	}
+
+	.cases__trail,
+	.cases__three {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+
+	.cases__trail {
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.cases__three {
+		z-index: 2;
+		pointer-events: auto;
+	}
+
+	.cases__cta {
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		opacity: 0;
+		pointer-events: none;
+		text-align: center;
+		padding: 2rem;
+	}
+
+	.cases__cta-title {
+		font-family: "Space Grotesk", "Inter", sans-serif;
+		font-weight: 600;
+		font-size: clamp(2rem, 5vw, 4rem);
+		color: var(--primary, #000);
+		margin: 0;
+	}
+
+	.cases__cta-btn {
+		display: inline-block;
+		padding: 0.9rem 1.8rem;
+		border-radius: 999px;
+		background: var(--primary, #000);
+		color: var(--on-primary, #fff);
+		text-decoration: none;
+		font-weight: 600;
+		font-family: "Inter", sans-serif;
+	}
+
+	.cases__fallback {
+		display: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.cases__track {
+			height: auto;
+		}
+
+		.cases__stage {
+			position: relative;
+			height: auto;
+			padding: 4rem 1.5rem;
+		}
+
+		.cases__trail,
+		.cases__three,
+		.cases__cta {
+			display: none;
+		}
+
+		.cases__fallback {
+			display: block;
+			max-width: 1100px;
+			margin: 0 auto;
+		}
+
+		.cases__fallback-title {
+			font-family: "Space Grotesk", "Inter", sans-serif;
+			font-size: clamp(2rem, 4vw, 3rem);
+			margin: 0 0 2rem;
+			color: var(--primary, #000);
+		}
+
+		.cases__fallback-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1.5rem;
+		}
+
+		.case-card {
+			background: #fff;
+			border: 1px solid #e5e5e5;
+			border-radius: 12px;
+			overflow: hidden;
+			color: inherit;
+			text-decoration: none;
+			display: block;
+		}
+
+		.case-card img {
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			object-fit: cover;
+			display: block;
+		}
+
+		.case-card h3 {
+			margin: 1rem 1rem 0.5rem;
+			font-family: "Space Grotesk", "Inter", sans-serif;
+		}
+
+		.case-card p {
+			margin: 0 1rem 1rem;
+			font-family: "Inter", sans-serif;
+			color: #444;
+			font-size: 0.95rem;
+			line-height: 1.5;
+		}
+	}
+</style>

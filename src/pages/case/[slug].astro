@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import casesData from "../../data/cases.json";
+import type { CaseStudy } from "../../types/case";
+
+export async function getStaticPaths() {
+	const cases = casesData as CaseStudy[];
+	return cases.map((c) => ({
+		params: { slug: c.slug },
+		props: { study: c },
+	}));
+}
+
+const { study } = Astro.props as { study: CaseStudy };
+---
+
+<Layout title={`${study.title} — RAIL`}>
+	<article class="case" data-case-root data-case-slug={study.slug}>
+		<div class="case__hero">
+			<img class="case__hero-bg" src={study.image} alt="" data-case-hero-bg />
+			<div class="case__hero-overlay"></div>
+			<a href="/#cases" class="case__back">← Volver</a>
+			<h1 class="case__title" data-case-title>{study.title}</h1>
+		</div>
+		<div class="case__body" data-case-body data-text={study.body}>{study.body}</div>
+	</article>
+</Layout>

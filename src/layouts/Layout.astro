@@ -5,6 +5,8 @@ interface Props {
 	title?: string;
 }
 const { title = "Landing RAIL" } = Astro.props;
+const pathname = Astro.url.pathname;
+const namespace = pathname.startsWith("/case/") ? "case" : "home";
 ---
 
 <html lang="en">
@@ -23,12 +25,13 @@ const { title = "Landing RAIL" } = Astro.props;
 	</head>
 	<body>
 		<div id="barba-wrapper" data-barba="wrapper">
-			<main data-barba="container" data-barba-namespace={Astro.url.pathname}>
+			<main data-barba="container" data-barba-namespace={namespace}>
 				<slot />
 			</main>
 		</div>
 		<script>
 			import "../scripts/transitions.ts";
+			import "../scripts/case.ts";
 		</script>
 	</body>
 </html>

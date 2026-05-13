@@ -3,15 +3,21 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Expertise from "../components/Expertise.astro";
+import Solutions from "../components/Solutions.astro";
+import CaseStudies from "../components/CaseStudies.astro";
 ---
 
 <Layout title="RAIL — Engineering the Future">
 	<Header />
 	<Hero />
 	<Expertise />
+	<Solutions />
+	<CaseStudies />
 </Layout>
 
 <script>
 	import "../scripts/hero.ts";
 	import "../scripts/expertise.ts";
+	import "../scripts/solutions.ts";
+	import "../scripts/casestudies.ts";
 </script>

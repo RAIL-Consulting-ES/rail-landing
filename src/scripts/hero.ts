@@ -1,9 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onHomeMount } from "./lifecycle";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function init() {
+function init(): (() => void) | void {
 	const hero = document.querySelector<HTMLElement>("#hero");
 	if (!hero) return;
 
@@ -73,10 +74,8 @@ function init() {
 		gsap.set([letterR, letterA, letterI, letterL], { clearProps: "all" });
 		gsap.set(sub2, { autoAlpha: 0 });
 	});
+
+	return () => mm.revert();
 }
 
-if (document.readyState === "loading") {
-	document.addEventListener("DOMContentLoaded", init);
-} else {
-	init();
-}
+onHomeMount(() => init());

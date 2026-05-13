@@ -2,7 +2,7 @@
 const navItems = [
 	{ label: "Expertise", href: "#expertise" },
 	{ label: "Solutions", href: "#solutions" },
-	{ label: "Case Studies", href: "#case-studies" },
+	{ label: "Case Studies", href: "#cases" },
 	{ label: "About", href: "/about" },
 ];
 ---
@@ -193,4 +193,38 @@ const navItems = [
 		// Initial position after layout settles
 		requestAnimationFrame(update);
 	}
+
+	// Custom anchor scroll: sections use sticky tracks with negative top margins,
+	// so the native anchor lands on an empty pre-reveal frame. Aim at the scroll
+	// position where each section's content is first meaningfully visible.
+	const REVEAL_PROGRESS: Record<string, number> = {
+		expertise: 0.12,
+		solutions: 0.7,
+		cases: 0.32,
+	};
+
+	function smoothScrollToSection(id: string) {
+		const section = document.getElementById(id);
+		if (!section) return;
+		const track = section.querySelector<HTMLElement>(
+			".exp__track, .sol__track, .cases__track",
+		);
+		const progress = REVEAL_PROGRESS[id] ?? 0;
+		const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+		const trackHeight = track ? track.offsetHeight : section.offsetHeight;
+		const target = sectionTop + progress * (trackHeight - window.innerHeight);
+		window.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+	}
+
+	document.querySelectorAll<HTMLAnchorElement>(".nav__link").forEach((link) => {
+		const href = link.getAttribute("href");
+		if (!href?.startsWith("#")) return;
+		const id = href.slice(1);
+		if (!(id in REVEAL_PROGRESS)) return;
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			smoothScrollToSection(id);
+			if (history.replaceState) history.replaceState(null, "", `#${id}`);
+		});
+	});
 </script>
