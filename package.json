@@ -12,10 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@barba/core": "^2.10.3",
-    "@types/three": "^0.184.1",
     "astro": "^6.2.2",
-    "gsap": "^3.15.0",
-    "three": "^0.184.0"
+    "gsap": "^3.15.0"
   }
 }

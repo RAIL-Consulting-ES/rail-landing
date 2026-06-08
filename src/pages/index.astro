@@ -4,20 +4,24 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Expertise from "../components/Expertise.astro";
 import Solutions from "../components/Solutions.astro";
-import CaseStudies from "../components/CaseStudies.astro";
+import FinalCTA from "../components/FinalCTA.astro";
 ---
 
-<Layout title="RAIL — Ingeniería del futuro">
+<Layout
+	title="RAIL — Ingeniería de software a medida"
+	description="Consultora de ingeniería de software que construye sistemas que escalan: ERP, CRM, automatización, IA y datos, e infraestructura cloud a medida para tu negocio."
+>
 	<Header />
-	<Hero />
-	<Expertise />
-	<Solutions />
-	<CaseStudies />
+	<main id="contenido">
+		<Hero />
+		<Expertise />
+		<Solutions />
+		<FinalCTA />
+	</main>
 </Layout>
 
 <script>
 	import "../scripts/hero.ts";
 	import "../scripts/expertise.ts";
 	import "../scripts/solutions.ts";
-	import "../scripts/casestudies.ts";
 </script>

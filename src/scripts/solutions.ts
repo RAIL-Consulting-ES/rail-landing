@@ -108,8 +108,7 @@ function init(): (() => void) | void {
 				trigger: track,
 				start: "top top",
 				// End animation 100vh before track ends; sticky keeps the stage pinned
-				// during that window so Solutions stays visible (frozen at final frame)
-				// while the CaseStudies eraser passes over it.
+				// during that window so Solutions stays visible (frozen at final frame).
 				end: () => `bottom-=${window.innerHeight} bottom`,
 				scrub: 0.6,
 				invalidateOnRefresh: true,
