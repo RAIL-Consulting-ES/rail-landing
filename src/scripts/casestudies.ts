@@ -4,7 +4,6 @@ import {
 	Scene,
 	PerspectiveCamera,
 	WebGLRenderer,
-	BoxGeometry,
 	PlaneGeometry,
 	MeshStandardMaterial,
 	MeshBasicMaterial,
@@ -15,7 +14,6 @@ import {
 	CanvasTexture,
 	Vector3,
 	Vector2,
-	Color,
 	DoubleSide,
 	Raycaster,
 	MathUtils,
@@ -56,9 +54,6 @@ function initCaseStudies(root: HTMLElement): (() => void) | void {
 	const mm = gsap.matchMedia();
 	mm.add("(prefers-reduced-motion: no-preference)", () => {
 		const stage = setupStage(threeCanvas);
-		const eraser = buildEraser();
-		eraser.group.visible = false;
-		stage.scene.add(eraser.group);
 
 		const book = buildBook(cases);
 		book.group.visible = false;
@@ -270,19 +265,6 @@ function initCaseStudies(root: HTMLElement): (() => void) | void {
 			}
 		}
 
-		function setEraserAtProgress(progress: number) {
-			if (progress < ERASER_END) {
-				eraser.group.visible = true;
-				const t = progress / ERASER_END;
-				const { x, y } = eraserWorldPos(t);
-				eraser.group.position.set(x, y, 0.2);
-				// slight wobble
-				eraser.group.rotation.z = Math.sin(t * Math.PI * SWEEPS) * 0.15;
-			} else {
-				eraser.group.visible = false;
-			}
-		}
-
 		// Book timeline phases (relative to total timeline 0..1).
 		// Page-flip range is split evenly across the N case leaves.
 		const PAGE_RANGE: [number, number] = [0.32, 0.78];
@@ -382,7 +364,6 @@ function initCaseStudies(root: HTMLElement): (() => void) | void {
 			// the cases canvas overlaps Solutions and would swallow its CTA click.
 			setPointerActive(progress >= P.bookFallEnd);
 			paintTrail(progress);
-			setEraserAtProgress(progress);
 			setBookAtProgress(progress);
 			setCtaAtProgress(progress);
 			stage.renderer.render(stage.scene, stage.camera);
@@ -508,34 +489,6 @@ function setupTrail(canvas: HTMLCanvasElement) {
 	}
 
 	return { canvas, ctx, resize, dispose };
-}
-
-/* ------------------------------------------------------------------ */
-/* eraser mesh                                                         */
-/* ------------------------------------------------------------------ */
-function buildEraser() {
-	const group = new Group();
-	const W = 1.4;
-	const H = 0.45;
-	const D = 0.7;
-
-	const top = new Mesh(
-		new BoxGeometry(W, H / 2, D),
-		new MeshStandardMaterial({ color: new Color("#e85d75"), roughness: 0.6 }),
-	);
-	top.position.y = H / 4;
-
-	const bot = new Mesh(
-		new BoxGeometry(W, H / 2, D),
-		new MeshStandardMaterial({ color: new Color("#3b6bb6"), roughness: 0.6 }),
-	);
-	bot.position.y = -H / 4;
-
-	group.add(top, bot);
-	group.rotation.x = -0.3;
-	group.rotation.z = 0.1;
-
-	return { group };
 }
 
 /* ------------------------------------------------------------------ */

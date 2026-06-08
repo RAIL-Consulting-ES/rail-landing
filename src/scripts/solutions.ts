@@ -15,8 +15,6 @@ function init(): (() => void) | void {
 	const halo = sol.querySelector<HTMLElement>(".bulb__halo");
 	const bulbOn = sol.querySelector<HTMLElement>(".bulb__img--on");
 	const title = sol.querySelector<HTMLElement>(".sol__title");
-	const scratch = sol.querySelector<HTMLElement>(".sol__scratch");
-	const scratchTag = sol.querySelector<HTMLElement>(".sol__scratch-tag");
 	const cards = sol.querySelectorAll<HTMLElement>(".card");
 	const cta = sol.querySelector<HTMLElement>(".cta-primary");
 
@@ -28,7 +26,6 @@ function init(): (() => void) | void {
 		!halo ||
 		!bulbOn ||
 		!title ||
-		!scratch ||
 		!cta
 	)
 		return;
@@ -51,7 +48,6 @@ function init(): (() => void) | void {
 			color: "#ffffff",
 		});
 		gsap.set(stage, { backgroundColor: "#000000", color: "#ffffff" });
-		gsap.set(scratch, { opacity: 0 });
 
 		// Compute fan-out target X/Y for each card based on its width.
 		// Cards stack centred (x = -50% via CSS transform) and animate to their target.
@@ -121,50 +117,37 @@ function init(): (() => void) | void {
 		});
 
 		// 1) Bulb falls from above the viewport with bouncy physics.
-		//    Cord drops + bulb translates down with bounce easing (0.20–0.40).
+		//    Arranca pronto (0.06) para minimizar el scroll en negro entre
+		//    el final de Execution y el inicio de Solutions, y cae rápido.
 		tl.to(
 			cord,
-			{ scaleY: 1, ease: "power3.out", duration: 0.20 },
-			0.20,
+			{ scaleY: 1, ease: "power3.out", duration: 0.08 },
+			0.06,
 		);
 		tl.to(
 			sway,
-			{ y: 0, ease: "power3.out", duration: 0.20 },
-			0.20,
+			{ y: 0, ease: "power3.out", duration: 0.08 },
+			0.06,
 		);
 
-		// 2) Spoiler scratch fades in (no movement) once bulb has landed (0.42–0.50)
-		tl.to(
-			scratch,
-			{ opacity: 1, ease: "power1.out", duration: 0.08 },
-			0.42,
-		);
-
-		// Cards appear stacked, hidden behind scratch
-		tl.to(
-			cards,
-			{ opacity: 1, scale: 1, ease: "power2.out", duration: 0.05 },
-			0.50,
-		);
-
-		// 3) Light turns on — flicker then steady
-		tl.to(halo, { opacity: 0.4, scale: 0.85, duration: 0.012 }, 0.56);
-		tl.to(halo, { opacity: 0.1, duration: 0.012 }, 0.578);
-		tl.to(halo, { opacity: 0.6, duration: 0.012 }, 0.59);
-		tl.to(halo, { opacity: 0.15, duration: 0.012 }, 0.602);
+		// 2) Light turns on — flicker then steady (rápido)
+		tl.to(halo, { opacity: 0.4, scale: 0.85, duration: 0.008 }, 0.18);
+		tl.to(halo, { opacity: 0.1, duration: 0.008 }, 0.19);
+		tl.to(halo, { opacity: 0.6, duration: 0.008 }, 0.20);
+		tl.to(halo, { opacity: 0.15, duration: 0.008 }, 0.21);
 		tl.to(
 			halo,
-			{ opacity: 1, scale: 1.4, ease: "power2.out", duration: 0.06 },
-			0.62,
+			{ opacity: 1, scale: 1.4, ease: "power2.out", duration: 0.04 },
+			0.22,
 		);
 		// Bulb image swap: flicker off → on synced with halo
-		tl.to(bulbOn, { opacity: 0.6, duration: 0.012 }, 0.56);
-		tl.to(bulbOn, { opacity: 0.1, duration: 0.012 }, 0.578);
-		tl.to(bulbOn, { opacity: 0.7, duration: 0.012 }, 0.59);
-		tl.to(bulbOn, { opacity: 0.2, duration: 0.012 }, 0.602);
-		tl.to(bulbOn, { opacity: 1, ease: "power2.out", duration: 0.04 }, 0.62);
+		tl.to(bulbOn, { opacity: 0.6, duration: 0.008 }, 0.18);
+		tl.to(bulbOn, { opacity: 0.1, duration: 0.008 }, 0.19);
+		tl.to(bulbOn, { opacity: 0.7, duration: 0.008 }, 0.20);
+		tl.to(bulbOn, { opacity: 0.2, duration: 0.008 }, 0.21);
+		tl.to(bulbOn, { opacity: 1, ease: "power2.out", duration: 0.03 }, 0.22);
 
-		// 4) Stage transitions from black to surface
+		// 3) Stage transitions from black to surface
 		tl.to(
 			stage,
 			{
@@ -173,10 +156,10 @@ function init(): (() => void) | void {
 				ease: "power2.out",
 				duration: 0.08,
 			},
-			0.66,
+			0.26,
 		);
 
-		// 5) Title reveals as the light bursts
+		// 4) Title reveals as the light bursts
 		tl.to(
 			title,
 			{
@@ -184,24 +167,19 @@ function init(): (() => void) | void {
 				clipPath: "circle(160% at 50% -10%)",
 				color: "#1b1b1b",
 				ease: "power2.out",
-				duration: 0.14,
+				duration: 0.12,
 			},
-			0.66,
+			0.26,
 		);
 
-		// 6) Scratch overlay fades out — light burns through it
+		// 5) Cards appear, revealed by the light
 		tl.to(
-			scratch,
-			{ opacity: 0, ease: "power2.out", duration: 0.08 },
-			0.66,
-		);
-		tl.to(
-			scratchTag,
-			{ opacity: 0, duration: 0.04 },
-			0.66,
+			cards,
+			{ opacity: 1, scale: 1, ease: "power2.out", duration: 0.05 },
+			0.28,
 		);
 
-		// 7) Cards fan out horizontally
+		// 6) Cards fan out horizontally
 		cards.forEach((card, i) => {
 			tl.to(
 				card,
@@ -210,23 +188,23 @@ function init(): (() => void) | void {
 					y: targetsY[i],
 					rotate: 0,
 					ease: "power2.out",
-					duration: 0.14,
+					duration: 0.12,
 				},
-				0.74 + (cards.length - 1 - i) * 0.01,
+				0.36 + (cards.length - 1 - i) * 0.01,
 			);
 		});
 
-		// 8) CTA appears
+		// 7) CTA appears
 		tl.to(
 			cta,
 			{ opacity: 1, y: 0, ease: "power2.out", duration: 0.06 },
-			0.92,
+			0.52,
 		);
 
 		return () => {
 			swayTween.kill();
 			gsap.set(
-				[cord, sway, halo, bulbOn, title, stage, scratch, cta, cards],
+				[cord, sway, halo, bulbOn, title, stage, cta, cards],
 				{ clearProps: "all" },
 			);
 		};

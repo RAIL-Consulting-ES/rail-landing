@@ -208,37 +208,17 @@ function init(): (() => void) | void {
 			onLeaveBack: () => pulseLoops.forEach((l) => l.pause()),
 		});
 
-		// Execution: secuencia blueprint → mockup → rocket. Scrubbeada
+		// Execution: secuencia blueprint → mockup. Scrubbeada
 		// (sigue al scroll) para que el panel tenga estado idle al entrar
 		// y la "narrativa" se viva conforme avanza el usuario.
 		const blueprint = pExecution.querySelector<SVGElement>(".exec--blueprint");
 		const mockup = pExecution.querySelector<SVGElement>(".exec--mockup");
-		const rocket = pExecution.querySelector<SVGElement>(".exec--rocket");
 
 		gsap.set([blueprint, mockup], { opacity: 0 });
-		gsap.set(rocket, { opacity: 0, x: 0, y: 0, rotate: 0, scale: 0.6 });
 
 		tl.to(blueprint, { opacity: 1, ease: "power1.out", duration: 0.04 }, 0.8);
 		tl.to(blueprint, { opacity: 0, ease: "power1.in", duration: 0.04 }, 0.88);
 		tl.to(mockup, { opacity: 1, ease: "power1.out", duration: 0.04 }, 0.86);
-		tl.fromTo(
-			rocket,
-			{ opacity: 0, x: 0, y: 0, rotate: 0, scale: 0.6 },
-			{ opacity: 1, scale: 0.95, ease: "power1.out", duration: 0.03 },
-			0.9,
-		);
-		tl.to(
-			rocket,
-			{
-				x: 240,
-				y: -520,
-				rotate: 18,
-				ease: "power2.in",
-				duration: 0.07,
-			},
-			0.93,
-		);
-		tl.to(mockup, { opacity: 0, ease: "power1.in", duration: 0.04 }, 0.94);
 
 		return () => {
 			trainLoop?.kill();

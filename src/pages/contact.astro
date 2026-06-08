@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const email = "hola@rail.dev";
+---
+
+<Layout title="Contacto — RAIL">
+	<Header />
+
+	<main class="contact">
+		<header class="contact__intro">
+			<p class="label-caps contact__eyebrow">Contacto</p>
+			<h1 class="contact__title">Cuéntanos tu problema. Construimos la solución.</h1>
+			<p class="contact__lead">
+				En RAIL convertimos problemas reales en software de ingeniería que
+				escala con tu negocio. Escríbenos y empecemos a darle forma a tu
+				proyecto.
+			</p>
+		</header>
+
+		<form class="contact__form" aria-label="Formulario de contacto">
+			<div class="field">
+				<label class="field__label label-caps" for="name">Nombre</label>
+				<input class="field__input" id="name" name="name" type="text" required />
+			</div>
+
+			<div class="field">
+				<label class="field__label label-caps" for="email">Email</label>
+				<input class="field__input" id="email" name="email" type="email" required />
+			</div>
+
+			<div class="field">
+				<label class="field__label label-caps" for="company">
+					Empresa <span class="field__optional">(opcional)</span>
+				</label>
+				<input class="field__input" id="company" name="company" type="text" />
+			</div>
+
+			<div class="field">
+				<label class="field__label label-caps" for="message">Mensaje</label>
+				<textarea
+					class="field__input field__textarea"
+					id="message"
+					name="message"
+					rows="5"
+					required></textarea>
+			</div>
+
+			<button class="contact__submit cta label-caps" type="submit">Enviar mensaje</button>
+		</form>
+
+		<p class="contact__direct">
+			¿Prefieres el correo directo? Escríbenos a
+			<a class="contact__email" href={`mailto:${email}`}>{email}</a>.
+		</p>
+
+		<a href="/" class="contact__home">← Volver al inicio</a>
+	</main>
+</Layout>
+
+<style>
+	.contact {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		padding: 22vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.contact__intro {
+		max-width: 760px;
+		margin: 0 auto var(--stack-lg);
+		text-align: center;
+	}
+
+	.contact__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.contact__title {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(40px, 6vw, 72px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+	}
+
+	.contact__lead {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.contact__form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-md);
+		max-width: 640px;
+		margin: 0 auto;
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-sm);
+	}
+
+	.field__label {
+		color: var(--on-surface-variant);
+	}
+
+	.field__optional {
+		text-transform: none;
+		letter-spacing: 0;
+		color: var(--outline);
+	}
+
+	.field__input {
+		font-family: inherit;
+		font-size: 15px;
+		color: var(--on-surface);
+		background: var(--surface-container-high);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r);
+		padding: 12px 14px;
+		transition: border-color 200ms ease;
+	}
+
+	.field__input:focus {
+		outline: none;
+		border-color: var(--tertiary);
+	}
+
+	.field__textarea {
+		resize: vertical;
+		line-height: 1.6;
+	}
+
+	.contact__submit {
+		align-self: flex-start;
+		border-radius: var(--r);
+	}
+
+	.contact__submit:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	.contact__direct {
+		max-width: 640px;
+		margin: var(--stack-md) auto 0;
+		font-size: 15px;
+		color: var(--on-surface-variant);
+		text-align: center;
+	}
+
+	.contact__email {
+		font-weight: 600;
+		color: var(--on-surface);
+		transition: color 200ms ease;
+	}
+
+	.contact__email:hover {
+		color: var(--tertiary);
+	}
+
+	.contact__home {
+		display: inline-block;
+		margin-top: var(--stack-lg);
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.contact__home:hover {
+		color: var(--on-surface);
+	}
+
+	@media (max-width: 768px) {
+		.contact {
+			padding: 18vh var(--stack-md) var(--stack-lg);
+		}
+	}
+</style>
