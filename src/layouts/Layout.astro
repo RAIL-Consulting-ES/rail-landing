@@ -6,6 +6,7 @@ interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
+	noindex?: boolean;
 }
 
 const defaultDescription =
@@ -15,6 +16,7 @@ const {
 	title = "RAIL — Ingeniería de software a medida",
 	description = defaultDescription,
 	ogImage = "/og-image.png",
+	noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -51,7 +53,7 @@ const orgSchema = {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
 		<meta name="theme-color" content="#93c572" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="RAIL" />
