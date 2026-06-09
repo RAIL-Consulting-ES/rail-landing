@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { solutions } from "../data/solutions";
+---
+
+<Layout
+	title="Soluciones — RAIL"
+	description="Soluciones de software a medida que escalan con tu operación: ERP, CRM, automatización, IA, análisis de datos, cloud native, API Gateway y ciberseguridad."
+>
+	<Header />
+
+	<main id="contenido" class="solutions">
+		<header class="solutions__intro">
+			<p class="label-caps solutions__eyebrow">Soluciones</p>
+			<h1 class="solutions__title">Software de ingeniería para cada capa de tu negocio.</h1>
+			<p class="solutions__lead">
+				Diseñamos y construimos soluciones a medida que escalan con tu
+				operación: desde sistemas de gestión hasta inteligencia artificial,
+				datos e infraestructura cloud. Once piezas que encajan en un mismo
+				stack de ingeniería.
+			</p>
+		</header>
+
+		<section class="solutions__grid" aria-label="Catálogo de soluciones">
+			{
+				solutions.map((s) => (
+					<a class="solution-card" href={`/solutions/${s.slug}/`}>
+						<svg
+							class="solution-card__icon"
+							viewBox="0 0 80 60"
+							aria-hidden="true"
+							focusable="false"
+							set:html={s.icon}
+						/>
+						<h2 class="solution-card__title">{s.title}</h2>
+						<p class="solution-card__copy">{s.copy}</p>
+						<span class="solution-card__more">Ver solución →</span>
+					</a>
+				))
+			}
+		</section>
+
+		<a href="/" class="solutions__home">← Volver al inicio</a>
+	</main>
+</Layout>
+
+<style>
+	.solutions {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		padding: 22vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.solutions__intro {
+		max-width: 760px;
+		margin: 0 auto var(--stack-lg);
+		text-align: center;
+	}
+
+	.solutions__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.solutions__title {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(40px, 6vw, 72px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+	}
+
+	.solutions__lead {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.solutions__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: var(--stack-md);
+	}
+
+	.solution-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-sm);
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+		transition:
+			transform 200ms ease,
+			border-color 200ms ease,
+			box-shadow 200ms ease;
+	}
+
+	.solution-card:hover {
+		transform: translateY(-2px);
+		border-color: var(--tertiary);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+	}
+
+	.solution-card__icon {
+		width: 48px;
+		height: 36px;
+		color: var(--tertiary);
+	}
+
+	.solution-card__title {
+		margin: 0;
+		font-size: 22px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.solution-card__copy {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.solution-card__more {
+		margin-top: auto;
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface);
+		transition: color 200ms ease;
+	}
+
+	.solution-card:hover .solution-card__more {
+		color: var(--tertiary);
+	}
+
+	.solutions__home {
+		display: inline-block;
+		margin-top: var(--stack-lg);
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.solutions__home:hover {
+		color: var(--on-surface);
+	}
+
+	@media (max-width: 768px) {
+		.solutions {
+			padding: 18vh var(--stack-md) var(--stack-lg);
+		}
+
+		.solutions__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

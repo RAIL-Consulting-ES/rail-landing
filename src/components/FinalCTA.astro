@@ -1,0 +1,75 @@
+---
+---
+
+<section class="final-cta" aria-label="Contacto">
+	<div class="final-cta__inner">
+		<h2 class="final-cta__title">
+			¿Listo para construir tu próximo sistema?
+		</h2>
+		<p class="final-cta__copy">
+			Diseñamos e implementamos software que escala con tu negocio.
+			Cuéntanos tu reto y trazamos juntos el camino.
+		</p>
+		<a href="/contact/" class="cta label-caps final-cta__btn">Hablemos</a>
+	</div>
+</section>
+
+<style>
+	.final-cta {
+		position: relative;
+		z-index: 4;
+		background: var(--inverse-surface);
+		color: var(--inverse-on-surface);
+		padding: var(--stack-lg) var(--margin-edge);
+	}
+
+	.final-cta__inner {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: var(--stack-md);
+	}
+
+	.final-cta__title {
+		margin: 0;
+		font-family: "Inter", sans-serif;
+		font-size: clamp(32px, 5vw, 64px);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		line-height: 1.05;
+		max-width: 16ch;
+	}
+
+	.final-cta__copy {
+		margin: 0;
+		max-width: 52ch;
+		font-size: 1.0625rem;
+		line-height: 1.6;
+		color: var(--inverse-on-surface);
+		opacity: 0.8;
+	}
+
+	.final-cta__btn {
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		padding: 14px 28px;
+		border-radius: var(--r);
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
+	}
+
+	.final-cta__btn:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	@media (max-width: 768px) {
+		.final-cta {
+			padding: var(--stack-lg) var(--stack-md);
+		}
+	}
+</style>

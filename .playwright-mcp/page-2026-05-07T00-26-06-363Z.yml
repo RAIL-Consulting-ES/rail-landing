@@ -1,0 +1,98 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - link "RAIL" [ref=e6] [cursor=pointer]:
+      - /url: /
+    - navigation "Primary" [ref=e7]:
+      - link "Expertise" [ref=e8] [cursor=pointer]:
+        - /url: "#expertise"
+      - link "Solutions" [ref=e9] [cursor=pointer]:
+        - /url: "#solutions"
+      - link "Case Studies" [ref=e10] [cursor=pointer]:
+        - /url: "#case-studies"
+      - link "About" [ref=e11] [cursor=pointer]:
+        - /url: /about
+    - link "Start a Project" [ref=e12] [cursor=pointer]:
+      - /url: "#contact"
+  - generic [ref=e14]:
+    - heading "RAIL" [level=1] [ref=e15]:
+      - generic [ref=e16]: R
+      - generic [ref=e17]: A
+      - generic [ref=e18]: I
+      - generic [ref=e19]: L
+    - generic [ref=e20]:
+      - generic [ref=e21]: Engineering the Future
+      - generic [ref=e22]: Integrating Artificial Intelligence
+  - region "Expertise" [ref=e23]:
+    - generic [ref=e25]:
+      - article [ref=e26]:
+        - paragraph [ref=e27]: 01 — Strategy
+        - heading [level=2] [ref=e28]: Strategy
+        - paragraph [ref=e29]: High-end technological roadmap designed aligned with ultimate business objectives. Precision planning for scalable futures.
+        - img [ref=e30]
+      - article [ref=e42]:
+        - paragraph [ref=e43]: 02 — Architecture
+        - heading [level=2] [ref=e44]: Architecture
+        - paragraph [ref=e45]: Building robust, fault-tolerant system frameworks. Structural integrity meets uncompromising performance.
+        - img [ref=e46]
+      - article [ref=e96]:
+        - paragraph [ref=e97]: 03 — Execution
+        - heading [level=2] [ref=e98]: Execution
+        - paragraph [ref=e99]: Flawless deployment and operational excellence. Turning complex blueprints into living digital ecosystems.
+        - generic [ref=e100]:
+          - img [ref=e101]
+          - img [ref=e106]
+          - img [ref=e124]
+  - region "Solutions" [ref=e136]:
+    - generic [ref=e139]:
+      - heading "Solutions" [level=2]
+      - generic:
+        - generic:
+          - article:
+            - img "ERP"
+            - heading "ERP" [level=3]
+            - paragraph: Operaciones, finanzas y datos unificados.
+          - article:
+            - img "CRM"
+            - heading "CRM" [level=3]
+            - paragraph: Relaciones, ventas y soporte a escala.
+          - article:
+            - img "Automatización"
+            - heading "Automatización" [level=3]
+            - paragraph: Workflows orquestados sin fricción.
+          - article:
+            - img "Procesos"
+            - heading "Procesos" [level=3]
+            - paragraph: Throughput, calidad y trazabilidad.
+          - article:
+            - img "IA"
+            - heading "IA" [level=3]
+            - paragraph: Modelos integrados con guardrails.
+          - article:
+            - img "API Gateway"
+            - heading "API Gateway" [level=3]
+            - paragraph: Integración segura y observable.
+          - article:
+            - img "Dashboards"
+            - heading "Dashboards" [level=3]
+            - paragraph: Decisiones en tiempo real.
+          - article:
+            - img "Data Analysis"
+            - heading "Data Analysis" [level=3]
+            - paragraph: Pipelines y analítica avanzada.
+          - article:
+            - img "Cloud Native"
+            - heading "Cloud Native" [level=3]
+            - paragraph: Arquitecturas elásticas multi-región.
+          - article:
+            - img "Cybersecurity"
+            - heading "Cybersecurity" [level=3]
+            - paragraph: Identidad, datos e infraestructura.
+          - article:
+            - img "Consultoría"
+            - heading "Consultoría" [level=3]
+            - paragraph: Acompañamiento end-to-end.
+        - generic:
+          - img
+          - generic: Spoiler · Encender luz
+      - link "Ver todas las soluciones" [ref=e140] [cursor=pointer]:
+        - /url: /solutions

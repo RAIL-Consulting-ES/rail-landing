@@ -1,9 +1,8 @@
 ---
 const navItems = [
-	{ label: "Expertise", href: "#expertise" },
-	{ label: "Solutions", href: "#solutions" },
-	{ label: "Case Studies", href: "#case-studies" },
-	{ label: "About", href: "/about" },
+	{ label: "Especialidad", href: "/#expertise" },
+	{ label: "Soluciones", href: "/solutions/" },
+	{ label: "Nosotros", href: "/about/" },
 ];
 ---
 
@@ -13,7 +12,7 @@ const navItems = [
 	</div>
 	<div class="rail__card">
 		<a href="/" class="brand">RAIL</a>
-		<nav class="nav" aria-label="Primary">
+		<nav class="nav" id="primary-nav" aria-label="Primary">
 			{
 				navItems.map((item) => (
 					<a href={item.href} class="nav__link label-caps">
@@ -22,7 +21,18 @@ const navItems = [
 				))
 			}
 		</nav>
-		<a href="#contact" class="cta label-caps">Start a Project</a>
+		<a href="/contact/" class="cta label-caps">Inicia un Proyecto</a>
+		<button
+			class="nav-toggle"
+			type="button"
+			aria-label="Abrir menú"
+			aria-expanded="false"
+			aria-controls="primary-nav"
+		>
+			<span class="nav-toggle__bar"></span>
+			<span class="nav-toggle__bar"></span>
+			<span class="nav-toggle__bar"></span>
+		</button>
 	</div>
 </header>
 
@@ -116,6 +126,32 @@ const navItems = [
 		filter: brightness(0.97);
 	}
 
+	/* Hamburger — hidden on desktop, shown on mobile */
+	.nav-toggle {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		width: 42px;
+		height: 42px;
+		padding: 0;
+		background: transparent;
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r);
+		cursor: pointer;
+	}
+
+	.nav-toggle__bar {
+		width: 18px;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--on-surface);
+		transition:
+			transform 200ms ease,
+			opacity 200ms ease;
+	}
+
 	@media (max-width: 768px) {
 		.site-header {
 			padding: 12px var(--stack-md);
@@ -123,7 +159,8 @@ const navItems = [
 
 		.rail__card {
 			padding: 12px var(--stack-md);
-			grid-template-columns: auto auto;
+			grid-template-columns: 1fr auto auto;
+			gap: var(--stack-sm);
 		}
 
 		.rail__glow {
@@ -131,13 +168,53 @@ const navItems = [
 			height: 40px;
 		}
 
+		.nav-toggle {
+			display: inline-flex;
+		}
+
 		.nav {
+			position: absolute;
+			top: calc(100% + 8px);
+			left: var(--stack-md);
+			right: var(--stack-md);
 			display: none;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0;
+			padding: 8px;
+			background: var(--surface-container-lowest);
+			border: 1px solid var(--outline-variant);
+			border-radius: var(--r);
+			box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+		}
+
+		.rail__card.is-open .nav {
+			display: flex;
+		}
+
+		.nav__link {
+			padding: 12px 8px;
+		}
+
+		.rail__card.is-open .nav-toggle__bar:nth-child(1) {
+			transform: translateY(6px) rotate(45deg);
+		}
+
+		.rail__card.is-open .nav-toggle__bar:nth-child(2) {
+			opacity: 0;
+		}
+
+		.rail__card.is-open .nav-toggle__bar:nth-child(3) {
+			transform: translateY(-6px) rotate(-45deg);
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.rail__glow {
+			transition: none;
+		}
+
+		.nav-toggle__bar {
 			transition: none;
 		}
 	}
@@ -147,15 +224,39 @@ const navItems = [
 	const glow = document.getElementById("railGlow") as HTMLElement | null;
 	const header = document.querySelector(".site-header") as HTMLElement | null;
 	const brand = document.querySelector(".brand") as HTMLElement | null;
+	const card = document.querySelector(".rail__card") as HTMLElement | null;
+	const toggle = document.querySelector(".nav-toggle") as HTMLButtonElement | null;
+
+	// Hash id from an href like "/#expertise" or "#expertise"
+	function hashOf(href: string | null): string | null {
+		if (!href) return null;
+		const i = href.indexOf("#");
+		return i >= 0 ? href.slice(i + 1) : null;
+	}
+
+	// Mobile menu toggle
+	if (card && toggle) {
+		const closeMenu = () => {
+			card.classList.remove("is-open");
+			toggle.setAttribute("aria-expanded", "false");
+			toggle.setAttribute("aria-label", "Abrir menú");
+		};
+		toggle.addEventListener("click", () => {
+			const open = card.classList.toggle("is-open");
+			toggle.setAttribute("aria-expanded", String(open));
+			toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+		});
+		card
+			.querySelectorAll<HTMLElement>(".nav__link")
+			.forEach((link) => link.addEventListener("click", closeMenu));
+	}
 
 	if (glow && header && brand) {
 		// Map section id → nav link element
 		const sectionLinks = new Map<string, HTMLElement>();
 		document.querySelectorAll<HTMLElement>(".nav__link").forEach((link) => {
-			const href = link.getAttribute("href");
-			if (href?.startsWith("#")) {
-				sectionLinks.set(href.slice(1), link);
-			}
+			const id = hashOf(link.getAttribute("href"));
+			if (id) sectionLinks.set(id, link);
 		});
 
 		// Returns center X of el relative to header left edge
@@ -192,5 +293,46 @@ const navItems = [
 
 		// Initial position after layout settles
 		requestAnimationFrame(update);
+	}
+
+	// Custom anchor scroll: sections use sticky tracks with negative top margins,
+	// so the native anchor lands on an empty pre-reveal frame. Aim at the scroll
+	// position where each section's content is first meaningfully visible.
+	const REVEAL_PROGRESS: Record<string, number> = {
+		expertise: 0.12,
+		solutions: 0.7,
+	};
+
+	function smoothScrollToSection(id: string) {
+		const section = document.getElementById(id);
+		if (!section) return;
+		const track = section.querySelector<HTMLElement>(
+			".exp__track, .sol__track",
+		);
+		const progress = REVEAL_PROGRESS[id] ?? 0;
+		const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+		const trackHeight = track ? track.offsetHeight : section.offsetHeight;
+		const target = sectionTop + progress * (trackHeight - window.innerHeight);
+		window.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+	}
+
+	document.querySelectorAll<HTMLAnchorElement>(".nav__link").forEach((link) => {
+		const id = hashOf(link.getAttribute("href"));
+		if (!id || !(id in REVEAL_PROGRESS)) return;
+		link.addEventListener("click", (e) => {
+			// Only intercept when the section exists on this page (the home).
+			// Otherwise let the browser navigate to "/#id".
+			if (!document.getElementById(id)) return;
+			e.preventDefault();
+			smoothScrollToSection(id);
+			if (history.replaceState) history.replaceState(null, "", `#${id}`);
+		});
+	});
+
+	// Arriving on the home with a section hash (e.g. from another page): run the
+	// reveal-aware scroll instead of the native jump to the pre-reveal frame.
+	const initialId = location.hash.slice(1);
+	if (initialId in REVEAL_PROGRESS && document.getElementById(initialId)) {
+		requestAnimationFrame(() => smoothScrollToSection(initialId));
 	}
 </script>

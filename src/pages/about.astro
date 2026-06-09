@@ -1,8 +1,206 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+type Founder = {
+	name: string;
+	role: string;
+	bio: string;
+	linkedin: string;
+	photo?: string;
+	initials: string;
+};
+
+const founders: Founder[] = [
+	{
+		name: "Mario Pantoja Castro",
+		role: "Co-CEO & Co-Fundador · IA y Ciencia de Datos",
+		bio: "Matemático y estadístico por la Universidad de Sevilla (Doble Grado), especializado en inteligencia artificial y ciencia de datos. Trabaja el análisis de datos, el modelado predictivo y el machine learning en producción —Python, R, SQL, Scikit-Learn y XGBoost—, con experiencia internacional (Erasmus en la Politechnika Gdańska). En LEAN FINANCE puso en producción la plataforma interna de la firma y una herramienta de ML para automatizar la categorización de extractos bancarios.",
+		linkedin: "https://www.linkedin.com/in/mario-pantoja-castro/",
+		initials: "MP",
+	},
+	{
+		name: "David Gutiérrez",
+		role: "Co-CEO & Co-Fundador · Software y Business Analytics",
+		bio: "Desarrollador de software con 7 años de experiencia en programación y estudiante de Data & Business Analytics en la Universidad Loyola. Con formación full-stack (Next.js y desarrollo end-to-end), compagina la investigación en el Loyola Behavioral Lab con el desarrollo de software para el CSIC. Une la ingeniería de producto con el análisis de datos para llevar las ideas de RAIL a software real.",
+		linkedin: "https://www.linkedin.com/in/davidgutierreez/",
+		initials: "DG",
+	},
+];
 ---
 
-<Layout title="About">
-	<h1>About</h1>
-	<a href="/">Home</a>
+<Layout
+	title="Nosotros — RAIL"
+	description="Conoce a los fundadores de RAIL: dos Co-CEOs que unen ingeniería de software, IA y ciencia de datos para construir software que resuelve problemas y escala."
+>
+	<Header />
+
+	<main id="contenido" class="about">
+		<header class="about__intro">
+			<p class="label-caps about__eyebrow">Nosotros</p>
+			<h1 class="about__title">Dos fundadores, una visión de ingeniería.</h1>
+			<p class="about__lead">
+				RAIL nace de la unión de dos Co-CEOs que comparten una misma
+				obsesión: construir software de ingeniería que resuelva problemas
+				reales y escale con el negocio.
+			</p>
+		</header>
+
+		<section class="about__team" aria-label="Equipo fundador">
+			{
+				founders.map((f) => (
+					<article class="founder">
+						<div class="founder__avatar" aria-hidden="true">
+							{f.photo ? (
+								<img src={f.photo} alt={f.name} />
+							) : (
+								<span class="founder__initials">{f.initials}</span>
+							)}
+						</div>
+						<div class="founder__body">
+							<h2 class="founder__name">{f.name}</h2>
+							<p class="founder__role label-caps">{f.role}</p>
+							<p class="founder__bio">{f.bio}</p>
+							<a
+								class="founder__link"
+								href={f.linkedin}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Ver perfil de LinkedIn →
+							</a>
+						</div>
+					</article>
+				))
+			}
+		</section>
+
+		<a href="/" class="about__home">← Volver al inicio</a>
+	</main>
 </Layout>
+
+<style>
+	.about {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		padding: 22vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.about__intro {
+		max-width: 760px;
+		margin: 0 auto var(--stack-lg);
+		text-align: center;
+	}
+
+	.about__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.about__title {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(40px, 6vw, 72px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+	}
+
+	.about__lead {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.about__team {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--stack-md);
+	}
+
+	.founder {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-md);
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+	}
+
+	.founder__avatar {
+		display: grid;
+		place-items: center;
+		width: 96px;
+		height: 96px;
+		border-radius: 50%;
+		background: var(--surface-container-high);
+		overflow: hidden;
+	}
+
+	.founder__avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.founder__initials {
+		font-size: 32px;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+		color: var(--on-surface-variant);
+	}
+
+	.founder__name {
+		margin: 0 0 6px;
+		font-size: 24px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.founder__role {
+		margin: 0 0 var(--stack-sm);
+		color: #3d6b2a;
+	}
+
+	.founder__bio {
+		margin: 0 0 var(--stack-sm);
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.founder__link {
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface);
+		transition: color 200ms ease;
+	}
+
+	.founder__link:hover {
+		color: var(--tertiary);
+	}
+
+	.about__home {
+		display: inline-block;
+		margin-top: var(--stack-lg);
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.about__home:hover {
+		color: var(--on-surface);
+	}
+
+	@media (max-width: 768px) {
+		.about {
+			padding: 18vh var(--stack-md) var(--stack-lg);
+		}
+
+		.about__team {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

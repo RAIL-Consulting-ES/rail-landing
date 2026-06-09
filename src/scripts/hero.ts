@@ -1,9 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onHomeMount } from "./lifecycle";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function init() {
+function init(): (() => void) | void {
 	const hero = document.querySelector<HTMLElement>("#hero");
 	if (!hero) return;
 
@@ -14,7 +15,6 @@ function init() {
 	const letterL = hero.querySelector<HTMLElement>(".letter--l");
 	const sub1 = hero.querySelector<HTMLElement>(".sub--1");
 	const sub2 = hero.querySelector<HTMLElement>(".sub--2");
-	const next = document.querySelector<HTMLElement>("#section-next");
 	if (!inner || !letterR || !letterA || !letterI || !letterL || !sub1 || !sub2)
 		return;
 
@@ -68,27 +68,14 @@ function init() {
 				0.5,
 			)
 			.to(sub2, { autoAlpha: 0, ease: "power1.out" }, 0.55);
-
-		// Phase 3 (0.85 → 1): siguiente sección sube
-		if (next) {
-			gsap.set(next, { yPercent: 100, autoAlpha: 0 });
-			tl.to(
-				next,
-				{ yPercent: 0, autoAlpha: 1, ease: "power2.out", duration: 0.15 },
-				0.85,
-			);
-		}
 	});
 
 	mm.add("(prefers-reduced-motion: reduce)", () => {
 		gsap.set([letterR, letterA, letterI, letterL], { clearProps: "all" });
 		gsap.set(sub2, { autoAlpha: 0 });
-		if (next) gsap.set(next, { clearProps: "all" });
 	});
+
+	return () => mm.revert();
 }
 
-if (document.readyState === "loading") {
-	document.addEventListener("DOMContentLoaded", init);
-} else {
-	init();
-}
+onHomeMount(() => init());

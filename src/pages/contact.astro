@@ -1,0 +1,313 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const email = "contacto@railconsulting.es";
+
+const WEB3FORMS_ACCESS_KEY =
+	import.meta.env.PUBLIC_WEB3FORMS_KEY ??
+	"REEMPLAZA_CON_TU_ACCESS_KEY_DE_WEB3FORMS";
+---
+
+<Layout
+	title="Contacto — RAIL"
+	description="Cuéntanos tu problema y construimos la solución. Contacta con RAIL para tu próximo proyecto de software a medida."
+>
+	<Header />
+
+	<main id="contenido" class="contact">
+		<header class="contact__intro">
+			<p class="label-caps contact__eyebrow">Contacto</p>
+			<h1 class="contact__title">Cuéntanos tu problema. Construimos la solución.</h1>
+			<p class="contact__lead">
+				En RAIL convertimos problemas reales en software de ingeniería que
+				escala con tu negocio. Escríbenos y empecemos a darle forma a tu
+				proyecto.
+			</p>
+		</header>
+
+		<form
+			class="contact__form"
+			id="contactForm"
+			method="POST"
+			action="https://api.web3forms.com/submit"
+			aria-label="Formulario de contacto"
+		>
+			<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+			<input
+				type="hidden"
+				name="subject"
+				value="Nuevo contacto desde railconsulting.es"
+			/>
+			<input type="hidden" name="from_name" value="Web RAIL" />
+			<input
+				type="checkbox"
+				name="botcheck"
+				class="hidden"
+				style="display:none"
+				tabindex="-1"
+				autocomplete="off"
+			/>
+
+			<div class="field">
+				<label class="field__label label-caps" for="name">Nombre</label>
+				<input class="field__input" id="name" name="name" type="text" required />
+			</div>
+
+			<div class="field">
+				<label class="field__label label-caps" for="email">Email</label>
+				<input class="field__input" id="email" name="email" type="email" required />
+			</div>
+
+			<div class="field">
+				<label class="field__label label-caps" for="company">
+					Empresa <span class="field__optional">(opcional)</span>
+				</label>
+				<input class="field__input" id="company" name="company" type="text" />
+			</div>
+
+			<div class="field">
+				<label class="field__label label-caps" for="message">Mensaje</label>
+				<textarea
+					class="field__input field__textarea"
+					id="message"
+					name="message"
+					rows="5"
+					required></textarea>
+			</div>
+
+			<button class="contact__submit cta label-caps" type="submit">Enviar mensaje</button>
+
+			<p class="contact__status" data-status role="status" aria-live="polite"></p>
+
+			<p class="contact__legal">
+				Al enviar aceptas nuestra
+				<a href="/privacidad/">política de privacidad</a>.
+			</p>
+		</form>
+
+		<p class="contact__direct">
+			¿Prefieres el correo directo? Escríbenos a
+			<a class="contact__email" href={`mailto:${email}`}>{email}</a>.
+		</p>
+
+		<a href="/" class="contact__home">← Volver al inicio</a>
+	</main>
+</Layout>
+
+<style>
+	.contact {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		padding: 22vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.contact__intro {
+		max-width: 760px;
+		margin: 0 auto var(--stack-lg);
+		text-align: center;
+	}
+
+	.contact__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.contact__title {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(40px, 6vw, 72px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+	}
+
+	.contact__lead {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.contact__form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-md);
+		max-width: 640px;
+		margin: 0 auto;
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-sm);
+	}
+
+	.field__label {
+		color: var(--on-surface-variant);
+	}
+
+	.field__optional {
+		text-transform: none;
+		letter-spacing: 0;
+		color: var(--on-surface-variant);
+	}
+
+	.field__input {
+		font-family: inherit;
+		font-size: 15px;
+		color: var(--on-surface);
+		background: var(--surface-container-high);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r);
+		padding: 12px 14px;
+		transition: border-color 200ms ease;
+	}
+
+	.field__input:focus {
+		border-color: var(--tertiary);
+	}
+
+	.field__textarea {
+		resize: vertical;
+		line-height: 1.6;
+	}
+
+	.contact__submit {
+		align-self: flex-start;
+		border-radius: var(--r);
+	}
+
+	.contact__submit:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	.contact__status {
+		display: none;
+		margin: 0;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	.contact__status.is-ok {
+		display: block;
+		color: #3d6b2a;
+	}
+
+	.contact__status.is-error {
+		display: block;
+		color: #ba1a1a;
+	}
+
+	.contact__legal {
+		margin: 0;
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	.contact__legal a {
+		color: var(--on-surface-variant);
+		text-decoration: underline;
+	}
+
+	.contact__direct {
+		max-width: 640px;
+		margin: var(--stack-md) auto 0;
+		font-size: 15px;
+		color: var(--on-surface-variant);
+		text-align: center;
+	}
+
+	.contact__email {
+		font-weight: 600;
+		color: var(--on-surface);
+		transition: color 200ms ease;
+	}
+
+	.contact__email:hover {
+		color: var(--tertiary);
+	}
+
+	.contact__home {
+		display: inline-block;
+		margin-top: var(--stack-lg);
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.contact__home:hover {
+		color: var(--on-surface);
+	}
+
+	@media (max-width: 768px) {
+		.contact {
+			padding: 18vh var(--stack-md) var(--stack-lg);
+		}
+	}
+</style>
+
+<script>
+	const form = document.getElementById("contactForm") as HTMLFormElement | null;
+	const status = form?.querySelector<HTMLElement>("[data-status]");
+	const submit = form?.querySelector<HTMLButtonElement>(".contact__submit");
+
+	if (form && status && submit) {
+		const originalLabel = submit.textContent;
+
+		const setStatus = (message: string, ok: boolean) => {
+			status.textContent = message;
+			status.classList.remove("is-ok", "is-error");
+			status.classList.add(ok ? "is-ok" : "is-error");
+		};
+
+		form.addEventListener("submit", async (event) => {
+			event.preventDefault();
+
+			if (!form.checkValidity()) {
+				form.reportValidity();
+				return;
+			}
+
+			submit.disabled = true;
+			submit.textContent = "Enviando…";
+
+			const payload = Object.fromEntries(new FormData(form));
+
+			try {
+				const response = await fetch("https://api.web3forms.com/submit", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json",
+					},
+					body: JSON.stringify(payload),
+				});
+				const json = await response.json();
+
+				if (json.success === true) {
+					setStatus("Gracias, te responderemos pronto.", true);
+					form.reset();
+				} else {
+					setStatus(
+						"No se pudo enviar. Escríbenos a contacto@railconsulting.es.",
+						false,
+					);
+				}
+			} catch {
+				setStatus(
+					"No se pudo enviar. Escríbenos a contacto@railconsulting.es.",
+					false,
+				);
+			} finally {
+				submit.disabled = false;
+				submit.textContent = originalLabel;
+			}
+		});
+	}
+</script>

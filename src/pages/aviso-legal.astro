@@ -1,0 +1,233 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const email = "contacto@railconsulting.es";
+const domain = "railconsulting.es";
+---
+
+<Layout
+	title="Aviso legal — RAIL"
+	description="Aviso legal de RAIL: titularidad del sitio, condiciones de uso y datos identificativos de la consultora de software railconsulting.es."
+>
+	<Header />
+
+	<main id="contenido" class="legal">
+		<header class="legal__intro">
+			<p class="label-caps legal__eyebrow">Información legal</p>
+			<h1 class="legal__title">Aviso legal</h1>
+		</header>
+
+		<article class="legal__body">
+			<section class="legal__section">
+				<h2 class="legal__heading">1. Titular del sitio web</h2>
+				<p>
+					En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de
+					Servicios de la Sociedad de la Información y de Comercio Electrónico
+					(LSSI-CE), se facilitan los siguientes datos del titular de este
+					sitio web:
+				</p>
+				<ul class="legal__list">
+					<li><strong>Titular:</strong> RAIL</li>
+					<li>
+						<strong>Correo electrónico:</strong>
+						<a class="legal__link" href={`mailto:${email}`}>{email}</a>
+					</li>
+					<li><strong>Sitio web:</strong> {domain}</li>
+				</ul>
+				<p>
+					El resto de datos identificativos del titular (denominación, NIF y
+					domicilio) se facilitarán a cualquier usuario que acredite un interés
+					legítimo y lo solicite a través del correo electrónico indicado.
+				</p>
+			</section>
+
+			<section class="legal__section">
+				<h2 class="legal__heading">2. Objeto</h2>
+				<p>
+					El presente aviso legal regula el acceso, la navegación y el uso del
+					sitio web {domain} (en adelante, «el sitio web»), titularidad de RAIL,
+					consultora de ingeniería de software. El sitio web tiene como finalidad
+					presentar los servicios de RAIL y permitir el contacto con RAIL.
+				</p>
+				<p>
+					El acceso al sitio web atribuye a quien lo realiza la condición de
+					usuario e implica la aceptación plena y sin reservas de todas y cada
+					una de las disposiciones incluidas en este aviso legal.
+				</p>
+			</section>
+
+			<section class="legal__section">
+				<h2 class="legal__heading">3. Condiciones de uso</h2>
+				<p>
+					El usuario se compromete a hacer un uso adecuado y lícito del sitio
+					web y de sus contenidos, de conformidad con la legislación vigente,
+					el presente aviso legal, la moral y las buenas costumbres generalmente
+					aceptadas y el orden público.
+				</p>
+				<p>
+					Queda prohibido emplear el sitio web con fines o efectos ilícitos,
+					lesivos de los derechos e intereses de terceros, o que de cualquier
+					forma puedan dañar, inutilizar, sobrecargar o deteriorar el sitio web
+					o impedir su normal utilización por parte de otros usuarios.
+				</p>
+			</section>
+
+			<section class="legal__section">
+				<h2 class="legal__heading">4. Propiedad intelectual e industrial</h2>
+				<p>
+					Todos los contenidos del sitio web, entendiendo por estos a título
+					enunciativo los textos, fotografías, gráficos, imágenes, iconos,
+					tecnología, software, diseño gráfico, código fuente y demás elementos
+					audiovisuales o sonoros, así como su estructura y diseño, son
+					titularidad de RAIL o, en su caso, de terceros que han autorizado su
+					uso, y están protegidos por la normativa nacional e internacional de
+					propiedad intelectual e industrial.
+				</p>
+				<p>
+					Queda prohibida la reproducción, distribución, comunicación pública,
+					transformación o cualquier otra forma de explotación, total o parcial,
+					de los contenidos de este sitio web sin la autorización expresa y por
+					escrito de RAIL. Las marcas, nombres comerciales o signos distintivos
+					son titularidad de RAIL o de terceros, sin que el acceso al sitio web
+					pueda atribuir derecho alguno sobre ellos.
+				</p>
+			</section>
+
+			<section class="legal__section">
+				<h2 class="legal__heading">5. Responsabilidad</h2>
+				<p>
+					RAIL no se responsabiliza de los daños y perjuicios de cualquier
+					naturaleza que pudieran derivarse de la falta de disponibilidad o
+					continuidad del funcionamiento del sitio web, ni de los errores u
+					omisiones en sus contenidos.
+				</p>
+				<p>
+					El sitio web puede contener enlaces a páginas de terceros. RAIL no
+					asume ninguna responsabilidad sobre los contenidos, productos o
+					servicios que puedan ofrecerse a través de dichos enlaces, ni sobre el
+					funcionamiento o disponibilidad de los sitios enlazados. RAIL se
+					reserva el derecho a modificar, suspender o interrumpir, en cualquier
+					momento y sin necesidad de previo aviso, el acceso al sitio web o a
+					cualquiera de sus contenidos.
+				</p>
+			</section>
+
+			<section class="legal__section">
+				<h2 class="legal__heading">6. Legislación aplicable y jurisdicción</h2>
+				<p>
+					El presente aviso legal se rige en todos y cada uno de sus extremos
+					por la legislación española. Para la resolución de cualquier
+					controversia que pudiera derivarse del acceso o uso del sitio web,
+					RAIL y el usuario se someten a los juzgados y tribunales del domicilio
+					del titular, salvo que la normativa aplicable disponga otro fuero de
+					carácter imperativo.
+				</p>
+				<p>
+					Para cualquier consulta relacionada con este aviso legal puede
+					escribirnos a
+					<a class="legal__link" href={`mailto:${email}`}>{email}</a>.
+				</p>
+			</section>
+		</article>
+
+		<a href="/" class="legal__home">← Volver al inicio</a>
+	</main>
+</Layout>
+
+<style>
+	.legal {
+		max-width: 760px;
+		margin: 0 auto;
+		padding: 22vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.legal__intro {
+		margin: 0 0 var(--stack-lg);
+	}
+
+	.legal__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.legal__title {
+		margin: 0;
+		font-size: clamp(40px, 6vw, 64px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+	}
+
+	.legal__body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-lg);
+	}
+
+	.legal__section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-sm);
+	}
+
+	.legal__heading {
+		margin: 0;
+		font-size: clamp(22px, 3vw, 28px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+		color: var(--on-surface);
+	}
+
+	.legal__section p {
+		margin: 0;
+		font-size: 17px;
+		line-height: 1.7;
+		color: var(--on-surface-variant);
+	}
+
+	.legal__list {
+		margin: 0;
+		padding-left: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		font-size: 17px;
+		line-height: 1.7;
+		color: var(--on-surface-variant);
+	}
+
+	.legal__list strong {
+		color: var(--on-surface);
+	}
+
+	.legal__link {
+		font-weight: 600;
+		color: var(--on-surface);
+		transition: color 200ms ease;
+	}
+
+	.legal__link:hover {
+		color: var(--tertiary);
+	}
+
+	.legal__home {
+		display: inline-block;
+		margin-top: var(--stack-lg);
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.legal__home:hover {
+		color: var(--on-surface);
+	}
+
+	@media (max-width: 768px) {
+		.legal {
+			padding: 18vh var(--stack-md) var(--stack-lg);
+		}
+	}
+</style>

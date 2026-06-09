@@ -1,0 +1,540 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import { solutions, solutionsBySlug } from "../../data/solutions";
+import contentData from "../../data/solutions-content.json";
+
+type Approach = { title: string; body: string };
+type Benefit = { title: string; body: string };
+type UseCase = { sector: string; scenario: string };
+type Faq = { question: string; answer: string };
+type SolutionContent = {
+	slug: string;
+	metaTitle: string;
+	metaDescription: string;
+	h1: string;
+	heroTagline: string;
+	definition: string;
+	problemHeading: string;
+	problemBody: string;
+	approachHeading: string;
+	approach: Approach[];
+	benefits: Benefit[];
+	useCases: UseCase[];
+	techHeading: string;
+	tech: string[];
+	faq: Faq[];
+	keywords: string[];
+	relatedSlugs: string[];
+};
+
+const content = contentData as Record<string, SolutionContent>;
+
+export function getStaticPaths() {
+	const data = contentData as Record<string, unknown>;
+	return solutions
+		.filter((s) => data[s.slug])
+		.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const base = solutionsBySlug[slug as string];
+const c = content[slug as string];
+
+const SITE = "https://railconsulting.es";
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const related = c.relatedSlugs
+	.map((rs) => solutionsBySlug[rs])
+	.filter(Boolean);
+
+const breadcrumb = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{ "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
+		{
+			"@type": "ListItem",
+			position: 2,
+			name: "Soluciones",
+			item: `${SITE}/solutions/`,
+		},
+		{ "@type": "ListItem", position: 3, name: base.title, item: pageUrl },
+	],
+};
+
+const service = {
+	"@context": "https://schema.org",
+	"@type": "Service",
+	name: c.h1,
+	serviceType: base.title,
+	description: c.definition,
+	provider: { "@id": "https://railconsulting.es/#organization" },
+	areaServed: { "@type": "Country", name: "España" },
+	url: pageUrl,
+};
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: c.faq.map((f) => ({
+		"@type": "Question",
+		name: f.question,
+		acceptedAnswer: { "@type": "Answer", text: f.answer },
+	})),
+};
+
+const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
+---
+
+<Layout title={c.metaTitle} description={c.metaDescription}>
+	<Header />
+
+	<main id="contenido" class="sol-detail">
+		<nav class="breadcrumb" aria-label="Migas de pan">
+			<a href="/">Inicio</a>
+			<span aria-hidden="true">/</span>
+			<a href="/solutions/">Soluciones</a>
+			<span aria-hidden="true">/</span>
+			<span class="breadcrumb__current" aria-current="page">{base.title}</span>
+		</nav>
+
+		<header class="sol-detail__hero">
+			<div class="sol-detail__icon-wrap" aria-hidden="true">
+				<svg
+					class="sol-detail__icon"
+					viewBox="0 0 80 60"
+					aria-hidden="true"
+					focusable="false"
+					set:html={base.icon}
+				/>
+			</div>
+			<p class="label-caps sol-detail__eyebrow">Solución · {base.title}</p>
+			<h1 class="sol-detail__title">{c.h1}</h1>
+			<p class="sol-detail__tagline">{c.heroTagline}</p>
+			<a href="/contact/" class="cta label-caps sol-detail__cta">
+				Hablemos de tu proyecto
+			</a>
+		</header>
+
+		<section class="sol-detail__definition" aria-label="Qué es">
+			<p>{c.definition}</p>
+		</section>
+
+		<section class="sol-detail__section">
+			<h2 class="sol-detail__h2">{c.problemHeading}</h2>
+			<p class="sol-detail__prose">{c.problemBody}</p>
+		</section>
+
+		<section class="sol-detail__section">
+			<h2 class="sol-detail__h2">{c.approachHeading}</h2>
+			<div class="sol-detail__cards">
+				{
+					c.approach.map((a) => (
+						<article class="info-card">
+							<h3 class="info-card__title">{a.title}</h3>
+							<p class="info-card__body">{a.body}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sol-detail__section">
+			<h2 class="sol-detail__h2">Beneficios para tu negocio</h2>
+			<div class="sol-detail__cards">
+				{
+					c.benefits.map((b) => (
+						<article class="info-card info-card--benefit">
+							<h3 class="info-card__title">{b.title}</h3>
+							<p class="info-card__body">{b.body}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="sol-detail__section">
+			<h2 class="sol-detail__h2">Casos de uso</h2>
+			<ul class="usecase-list">
+				{
+					c.useCases.map((u) => (
+						<li class="usecase">
+							<span class="usecase__sector label-caps">{u.sector}</span>
+							<p class="usecase__scenario">{u.scenario}</p>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		<section class="sol-detail__section">
+			<h2 class="sol-detail__h2">{c.techHeading}</h2>
+			<ul class="tech-tags">
+				{c.tech.map((t) => <li class="tech-tag">{t}</li>)}
+			</ul>
+		</section>
+
+		<section class="sol-detail__section">
+			<h2 class="sol-detail__h2">Preguntas frecuentes</h2>
+			<div class="faq">
+				{
+					c.faq.map((f) => (
+						<div class="faq__item">
+							<h3 class="faq__q">{f.question}</h3>
+							<p class="faq__a">{f.answer}</p>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		{
+			related.length > 0 && (
+				<section class="sol-detail__section">
+					<h2 class="sol-detail__h2">Soluciones relacionadas</h2>
+					<div class="related">
+						{related.map((r) => (
+							<a class="related__card" href={`/solutions/${r.slug}/`}>
+								<svg
+									class="related__icon"
+									viewBox="0 0 80 60"
+									aria-hidden="true"
+									focusable="false"
+									set:html={r.icon}
+								/>
+								<span class="related__title">{r.title}</span>
+								<span class="related__copy">{r.copy}</span>
+							</a>
+						))}
+					</div>
+				</section>
+			)
+		}
+
+		<section class="sol-detail__final">
+			<h2 class="sol-detail__final-title">¿Construimos tu {base.title}?</h2>
+			<p class="sol-detail__final-copy">
+				Cuéntanos tu reto y te proponemos un plan de ingeniería concreto.
+			</p>
+			<a href="/contact/" class="cta label-caps">Iniciar un proyecto</a>
+		</section>
+
+		<a href="/solutions/" class="sol-detail__back">← Todas las soluciones</a>
+
+		<script type="application/ld+json" set:html={jsonLd} />
+	</main>
+</Layout>
+
+<style>
+	.sol-detail {
+		max-width: 880px;
+		margin: 0 auto;
+		padding: 18vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.breadcrumb {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: var(--stack-lg);
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	.breadcrumb a {
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.breadcrumb a:hover {
+		color: var(--on-surface);
+	}
+
+	.breadcrumb__current {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+
+	.sol-detail__hero {
+		margin-bottom: var(--stack-lg);
+	}
+
+	.sol-detail__icon-wrap {
+		display: grid;
+		place-items: center;
+		width: 64px;
+		height: 64px;
+		border-radius: var(--r-lg);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		margin-bottom: var(--stack-md);
+	}
+
+	.sol-detail__icon {
+		width: 40px;
+		height: 30px;
+		color: var(--tertiary);
+	}
+
+	.sol-detail__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.sol-detail__title {
+		margin: 0 0 var(--stack-sm);
+		font-size: clamp(36px, 5.5vw, 60px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+	}
+
+	.sol-detail__tagline {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(17px, 2vw, 21px);
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+		max-width: 60ch;
+	}
+
+	.sol-detail__cta {
+		display: inline-block;
+	}
+
+	.sol-detail__cta:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	.sol-detail__definition {
+		padding: var(--stack-md);
+		margin-bottom: var(--stack-lg);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-left: 3px solid var(--tertiary);
+		border-radius: var(--r-lg);
+	}
+
+	.sol-detail__definition p {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.65;
+		color: var(--on-surface);
+	}
+
+	.sol-detail__section {
+		margin-bottom: var(--stack-lg);
+	}
+
+	.sol-detail__h2 {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(24px, 3.2vw, 32px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+	}
+
+	.sol-detail__prose {
+		margin: 0;
+		font-size: 17px;
+		line-height: 1.75;
+		color: var(--on-surface-variant);
+		max-width: 68ch;
+	}
+
+	.sol-detail__cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: var(--stack-md);
+	}
+
+	.info-card {
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-lg);
+	}
+
+	.info-card--benefit {
+		background: var(--surface-container-low);
+	}
+
+	.info-card__title {
+		margin: 0 0 8px;
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.info-card__body {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.usecase-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-sm);
+	}
+
+	.usecase {
+		display: grid;
+		grid-template-columns: 160px 1fr;
+		gap: var(--stack-md);
+		padding: var(--stack-sm) 0;
+		border-top: 1px solid var(--outline-variant);
+	}
+
+	.usecase__sector {
+		color: #3d6b2a;
+	}
+
+	.usecase__scenario {
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.tech-tags {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	.tech-tag {
+		padding: 8px 14px;
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--on-surface);
+		background: var(--surface-container);
+		border: 1px solid var(--outline-variant);
+		border-radius: 999px;
+	}
+
+	.faq {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-md);
+	}
+
+	.faq__item {
+		padding-bottom: var(--stack-md);
+		border-bottom: 1px solid var(--outline-variant);
+	}
+
+	.faq__q {
+		margin: 0 0 8px;
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.faq__a {
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.7;
+		color: var(--on-surface-variant);
+		max-width: 70ch;
+	}
+
+	.related {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: var(--stack-md);
+	}
+
+	.related__card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-lg);
+		transition:
+			transform 200ms ease,
+			border-color 200ms ease;
+	}
+
+	.related__card:hover {
+		transform: translateY(-2px);
+		border-color: var(--tertiary);
+	}
+
+	.related__icon {
+		width: 36px;
+		height: 27px;
+		color: var(--tertiary);
+	}
+
+	.related__title {
+		font-size: 17px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.related__copy {
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+	}
+
+	.sol-detail__final {
+		text-align: center;
+		padding: var(--stack-lg) var(--stack-md);
+		margin: var(--stack-lg) 0;
+		background: var(--inverse-surface);
+		border-radius: var(--r-xl);
+	}
+
+	.sol-detail__final-title {
+		margin: 0 0 var(--stack-sm);
+		font-size: clamp(26px, 4vw, 38px);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--inverse-on-surface);
+	}
+
+	.sol-detail__final-copy {
+		margin: 0 0 var(--stack-md);
+		font-size: 17px;
+		line-height: 1.6;
+		color: var(--inverse-on-surface);
+		opacity: 0.85;
+	}
+
+	.sol-detail__back {
+		display: inline-block;
+		margin-top: var(--stack-md);
+		font-weight: 600;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.sol-detail__back:hover {
+		color: var(--on-surface);
+	}
+
+	@media (max-width: 768px) {
+		.sol-detail {
+			padding: 16vh var(--stack-md) var(--stack-lg);
+		}
+
+		.usecase {
+			grid-template-columns: 1fr;
+			gap: 6px;
+		}
+	}
+</style>

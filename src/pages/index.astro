@@ -2,34 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Expertise from "../components/Expertise.astro";
+import Solutions from "../components/Solutions.astro";
+import FinalCTA from "../components/FinalCTA.astro";
 ---
 
-<Layout title="RAIL — Engineering the Future">
+<Layout
+	title="RAIL — Ingeniería de software a medida"
+	description="Consultora de ingeniería de software que construye sistemas que escalan: ERP, CRM, automatización, IA y datos, e infraestructura cloud a medida para tu negocio."
+>
 	<Header />
-	<Hero />
-	<section id="expertise" class="next-placeholder">
-		<div class="next-placeholder__inner">
-			<p class="label-caps">Next Section</p>
-		</div>
-	</section>
+	<main id="contenido">
+		<Hero />
+		<Expertise />
+		<Solutions />
+		<FinalCTA />
+	</main>
 </Layout>
-
-<style>
-	.next-placeholder {
-		position: relative;
-		z-index: 2;
-		min-height: 100vh;
-		background: var(--surface-container-low);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.next-placeholder__inner {
-		color: var(--on-surface-variant);
-	}
-</style>
 
 <script>
 	import "../scripts/hero.ts";
+	import "../scripts/expertise.ts";
+	import "../scripts/solutions.ts";
 </script>

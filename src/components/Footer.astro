@@ -1,0 +1,149 @@
+---
+const navItems = [
+	{ label: "Especialidad", href: "/#expertise" },
+	{ label: "Soluciones", href: "/solutions/" },
+	{ label: "Nosotros", href: "/about/" },
+	{ label: "Contacto", href: "/contact/" },
+];
+
+const legalItems = [
+	{ label: "Aviso legal", href: "/aviso-legal/" },
+	{ label: "Privacidad", href: "/privacidad/" },
+];
+
+const email = "contacto@railconsulting.es";
+---
+
+<footer class="footer">
+	<div class="footer__inner">
+		<div class="footer__brand">
+			<a href="/" class="footer__logo">RAIL</a>
+			<p class="footer__tagline">Ingeniería de software a medida.</p>
+		</div>
+
+		<nav class="footer__nav" aria-label="Pie de página">
+			<span class="footer__heading label-caps">Navegación</span>
+			<ul class="footer__list">
+				{
+					navItems.map((item) => (
+						<li>
+							<a href={item.href} class="footer__link">
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<div class="footer__contact">
+			<span class="footer__heading label-caps">Contacto</span>
+			<a href={`mailto:${email}`} class="footer__link">{email}</a>
+		</div>
+
+		<div class="footer__legal">
+			<span class="footer__heading label-caps">Legal</span>
+			<ul class="footer__list">
+				{
+					legalItems.map((item) => (
+						<li>
+							<a href={item.href} class="footer__link">
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer__bottom">
+		<p class="footer__copyright">
+			© 2026 RAIL. Todos los derechos reservados.
+		</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		border-top: 1px solid var(--outline-variant);
+		background: var(--surface);
+		color: var(--on-surface-variant);
+		padding: var(--stack-lg) var(--margin-edge) var(--stack-md);
+	}
+
+	.footer__inner {
+		max-width: var(--container-max);
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+		gap: var(--stack-md);
+	}
+
+	.footer__logo {
+		font-weight: 800;
+		font-size: 20px;
+		letter-spacing: -0.02em;
+		color: var(--on-surface);
+	}
+
+	.footer__tagline {
+		margin: var(--stack-sm) 0 0;
+		font-size: 14px;
+		line-height: 1.5;
+		max-width: 28ch;
+	}
+
+	.footer__heading {
+		display: block;
+		margin-bottom: var(--stack-sm);
+		color: var(--on-surface);
+	}
+
+	.footer__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.footer__link {
+		font-size: 14px;
+		color: var(--on-surface-variant);
+		transition: color 200ms ease;
+	}
+
+	.footer__link:hover {
+		color: var(--on-surface);
+	}
+
+	.footer__bottom {
+		max-width: var(--container-max);
+		margin: var(--stack-lg) auto 0;
+		padding-top: var(--stack-md);
+		border-top: 1px solid var(--outline-variant);
+	}
+
+	.footer__copyright {
+		margin: 0;
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	@media (max-width: 768px) {
+		.footer {
+			padding: var(--stack-lg) var(--stack-md) var(--stack-md);
+		}
+
+		.footer__inner {
+			grid-template-columns: 1fr;
+			gap: var(--stack-md);
+		}
+
+		.footer__bottom {
+			margin-top: var(--stack-md);
+		}
+	}
+</style>

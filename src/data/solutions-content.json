@@ -1,0 +1,1426 @@
+{
+	"erp": {
+		"slug": "erp",
+		"metaTitle": "Desarrollo de ERP a medida en España | RAIL",
+		"metaDescription": "Desarrollo e implantación de ERP a medida que unifica operaciones, finanzas y datos. RAIL diseña software de gestión que escala con tu empresa.",
+		"h1": "ERP a medida: operaciones, finanzas y datos en un único sistema",
+		"heroTagline": "Ingeniería de software que convierte tus procesos de gestión en un ERP propio, escalable y conectado a todo tu negocio.",
+		"definition": "Un ERP (Enterprise Resource Planning) es un sistema de software que centraliza y conecta los procesos de una empresa —finanzas, compras, inventario, producción, ventas y recursos humanos— sobre una única base de datos y un modelo de datos común. RAIL desarrolla ERP a medida: en lugar de adaptar el negocio a un producto cerrado, modela tus procesos reales en un sistema propio que elimina la duplicidad de datos, automatiza tareas administrativas y ofrece una visión unificada y en tiempo real de la operación.",
+		"problemHeading": "El coste oculto de operar sin un sistema unificado",
+		"problemBody": "La mayoría de las empresas medianas no fallan por falta de software, sino por exceso de él: un programa de contabilidad, hojas de cálculo para el inventario, un módulo de facturación que no habla con el almacén y procesos críticos sostenidos sobre correos y conocimiento que vive en la cabeza de unas pocas personas. El resultado es información duplicada, conciliaciones manuales, errores de stock y una dirección que toma decisiones con datos de hace semanas.\n\nA medida que el negocio crece, esa fragmentación se convierte en un techo. Los ERP estándar prometen orden, pero a menudo obligan a deformar procesos que funcionan, encarecen cada personalización y atan a la empresa a licencias y consultoras externas. RAIL aborda el problema desde la ingeniería: primero entendemos cómo opera realmente tu empresa y después construimos el sistema que esa operación necesita, integrándolo con lo que ya usas en lugar de reemplazarlo todo de golpe.",
+		"approachHeading": "Cómo desarrolla RAIL tu ERP",
+		"approach": [
+			{
+				"title": "Modelado de procesos antes que código",
+				"body": "Mapeamos tus flujos reales de compras, producción, almacén, facturación y tesorería junto a las personas que los ejecutan. Ese mapa define el modelo de datos y los módulos, evitando construir sobre suposiciones."
+			},
+			{
+				"title": "Arquitectura modular y entrega por fases",
+				"body": "Diseñamos el ERP como módulos desacoplados que se despliegan de forma incremental. Empezamos por el núcleo de mayor impacto (por ejemplo inventario y facturación) y ampliamos sin paradas del negocio ni migraciones de alto riesgo."
+			},
+			{
+				"title": "Una única fuente de verdad",
+				"body": "Unificamos finanzas, operaciones e inventario sobre un modelo de datos coherente con integridad transaccional, de modo que un asiento, un movimiento de stock y una factura nunca se contradigan entre sí."
+			},
+			{
+				"title": "Integración con tu ecosistema actual",
+				"body": "Conectamos el ERP con tu CRM, banca, e-commerce, sistemas de almacén y administraciones públicas mediante APIs, evitando islas de datos y reintroducción manual de información."
+			},
+			{
+				"title": "Propiedad del código y trazabilidad",
+				"body": "Entregamos un sistema del que tu empresa es propietaria, documentado y con trazabilidad de cada operación para auditoría, cumplimiento y soporte a largo plazo."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Decisiones con datos en tiempo real",
+				"body": "La dirección deja de esperar al cierre mensual: márgenes, stock, cobros y costes de producción se consultan al instante sobre datos consistentes."
+			},
+			{
+				"title": "Menos trabajo administrativo",
+				"body": "La automatización de conciliaciones, facturación y movimientos de almacén elimina horas de tareas manuales y reduce los errores derivados de copiar datos entre sistemas."
+			},
+			{
+				"title": "Un sistema que crece contigo",
+				"body": "Al ser modular y a medida, el ERP incorpora nuevas líneas de negocio, almacenes, divisas o normativas sin rehacer la plataforma ni multiplicar licencias."
+			},
+			{
+				"title": "Sin dependencia de un único proveedor",
+				"body": "Eres dueño del código y del modelo de datos. Puedes evolucionar el sistema con RAIL o con tu equipo interno, sin quedar atrapado en una licencia cerrada."
+			},
+			{
+				"title": "Cumplimiento y auditoría desde el diseño",
+				"body": "La trazabilidad y el control de accesos integrados facilitan auditorías, requisitos fiscales y normativa sectorial sin desarrollos de última hora."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Industria y fabricación",
+				"scenario": "Una planta con producción por lotes unifica órdenes de fabricación, consumo de materias primas y costes reales por orden, reduciendo desviaciones de inventario y calculando el margen exacto de cada lote."
+			},
+			{
+				"sector": "Logística y distribución",
+				"scenario": "Un distribuidor con varios almacenes sincroniza stock, picking y facturación en tiempo real, evitando ventas de producto sin existencias y acelerando el ciclo pedido-cobro."
+			},
+			{
+				"sector": "Retail y comercio",
+				"scenario": "Una cadena con tienda física y e-commerce centraliza inventario, precios y devoluciones en un único sistema, eliminando descuadres entre canales y duplicidad de catálogos."
+			},
+			{
+				"sector": "Servicios y consultoría",
+				"scenario": "Una empresa de servicios profesionales conecta imputación de horas, proyectos y facturación, obteniendo rentabilidad por cliente y por proyecto sin hojas de cálculo paralelas."
+			}
+		],
+		"techHeading": "Tecnologías que usamos para construir tu ERP",
+		"tech": [
+			"PostgreSQL",
+			"TypeScript",
+			"Node.js",
+			"React",
+			"Python",
+			"REST y GraphQL APIs",
+			"Docker",
+			"Kubernetes",
+			"Redis",
+			"RabbitMQ",
+			"Terraform",
+			"OpenTelemetry"
+		],
+		"faq": [
+			{
+				"question": "¿Qué diferencia hay entre un ERP a medida y uno estándar como SAP o Odoo?",
+				"answer": "Un ERP estándar es un producto cerrado al que la empresa debe adaptar sus procesos, y cada personalización suele ser costosa y dependiente del fabricante. Un ERP a medida, como el que desarrolla RAIL, modela tus procesos reales y se integra con tus herramientas actuales. Es la mejor opción cuando tu operativa tiene particularidades que el software de catálogo no cubre bien o cuando quieres ser propietario del sistema y de tus datos."
+			},
+			{
+				"question": "¿Cuánto tarda en implantarse un ERP a medida?",
+				"answer": "Depende del alcance, pero RAIL entrega por fases para que veas valor pronto. Un primer módulo de alto impacto, como inventario o facturación, puede estar operativo en pocos meses, y el resto del sistema se despliega de forma incremental sin detener el negocio. Evitamos los proyectos monolíticos de uno o dos años con todo o nada."
+			},
+			{
+				"question": "¿Cuánto cuesta desarrollar un ERP a medida?",
+				"answer": "El coste se determina por el alcance funcional, las integraciones necesarias y el número de módulos, por lo que no existe un precio de catálogo. En lugar de una licencia recurrente por usuario, inviertes en un sistema propio. RAIL define contigo un alcance por fases para ajustar la inversión al retorno de cada módulo y priorizar lo que más impacta en la operación."
+			},
+			{
+				"question": "¿Se puede integrar el ERP con el software que ya usamos?",
+				"answer": "Sí. La integración es un pilar del enfoque de RAIL. Conectamos el ERP con CRM, banca, plataformas de e-commerce, sistemas de almacén y administraciones públicas mediante APIs, de modo que los datos fluyen entre sistemas sin reintroducción manual. No es necesario reemplazar todo de golpe."
+			},
+			{
+				"question": "¿Qué pasa con el mantenimiento y el soporte tras la entrega?",
+				"answer": "Entregamos un sistema documentado y del que tu empresa es propietaria, con código trazable. RAIL ofrece mantenimiento evolutivo y soporte continuado, pero al no depender de una licencia cerrada también puedes operarlo o evolucionarlo con tu propio equipo. La decisión sobre el modelo de soporte siempre es tuya."
+			},
+			{
+				"question": "¿Cómo se migran nuestros datos actuales al nuevo ERP?",
+				"answer": "RAIL planifica la migración como parte del proyecto: extraemos y limpiamos los datos de tus sistemas y hojas de cálculo actuales, los validamos contra el nuevo modelo de datos y los cargamos de forma controlada. Al entregar por fases, la migración se realiza por módulos, lo que reduce el riesgo frente a una migración total simultánea."
+			}
+		],
+		"keywords": [
+			"desarrollo erp a medida",
+			"erp a medida españa",
+			"implantación erp",
+			"software de gestión empresarial",
+			"erp para empresas",
+			"sistema erp personalizado",
+			"desarrollo software erp",
+			"erp a medida vs estándar"
+		],
+		"relatedSlugs": [
+			"crm",
+			"process",
+			"data"
+		]
+	},
+	"crm": {
+		"slug": "crm",
+		"metaTitle": "Desarrollo de CRM a medida para empresas | RAIL",
+		"metaDescription": "Desarrollo e implantación de CRM a medida que unifica ventas, marketing y atención. RAIL diseña un CRM personalizado e integrado con tu ERP.",
+		"h1": "CRM a medida: ventas, marketing y atención sobre una única visión del cliente",
+		"heroTagline": "Ingeniería de software que convierte tu proceso comercial en un CRM propio, integrado con tu operación y diseñado en torno a cómo vende y atiende realmente tu empresa.",
+		"definition": "Un CRM (Customer Relationship Management) es un sistema de software que centraliza toda la información de clientes y oportunidades —contactos, interacciones, ventas, campañas y atención posventa— sobre una única base de datos, para que comercial, marketing y soporte trabajen con la misma visión. RAIL desarrolla CRM a medida: en lugar de adaptar tu equipo a un producto cerrado, modelamos tu proceso comercial real en un sistema propio que automatiza tareas repetitivas, conecta con tu ERP y tus canales, y ofrece un histórico único y fiable de cada cuenta. El resultado es un CRM personalizado que refleja tu forma de captar, cualificar y fidelizar clientes, no la de un software de catálogo.",
+		"problemHeading": "Cuando el CRM estorba más de lo que ayuda",
+		"problemBody": "Muchos equipos comerciales no carecen de herramientas, sino que las acumulan sin que ninguna refleje cómo venden de verdad: una hoja de cálculo con el pipeline, un CRM estándar que el comercial rellena a regañadientes, correos sueltos con información crítica y un servicio de atención que no ve lo que el vendedor prometió. El resultado es una visión fragmentada del cliente, oportunidades que se enfrían sin seguimiento, previsiones poco fiables y campañas de marketing lanzadas sobre datos desactualizados.\\n\\nEl problema se agrava cuando el CRM de catálogo obliga a deformar el proceso comercial para encajar en sus campos y flujos predefinidos, encarece cada personalización y, sobre todo, vive aislado del resto del negocio: no conoce el estado de un pedido en el ERP, ni el histórico de incidencias, ni los márgenes reales. RAIL aborda el problema desde la ingeniería: primero entendemos cómo capta, cualifica y atiende clientes tu empresa, y después construimos el CRM que ese proceso necesita, integrándolo con los sistemas que ya usas en lugar de añadir otra isla de datos.",
+		"approachHeading": "Cómo desarrolla RAIL tu CRM",
+		"approach": [
+			{
+				"title": "Modelado del proceso comercial antes que el código",
+				"body": "Mapeamos cómo captáis, cualificáis, vendéis y fidelizáis junto a comercial, marketing y soporte. Ese mapa define el modelo de datos, las etapas del embudo y los automatismos, evitando construir el CRM sobre suposiciones o sobre los campos que impone un producto cerrado."
+			},
+			{
+				"title": "Visión única del cliente",
+				"body": "Unificamos contactos, cuentas, oportunidades, interacciones e incidencias sobre un modelo de datos coherente, de modo que cualquier persona del equipo vea el histórico completo de una cuenta sin saltar entre herramientas ni buscar en correos."
+			},
+			{
+				"title": "Automatización de la operativa comercial",
+				"body": "Diseñamos la cualificación de leads, la asignación a comerciales, los recordatorios de seguimiento y las campañas para que el sistema empuje el proceso. El comercial dedica su tiempo a vender, no a rellenar formularios ni a copiar datos entre aplicaciones."
+			},
+			{
+				"title": "Integración con tu ERP y tus canales",
+				"body": "Conectamos el CRM con tu ERP, facturación, e-commerce, correo, telefonía y formularios web mediante APIs, para que pedidos, cobros y estados de servicio se reflejen en la ficha del cliente sin reintroducción manual de información."
+			},
+			{
+				"title": "Propiedad del código y métricas fiables",
+				"body": "Entregamos un sistema documentado del que tu empresa es propietaria, con paneles de previsión, conversión y actividad construidos sobre datos consistentes. Las métricas dejan de depender de la disciplina manual de cada usuario."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Una sola visión del cliente",
+				"body": "Comercial, marketing y atención trabajan sobre el mismo histórico de cada cuenta. Nadie vuelve a prometer lo que otro no puede cumplir ni a empezar una conversación sin contexto."
+			},
+			{
+				"title": "Más conversión con menos esfuerzo manual",
+				"body": "La cualificación y el seguimiento automáticos evitan que las oportunidades se enfríen. El equipo dedica su tiempo a las cuentas con mayor probabilidad de cierre, no a tareas administrativas."
+			},
+			{
+				"title": "Previsiones y métricas en las que confiar",
+				"body": "Al alimentarse de datos integrados y no de la disciplina manual de cada comercial, el pipeline, la conversión y la previsión de ventas reflejan la realidad y sirven para decidir."
+			},
+			{
+				"title": "Un CRM que se adapta a tu proceso",
+				"body": "Al ser a medida, el sistema modela tu embudo, tus reglas de negocio y tus campañas sin forzar tu operativa para que encaje en los campos predefinidos de un producto estándar."
+			},
+			{
+				"title": "Sin dependencia de licencias ni de un único proveedor",
+				"body": "Eres dueño del código y del modelo de datos. Puedes evolucionar el CRM con RAIL o con tu equipo interno, sin coste recurrente por usuario ni bloqueo en una plataforma cerrada."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Industria y B2B",
+				"scenario": "Un fabricante con ciclos de venta largos y varios decisores por cuenta gestiona oportunidades, presupuestos y seguimiento técnico en un único sistema integrado con el ERP, de modo que el comercial conoce el estado real de cada pedido y margen al hablar con el cliente."
+			},
+			{
+				"sector": "Servicios profesionales",
+				"scenario": "Una consultora conecta la captación de leads desde su web con la cualificación, la propuesta y la facturación, obteniendo trazabilidad completa del origen al cierre y midiendo la rentabilidad real por cliente y por canal de captación."
+			},
+			{
+				"sector": "Distribución y mayorista",
+				"scenario": "Un distribuidor con cartera amplia automatiza el seguimiento de clientes recurrentes, detecta caídas de pedido y reactiva cuentas con campañas segmentadas, integrando el histórico de compras del ERP en la ficha de cada cliente."
+			},
+			{
+				"sector": "Software y suscripción",
+				"scenario": "Una empresa de software unifica el embudo comercial con la atención posventa y la renovación, anticipando bajas a partir del histórico de incidencias y uso, y priorizando el esfuerzo del equipo en las cuentas con mayor riesgo o mayor potencial."
+			}
+		],
+		"techHeading": "Tecnologías que usamos para construir tu CRM",
+		"tech": [
+			"PostgreSQL",
+			"TypeScript",
+			"Node.js",
+			"React",
+			"Python",
+			"REST y GraphQL APIs",
+			"Elasticsearch",
+			"Redis",
+			"RabbitMQ",
+			"Docker",
+			"Kubernetes",
+			"Terraform"
+		],
+		"faq": [
+			{
+				"question": "¿Qué diferencia hay entre un CRM a medida y uno estándar como Salesforce o HubSpot?",
+				"answer": "Un CRM estándar es un producto cerrado al que el equipo debe adaptar su proceso comercial, y cada personalización o integración suele encarecerse y depender del fabricante. Un CRM a medida, como el que desarrolla RAIL, modela tu embudo y tus reglas reales y se integra de forma nativa con tu ERP y tus canales. Es la mejor opción cuando tu proceso de venta tiene particularidades que el software de catálogo no cubre bien, cuando la integración con tu operación es crítica o cuando quieres ser propietario del sistema y de tus datos sin pagar una licencia recurrente por usuario."
+			},
+			{
+				"question": "¿Cuánto tarda en implantarse un CRM a medida?",
+				"answer": "Depende del alcance, pero RAIL entrega por fases para que el equipo vea valor pronto. Un primer bloque de alto impacto, como la gestión del pipeline y la ficha única de cliente, puede estar operativo en pocos meses, y el resto —automatización de campañas, atención posventa o cuadros de mando— se despliega de forma incremental sin detener la actividad comercial. Evitamos los proyectos monolíticos de todo o nada."
+			},
+			{
+				"question": "¿Cuánto cuesta desarrollar un CRM a medida?",
+				"answer": "El coste se determina por el alcance funcional, las integraciones necesarias y el grado de automatización, por lo que no existe un precio de catálogo. En lugar de una licencia recurrente por usuario, inviertes en un sistema propio cuyo coste no crece cada vez que añades comerciales. RAIL define contigo un alcance por fases para ajustar la inversión al retorno de cada bloque y priorizar lo que más impacta en las ventas."
+			},
+			{
+				"question": "¿Se puede integrar el CRM con nuestro ERP y con las herramientas que ya usamos?",
+				"answer": "Sí. La integración es un pilar del enfoque de RAIL. Conectamos el CRM con tu ERP, tu facturación, tu e-commerce, el correo, la telefonía y los formularios web mediante APIs, de modo que pedidos, cobros, incidencias y estados de servicio se reflejan en la ficha del cliente sin reintroducción manual. La visión única del cliente solo es real cuando el CRM conoce lo que ocurre en el resto del negocio."
+			},
+			{
+				"question": "¿Cómo se migran nuestros datos de clientes y oportunidades al nuevo CRM?",
+				"answer": "RAIL planifica la migración como parte del proyecto: extraemos y limpiamos los datos de tu CRM actual, tus hojas de cálculo y tus correos, los deduplicamos y los validamos contra el nuevo modelo de datos antes de cargarlos de forma controlada. Al entregar por fases, la migración se realiza de forma progresiva, lo que reduce el riesgo frente a un traspaso total simultáneo y evita arrastrar contactos duplicados o información obsoleta."
+			},
+			{
+				"question": "¿Qué pasa con el mantenimiento y el soporte tras la entrega?",
+				"answer": "Entregamos un sistema documentado y del que tu empresa es propietaria, con código trazable. RAIL ofrece mantenimiento evolutivo y soporte continuado, pero al no depender de una licencia cerrada también puedes operar o evolucionar el CRM con tu propio equipo. La decisión sobre el modelo de soporte siempre es tuya, y el sistema sigue siendo tuyo en cualquier caso."
+			}
+		],
+		"keywords": [
+			"desarrollo crm a medida",
+			"crm a medida españa",
+			"implantación de crm",
+			"crm personalizado",
+			"crm para empresas",
+			"desarrollo software crm",
+			"crm integrado con erp",
+			"crm a medida vs salesforce"
+		],
+		"relatedSlugs": [
+			"erp",
+			"automation",
+			"data"
+		]
+	},
+	"automation": {
+		"slug": "automation",
+		"metaTitle": "Automatización de Procesos a Medida | RAIL",
+		"metaDescription": "Automatización de procesos de negocio a medida: orquestación de workflows, RPA, integraciones y reglas que eliminan tareas manuales. Ingeniería RAIL en España.",
+		"h1": "Automatización de procesos de negocio que escala con tu operación",
+		"heroTagline": "Workflows orquestados de extremo a extremo, sin fricción y sin trabajo manual repetitivo.",
+		"definition": "La automatización de procesos de negocio consiste en sustituir tareas manuales y repetitivas por flujos de trabajo (workflows) orquestados por software que mueven datos, ejecutan reglas y coordinan sistemas sin intervención humana. En RAIL diseñamos e implementamos automatizaciones a medida que combinan orquestación de workflows, RPA, integraciones por API y reglas de negocio para eliminar cuellos de botella, reducir errores y liberar tiempo de tus equipos. A diferencia de las macros o scripts aislados, una automatización bien construida es observable, auditable y resiliente a fallos.",
+		"problemHeading": "El coste oculto del trabajo manual repetitivo",
+		"problemBody": "En la mayoría de organizaciones, los procesos críticos siguen dependiendo de personas que copian datos entre sistemas, validan documentos a mano, envían correos de seguimiento o consolidan hojas de cálculo. Ese trabajo manual no solo es lento y caro: introduce errores, no deja rastro de auditoría y se rompe en cuanto crece el volumen o se va la persona que conocía el truco. Los equipos acaban dedicando sus mejores horas a tareas de bajo valor en lugar de al trabajo que mueve el negocio.\n\nEl problema rara vez es la falta de herramientas, sino la falta de orquestación: tienes un ERP, un CRM, un gestor documental y un correo, pero nada los coordina de principio a fin. RAIL conecta esas piezas con automatizaciones a medida que ejecutan el proceso completo de forma fiable, trazable y desatendida, devolviendo capacidad a tu equipo y reduciendo el tiempo de ciclo de horas o días a minutos.",
+		"approachHeading": "Cómo automatiza RAIL tus procesos",
+		"approach": [
+			{
+				"title": "Mapeamos el proceso antes de tocar código",
+				"body": "Documentamos el flujo real (no el teórico), identificamos los pasos manuales, las excepciones y los puntos de decisión. Solo automatizamos lo que aporta retorno: un proceso mal definido automatizado sigue siendo un proceso malo, más rápido."
+			},
+			{
+				"title": "Orquestación de workflows de extremo a extremo",
+				"body": "Construimos el flujo completo con motores de orquestación (n8n, Temporal, Camunda o desarrollo a medida) que coordinan tareas, gestionan reintentos, controlan tiempos de espera y mantienen el estado de cada ejecución de forma duradera."
+			},
+			{
+				"title": "Integración real entre tus sistemas",
+				"body": "Conectamos ERP, CRM, gestores documentales, bancos y APIs de terceros mediante webhooks y conectores. Cuando una herramienta no expone API, aplicamos RPA para operar sobre la interfaz sin obligarte a cambiar de software."
+			},
+			{
+				"title": "Reglas de negocio y human-in-the-loop",
+				"body": "Modelamos las reglas y validaciones del negocio, y dejamos puntos de aprobación humana donde el riesgo lo exige. La automatización decide lo rutinario y escala a una persona solo las excepciones que de verdad lo necesitan."
+			},
+			{
+				"title": "Observabilidad, trazabilidad y control de errores",
+				"body": "Cada ejecución queda registrada, monitorizada y es auditable. Diseñamos manejo de errores, alertas y reintentos idempotentes para que un fallo puntual no detenga la operación ni provoque duplicados."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Menos errores y reprocesos",
+				"body": "Al eliminar la transcripción manual de datos entre sistemas, desaparecen los errores de tecleo, los duplicados y las inconsistencias que obligan a rehacer trabajo y a reconciliar a posteriori."
+			},
+			{
+				"title": "Tiempos de ciclo más cortos",
+				"body": "Procesos que antes tardaban horas o días pasan a resolverse en minutos, porque el flujo se ejecuta de forma continua y desatendida, sin esperar a que alguien lo retome."
+			},
+			{
+				"title": "Capacidad del equipo liberada",
+				"body": "Tu gente deja de hacer tareas repetitivas y dedica su tiempo a actividades de mayor valor: análisis, relación con cliente y mejora del propio proceso."
+			},
+			{
+				"title": "Trazabilidad y cumplimiento",
+				"body": "Cada paso queda registrado con su responsable, marca temporal y resultado, lo que facilita auditorías, controles internos y el cumplimiento normativo sin esfuerzo añadido."
+			},
+			{
+				"title": "Escalabilidad sin contratar más",
+				"body": "La automatización absorbe picos de volumen sin coste marginal de personal: gestionar diez o diez mil operaciones cuesta lo mismo en horas de equipo."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Logística y transporte",
+				"scenario": "Automatización del flujo de pedidos: ingesta de albaranes, validación de stock en el ERP, asignación de ruta y notificación al cliente, reduciendo el tiempo de procesamiento de cada pedido de 20 minutos manuales a menos de uno."
+			},
+			{
+				"sector": "Fintech y servicios financieros",
+				"scenario": "Onboarding y verificación documental automatizada (KYC): extracción de datos de documentos, comprobación contra listas y aprobación con human-in-the-loop solo para casos dudosos, acortando el alta de clientes de días a horas."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Coordinación de citas, recordatorios automáticos y sincronización del historial entre el sistema de gestión hospitalaria y el portal del paciente, reduciendo el ausentismo y la carga administrativa del personal sanitario."
+			},
+			{
+				"sector": "Industria y manufactura",
+				"scenario": "Automatización del flujo de compras y aprobaciones: generación de órdenes a partir de niveles de inventario, ruteo de validaciones según importe y registro auditable de cada aprobación, eliminando los correos manuales de seguimiento."
+			}
+		],
+		"techHeading": "Tecnologías que usamos para automatizar",
+		"tech": [
+			"n8n",
+			"Temporal",
+			"Camunda / BPMN",
+			"Apache Airflow",
+			"Python",
+			"Node.js / TypeScript",
+			"REST y GraphQL APIs",
+			"Webhooks y colas de mensajes (RabbitMQ, Kafka)",
+			"Microsoft Power Automate",
+			"RPA (UiPath / Playwright)",
+			"PostgreSQL",
+			"Docker y Kubernetes"
+		],
+		"faq": [
+			{
+				"question": "¿Cuánto cuesta automatizar un proceso de negocio?",
+				"answer": "El coste depende del número de pasos, los sistemas a integrar y el volumen de excepciones del proceso. En RAIL no trabajamos con paquetes cerrados: partimos de una fase de descubrimiento para mapear el proceso y estimar el esfuerzo, priorizando primero las automatizaciones con mayor retorno. Una automatización acotada y bien delimitada suele amortizarse en pocos meses por las horas que libera y los errores que evita."
+			},
+			{
+				"question": "¿Cuánto se tarda en implantar una automatización?",
+				"answer": "Una automatización concreta y bien definida puede estar en producción en pocas semanas. Lo que más influye en el plazo no es el desarrollo, sino la claridad del proceso y el acceso a los sistemas a integrar. Trabajamos por iteraciones: ponemos en marcha primero un flujo de alto impacto y lo ampliamos a partir de resultados reales."
+			},
+			{
+				"question": "¿Qué diferencia hay entre automatización, RPA e IA?",
+				"answer": "La automatización de procesos orquesta el flujo completo coordinando sistemas y reglas. El RPA es una técnica concreta para operar sobre interfaces de aplicaciones que no exponen API, imitando los clics de un usuario. La IA añade capacidad de decisión sobre datos no estructurados (clasificar, extraer, interpretar). En RAIL combinamos las tres según lo que exija cada paso del proceso, no como modas independientes."
+			},
+			{
+				"question": "¿Tengo que cambiar mis sistemas actuales para automatizar?",
+				"answer": "No. La automatización se construye sobre tus herramientas existentes (ERP, CRM, correo, gestor documental) integrándose mediante sus APIs o, cuando no las tienen, con RPA sobre su interfaz. El objetivo es coordinar lo que ya usas, no obligarte a migrar de software."
+			},
+			{
+				"question": "¿Qué pasa si una automatización falla?",
+				"answer": "Diseñamos cada flujo con manejo de errores, reintentos idempotentes, alertas y puntos de escalado a una persona. Si un paso falla, el sistema lo registra, reintenta cuando procede y avisa al responsable, sin perder datos ni generar duplicados. La observabilidad es parte del diseño, no un añadido posterior."
+			},
+			{
+				"question": "¿Cómo se mantiene una automatización a lo largo del tiempo?",
+				"answer": "Las automatizaciones evolucionan con tu negocio y con los sistemas que conectan. RAIL entrega cada flujo documentado, monitorizado y versionado, y ofrece soporte continuo para adaptarlo cuando cambian las reglas, las APIs de terceros o los volúmenes. La monitorización proactiva permite detectar y corregir desviaciones antes de que afecten a la operación."
+			}
+		],
+		"keywords": [
+			"automatización de procesos",
+			"automatización de procesos de negocio",
+			"orquestación de workflows",
+			"automatización de tareas repetitivas",
+			"RPA a medida",
+			"automatización con n8n",
+			"integración de sistemas",
+			"automatización empresarial España",
+			"BPMN automatización",
+			"workflow automation"
+		],
+		"relatedSlugs": [
+			"process",
+			"ai",
+			"api"
+		]
+	},
+	"process": {
+		"slug": "process",
+		"metaTitle": "Optimización de Procesos a Medida | RAIL",
+		"metaDescription": "RAIL diseña y digitaliza procesos de negocio con software a medida: más throughput, calidad consistente y trazabilidad de extremo a extremo. Descúbrelo.",
+		"h1": "Ingeniería y optimización de procesos de negocio",
+		"heroTagline": "Convertimos procesos manuales y opacos en flujos digitales medibles, con throughput, calidad y trazabilidad de extremo a extremo.",
+		"definition": "La optimización de procesos de negocio es la práctica de analizar, rediseñar y digitalizar el modo en que una organización ejecuta su trabajo (pedidos, producción, aprobaciones, atención) para aumentar el throughput, garantizar la calidad y dejar trazabilidad de cada paso. En RAIL la abordamos como ingeniería de software a medida: mapeamos el proceso real, eliminamos cuellos de botella y reescribimos el flujo en sistemas que orquestan tareas, capturan datos y miden resultados. El objetivo no es digitalizar el caos, sino diseñar un proceso que escale con métricas claras de tiempo de ciclo, tasa de error y cumplimiento.",
+		"problemHeading": "El problema: procesos que nadie controla ni mide",
+		"problemBody": "La mayoría de las empresas crece sobre procesos heredados que viven en hojas de cálculo, correos, PDFs y la cabeza de unas pocas personas. El resultado es predecible: tiempos de ciclo largos e impredecibles, retrabajo por errores que se detectan tarde, dependencia de personas clave y cero visibilidad de dónde se atasca el trabajo. Cuando llega una auditoría, un pico de demanda o una rotación de plantilla, el proceso se rompe y nadie sabe explicar por qué.\n\nEl coste real no es solo la ineficiencia, sino la imposibilidad de mejorar lo que no se mide. Sin un proceso digitalizado y trazable es imposible saber qué paso consume el 60% del tiempo de ciclo, qué porcentaje de casos requiere excepción manual o si un cambio de política tuvo el efecto esperado. RAIL ataca exactamente esa brecha: convierte procesos tácitos e inmedibles en flujos de software gobernados por datos.",
+		"approachHeading": "Cómo trabaja RAIL la optimización de procesos",
+		"approach": [
+			{
+				"title": "Mapeo del proceso real (no del proceso ideal)",
+				"body": "Empezamos observando cómo se ejecuta el trabajo de verdad: entrevistas, análisis de datos existentes y minería de procesos sobre los sistemas actuales. Documentamos el flujo as-is, identificamos cuellos de botella, esperas, retrabajo y excepciones, y cuantificamos el tiempo de ciclo y la tasa de error de partida."
+			},
+			{
+				"title": "Rediseño antes de programar",
+				"body": "Optimizamos el flujo antes de escribir código: eliminamos pasos sin valor, paralelizamos lo que no es secuencial y definimos reglas de negocio explícitas. Solo entonces lo modelamos como software, evitando el error clásico de digitalizar la ineficiencia."
+			},
+			{
+				"title": "Orquestación y automatización del flujo",
+				"body": "Construimos el motor de proceso que asigna tareas, aplica reglas, dispara automatizaciones e integra los sistemas implicados (ERP, CRM, herramientas internas). El trabajo fluye solo entre personas y máquinas según el estado del caso, con SLAs y escalados configurables."
+			},
+			{
+				"title": "Trazabilidad y métricas de extremo a extremo",
+				"body": "Cada paso queda registrado con quién, qué, cuándo y resultado. Esto da un log auditable para cumplimiento y, sobre todo, métricas en vivo: tiempo de ciclo, throughput, tasa de error y cuellos de botella actuales, listas para cuadros de mando."
+			},
+			{
+				"title": "Mejora continua basada en datos",
+				"body": "Entregamos el proceso instrumentado para iterar: detectar el nuevo cuello de botella, probar un cambio y medir su impacto real. La optimización deja de ser un proyecto puntual y pasa a ser un ciclo medible."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Más throughput con los mismos recursos",
+				"body": "Al eliminar esperas, retrabajo y pasos manuales, el mismo equipo procesa más volumen. La capacidad deja de depender de añadir personas y pasa a depender del diseño del proceso."
+			},
+			{
+				"title": "Calidad consistente y menos errores",
+				"body": "Las reglas de negocio se aplican por software, no por criterio individual. Los errores se previenen en origen o se detectan en el momento, reduciendo el retrabajo y las incidencias que llegan al cliente."
+			},
+			{
+				"title": "Trazabilidad y cumplimiento auditables",
+				"body": "Cada caso tiene un historial completo y exportable. Facilita auditorías, certificaciones (ISO, regulatorias) y la rendición de cuentas, sin tener que reconstruir qué pasó a partir de correos."
+			},
+			{
+				"title": "Visibilidad para decidir con datos",
+				"body": "Los responsables ven en tiempo real dónde está cada caso, qué SLAs están en riesgo y dónde está el cuello de botella, en lugar de gobernar a ciegas."
+			},
+			{
+				"title": "Menos dependencia de personas clave",
+				"body": "El conocimiento del proceso vive en el sistema, no en la memoria de un veterano. La incorporación de nuevas personas y la continuidad operativa dejan de ser un riesgo."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Industria y manufactura",
+				"scenario": "Digitalización del proceso de control de calidad en planta: registro de inspecciones, trazabilidad por lote y bloqueo automático de producto no conforme, reduciendo el tiempo de cierre de no conformidades y dejando trazabilidad completa para auditorías de cliente."
+			},
+			{
+				"sector": "Logística y supply chain",
+				"scenario": "Rediseño del flujo de incidencias de entrega: captura desde el repartidor, enrutado automático según tipo y SLA, y panel de tiempos de resolución, recortando el tiempo de ciclo de gestión de reclamaciones."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Orquestación del circuito de citación y derivaciones entre servicios, con trazabilidad del estado de cada paciente, alertas por tiempos de espera fuera de objetivo y registro auditable para cumplimiento."
+			},
+			{
+				"sector": "Sector público y servicios",
+				"scenario": "Digitalización de un procedimiento administrativo con varios departamentos: tramitación reglada, plazos legales controlados por el sistema, expediente trazable y métricas de tiempo medio de resolución."
+			}
+		],
+		"techHeading": "Tecnologías y enfoques que empleamos",
+		"tech": [
+			"BPMN 2.0",
+			"Camunda / motores de workflow",
+			"Temporal (orquestación de procesos)",
+			"Process mining",
+			"TypeScript / Node.js",
+			"Python",
+			"PostgreSQL",
+			"Apache Kafka / colas de eventos",
+			"APIs REST y webhooks",
+			"Grafana / dashboards de métricas",
+			"Docker y Kubernetes",
+			"Integración con ERP y CRM"
+		],
+		"faq": [
+			{
+				"question": "¿En qué se diferencia la optimización de procesos de la automatización a secas?",
+				"answer": "La automatización ejecuta una tarea concreta sin intervención humana; la optimización de procesos rediseña el flujo completo de extremo a extremo antes de decidir qué automatizar. RAIL primero mapea y mejora el proceso (elimina pasos sin valor, define reglas, mide cuellos de botella) y solo entonces automatiza lo que aporta. Automatizar un proceso mal diseñado solo acelera la ineficiencia."
+			},
+			{
+				"question": "¿Cuánto tarda un proyecto de mejora de procesos con RAIL?",
+				"answer": "Depende del alcance, pero seguimos un enfoque por fases para entregar valor pronto. Una fase inicial de mapeo y diagnóstico suele medirse en semanas y produce ya métricas de partida y un rediseño accionable. La implantación del proceso en software se planifica en iteraciones cortas, priorizando primero el flujo de mayor impacto en lugar de un único despliegue de largo plazo."
+			},
+			{
+				"question": "¿Tendremos que cambiar nuestros sistemas actuales (ERP, CRM)?",
+				"answer": "No necesariamente. Diseñamos el proceso para integrarse con los sistemas que ya usas mediante APIs, webhooks y eventos. El motor de proceso orquesta el trabajo por encima de esas herramientas; sustituir un sistema solo se plantea si es la causa del cuello de botella, nunca como punto de partida."
+			},
+			{
+				"question": "¿Cómo se mide el éxito del proyecto?",
+				"answer": "Con métricas definidas antes de empezar: tiempo de ciclo, throughput (casos procesados por periodo), tasa de error o retrabajo y cumplimiento de SLAs. Capturamos la línea base en el diagnóstico y la comparamos con el proceso ya digitalizado, de modo que la mejora sea demostrable con datos, no con percepciones."
+			},
+			{
+				"question": "¿Sirve esto para cumplir normativas y auditorías?",
+				"answer": "Sí. Uno de los pilares del enfoque es la trazabilidad: cada paso del proceso queda registrado con responsable, momento y resultado, generando un historial auditable y exportable. Esto facilita auditorías internas, certificaciones ISO y requisitos regulatorios sectoriales, ya que el cumplimiento queda incorporado en el propio flujo."
+			},
+			{
+				"question": "¿Qué pasa con el mantenimiento una vez implantado el proceso?",
+				"answer": "El proceso se entrega instrumentado y documentado para que evolucione. RAIL acompaña con soporte y mejora continua: medir el nuevo cuello de botella, ajustar reglas y desplegar cambios de forma controlada. El objetivo es que el equipo gane autonomía para iterar el proceso sin depender de un rediseño completo cada vez."
+			}
+		],
+		"keywords": [
+			"optimización de procesos de negocio",
+			"digitalización de procesos",
+			"ingeniería de procesos a medida",
+			"BPM software a medida",
+			"automatización de flujos de trabajo",
+			"mejora de procesos empresariales",
+			"trazabilidad de procesos",
+			"reducción de tiempo de ciclo"
+		],
+		"relatedSlugs": [
+			"automation",
+			"dashboards",
+			"consulting"
+		]
+	},
+	"ai": {
+		"slug": "ai",
+		"metaTitle": "IA aplicada a empresas | Integración de IA a medida | RAIL",
+		"metaDescription": "RAIL integra IA aplicada en tu negocio: LLMs, RAG, visión y predicción con guardrails, evaluación y MLOps. Software a medida que escala y cumple.",
+		"h1": "Integración de IA en software empresarial, con guardrails y control",
+		"heroTagline": "De prueba de concepto a producción: modelos de IA gobernados, evaluados y embebidos en tus procesos.",
+		"definition": "La integración de IA empresarial consiste en incorporar modelos de inteligencia artificial (LLMs, RAG, visión por computador o modelos predictivos) dentro del software y los procesos de una organización, con guardrails de seguridad, evaluación continua y trazabilidad. RAIL, consultora de ingeniería de software en España, diseña e implanta soluciones de IA a medida que pasan de prototipo a producción de forma fiable: conectadas a tus datos, controladas en coste y comportamiento, y alineadas con el RGPD y el Reglamento Europeo de IA.",
+		"problemHeading": "El problema: pilotos de IA que nunca llegan a producción",
+		"problemBody": "Muchas empresas españolas acumulan pruebas de concepto con IA que impresionan en una demo pero nunca se convierten en software fiable. El motivo no suele ser el modelo, sino la ingeniería que falta alrededor: datos dispersos y sin gobernanza, respuestas que alucinan sin control, ausencia de evaluación objetiva, costes de inferencia impredecibles y dudas legales sobre privacidad y cumplimiento. El resultado es una IA que no se puede auditar, no se integra con los sistemas existentes y nadie se atreve a poner delante de un cliente o de una operación crítica.\n\nRAIL aborda la IA como un problema de ingeniería de software, no como un experimento. Convertimos un caso de uso de negocio en un sistema productivo con guardrails, métricas de calidad, observabilidad y un plan de mantenimiento, de forma que la IA aporte valor medible y soporte el escrutinio de negocio, técnico y regulatorio.",
+		"approachHeading": "Cómo lo aborda RAIL",
+		"approach": [
+			{
+				"title": "Casos de uso priorizados por valor y viabilidad",
+				"body": "Partimos del problema de negocio, no de la moda. Evaluamos qué tareas son automatizables con IA, el retorno esperado y la calidad de los datos disponibles, y descartamos lo que no compensa. Definimos métricas de éxito antes de escribir código."
+			},
+			{
+				"title": "Arquitectura RAG y conexión a tus datos",
+				"body": "Conectamos los modelos a tu conocimiento real mediante Retrieval-Augmented Generation, bases de datos vectoriales e ingesta gobernada. Así la IA responde con tus documentos y políticas, con citas a la fuente, en lugar de inventar."
+			},
+			{
+				"title": "Guardrails, evaluación y seguridad",
+				"body": "Implantamos validación de entradas y salidas, control de prompt injection, filtrado de datos sensibles y conjuntos de evaluación automatizados (evals) que miden precisión, alucinación y sesgo en cada despliegue antes de pasar a producción."
+			},
+			{
+				"title": "MLOps y puesta en producción",
+				"body": "Desplegamos con CI/CD, versionado de modelos y prompts, monitorización de coste y latencia, fallback entre proveedores y trazas completas. La IA se trata como cualquier servicio crítico: observable, reproducible y reversible."
+			},
+			{
+				"title": "Cumplimiento RGPD y Reglamento Europeo de IA",
+				"body": "Diseñamos con privacidad desde el origen: minimización de datos, opciones de despliegue privado o on-premise, registro de decisiones y documentación de riesgo alineada con el AI Act europeo."
+			}
+		],
+		"benefits": [
+			{
+				"title": "De la demo a producción real",
+				"body": "Convertimos pruebas de concepto estancadas en sistemas que tu equipo y tus clientes usan a diario, con la fiabilidad que exige una operación crítica."
+			},
+			{
+				"title": "Respuestas fiables y auditables",
+				"body": "Con RAG, citas a la fuente y guardrails reduces las alucinaciones y puedes justificar por qué la IA respondió lo que respondió, algo imprescindible en sectores regulados."
+			},
+			{
+				"title": "Coste de inferencia bajo control",
+				"body": "Monitorización de tokens y latencia, caché y selección del modelo adecuado para cada tarea evitan facturas sorpresa y mantienen el rendimiento previsible al escalar."
+			},
+			{
+				"title": "Cumplimiento sin frenar la innovación",
+				"body": "Privacidad desde el diseño y trazabilidad alineadas con RGPD y el AI Act te permiten adoptar IA sin exponerte a riesgos legales ni reputacionales."
+			},
+			{
+				"title": "Independencia de proveedor",
+				"body": "Arquitecturas que permiten cambiar de modelo o proveedor (OpenAI, Anthropic, modelos open source) sin reescribir tu producto, protegiendo tu inversión a largo plazo."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Servicios financieros / fintech",
+				"scenario": "Asistente de IA conectado por RAG a la normativa interna y al histórico de operaciones que resuelve consultas de los agentes de atención, reduce el tiempo medio de respuesta y deja traza auditable de cada recomendación."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Extracción y estructuración automática de información clínica a partir de informes en texto libre, con anonimización previa y validación humana, para alimentar historias y registros sin entrada manual."
+			},
+			{
+				"sector": "Industria",
+				"scenario": "Modelo predictivo de mantenimiento que anticipa fallos de maquinaria a partir de datos de sensores, reduciendo paradas no planificadas y priorizando intervenciones por riesgo."
+			},
+			{
+				"sector": "Retail / e-commerce",
+				"scenario": "Buscador semántico y recomendador que entiende la intención del comprador en lenguaje natural, mejora la conversión y clasifica automáticamente miles de fichas de producto."
+			}
+		],
+		"techHeading": "Tecnologías que utilizamos",
+		"tech": [
+			"Python",
+			"LangChain",
+			"LlamaIndex",
+			"OpenAI API",
+			"Anthropic Claude",
+			"Modelos open source (Llama, Mistral)",
+			"PyTorch",
+			"Hugging Face Transformers",
+			"pgvector",
+			"Pinecone / Qdrant",
+			"FastAPI",
+			"Docker y Kubernetes",
+			"MLflow",
+			"AWS Bedrock / Azure OpenAI"
+		],
+		"faq": [
+			{
+				"question": "¿En qué se diferencia integrar IA a medida de usar una herramienta de IA ya hecha?",
+				"answer": "Una herramienta genérica no conoce tus datos, tus procesos ni tus restricciones de cumplimiento. La integración a medida conecta los modelos a tu conocimiento real mediante RAG, añade guardrails específicos de tu negocio y se embebe en tus sistemas existentes. RAIL construye ese software para que la IA forme parte de tu operación, no sea una aplicación aislada más."
+			},
+			{
+				"question": "¿Cómo evitáis que la IA invente respuestas (alucinaciones)?",
+				"answer": "Combinamos varias capas: arquitectura RAG para que el modelo responda a partir de tus documentos con citas a la fuente, validación de las salidas, conjuntos de evaluación automatizados que miden la tasa de alucinación antes de cada despliegue y, cuando el caso lo exige, validación humana en el bucle. No eliminamos el riesgo al 100%, pero lo medimos, lo acotamos y lo hacemos auditable."
+			},
+			{
+				"question": "¿La IA cumple con el RGPD y el Reglamento Europeo de IA?",
+				"answer": "Diseñamos con privacidad desde el origen: minimización y anonimización de datos, control de qué información sale hacia proveedores externos y opciones de despliegue privado u on-premise cuando los datos son sensibles. Documentamos el nivel de riesgo del sistema y mantenemos trazabilidad de las decisiones, alineándonos con el RGPD y el AI Act europeo."
+			},
+			{
+				"question": "¿Cuánto cuesta y cuánto tarda un proyecto de IA?",
+				"answer": "Depende del caso de uso, de la calidad de los datos y del nivel de integración requerido. Trabajamos por fases: un primer diagnóstico y prototipo validable en pocas semanas para confirmar el valor, y después la industrialización a producción. No vendemos licencias cerradas; presupuestamos sobre el alcance real tras entender tu problema."
+			},
+			{
+				"question": "¿Qué pasa con el coste de inferencia cuando escala el uso?",
+				"answer": "Es uno de los puntos que más descontrol genera. Lo gestionamos seleccionando el modelo adecuado para cada tarea (no siempre hace falta el más caro), añadiendo caché, controlando el tamaño de los prompts y monitorizando tokens y latencia en tiempo real. Así el coste crece de forma previsible y proporcional al valor generado."
+			},
+			{
+				"question": "¿Quedamos atados a un único proveedor de IA?",
+				"answer": "No. Diseñamos arquitecturas que abstraen el proveedor, de modo que puedes alternar entre OpenAI, Anthropic o modelos open source según coste, rendimiento o requisitos de privacidad sin reescribir tu producto. Esa independencia protege tu inversión frente a cambios de precios o de condiciones."
+			}
+		],
+		"keywords": [
+			"integración de IA en empresas",
+			"IA aplicada a negocio",
+			"desarrollo de soluciones de IA a medida",
+			"implantación de LLM con RAG",
+			"guardrails de IA",
+			"MLOps en producción",
+			"IA y cumplimiento RGPD",
+			"consultoría de inteligencia artificial España"
+		],
+		"relatedSlugs": [
+			"data",
+			"automation",
+			"api"
+		]
+	},
+	"api": {
+		"slug": "api",
+		"metaTitle": "API Gateway a medida | Integración segura | RAIL",
+		"metaDescription": "Diseñamos e implantamos tu API Gateway: autenticación, rate limiting, observabilidad y gobierno de APIs para conectar sistemas con seguridad y escala.",
+		"h1": "Desarrollo e implantación de API Gateway para integrar sistemas con seguridad y escala",
+		"heroTagline": "Una capa única de entrada que autentica, protege, gobierna y observa todas tus APIs internas y externas.",
+		"definition": "Un API Gateway es la capa de entrada única que recibe todas las peticiones a tus APIs y servicios, y se encarga de autenticarlas, aplicar políticas de seguridad y límites de tráfico (rate limiting), enrutarlas al servicio correcto y registrar cada llamada para su observabilidad. RAIL diseña, implanta y opera API Gateways a medida que centralizan el control de tus integraciones, reducen la superficie de ataque y permiten escalar microservicios sin acoplar a cada sistema la lógica de seguridad, versionado y monitorización.",
+		"problemHeading": "El problema: integraciones dispersas, inseguras y sin control",
+		"problemBody": "A medida que una organización suma microservicios, aplicaciones móviles, partners e integraciones de terceros, cada servicio acaba resolviendo por su cuenta la autenticación, el control de acceso, los límites de tráfico y el registro de llamadas. El resultado es lógica de seguridad duplicada e inconsistente, endpoints expuestos sin protección uniforme, credenciales difíciles de rotar y una ausencia total de visibilidad sobre quién consume qué, con qué latencia y qué tasa de error.\n\nEse desorden tiene coste real: incidentes de seguridad por endpoints olvidados, caídas en cascada cuando un consumidor abusa de una API sin límites, despliegues lentos por temor a romper integraciones y semanas perdidas depurando fallos sin trazas correlacionadas. Un API Gateway bien diseñado concentra esas responsabilidades transversales en un único punto de control, gobernado y auditable, de modo que tus equipos se centren en la lógica de negocio y no en reescribir una y otra vez la fontanería de seguridad y observabilidad.",
+		"approachHeading": "Qué hace RAIL en un proyecto de API Gateway",
+		"approach": [
+			{
+				"title": "Inventario y diseño del contrato de APIs",
+				"body": "Mapeamos tus servicios, consumidores y flujos de integración, y definimos contratos claros con OpenAPI/AsyncAPI, criterios de versionado y una estrategia de enrutamiento. Partimos del diseño del contrato (API-first) para evitar acoplamientos y romper integraciones en cada cambio."
+			},
+			{
+				"title": "Seguridad centralizada en el borde",
+				"body": "Implantamos autenticación y autorización con OAuth2, OpenID Connect, JWT y mTLS, gestión de claves de API por consumidor, validación de esquemas y políticas WAF. La seguridad deja de vivir dispersa en cada microservicio y pasa a aplicarse de forma uniforme en el gateway."
+			},
+			{
+				"title": "Control de tráfico y resiliencia",
+				"body": "Configuramos rate limiting y throttling por cliente y por ruta, cuotas, caché de respuestas, circuit breakers y reintentos. Así un consumidor abusivo o un servicio degradado no tumba al resto de la plataforma."
+			},
+			{
+				"title": "Observabilidad de extremo a extremo",
+				"body": "Instrumentamos métricas, logs estructurados y trazas distribuidas (OpenTelemetry) con dashboards y alertas. Cada llamada queda correlacionada, con latencias y tasas de error visibles en tiempo real para reaccionar antes de que el cliente lo note."
+			},
+			{
+				"title": "Despliegue, automatización y operación",
+				"body": "Entregamos el gateway como infraestructura como código, integrado en CI/CD, con entornos reproducibles y gobierno de configuración (GitOps). Documentamos el portal de desarrolladores y, si lo necesitas, operamos y evolucionamos la plataforma."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Menor superficie de ataque",
+				"body": "Al concentrar autenticación, autorización y validación en un único borde, eliminas endpoints expuestos sin protección y rotas credenciales y políticas desde un solo sitio, reduciendo el riesgo de incidentes."
+			},
+			{
+				"title": "Menos código repetido y entregas más rápidas",
+				"body": "Tus equipos dejan de reimplementar seguridad, límites y logging en cada servicio. El time-to-market de nuevas integraciones cae porque el contrato y las políticas transversales ya están resueltos."
+			},
+			{
+				"title": "Estabilidad bajo carga",
+				"body": "El rate limiting, las cuotas y los circuit breakers evitan caídas en cascada y degradaciones por consumidores abusivos o picos de tráfico, protegiendo la disponibilidad del conjunto."
+			},
+			{
+				"title": "Visibilidad para decidir",
+				"body": "Con métricas y trazas centralizadas sabes qué API se usa, por quién, con qué latencia y qué error. Eso permite priorizar mejoras, justificar capacidad y diagnosticar incidentes en minutos, no en días."
+			},
+			{
+				"title": "Integraciones gobernadas con partners",
+				"body": "Onboarding de terceros con claves, cuotas y planes de uso controlados, versionado sin romper a quien consume y un portal de desarrolladores que reduce el soporte manual."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Fintech",
+				"scenario": "Exposición segura de APIs de pagos y open banking a partners, con mTLS, consentimientos y rate limiting por cliente para cumplir requisitos regulatorios y evitar fraude por abuso de endpoints."
+			},
+			{
+				"sector": "Retail y ecommerce",
+				"scenario": "Capa única ante un backend de microservicios (catálogo, stock, pedidos) que absorbe picos de campañas con caché y throttling, evitando que el tráfico de la app móvil sature los servicios internos."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Gateway que media el acceso a historiales clínicos entre sistemas hospitalarios y apps, aplicando autorización granular, registro auditable de cada acceso y cifrado extremo a extremo."
+			},
+			{
+				"sector": "Logística",
+				"scenario": "Integración de transportistas, almacenes y clientes mediante APIs versionadas con trazabilidad distribuida, de modo que un fallo en un proveedor externo no propague errores al resto de la cadena."
+			}
+		],
+		"techHeading": "Tecnologías que usamos",
+		"tech": [
+			"Kong",
+			"NGINX",
+			"Envoy",
+			"AWS API Gateway",
+			"Azure API Management",
+			"Apigee",
+			"Traefik",
+			"OAuth2 / OpenID Connect",
+			"JWT",
+			"mTLS",
+			"OpenAPI / AsyncAPI",
+			"OpenTelemetry",
+			"Kubernetes",
+			"Terraform",
+			"Redis"
+		],
+		"faq": [
+			{
+				"question": "¿Qué diferencia hay entre un API Gateway y un balanceador de carga o un reverse proxy?",
+				"answer": "Un balanceador o un reverse proxy reparten tráfico y enrutan a nivel de red o HTTP, pero no entienden de negocio ni de identidad. Un API Gateway opera a nivel de API: aplica autenticación y autorización por consumidor, rate limiting, validación de esquemas, versionado, transformación de peticiones y observabilidad por endpoint. En la práctica suele apoyarse en un balanceador por debajo, pero añade la capa de seguridad y gobierno que un proxy no cubre."
+			},
+			{
+				"question": "¿Cuánto cuesta implantar un API Gateway?",
+				"answer": "El coste depende del número de servicios y consumidores, de los requisitos de seguridad y cumplimiento, de si es cloud gestionado o autoalojado, y del nivel de observabilidad y automatización que necesites. No trabajamos con tarifas cerradas de catálogo: tras un análisis inicial proponemos un alcance por fases, empezando por un núcleo de seguridad y enrutamiento que aporte valor pronto y ampliando después con cuotas, caché o portal de desarrolladores."
+			},
+			{
+				"question": "¿Cuánto se tarda en ponerlo en producción?",
+				"answer": "Un primer gateway con autenticación, enrutamiento y observabilidad básica suele estar operativo en pocas semanas. La migración completa de todas las integraciones, el versionado y el gobierno avanzado se planifican de forma incremental para no interrumpir los servicios existentes, llevando rutas al gateway de manera progresiva."
+			},
+			{
+				"question": "¿Lo construís sobre una solución concreta o desarrolláis uno propio?",
+				"answer": "Elegimos la tecnología según tu caso. Solemos partir de soluciones probadas como Kong, Envoy, NGINX o los gateways gestionados de AWS, Azure y Google, y desarrollamos a medida los plugins, políticas e integraciones específicas de tu negocio. Evitamos reinventar lo que ya está resuelto y nos centramos en lo que te diferencia."
+			},
+			{
+				"question": "¿Se integra con nuestros sistemas de identidad y monitorización actuales?",
+				"answer": "Sí. Conectamos el gateway con tu proveedor de identidad (Keycloak, Auth0, Azure AD u otros) mediante OAuth2 y OpenID Connect, y exportamos métricas, logs y trazas a tu stack de observabilidad (Prometheus, Grafana, Datadog, ELK) usando estándares como OpenTelemetry, sin obligarte a cambiar de herramientas."
+			},
+			{
+				"question": "¿Quién mantiene y opera el gateway después?",
+				"answer": "Lo entregamos como infraestructura como código, documentado y con CI/CD, de forma que tu equipo pueda operarlo con autonomía. También ofrecemos soporte y evolución continua: actualizaciones de seguridad, nuevas políticas, escalado y onboarding de nuevos consumidores según lo necesites."
+			}
+		],
+		"keywords": [
+			"api gateway",
+			"desarrollo api gateway a medida",
+			"implantación api gateway",
+			"gestión de apis",
+			"seguridad de apis",
+			"rate limiting",
+			"integración de microservicios",
+			"oauth2 openid connect",
+			"observabilidad de apis",
+			"gateway de apis empresa"
+		],
+		"relatedSlugs": [
+			"cloud",
+			"cyber",
+			"automation"
+		]
+	},
+	"dashboards": {
+		"slug": "dashboards",
+		"metaTitle": "Dashboards a medida en tiempo real | RAIL",
+		"metaDescription": "Cuadros de mando a medida que unifican tus datos y los convierten en decisiones en tiempo real. RAIL diseña dashboards y KPIs accionables para tu negocio.",
+		"h1": "Dashboards y cuadros de mando a medida para decidir en tiempo real",
+		"heroTagline": "Tus datos críticos, en una sola pantalla y siempre actualizados.",
+		"definition": "Un dashboard a medida es una interfaz visual que reúne en una sola pantalla los KPIs e indicadores clave de un negocio, alimentados en tiempo real desde sus sistemas (ERP, CRM, bases de datos, APIs), para que cada equipo tome decisiones basadas en datos sin exportar hojas de cálculo. RAIL diseña y construye estos cuadros de mando como software propio, integrados con tus fuentes y adaptados a tus métricas, no a plantillas genéricas de una herramienta cerrada.",
+		"problemHeading": "El problema: datos por todas partes y ninguna visión única",
+		"problemBody": "La mayoría de las empresas no tienen un problema de falta de datos, sino de datos dispersos. La información vive repartida entre el ERP, el CRM, hojas de cálculo, herramientas de marketing y bases de datos operativas, y cada departamento mantiene su propia versión de la verdad. El resultado son informes que se montan a mano cada lunes, métricas que llegan tarde y discusiones sobre qué cifra es la buena en lugar de sobre qué decisión tomar.\n\nCuando la dirección necesita responder a una pregunta sencilla —cómo va el margen este mes, qué clientes están en riesgo de fuga, dónde se está atascando la operación— la respuesta tarda horas o días y, cuando llega, ya no es accionable. Un cuadro de mando bien diseñado elimina ese retraso: convierte preguntas de negocio recurrentes en respuestas inmediatas y en una única fuente de verdad compartida por toda la organización.",
+		"approachHeading": "Cómo lo aborda RAIL",
+		"approach": [
+			{
+				"title": "Empezamos por las decisiones, no por los gráficos",
+				"body": "Antes de diseñar nada, identificamos qué decisiones quiere mejorar cada rol y qué preguntas se hacen a diario. De ahí derivamos los KPIs realmente accionables, descartando métricas vanidosas que adornan pero no orientan."
+			},
+			{
+				"title": "Unificamos las fuentes en un modelo de datos coherente",
+				"body": "Conectamos ERP, CRM, bases de datos y APIs externas, y resolvemos las inconsistencias de nomenclatura y cálculo para que cada métrica tenga una sola definición. Construimos una capa semántica que garantiza que todos midan lo mismo."
+			},
+			{
+				"title": "Construimos dashboards a medida con datos en tiempo real",
+				"body": "Desarrollamos cuadros de mando como software propio, con actualización en streaming o casi en tiempo real según el caso de uso, filtros por dimensión, drill-down al detalle y diseño responsive para escritorio y móvil."
+			},
+			{
+				"title": "Añadimos alertas y umbrales que avisan solos",
+				"body": "Configuramos alertas automáticas cuando un indicador cruza un umbral crítico, de modo que el dashboard no solo muestra el estado: avisa proactivamente por correo, Slack o Teams cuando algo requiere atención."
+			},
+			{
+				"title": "Garantizamos gobierno, permisos y rendimiento",
+				"body": "Aplicamos control de acceso por rol, trazabilidad de los datos y optimización de consultas para que los paneles carguen rápido incluso con grandes volúmenes y cada usuario vea solo lo que le corresponde."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Decisiones más rápidas y con menos riesgo",
+				"body": "La dirección y los equipos operativos responden a preguntas críticas en segundos en lugar de esperar al informe semanal, reduciendo el tiempo entre que un problema aparece y se actúa sobre él."
+			},
+			{
+				"title": "Una única fuente de verdad",
+				"body": "Se acaban las discusiones sobre qué cifra es la correcta: todos los departamentos trabajan sobre las mismas métricas con la misma definición, lo que alinea a la organización."
+			},
+			{
+				"title": "Menos horas perdidas en informes manuales",
+				"body": "El equipo deja de dedicar horas cada semana a exportar, copiar y formatear datos en hojas de cálculo, y reinvierte ese tiempo en análisis y acción."
+			},
+			{
+				"title": "Detección temprana de desviaciones",
+				"body": "Las alertas automáticas sobre umbrales convierten el cuadro de mando en un sistema de vigilancia continua que avisa antes de que un problema escale."
+			},
+			{
+				"title": "Software propio, sin dependencia de licencias cerradas",
+				"body": "Al construirse a medida, el dashboard evoluciona con tu negocio y se integra con tu stack, sin las limitaciones ni los costes recurrentes por usuario de las plataformas genéricas."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Logística",
+				"scenario": "Torre de control que muestra en tiempo real el estado de cada envío, los KPIs de entregas a tiempo (OTIF) y los cuellos de botella por centro, con alertas cuando una ruta acumula retraso para reaccionar antes de incumplir el SLA."
+			},
+			{
+				"sector": "Retail",
+				"scenario": "Panel de ventas por tienda y canal que cruza facturación, stock y margen al minuto, permitiendo detectar roturas de inventario o referencias con baja rotación y redistribuir producto el mismo día."
+			},
+			{
+				"sector": "Fintech",
+				"scenario": "Cuadro de mando de operaciones y riesgo que monitoriza el volumen transaccional, la tasa de impagos y las alertas de fraude en directo, con umbrales que disparan avisos al equipo de cumplimiento."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Dashboard de gestión hospitalaria que consolida ocupación de camas, tiempos de espera y carga por servicio, ayudando a la dirección a reasignar recursos según la demanda en tiempo real."
+			}
+		],
+		"techHeading": "Tecnologías que utilizamos",
+		"tech": [
+			"React",
+			"TypeScript",
+			"D3.js",
+			"Apache ECharts",
+			"PostgreSQL",
+			"ClickHouse",
+			"Apache Kafka",
+			"Redis",
+			"Grafana",
+			"Metabase",
+			"dbt",
+			"WebSockets"
+		],
+		"faq": [
+			{
+				"question": "¿Cuánto cuesta desarrollar un dashboard a medida?",
+				"answer": "El coste depende del número de fuentes de datos a integrar, la complejidad de las métricas y los requisitos de actualización en tiempo real. En RAIL no aplicamos precio por usuario como las plataformas cerradas: presupuestamos el proyecto según el alcance y, tras una sesión inicial de descubrimiento, entregamos una estimación clara con fases para que puedas empezar por lo más crítico."
+			},
+			{
+				"question": "¿Cuánto se tarda en tener un cuadro de mando funcionando?",
+				"answer": "Un primer dashboard útil, conectado a las fuentes principales y con los KPIs clave, suele estar operativo en pocas semanas. Trabajamos por iteraciones: entregamos una primera versión con valor real cuanto antes y la ampliamos con más vistas, fuentes y alertas en ciclos sucesivos en lugar de esperar meses a un único entregable."
+			},
+			{
+				"question": "¿Con qué sistemas se puede integrar el dashboard?",
+				"answer": "Conectamos con prácticamente cualquier fuente: ERP, CRM, bases de datos relacionales y analíticas, APIs REST o GraphQL, archivos y herramientas SaaS. Construimos los conectores e integraciones necesarios para que tus datos lleguen al panel sin procesos manuales de exportación."
+			},
+			{
+				"question": "¿Qué significa que los datos sean en tiempo real?",
+				"answer": "Según el caso de uso, ofrecemos desde actualización en streaming continuo —mediante WebSockets y colas de eventos— hasta refrescos programados cada pocos minutos. Definimos contigo la frecuencia adecuada para cada métrica, porque no todos los indicadores necesitan la misma inmediatez ni el mismo coste de infraestructura."
+			},
+			{
+				"question": "¿En qué se diferencia de usar Power BI o Tableau?",
+				"answer": "Las herramientas de BI generalistas son potentes, pero te atan a su modelo, sus licencias por usuario y sus límites de personalización. Un dashboard a medida de RAIL es software propio: se adapta exactamente a tus procesos, se integra de forma nativa con tu stack y evoluciona sin barreras. También integramos o complementamos herramientas como Grafana o Metabase cuando es la opción más eficiente para el cliente."
+			},
+			{
+				"question": "¿Quién mantiene el dashboard una vez entregado?",
+				"answer": "Ofrecemos mantenimiento y evolución continua: monitorizamos el rendimiento, actualizamos integraciones cuando cambian las fuentes y añadimos nuevas vistas a medida que surgen necesidades. También podemos formar a tu equipo para que gestione el día a día, según el modelo de colaboración que prefieras."
+			}
+		],
+		"keywords": [
+			"dashboards a medida",
+			"cuadro de mando empresarial",
+			"dashboard en tiempo real",
+			"desarrollo de dashboards KPI",
+			"visualización de datos a medida",
+			"cuadros de mando interactivos",
+			"paneles de control de negocio",
+			"business intelligence a medida"
+		],
+		"relatedSlugs": [
+			"data",
+			"api",
+			"ai"
+		]
+	},
+	"data": {
+		"slug": "data",
+		"metaTitle": "Análisis de Datos a Medida para Empresas | RAIL",
+		"metaDescription": "RAIL diseña pipelines de datos y analítica avanzada que convierten datos dispersos en decisiones medibles. Data warehouse, ETL/ELT y dashboards fiables.",
+		"h1": "Análisis de Datos: de datos dispersos a decisiones que escalan",
+		"heroTagline": "Pipelines fiables, métricas únicas y analítica avanzada para tomar mejores decisiones de negocio.",
+		"definition": "El análisis de datos es la disciplina de ingeniería que recoge, depura, modela y explota los datos de una empresa para convertirlos en información fiable para la toma de decisiones. En RAIL lo abordamos como un sistema completo de extremo a extremo: ingesta desde tus fuentes, pipelines ETL/ELT, un data warehouse gobernado y capas de analítica descriptiva, diagnóstica y predictiva. El objetivo no es generar más informes, sino producir una única fuente de verdad medible que dirección y equipos operativos puedan usar a diario con confianza.",
+		"problemHeading": "El problema: tienes datos, pero no respuestas",
+		"problemBody": "La mayoría de empresas no sufren falta de datos, sino datos fragmentados entre el ERP, el CRM, hojas de cálculo, herramientas SaaS y bases de datos heredadas que nadie reconcilia. El resultado es conocido: cada departamento llega a una cifra distinta para la misma pregunta, los informes tardan días en montarse a mano y las decisiones importantes se toman por intuición porque el dato llega tarde o no es fiable. Cuando además el volumen crece, los procesos manuales se rompen y la analítica se vuelve un cuello de botella en lugar de una ventaja.\n\nSin pipelines reproducibles ni gobierno del dato, cada nueva métrica cuesta semanas, los errores se propagan en silencio y la organización deja de confiar en sus propios paneles. RAIL resuelve la causa raíz —la ingeniería que está debajo— para que el análisis sea consistente, auditable y rápido de evolucionar.",
+		"approachHeading": "Cómo lo aborda RAIL",
+		"approach": [
+			{
+				"title": "Auditoría de datos y diseño del modelo",
+				"body": "Mapeamos tus fuentes, calidad y casos de uso reales antes de escribir código. Definimos el modelo de datos, las métricas clave y una arquitectura (data warehouse o lakehouse) dimensionada a tu volumen y presupuesto, evitando sobreingeniería."
+			},
+			{
+				"title": "Pipelines ETL/ELT reproducibles",
+				"body": "Construimos ingesta y transformación versionadas y testeadas, con orquestación programada, control de calidad del dato y trazabilidad de extremo a extremo. Si un proceso falla, lo sabes; si cambia una fuente, el pipeline se adapta sin romper informes."
+			},
+			{
+				"title": "Una única fuente de verdad gobernada",
+				"body": "Consolidamos las métricas en un modelo semántico común con definiciones documentadas, control de acceso por rol y cumplimiento RGPD. Ventas, finanzas y operaciones leen la misma cifra calculada de la misma forma."
+			},
+			{
+				"title": "Analítica avanzada y predictiva",
+				"body": "Sobre esa base aplicamos analítica diagnóstica, segmentación, detección de anomalías y modelos predictivos (previsión de demanda, churn, mantenimiento) cuando aportan retorno claro, integrados en el flujo de trabajo y no como un experimento aislado."
+			},
+			{
+				"title": "Activación en dashboards y APIs",
+				"body": "Exponemos los resultados donde se usan: paneles de decisión, alertas automáticas y APIs para alimentar otros sistemas. El dato deja de vivir en un informe estático y pasa a accionar procesos."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Decisiones más rápidas y con menos riesgo",
+				"body": "Cuando todos parten de la misma cifra fiable y actualizada, las reuniones dejan de discutir de qué dato es correcto y pasan a decidir. Se reduce el tiempo de análisis de días a minutos."
+			},
+			{
+				"title": "Menos trabajo manual y menos errores",
+				"body": "Los informes que antes se montaban a mano cada semana se generan solos. Tu equipo recupera horas y elimina los errores de copiar y pegar entre hojas de cálculo."
+			},
+			{
+				"title": "Escala sin reescribir todo",
+				"body": "Los pipelines y el modelo de datos crecen con el negocio. Añadir una fuente, una métrica o un país no implica empezar de cero, sino extender una base ya probada."
+			},
+			{
+				"title": "Capacidad de anticipación",
+				"body": "Con analítica predictiva pasas de mirar el retrovisor a anticipar demanda, fuga de clientes o incidencias, actuando antes de que el problema impacte en la cuenta de resultados."
+			},
+			{
+				"title": "Propiedad y gobierno del dato",
+				"body": "El sistema es tuyo, documentado y auditable, con control de accesos y cumplimiento RGPD. Sin dependencia de cajas negras ni licencias que te aten a un proveedor."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Logística",
+				"scenario": "Unificación de datos de flota, almacén y pedidos en un único panel para detectar cuellos de botella; analítica predictiva de demanda que ajusta el stock y reduce tanto roturas como sobrestock."
+			},
+			{
+				"sector": "Retail",
+				"scenario": "Consolidación de ventas online y tienda física para medir margen real por producto y canal, con segmentación de clientes y detección temprana de caídas de conversión por categoría."
+			},
+			{
+				"sector": "Fintech",
+				"scenario": "Pipelines que procesan transacciones en tiempo casi real para cuadros de mando de riesgo y detección de anomalías y patrones de fraude, con trazabilidad completa para auditoría y reporting regulatorio."
+			},
+			{
+				"sector": "Industria",
+				"scenario": "Ingesta de datos de sensores y líneas de producción para análisis de eficiencia (OEE) y mantenimiento predictivo, anticipando paradas antes de que se conviertan en pérdidas de producción."
+			}
+		],
+		"techHeading": "Tecnologías que utilizamos",
+		"tech": [
+			"Python",
+			"SQL",
+			"PostgreSQL",
+			"dbt",
+			"Apache Airflow",
+			"Snowflake",
+			"BigQuery",
+			"Apache Spark",
+			"Kafka",
+			"Pandas",
+			"scikit-learn",
+			"Power BI"
+		],
+		"faq": [
+			{
+				"question": "¿Cuánto cuesta un proyecto de análisis de datos?",
+				"answer": "No trabajamos con tarifas cerradas porque el coste depende del número de fuentes, el volumen de datos, la complejidad de las transformaciones y el grado de analítica predictiva que necesites. En RAIL partimos de una auditoría inicial para acotar alcance y proponer un enfoque por fases: primero una base sólida que aporte valor pronto y luego incrementos. Así el presupuesto es predecible y el retorno empieza antes."
+			},
+			{
+				"question": "¿Cuánto tarda en estar operativo?",
+				"answer": "Un primer caso de uso con pipeline e informe fiable suele estar en producción en pocas semanas, dependiendo del acceso a las fuentes y de su calidad. Trabajamos de forma incremental: entregamos valor en iteraciones cortas en lugar de hacerte esperar meses a un sistema completo antes de ver el primer resultado útil."
+			},
+			{
+				"question": "¿Necesito migrar a un data warehouse en la nube?",
+				"answer": "No necesariamente. Dimensionamos la arquitectura a tu caso: para muchos volúmenes una base de datos analítica bien modelada es suficiente, mientras que escenarios grandes se benefician de un data warehouse cloud como Snowflake o BigQuery. Elegimos la opción que da mejor relación coste-rendimiento, sin imponer tecnología por moda."
+			},
+			{
+				"question": "¿Cómo se integra con mi ERP, CRM y otras herramientas?",
+				"answer": "Conectamos con tus sistemas mediante sus APIs, exportaciones o acceso directo a base de datos, y construimos pipelines que sincronizan los datos de forma fiable y programada. El análisis de datos es precisamente la capa que une ERP, CRM y SaaS en una visión coherente, en lugar de tenerlos en silos."
+			},
+			{
+				"question": "¿Qué diferencia hay entre análisis de datos y dashboards?",
+				"answer": "Los dashboards son la capa visible: paneles que muestran métricas. El análisis de datos es la ingeniería que hay debajo —ingesta, limpieza, modelado y cálculo— que garantiza que esas métricas sean correctas. Un dashboard sin un pipeline fiable detrás muestra cifras bonitas pero poco de fiar; RAIL construye ambas capas para que lo que ves sea lo que realmente ocurre."
+			},
+			{
+				"question": "¿Mis datos están seguros y cumplen el RGPD?",
+				"answer": "Sí. Aplicamos control de accesos por rol, cifrado, minimización y trazabilidad, y diseñamos el tratamiento conforme al RGPD desde el inicio. El sistema queda documentado y auditable, y la propiedad de los datos y del código es siempre tuya."
+			}
+		],
+		"keywords": [
+			"análisis de datos para empresas",
+			"pipelines de datos a medida",
+			"analítica avanzada",
+			"ETL ELT",
+			"data warehouse",
+			"analítica predictiva",
+			"ingeniería de datos",
+			"consultoría big data España"
+		],
+		"relatedSlugs": [
+			"dashboards",
+			"ai",
+			"erp"
+		]
+	},
+	"cloud": {
+		"slug": "cloud",
+		"metaTitle": "Desarrollo Cloud Native a medida | RAIL",
+		"metaDescription": "Arquitecturas cloud native elásticas y multi-región con Kubernetes, contenedores y microservicios. RAIL diseña, migra y opera tu plataforma escalable en España.",
+		"h1": "Arquitecturas Cloud Native que escalan sin reescribir tu negocio",
+		"heroTagline": "Plataformas elásticas, multi-región y resilientes diseñadas para crecer con tu demanda, no contra ella.",
+		"definition": "Cloud native es un enfoque de ingeniería de software para construir y operar aplicaciones diseñadas específicamente para la nube, basadas en contenedores, microservicios, orquestación con Kubernetes y automatización mediante CI/CD e infraestructura como código. Permite que un sistema escale de forma elástica según la demanda, se despliegue en múltiples regiones y se recupere automáticamente ante fallos, reduciendo costes operativos y tiempo de salida al mercado. RAIL diseña, migra y opera arquitecturas cloud native a medida sobre AWS, Google Cloud y Azure para empresas en España.",
+		"problemHeading": "Cuando la infraestructura frena el crecimiento en lugar de habilitarlo",
+		"problemBody": "Muchas empresas operan monolitos heredados o despliegues manuales que no soportan picos de tráfico, encarecen cada nueva funcionalidad y convierten cada despliegue en un riesgo. El resultado es conocido: caídas en campañas, sobreaprovisionamiento que dispara la factura cloud, semanas para liberar un cambio y dependencia de un único proveedor o un único centro de datos.\n\nEl problema rara vez es de capacidad bruta, sino de arquitectura. Levantar máquinas más grandes no resuelve la falta de elasticidad, ni la ausencia de tolerancia a fallos, ni el acoplamiento que impide tocar una parte del sistema sin romper otra. RAIL aborda la raíz: rediseña la aplicación y su infraestructura para que escalen horizontalmente, se desplieguen sin parones y aprovechen el modelo de pago por uso real en lugar de pagar por capacidad ociosa.",
+		"approachHeading": "Cómo construye RAIL una plataforma cloud native",
+		"approach": [
+			{
+				"title": "Contenedores y orquestación con Kubernetes",
+				"body": "Empaquetamos cada servicio en contenedores y los orquestamos con Kubernetes (EKS, GKE o AKS) para conseguir autoescalado horizontal, despliegues sin caída (rolling y blue-green) y recuperación automática ante fallos de nodo o región."
+			},
+			{
+				"title": "Arquitectura de microservicios y event-driven",
+				"body": "Descomponemos el sistema en servicios desplegables de forma independiente, comunicados por APIs y eventos asíncronos (Kafka, colas gestionadas), para que cada equipo libere cambios sin bloquear al resto y el sistema absorba picos sin degradarse."
+			},
+			{
+				"title": "Infraestructura como código y GitOps",
+				"body": "Definimos toda la infraestructura con Terraform y la gestionamos mediante GitOps (Argo CD), de modo que cada entorno es reproducible, auditable y se reconstruye desde cero en minutos, eliminando la configuración manual y la deriva entre entornos."
+			},
+			{
+				"title": "Diseño multi-región y alta disponibilidad",
+				"body": "Distribuimos cargas y datos entre varias zonas y regiones con balanceo y conmutación por error automática, definiendo objetivos de RTO y RPO acordes al negocio para sostener la continuidad incluso ante la caída de una región completa."
+			},
+			{
+				"title": "Observabilidad y FinOps desde el primer día",
+				"body": "Instrumentamos métricas, trazas y logs (OpenTelemetry, Prometheus, Grafana) y aplicamos prácticas FinOps para que la plataforma sea diagnosticable en producción y el coste cloud quede bajo control y atribuido por servicio."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Escala con la demanda, no con la factura",
+				"body": "El autoescalado libera y libera recursos según el tráfico real, eliminando el sobreaprovisionamiento y convirtiendo la infraestructura en un coste variable alineado con tu actividad."
+			},
+			{
+				"title": "Disponibilidad continua",
+				"body": "La redundancia multi-zona y la recuperación automática mantienen el servicio en pie durante picos, despliegues y fallos de infraestructura, protegiendo ingresos y reputación."
+			},
+			{
+				"title": "Entregas más rápidas y seguras",
+				"body": "Los pipelines CI/CD y los despliegues automatizados reducen el tiempo entre idea y producción de semanas a horas, con rollback inmediato si algo falla."
+			},
+			{
+				"title": "Menos dependencia de un solo proveedor",
+				"body": "Una base estandarizada en contenedores y código abierto reduce el bloqueo tecnológico y facilita estrategias multi-cloud o de portabilidad cuando el negocio lo exige."
+			},
+			{
+				"title": "Operación predecible y trazable",
+				"body": "La observabilidad de extremo a extremo permite detectar y resolver incidencias antes de que impacten al usuario, y atribuir coste y rendimiento a cada servicio."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Retail y e-commerce",
+				"scenario": "Plataforma de venta que absorbe picos de Black Friday o rebajas escalando automáticamente de decenas a miles de instancias y volviendo a la línea base al terminar la campaña, sin sobreaprovisionar todo el año."
+			},
+			{
+				"sector": "Fintech",
+				"scenario": "Backend de pagos desplegado en varias regiones con conmutación por error automática y objetivos estrictos de RTO/RPO para garantizar continuidad operativa y cumplir requisitos de resiliencia del sector financiero."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Plataforma de gestión clínica con datos sensibles aislados por región, cifrado de extremo a extremo y entornos reproducibles que facilitan auditorías y el cumplimiento normativo de protección de datos."
+			},
+			{
+				"sector": "Logística",
+				"scenario": "Sistema de seguimiento de flotas event-driven que ingiere telemetría en tiempo real de miles de vehículos mediante colas y servicios desacoplados que escalan de forma independiente según la carga."
+			}
+		],
+		"techHeading": "Tecnologías y herramientas que utilizamos",
+		"tech": [
+			"Kubernetes",
+			"Docker",
+			"AWS",
+			"Google Cloud",
+			"Microsoft Azure",
+			"Terraform",
+			"Argo CD",
+			"Helm",
+			"Apache Kafka",
+			"Prometheus",
+			"Grafana",
+			"OpenTelemetry"
+		],
+		"faq": [
+			{
+				"question": "¿Qué diferencia hay entre migrar a la nube y ser cloud native?",
+				"answer": "Migrar a la nube (lift-and-shift) consiste en mover una aplicación existente a servidores cloud sin cambiar su arquitectura, por lo que mantiene sus limitaciones de escalado y resiliencia. Ser cloud native implica diseñar o rediseñar la aplicación con contenedores, microservicios y orquestación para aprovechar de verdad la elasticidad, la alta disponibilidad y el pago por uso de la nube. RAIL puede empezar con una migración y evolucionar progresivamente hacia un modelo cloud native."
+			},
+			{
+				"question": "¿En qué proveedor cloud trabaja RAIL?",
+				"answer": "Diseñamos y operamos sobre AWS, Google Cloud y Microsoft Azure. Como la base se apoya en contenedores y tecnologías estándar como Kubernetes y Terraform, reducimos el bloqueo de proveedor y podemos plantear estrategias multi-cloud o de portabilidad. La elección del proveedor depende de tus cargas, requisitos de residencia de datos en España o la UE, y del ecosistema que ya uses."
+			},
+			{
+				"question": "¿Cuánto cuesta un proyecto cloud native?",
+				"answer": "No trabajamos con tarifas cerradas porque el coste depende del alcance: una migración acotada de un servicio no es comparable con el rediseño de una plataforma multi-región. Tras una fase inicial de descubrimiento, presentamos una estimación por fases con entregables claros. Además aplicamos FinOps para que el gasto recurrente de infraestructura sea predecible y esté optimizado desde el inicio."
+			},
+			{
+				"question": "¿Cuánto tarda la migración a una arquitectura cloud native?",
+				"answer": "Depende del estado de partida y del alcance. Un servicio aislado puede containerizarse y desplegarse en pocas semanas, mientras que la transformación de un monolito grande se aborda de forma incremental durante varios meses para evitar riesgos. Trabajamos por iteraciones que aportan valor pronto, en lugar de una reescritura total de alto riesgo."
+			},
+			{
+				"question": "¿Cómo se garantiza la alta disponibilidad y la recuperación ante fallos?",
+				"answer": "Distribuimos las cargas entre varias zonas de disponibilidad y, cuando el negocio lo requiere, entre varias regiones, con balanceo y conmutación por error automática. Definimos contigo objetivos de RTO (tiempo de recuperación) y RPO (pérdida máxima de datos) y validamos el comportamiento con pruebas de fallo controladas para asegurar que el sistema se recupera como se espera."
+			},
+			{
+				"question": "¿Qué pasa con el mantenimiento después de la entrega?",
+				"answer": "Ofrecemos operación y soporte continuados: monitorización proactiva, actualizaciones de seguridad, gestión de parches de Kubernetes y optimización de costes. Gracias a la infraestructura como código y la observabilidad integrada, las incidencias se diagnostican rápido y los entornos se reconstruyen de forma reproducible, reduciendo el tiempo de resolución."
+			}
+		],
+		"keywords": [
+			"desarrollo cloud native",
+			"arquitectura cloud native a medida",
+			"migración a la nube España",
+			"kubernetes empresas",
+			"microservicios escalables",
+			"infraestructura multi-región",
+			"infraestructura como código Terraform",
+			"consultoría cloud AWS Azure GCP"
+		],
+		"relatedSlugs": [
+			"api",
+			"cyber",
+			"data"
+		]
+	},
+	"cyber": {
+		"slug": "cyber",
+		"metaTitle": "Servicios de ciberseguridad para empresas | RAIL",
+		"metaDescription": "Ciberseguridad de aplicaciones a medida: identidad, cifrado de datos, hardening de infraestructura y cumplimiento ENS/RGPD. Seguridad integrada por RAIL.",
+		"h1": "Ciberseguridad para proteger identidad, datos e infraestructura",
+		"heroTagline": "Seguridad integrada en el ciclo de vida del software, no parcheada al final.",
+		"definition": "La ciberseguridad empresarial es el conjunto de prácticas, controles y arquitecturas que protegen la identidad, los datos y la infraestructura de una organización frente a accesos no autorizados, fugas de información y ataques. En RAIL la abordamos como ingeniería: integramos autenticación robusta, cifrado, control de accesos y monitorización desde el diseño del software (security by design), no como una capa añadida al final, alineándonos con marcos como el Esquema Nacional de Seguridad (ENS), el RGPD e ISO 27001.",
+		"problemHeading": "El riesgo no está en el firewall, está en tu código y tus identidades",
+		"problemBody": "La mayoría de las brechas no llegan por un cortafuegos mal configurado, sino por credenciales filtradas, permisos excesivos, dependencias vulnerables y errores de lógica en las propias aplicaciones. Cuando la seguridad se trata como un trámite final —una auditoría a contrarreloj antes de salir a producción— los hallazgos llegan tarde, caros y difíciles de corregir sin reescribir.\n\nA esto se suma la presión regulatoria en España y la UE: RGPD, el Esquema Nacional de Seguridad para quien trabaja con el sector público, NIS2 para sectores esenciales y exigencias contractuales de clientes que reclaman certificaciones y evidencias. Sin una estrategia de seguridad embebida en la ingeniería, cada nuevo requisito se convierte en un proyecto de bomberos en lugar de una propiedad del sistema.",
+		"approachHeading": "Cómo construye RAIL software seguro por diseño",
+		"approach": [
+			{
+				"title": "Modelado de amenazas y diseño seguro",
+				"body": "Antes de escribir código, mapeamos activos, superficies de ataque y vectores de riesgo (modelado tipo STRIDE) para decidir controles donde de verdad importan. La seguridad se convierte en un requisito explícito de arquitectura, no en una ocurrencia tardía."
+			},
+			{
+				"title": "Identidad y control de accesos",
+				"body": "Implantamos autenticación fuerte (MFA, OAuth 2.0, OIDC, SSO), gestión de identidades y un modelo de permisos de mínimo privilegio (RBAC/ABAC). El acceso correcto, para la persona correcta, durante el tiempo correcto y con trazabilidad completa."
+			},
+			{
+				"title": "Protección de datos y cifrado",
+				"body": "Ciframos datos en tránsito (TLS) y en reposo, gestionamos secretos con bóvedas dedicadas en lugar de variables sueltas, y aplicamos minimización y seudonimización para cumplir el RGPD por diseño y por defecto."
+			},
+			{
+				"title": "Hardening de infraestructura y DevSecOps",
+				"body": "Aseguramos el cloud y los contenedores con configuraciones reforzadas, escaneo de vulnerabilidades y SAST/SCA integrados en el pipeline CI/CD. Cada despliegue pasa por puertas de seguridad automáticas antes de llegar a producción."
+			},
+			{
+				"title": "Monitorización, respuesta y cumplimiento",
+				"body": "Centralizamos logs, alertas y detección de anomalías para responder rápido ante incidentes, y dejamos las evidencias y trazas necesarias para auditorías de ENS, ISO 27001 o NIS2."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Menos superficie de ataque, menos incidentes",
+				"body": "Al integrar controles desde el diseño, se reducen las vulnerabilidades que llegan a producción y, con ellas, la probabilidad y el coste de una brecha."
+			},
+			{
+				"title": "Cumplimiento normativo sin sobresaltos",
+				"body": "Tus sistemas nacen alineados con RGPD, ENS, NIS2 e ISO 27001, así que las auditorías y los requisitos de clientes dejan de ser proyectos de emergencia."
+			},
+			{
+				"title": "Confianza que desbloquea negocio",
+				"body": "Poder demostrar seguridad y cumplimiento abre concursos públicos, contratos enterprise y mercados regulados que de otro modo quedan vetados."
+			},
+			{
+				"title": "Coste de remediación más bajo",
+				"body": "Corregir un fallo en diseño cuesta una fracción de hacerlo en producción tras un incidente. La seguridad temprana es la opción más barata a largo plazo."
+			},
+			{
+				"title": "Continuidad operativa",
+				"body": "Detección y respuesta tempranas, copias seguras y resiliencia reducen el tiempo de caída y el impacto de un ataque sobre tu operación diaria."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Fintech",
+				"scenario": "Endurecimiento de una plataforma de pagos: MFA obligatorio, cifrado de extremo a extremo de datos sensibles, segregación de entornos y trazabilidad completa de transacciones para cumplir requisitos PCI y de la entidad supervisora."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Protección de un sistema de historia clínica con control de accesos por rol, seudonimización de datos de pacientes y registro de auditoría de cada consulta, cumpliendo el RGPD para datos de categoría especial."
+			},
+			{
+				"sector": "Sector público",
+				"scenario": "Adecuación de una aplicación de servicios al ciudadano al Esquema Nacional de Seguridad: hardening de infraestructura, gestión de identidades y evidencias documentadas para superar la auditoría de certificación."
+			},
+			{
+				"sector": "Industria",
+				"scenario": "Seguridad para una plataforma IoT industrial: segmentación de red, autenticación de dispositivos y monitorización de anomalías para proteger líneas de producción conectadas frente a accesos no autorizados."
+			}
+		],
+		"techHeading": "Tecnologías y marcos que utilizamos",
+		"tech": [
+			"OAuth 2.0 / OpenID Connect",
+			"Keycloak",
+			"HashiCorp Vault",
+			"TLS / mTLS",
+			"RBAC y ABAC",
+			"OWASP ASVS y OWASP Top 10",
+			"SAST y SCA (Snyk, Trivy)",
+			"Docker y Kubernetes hardening",
+			"WAF y API Gateway",
+			"SIEM y centralización de logs",
+			"ISO 27001",
+			"Esquema Nacional de Seguridad (ENS)"
+		],
+		"faq": [
+			{
+				"question": "¿En qué se diferencia la ciberseguridad de RAIL de contratar una auditoría puntual?",
+				"answer": "Una auditoría es una foto en un momento concreto; nosotros integramos la seguridad en todo el ciclo de vida del software. Modelamos amenazas en el diseño, automatizamos controles en el pipeline de desarrollo y dejamos monitorización en producción. El resultado es un sistema seguro de forma continua, no solo el día de la auditoría."
+			},
+			{
+				"question": "¿Pueden ayudarnos a cumplir el RGPD, el ENS o la directiva NIS2?",
+				"answer": "Sí. Diseñamos los sistemas con privacidad y seguridad por defecto, aplicando minimización de datos, cifrado, control de accesos y trazabilidad. Generamos además las evidencias técnicas necesarias para auditorías de RGPD, Esquema Nacional de Seguridad, NIS2 o ISO 27001, y colaboramos con vuestro equipo legal y de cumplimiento."
+			},
+			{
+				"question": "¿Cuánto cuesta y cuánto tarda un proyecto de ciberseguridad?",
+				"answer": "Depende del alcance: no es lo mismo endurecer una aplicación existente que diseñar una plataforma regulada desde cero. Trabajamos por fases, empezando por un diagnóstico y un modelado de amenazas que prioriza dónde está el riesgo real, de modo que la inversión se dirige primero a lo que más reduce exposición. Tras esa fase damos una estimación de plazos y esfuerzo cerrada."
+			},
+			{
+				"question": "¿Trabajáis sobre software que ya tenemos o solo en proyectos nuevos?",
+				"answer": "Ambos. Reforzamos aplicaciones e infraestructura existentes mediante revisión de código, análisis de dependencias, hardening de configuración y mejora de la gestión de identidades. Y cuando construimos software nuevo, la seguridad va embebida desde el primer commit."
+			},
+			{
+				"question": "¿La seguridad va a ralentizar nuestro desarrollo?",
+				"answer": "No si se automatiza bien. Integramos los controles de seguridad (SAST, análisis de dependencias, gestión de secretos) directamente en el pipeline CI/CD, de modo que validan cada cambio sin frenar a los desarrolladores. La seguridad se convierte en parte del flujo, no en un cuello de botella manual."
+			},
+			{
+				"question": "¿Ofrecéis mantenimiento y respuesta ante incidentes después del proyecto?",
+				"answer": "Sí. La seguridad no termina con la entrega: las amenazas y las dependencias cambian. Ofrecemos monitorización continua, actualización de componentes vulnerables y soporte ante incidentes, además de revisiones periódicas para mantener el sistema alineado con nuevas normativas y riesgos."
+			}
+		],
+		"keywords": [
+			"ciberseguridad para empresas",
+			"seguridad de aplicaciones a medida",
+			"security by design",
+			"cumplimiento RGPD y ENS",
+			"gestión de identidades y accesos",
+			"cifrado de datos empresarial",
+			"DevSecOps",
+			"hardening de infraestructura cloud",
+			"consultoría de ciberseguridad España",
+			"auditoría de seguridad de software"
+		],
+		"relatedSlugs": [
+			"cloud",
+			"api",
+			"consulting"
+		]
+	},
+	"consulting": {
+		"slug": "consulting",
+		"metaTitle": "Consultoría tecnológica a medida | RAIL",
+		"metaDescription": "Consultoría tecnológica end-to-end en España: auditoría, arquitectura de software, roadmap técnico y acompañamiento de equipos para escalar tu producto.",
+		"h1": "Consultoría tecnológica que convierte decisiones difíciles en software que escala",
+		"heroTagline": "Auditoría, arquitectura y roadmap con acompañamiento end-to-end, de la estrategia al código en producción.",
+		"definition": "La consultoría tecnológica es el servicio mediante el cual un equipo experto analiza la situación técnica y de negocio de una empresa para definir arquitectura, stack, roadmap y modelo de entrega del software. En RAIL este servicio es end-to-end: auditamos sistemas y procesos, diseñamos la arquitectura objetivo, priorizamos un plan ejecutable y acompañamos a tu equipo durante la implementación hasta que la solución está en producción y midiendo resultados.",
+		"problemHeading": "El coste de decidir sin criterio de ingeniería",
+		"problemBody": "La mayoría de proyectos de software no fracasan por falta de tecnología, sino por decisiones tomadas sin un diagnóstico riguroso: se elige una plataforma por moda, se hereda deuda técnica que frena cada release, o se invierte en un desarrollo que no resuelve el problema de negocio real. El resultado son plazos que se duplican, presupuestos que se desbordan y sistemas que nadie se atreve a tocar.\n\nEl reto del comprador B2B en España no es encontrar quien programe, sino encontrar quien sepa qué construir, en qué orden y con qué arquitectura para que la solución aguante el crecimiento de los próximos años. Sin ese criterio, cada decisión técnica se convierte en una apuesta cara y difícil de revertir.",
+		"approachHeading": "Cómo trabaja RAIL en consultoría tecnológica",
+		"approach": [
+			{
+				"title": "Auditoría técnica y de negocio",
+				"body": "Revisamos código, arquitectura, infraestructura, datos y procesos junto a tus equipos para entender dónde está la fricción real. Entregamos un diagnóstico priorizado con riesgos, deuda técnica y oportunidades, no un informe genérico."
+			},
+			{
+				"title": "Arquitectura objetivo y elección de stack",
+				"body": "Diseñamos la arquitectura de destino y justificamos cada decisión tecnológica en función de tu carga, tu equipo y tu horizonte de crecimiento. Evitamos tanto el sobrediseño como los atajos que generan deuda."
+			},
+			{
+				"title": "Roadmap ejecutable y priorizado",
+				"body": "Convertimos el diagnóstico en un plan por fases con hitos medibles, dependencias claras y estimación de esfuerzo, de forma que cada euro invertido se traduzca en capacidad entregada y no en trabajo especulativo."
+			},
+			{
+				"title": "Acompañamiento end-to-end del equipo",
+				"body": "No nos limitamos a entregar un documento. Acompañamos la ejecución con definición técnica, revisión de código, mentoring y, cuando hace falta, construyendo la solución a tu lado hasta producción."
+			}
+		],
+		"benefits": [
+			{
+				"title": "Decisiones técnicas que envejecen bien",
+				"body": "Eliges arquitectura y stack con criterio de ingeniería, reduciendo el riesgo de reescrituras costosas y de quedar atado a una tecnología que no acompaña tu crecimiento."
+			},
+			{
+				"title": "Roadmap que el negocio entiende",
+				"body": "Obtienes un plan priorizado y medible que conecta cada iniciativa técnica con un resultado de negocio, facilitando la aprobación de presupuesto y la alineación de dirección."
+			},
+			{
+				"title": "Menos deuda técnica, más velocidad",
+				"body": "Al diagnosticar antes de construir, tu equipo entrega más rápido y con menos retrabajo, porque ataca las causas y no los síntomas."
+			},
+			{
+				"title": "Equipos internos más capaces",
+				"body": "El acompañamiento transfiere conocimiento: tu equipo aprende patrones, criterios y prácticas que quedan en casa cuando termina el proyecto."
+			},
+			{
+				"title": "Independencia de proveedor",
+				"body": "Recomendamos lo que conviene a tu operación, no lo que nos resulta cómodo vender, y documentamos las decisiones para que mantengas el control de tu stack."
+			}
+		],
+		"useCases": [
+			{
+				"sector": "Logística",
+				"scenario": "Una empresa de transporte con sistemas heredados y hojas de cálculo dispersas necesita decidir si moderniza su ERP o lo reemplaza. La auditoría define una arquitectura de integración por fases que unifica flota, almacén y facturación sin parar la operación."
+			},
+			{
+				"sector": "Fintech",
+				"scenario": "Una plataforma de pagos en crecimiento debe escalar de miles a millones de transacciones cumpliendo normativa. La consultoría define la arquitectura de eventos, los requisitos de auditoría y un roadmap de migración que reduce el riesgo regulatorio."
+			},
+			{
+				"sector": "Salud",
+				"scenario": "Un grupo de clínicas con software fragmentado quiere centralizar historia clínica y citas. RAIL diseña la estrategia de interoperabilidad y de protección de datos antes de escribir una línea de código."
+			},
+			{
+				"sector": "Industria",
+				"scenario": "Un fabricante con líneas de producción y sensores busca explotar sus datos. La consultoría prioriza qué fuentes integrar primero y define la arquitectura de datos que habilita analítica y mantenimiento predictivo."
+			}
+		],
+		"techHeading": "Disciplinas y tecnologías que aplicamos",
+		"tech": [
+			"Arquitectura de software (DDD, hexagonal, microservicios)",
+			"Cloud (AWS, Azure, Google Cloud)",
+			"Contenedores y orquestación (Docker, Kubernetes)",
+			"CI/CD y DevOps (GitHub Actions, GitLab CI, Terraform)",
+			"Backend (Node.js, Python, Java, Go)",
+			"Bases de datos (PostgreSQL, MySQL, MongoDB, Redis)",
+			"Arquitectura de datos (Snowflake, BigQuery, dbt, Apache Kafka)",
+			"Observabilidad (Grafana, Prometheus, OpenTelemetry)",
+			"Seguridad y cumplimiento (OWASP, RGPD, ISO 27001)",
+			"IA y MLOps (LLMs, RAG, MLflow)"
+		],
+		"faq": [
+			{
+				"question": "¿En qué se diferencia la consultoría de RAIL de una consultora tradicional?",
+				"answer": "RAIL no entrega solo informes: somos ingenieros de software que diagnosticamos, diseñamos la arquitectura y acompañamos la ejecución hasta producción. Nuestras recomendaciones están respaldadas por experiencia construyendo software a medida que escala, no por plantillas genéricas, y trabajamos codo con codo con tu equipo."
+			},
+			{
+				"question": "¿Cuánto cuesta un servicio de consultoría tecnológica?",
+				"answer": "El coste depende del alcance: una auditoría acotada de arquitectura es muy distinta de un acompañamiento de varios meses. Trabajamos con un diagnóstico inicial breve para acotar objetivos y proponer un enfoque por fases, de forma que la inversión sea proporcional al valor esperado. Definimos el presupuesto tras entender tu situación, nunca a ciegas."
+			},
+			{
+				"question": "¿Cuánto tarda una auditoría o un diagnóstico inicial?",
+				"answer": "Un diagnóstico inicial suele resolverse en unas pocas semanas, según el tamaño del sistema y el acceso a información. El objetivo es darte pronto una visión clara de riesgos, deuda técnica y prioridades para que puedas decidir con criterio antes de comprometer una inversión mayor."
+			},
+			{
+				"question": "¿Trabajáis sobre nuestro stack actual o proponéis empezar de cero?",
+				"answer": "Partimos siempre de tu realidad. Evaluamos si conviene modernizar lo existente, integrarlo o reemplazarlo, y solo recomendamos reescribir cuando el coste de mantener supera al de rehacer. Documentamos cada decisión para que mantengas el control y evites depender de un único proveedor."
+			},
+			{
+				"question": "¿La consultoría incluye el desarrollo o solo la estrategia?",
+				"answer": "Ambas opciones son posibles. Podemos limitarnos al diagnóstico y el roadmap para que tu equipo ejecute, o acompañar la implementación e incluso construir la solución a medida hasta producción. El acompañamiento end-to-end es justamente lo que nos distingue: estrategia y código bajo el mismo criterio de ingeniería."
+			},
+			{
+				"question": "¿Cómo garantizáis la transferencia de conocimiento a nuestro equipo?",
+				"answer": "Documentamos las decisiones de arquitectura, hacemos revisión de código y mentoring, y dejamos a tu equipo formado en los patrones y prácticas aplicados. El objetivo es que, al terminar, tu organización sea más autónoma, no más dependiente."
+			}
+		],
+		"keywords": [
+			"consultoría tecnológica",
+			"consultoría de software a medida",
+			"auditoría técnica de software",
+			"consultoría de arquitectura de software",
+			"roadmap tecnológico",
+			"acompañamiento técnico de equipos",
+			"consultoría de ingeniería de software España",
+			"modernización de sistemas heredados"
+		],
+		"relatedSlugs": [
+			"process",
+			"cloud",
+			"ai"
+		]
+	}
+}

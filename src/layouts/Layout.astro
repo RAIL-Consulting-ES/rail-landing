@@ -1,18 +1,75 @@
 ---
 import "../styles/global.css";
+import Footer from "../components/Footer.astro";
 
 interface Props {
 	title?: string;
+	description?: string;
+	ogImage?: string;
+	noindex?: boolean;
 }
-const { title = "Landing RAIL" } = Astro.props;
+
+const defaultDescription =
+	"RAIL es una consultora de ingeniería de software que convierte problemas de negocio en sistemas que escalan: ERP, IA y datos, y plataformas a medida.";
+
+const {
+	title = "RAIL — Ingeniería de software a medida",
+	description = defaultDescription,
+	ogImage = "/og-image.png",
+	noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+
+const orgSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"@id": "https://railconsulting.es/#organization",
+	name: "RAIL",
+	url: "https://railconsulting.es",
+	email: "contacto@railconsulting.es",
+	description: defaultDescription,
+	founder: [
+		{
+			"@type": "Person",
+			name: "Mario Pantoja Castro",
+			sameAs: "https://www.linkedin.com/in/mario-pantoja-castro/",
+		},
+		{
+			"@type": "Person",
+			name: "David Gutiérrez",
+			sameAs: "https://www.linkedin.com/in/davidgutierreez/",
+		},
+	],
+};
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+		<meta name="theme-color" content="#93c572" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="RAIL" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="RAIL — Ingeniería de software a medida" />
+		<meta property="og:locale" content="es_ES" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
+		<meta name="twitter:image:alt" content="RAIL — Ingeniería de software a medida" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -20,15 +77,14 @@ const { title = "Landing RAIL" } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600&display=swap"
 		/>
 		<title>{title}</title>
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(orgSchema)}
+		/>
 	</head>
 	<body>
-		<div id="barba-wrapper" data-barba="wrapper">
-			<main data-barba="container" data-barba-namespace={Astro.url.pathname}>
-				<slot />
-			</main>
-		</div>
-		<script>
-			import "../scripts/transitions.ts";
-		</script>
+		<a class="skip-link" href="#contenido">Saltar al contenido</a>
+		<slot />
+		<Footer />
 	</body>
 </html>

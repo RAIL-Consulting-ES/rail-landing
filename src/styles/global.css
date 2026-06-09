@@ -100,3 +100,28 @@ button {
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 }
+
+/* Visible keyboard focus ring (does not affect mouse interaction) */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+	outline: 2px solid var(--on-surface);
+	outline-offset: 2px;
+	border-radius: var(--r-sm);
+}
+
+/* Skip-to-content link — only visible when focused by keyboard */
+.skip-link {
+	position: absolute;
+	left: 8px;
+	top: -56px;
+	z-index: 1000;
+	padding: 10px 16px;
+	background: var(--on-surface);
+	color: var(--surface);
+	font-weight: 600;
+	border-radius: var(--r);
+	transition: top 160ms ease;
+}
+
+.skip-link:focus {
+	top: 8px;
+}
