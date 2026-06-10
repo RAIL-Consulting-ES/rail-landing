@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
 	title?: string;
@@ -83,6 +84,7 @@ const orgSchema = {
 			set:html={JSON.stringify(orgSchema)}
 		/>
 		<Analytics />
+		<SpeedInsights />
 	</head>
 	<body>
 		<a class="skip-link" href="#contenido">Saltar al contenido</a>
