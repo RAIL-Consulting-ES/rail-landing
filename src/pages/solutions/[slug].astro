@@ -1,7 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import { solutions, solutionsBySlug } from "../../data/solutions";
+import { solutionImages } from "../../data/solution-images";
+import { solutionDiagrams } from "../../data/solution-diagrams";
 import contentData from "../../data/solutions-content.json";
 
 type Approach = { title: string; body: string };
@@ -47,6 +50,9 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 const related = c.relatedSlugs
 	.map((rs) => solutionsBySlug[rs])
 	.filter(Boolean);
+
+const imgs = solutionImages[slug as string];
+const diagram = solutionDiagrams[slug as string];
 
 const breadcrumb = {
 	"@context": "https://schema.org",
@@ -117,13 +123,49 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 			</a>
 		</header>
 
+		{
+			imgs?.hero && (
+				<figure class="sol-detail__figure sol-detail__figure--hero">
+					<Image
+						src={imgs.hero.src}
+						alt={imgs.hero.alt}
+						widths={[640, 960, 1280, 1600]}
+						sizes="(max-width: 880px) 100vw, 880px"
+						loading="eager"
+						fetchpriority="high"
+					/>
+				</figure>
+			)
+		}
+
 		<section class="sol-detail__definition" aria-label="Qué es">
 			<p>{c.definition}</p>
 		</section>
 
+		{
+			diagram && (
+				<figure class="sol-detail__diagram">
+					<div role="img" aria-label={imgs.diagramAlt} set:html={diagram} />
+				</figure>
+			)
+		}
+
 		<section class="sol-detail__section">
 			<h2 class="sol-detail__h2">{c.problemHeading}</h2>
 			<p class="sol-detail__prose">{c.problemBody}</p>
+			{
+				imgs?.afterProblem && (
+					<figure class="sol-detail__figure">
+						<Image
+							src={imgs.afterProblem.src}
+							alt={imgs.afterProblem.alt}
+							widths={[640, 960, 1200]}
+							sizes="(max-width: 880px) 100vw, 880px"
+							loading="lazy"
+						/>
+					</figure>
+				)
+			}
 		</section>
 
 		<section class="sol-detail__section">
@@ -138,6 +180,19 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 					))
 				}
 			</div>
+			{
+				imgs?.afterApproach && (
+					<figure class="sol-detail__figure">
+						<Image
+							src={imgs.afterApproach.src}
+							alt={imgs.afterApproach.alt}
+							widths={[640, 960, 1200]}
+							sizes="(max-width: 880px) 100vw, 880px"
+							loading="lazy"
+						/>
+					</figure>
+				)
+			}
 		</section>
 
 		<section class="sol-detail__section">
@@ -152,6 +207,19 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 					))
 				}
 			</div>
+			{
+				imgs?.afterBenefits && (
+					<figure class="sol-detail__figure">
+						<Image
+							src={imgs.afterBenefits.src}
+							alt={imgs.afterBenefits.alt}
+							widths={[640, 960, 1200]}
+							sizes="(max-width: 880px) 100vw, 880px"
+							loading="lazy"
+						/>
+					</figure>
+				)
+			}
 		</section>
 
 		<section class="sol-detail__section">
@@ -306,6 +374,44 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 	.sol-detail__cta:hover {
 		transform: scale(1.02);
 		filter: brightness(0.97);
+	}
+
+	.sol-detail__figure {
+		margin: var(--stack-md) 0 0;
+	}
+
+	.sol-detail__figure img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 420px;
+		object-fit: cover;
+		border-radius: var(--r-xl);
+		border: 1px solid var(--outline-variant);
+	}
+
+	.sol-detail__figure--hero {
+		margin: 0 0 var(--stack-lg);
+	}
+
+	.sol-detail__figure--hero img {
+		max-height: 480px;
+	}
+
+	.sol-detail__diagram {
+		margin: 0 0 var(--stack-lg);
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+	}
+
+	.sol-detail__diagram svg {
+		display: block;
+		width: 100%;
+		max-width: 640px;
+		height: auto;
+		margin: 0 auto;
 	}
 
 	.sol-detail__definition {
