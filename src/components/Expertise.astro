@@ -2,28 +2,28 @@
 const panels = [
 	{
 		id: "strategy",
-		title: "Estrategia",
-		copy: "Hoja de ruta tecnológica de alto nivel diseñada en línea con los objetivos clave del negocio. Planificación de precisión para futuros escalables.",
+		title: "Estudio",
+		copy: "Nos sentamos con tu equipo y estudiamos cómo trabaja de verdad tu empresa: qué tareas se repiten, dónde se espera y dónde se va el tiempo.",
 	},
 	{
 		id: "architecture",
-		title: "Arquitectura",
-		copy: "Construimos marcos de sistemas robustos y tolerantes a fallos. La integridad estructural se une a un rendimiento sin concesiones.",
+		title: "Diagnóstico",
+		copy: "Localizamos los puntos donde la IA o una automatización ahorran más horas y los ordenamos por el tiempo que devuelven a tu equipo.",
 	},
 	{
 		id: "execution",
-		title: "Ejecución",
-		copy: "Despliegue impecable y excelencia operativa. Convertimos planos complejos en ecosistemas digitales vivos.",
+		title: "Solución",
+		copy: "Construimos solo lo que hace falta: un agente de IA, una automatización o, si el caso lo pide, software a medida como un ERP o un CRM.",
 	},
 ];
 ---
 
-<section class="exp" id="expertise" aria-label="Especialidad">
+<section class="exp" id="expertise" aria-label="Método">
 	<div class="exp__track">
 		<div class="exp__stage">
 			<article class="panel" data-panel="strategy" aria-hidden="true">
-				<p class="label-caps panel__tag">01 — Estrategia</p>
-				<h2 class="panel__title">Estrategia</h2>
+				<p class="label-caps panel__tag">01 — Estudio</p>
+				<h2 class="panel__title">Estudio</h2>
 				<p class="panel__copy">{panels[0].copy}</p>
 				<svg
 					class="panel__gfx panel__gfx--strategy"
@@ -103,14 +103,14 @@ const panels = [
 			</article>
 
 			<article class="panel" data-panel="architecture" aria-hidden="true">
-				<p class="label-caps panel__tag">02 — Arquitectura</p>
-				<h2 class="panel__title">Arquitectura</h2>
+				<p class="label-caps panel__tag">02 — Diagnóstico</p>
+				<h2 class="panel__title">Diagnóstico</h2>
 				<p class="panel__copy">{panels[1].copy}</p>
 				<svg
 					class="panel__gfx panel__gfx--architecture"
 					viewBox="0 0 960 360"
 					role="img"
-					aria-label="Diagrama de bloques de servicios conectados"
+					aria-label="Mapa de los procesos de la empresa conectados"
 				>
 					<defs>
 						<filter id="archShadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -189,8 +189,8 @@ const panels = [
 			</article>
 
 			<article class="panel" data-panel="execution" aria-hidden="true">
-				<p class="label-caps panel__tag">03 — Ejecución</p>
-				<h2 class="panel__title">Ejecución</h2>
+				<p class="label-caps panel__tag">03 — Solución</p>
+				<h2 class="panel__title">Solución</h2>
 				<p class="panel__copy">{panels[2].copy}</p>
 				<div class="exec-stack">
 					<svg
