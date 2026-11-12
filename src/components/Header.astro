@@ -1,4 +1,12 @@
 ---
+import RailTimeline from "./RailTimeline.astro";
+
+interface Props {
+	/** Muestra el tren-timeline bajo el header (solo la home). */
+	timeline?: boolean;
+}
+const { timeline = false } = Astro.props;
+
 const navItems = [
 	{ label: "Método", href: "/#expertise" },
 	{ label: "Soluciones", href: "/solutions/" },
@@ -7,9 +15,6 @@ const navItems = [
 ---
 
 <header class="site-header">
-	<div class="rail" aria-hidden="true">
-		<div class="rail__glow" id="railGlow"></div>
-	</div>
 	<div class="rail__card">
 		<a href="/" class="brand">RAIL</a>
 		<nav class="nav" id="primary-nav" aria-label="Primary">
@@ -34,6 +39,7 @@ const navItems = [
 			<span class="nav-toggle__bar"></span>
 		</button>
 	</div>
+	{timeline && <RailTimeline />}
 </header>
 
 <style>
@@ -46,29 +52,6 @@ const navItems = [
 		display: grid;
 		place-items: center;
 		padding: 12px var(--margin-edge);
-	}
-
-	.rail {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-
-	.rail__glow {
-		position: absolute;
-		top: 50%;
-		left: 0px;
-		transform: translate(-50%, -50%);
-		width: 160px;
-		height: 80px;
-		background: radial-gradient(
-			ellipse,
-			rgba(147, 197, 114, 0.55) 0%,
-			rgba(147, 197, 114, 0.18) 45%,
-			transparent 70%
-		);
-		border-radius: 50%;
-		transition: left 500ms cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.rail__card {
@@ -163,11 +146,6 @@ const navItems = [
 			gap: var(--stack-sm);
 		}
 
-		.rail__glow {
-			width: 80px;
-			height: 40px;
-		}
-
 		.nav-toggle {
 			display: inline-flex;
 		}
@@ -210,10 +188,6 @@ const navItems = [
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.rail__glow {
-			transition: none;
-		}
-
 		.nav-toggle__bar {
 			transition: none;
 		}
@@ -221,9 +195,6 @@ const navItems = [
 </style>
 
 <script>
-	const glow = document.getElementById("railGlow") as HTMLElement | null;
-	const header = document.querySelector(".site-header") as HTMLElement | null;
-	const brand = document.querySelector(".brand") as HTMLElement | null;
 	const card = document.querySelector(".rail__card") as HTMLElement | null;
 	const toggle = document.querySelector(".nav-toggle") as HTMLButtonElement | null;
 
@@ -251,64 +222,17 @@ const navItems = [
 			.forEach((link) => link.addEventListener("click", closeMenu));
 	}
 
-	if (glow && header && brand) {
-		// Map section id → nav link element
-		const sectionLinks = new Map<string, HTMLElement>();
-		document.querySelectorAll<HTMLElement>(".nav__link").forEach((link) => {
-			const id = hashOf(link.getAttribute("href"));
-			if (id) sectionLinks.set(id, link);
-		});
-
-		// Returns center X of el relative to header left edge
-		function targetLeft(el: HTMLElement): number {
-			const elRect = el.getBoundingClientRect();
-			const headerRect = header!.getBoundingClientRect();
-			return elRect.left + elRect.width / 2 - headerRect.left;
-		}
-
-		function moveGlow(el: HTMLElement) {
-			glow!.style.left = `${targetLeft(el)}px`;
-		}
-
-		// Which section has scrolled past the viewport midpoint?
-		const sections = [...sectionLinks.entries()]
-			.map(([id, link]) => ({ el: document.getElementById(id), link }))
-			.filter((s): s is { el: HTMLElement; link: HTMLElement } => s.el !== null);
-
-		function getActiveLink(): HTMLElement {
-			const mid = window.innerHeight / 2;
-			let active: HTMLElement | null = null;
-			for (const { el, link } of sections) {
-				if (el.getBoundingClientRect().top <= mid) active = link;
-			}
-			return active ?? brand!;
-		}
-
-		function update() {
-			moveGlow(getActiveLink());
-		}
-
-		window.addEventListener("scroll", update, { passive: true });
-		window.addEventListener("resize", update);
-
-		// Initial position after layout settles
-		requestAnimationFrame(update);
-	}
-
 	// Custom anchor scroll: sections use sticky tracks with negative top margins,
 	// so the native anchor lands on an empty pre-reveal frame. Aim at the scroll
 	// position where each section's content is first meaningfully visible.
 	const REVEAL_PROGRESS: Record<string, number> = {
 		expertise: 0.12,
-		solutions: 0.7,
 	};
 
 	function smoothScrollToSection(id: string) {
 		const section = document.getElementById(id);
 		if (!section) return;
-		const track = section.querySelector<HTMLElement>(
-			".exp__track, .sol__track",
-		);
+		const track = section.querySelector<HTMLElement>(".exp__track");
 		const progress = REVEAL_PROGRESS[id] ?? 0;
 		const sectionTop = section.getBoundingClientRect().top + window.scrollY;
 		const trackHeight = track ? track.offsetHeight : section.offsetHeight;

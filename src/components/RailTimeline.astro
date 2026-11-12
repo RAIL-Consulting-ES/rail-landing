@@ -1,0 +1,178 @@
+---
+// Línea de progreso de la home: un tren que avanza con el scroll, sin pausas,
+// y pasa por cada punto cuando su sección queda en pantalla. Solo CSS.
+// Puntos: Inicio · Estudio · Diagnóstico · Solución · Contacto.
+const STOPS = 5;
+---
+
+<div class="rt" aria-hidden="true">
+	<div class="rt__line">
+		{
+			Array.from({ length: STOPS }).map((_, i) => (
+				<span class="rt__dot" style={`--k:${i}`} />
+			))
+		}
+		<span class="rt__mover">
+			<svg class="rt__train" viewBox="0 0 196 46">
+				<g transform="translate(193 26)">
+					<rect x="-70" y="-26" width="70" height="32" rx="4" fill="var(--tertiary)"
+					></rect>
+					<rect x="-130" y="-22" width="56" height="28" rx="3" fill="#1b1b1b"></rect>
+					<rect x="-190" y="-22" width="56" height="28" rx="3" fill="#4c4546"></rect>
+					<circle cx="-14" cy="14" r="6" fill="#1b1b1b"></circle>
+					<circle cx="-46" cy="14" r="6" fill="#1b1b1b"></circle>
+					<circle cx="-94" cy="14" r="6" fill="#1b1b1b"></circle>
+					<circle cx="-118" cy="14" r="6" fill="#1b1b1b"></circle>
+					<circle cx="-156" cy="14" r="6" fill="#1b1b1b"></circle>
+					<circle cx="-178" cy="14" r="6" fill="#1b1b1b"></circle>
+				</g>
+			</svg>
+		</span>
+	</div>
+</div>
+
+<style>
+	/* Sin scroll-driven animations (o con movimiento reducido) no se muestra:
+	   un indicador de progreso parado no aporta nada. */
+	.rt {
+		display: none;
+	}
+
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			/* Las timelines las declaran las secciones (.exp__track y .final-cta);
+			   timeline-scope las hace visibles desde el header. */
+			:global(body) {
+				timeline-scope: --exp, --cta;
+			}
+
+			.rt {
+				display: block;
+				width: 100%;
+				max-width: var(--container-max);
+				margin-top: 20px;
+				padding: 0 var(--gutter);
+				pointer-events: none;
+			}
+
+			.rt__line {
+				position: relative;
+				height: 2px;
+				background: var(--outline-variant);
+				container-type: inline-size;
+			}
+
+			.rt__dot {
+				position: absolute;
+				left: calc(var(--k) * 25% - 5px);
+				top: -4px;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: var(--surface);
+				border: 2px solid var(--outline-variant);
+				animation-name: rt-on;
+				animation-timing-function: linear;
+				animation-fill-mode: both;
+			}
+
+			/* Cada punto se enciende cuando el tren llega. */
+			.rt__dot:nth-child(1) {
+				animation: none;
+				background: var(--tertiary);
+				border-color: var(--tertiary);
+			}
+			.rt__dot:nth-child(2) {
+				animation-timeline: --exp;
+				animation-range: contain 8% contain 10%;
+			}
+			.rt__dot:nth-child(3) {
+				animation-timeline: --exp;
+				animation-range: contain 34% contain 36%;
+			}
+			.rt__dot:nth-child(4) {
+				animation-timeline: --exp;
+				animation-range: contain 68% contain 70%;
+			}
+			.rt__dot:nth-child(5) {
+				animation-timeline: --cta;
+				animation-range: entry 90% entry 100%;
+			}
+
+			/* El recorrido es la suma de cinco tramos encadenados, sin pausas:
+			   Inicio→Estudio      desde que Expertise asoma hasta que Estudio queda fijo
+			   Estudio→Diagnóstico del 10 al 36 % de Expertise (cambio de texto)
+			   Diagnóstico→Solución del 36 al 70 %
+			   Solución→Contacto   resto de Expertise (15 % de la vía) y entrada
+			                        del bloque de contacto (10 %) */
+			.rt__mover {
+				position: absolute;
+				left: 0;
+				top: 0;
+				animation-name: rt-seg, rt-seg, rt-seg, rt-seg-a, rt-seg-b;
+				animation-timing-function: linear;
+				animation-fill-mode: both;
+				animation-composition: replace, add, add, add, add;
+				animation-timeline: --exp, --exp, --exp, --exp, --cta;
+				animation-range:
+					entry 0% contain 10%,
+					contain 10% contain 36%,
+					contain 36% contain 70%,
+					contain 70% contain 100%,
+					entry 0% entry 100%;
+			}
+
+			.rt__train {
+				position: absolute;
+				left: 0;
+				bottom: 1px;
+				width: 56px;
+				transform: translateX(-50%);
+			}
+
+			@media (max-width: 768px) {
+				.rt {
+					margin-top: 16px;
+					padding: 0 var(--stack-md);
+				}
+				.rt__train {
+					width: 40px;
+				}
+			}
+		}
+	}
+
+	@keyframes rt-seg {
+		from {
+			translate: 0 0;
+		}
+		to {
+			translate: 25cqi 0;
+		}
+	}
+
+	@keyframes rt-seg-a {
+		from {
+			translate: 0 0;
+		}
+		to {
+			translate: 15cqi 0;
+		}
+	}
+
+	@keyframes rt-seg-b {
+		from {
+			translate: 0 0;
+		}
+		to {
+			translate: 10cqi 0;
+		}
+	}
+
+	@keyframes rt-on {
+		to {
+			background: var(--tertiary);
+			border-color: var(--tertiary);
+		}
+	}
+</style>

@@ -1,446 +1,224 @@
 ---
-const panels = [
+const steps = [
 	{
-		id: "strategy",
+		tag: "01 — Estudio",
 		title: "Estudio",
 		copy: "Nos sentamos con tu equipo y estudiamos cómo trabaja de verdad tu empresa: qué tareas se repiten, dónde se espera y dónde se va el tiempo.",
 	},
 	{
-		id: "architecture",
+		tag: "02 — Diagnóstico",
 		title: "Diagnóstico",
 		copy: "Localizamos los puntos donde la IA o una automatización ahorran más horas y los ordenamos por el tiempo que devuelven a tu equipo.",
 	},
 	{
-		id: "execution",
+		tag: "03 — Solución",
 		title: "Solución",
 		copy: "Construimos solo lo que hace falta: un agente de IA, una automatización o, si el caso lo pide, software a medida como un ERP o un CRM.",
 	},
+];
+
+// Un solo diagrama para los tres pasos: una ruta de cuatro puntos que se
+// estudia (aparecen las vueltas atrás), se diagnostica (el trabajo se acumula
+// antes de un punto) y se resuelve (una vía directa llega antes).
+// Cada pieza se anima entre `at` y `at + len`, en fracción del recorrido de
+// .exp__track (0→1). `out` es una segunda ventana para salir o cambiar de color.
+const w = (at: number, len: number) => `--at:${at.toFixed(4)};--len:${len}`;
+const out = (at: number, len: number) => `--at2:${at.toFixed(4)};--len2:${len}`;
+
+const stops = [50, 150, 250, 350];
+const LINE_Y = 110;
+const DIRECT_Y = 206;
+// Ruta completa: 1→3, vuelta al 2, 2→4, vuelta al 2, 2→4
+const route = `M50 110 L250 110 L250 124 C250 184 150 184 150 126 L150 110 L350 110 L350 96 C350 28 150 28 150 94 L150 110 L350 110`;
+
+// El punto recorre la ruta durante Estudio y va dejando las vueltas dibujadas.
+// Tramos de la ruta que ocupa cada vuelta (medidos sobre el trazo).
+const DOT = { at: 0.045, len: 0.245 };
+const LOOP_1 = [0.203, 0.345];
+const LOOP_2 = [0.563, 0.795];
+const during = ([a, b]: number[]) => w(DOT.at + DOT.len * a, DOT.len * (b - a));
+const afterLoop = ([, b]: number[]) => w(DOT.at + DOT.len * b - 0.004, 0.012);
+
+// Trabajo acumulado antes del tercer punto [x, y]
+const queue: [number, number][] = [
+	[90, 110],
+	[118, 110],
+	[172, 110],
+	[185, 110],
+	[198, 110],
+	[211, 110],
+	[224, 110],
+	[198, 97],
+	[211, 97],
+	[224, 97],
+	[211, 84],
+	[224, 84],
+	[224, 71],
+	[300, 110],
 ];
 ---
 
 <section class="exp" id="expertise" aria-label="Método">
 	<div class="exp__track">
 		<div class="exp__stage">
-			<article class="panel" data-panel="strategy" aria-hidden="true">
-				<p class="label-caps panel__tag">01 — Estudio</p>
-				<h2 class="panel__title">Estudio</h2>
-				<p class="panel__copy">{panels[0].copy}</p>
+			<div class="exp__content">
+				<div class="exp__steps">
+					{
+						steps.map((s) => (
+							<article class="step">
+								<p class="label-caps step__tag">{s.tag}</p>
+								<h2 class="step__title">{s.title}</h2>
+								<p class="step__copy">{s.copy}</p>
+							</article>
+						))
+					}
+				</div>
+
 				<svg
-					class="panel__gfx panel__gfx--strategy"
-					viewBox="0 0 800 220"
+					class="exp__gfx"
+					viewBox="20 16 360 216"
 					role="img"
-					aria-label="Tren avanzando sobre las vías"
+					aria-label="Una misma ruta de trabajo en tres momentos: con sus vueltas atrás, con el trabajo acumulado antes de un punto y, al final, junto a una vía directa que llega antes"
 				>
-					<g class="rails">
-						<line
-							class="rail-line rail-line--top"
-							x1="0"
-							y1="130"
-							x2="800"
-							y2="130"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-						></line>
-						<line
-							class="rail-line rail-line--bot"
-							x1="0"
-							y1="150"
-							x2="800"
-							y2="150"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-						></line>
+					<!-- La ruta baja un poco mientras está sola y sube cuando llega la vía directa -->
+					<g class="settle" style={w(0.655, 0.05)}>
+						<path
+							class="s-ink draw to-muted"
+							style={`${w(0.03, 0.05)};${out(0.66, 0.04)}`}
+							d={`M50 ${LINE_Y} L350 ${LINE_Y}`}
+							pathLength="100"></path>
+
+						<path
+							class="s-accent trail to-muted"
+							style={`${during(LOOP_1)};${out(0.31, 0.05)}`}
+							d="M250 124 C250 184 150 184 150 126"
+							pathLength="100"></path>
+						<path
+							class="s-accent fade to-muted"
+							style={`${afterLoop(LOOP_1)};${out(0.31, 0.05)}`}
+							d="M143 135 L150 124 L157 135"></path>
+						<path
+							class="s-accent trail to-muted"
+							style={`${during(LOOP_2)};${out(0.31, 0.05)}`}
+							d="M350 96 C350 28 150 28 150 94"
+							pathLength="100"></path>
+						<path
+							class="s-accent fade to-muted"
+							style={`${afterLoop(LOOP_2)};${out(0.31, 0.05)}`}
+							d="M143 85 L150 96 L157 85"></path>
+
 						{
-							Array.from({ length: 16 }).map((_, i) => (
-								<line
-									class="tie"
-									x1={20 + i * 50}
-									y1="124"
-									x2={20 + i * 50}
-									y2="156"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
+							stops.map((x, i) => (
+								<rect
+									class="node fade"
+									style={w(0.03 + i * 0.012, 0.02)}
+									x={x - 14}
+									y={LINE_Y - 14}
+									width="28"
+									height="28"
+									rx="7"
 								/>
 							))
 						}
+
+						<!-- Estudio: el punto recorre la ruta -->
+						<path
+							class="dot dot--ink travel leaves"
+							style={`${w(DOT.at, DOT.len)};${out(0.3, 0.03)}`}
+							d={route}
+							pathLength="100"></path>
+
+						<!-- Diagnóstico: el trabajo se acumula antes del tercer punto -->
+						{
+							queue.map(([x, y], k) => (
+								<circle
+									class="f-ink queue"
+									style={`${w(0.36 + k * 0.012, 0.08)};${out(0.645, 0.05)};--dx:${50 - x}px;--dy:${LINE_Y - y}px;--ox:${350 - x}px`}
+									cx={x}
+									cy={y}
+									r="5.5"
+								/>
+							))
+						}
+						<circle
+							class="s-accent ring lock"
+							style={`${w(0.56, 0.05)};${out(0.645, 0.03)}`}
+							cx="250"
+							cy={LINE_Y}
+							r="32"></circle>
+
+						<!-- Solución: la ruta de antes se vuelve a recorrer, despacio -->
+						<path
+							class="dot dot--muted travel arrives"
+							style={w(0.74, 0.24)}
+							d={route}
+							pathLength="100"></path>
 					</g>
-					<g class="train" transform="translate(820 110)">
-						<rect
-							x="-70"
-							y="-26"
-							width="70"
-							height="32"
-							rx="4"
-							fill="var(--tertiary)"
-						></rect>
-						<rect
-							x="-130"
-							y="-22"
-							width="56"
-							height="28"
-							rx="3"
-							fill="#1b1b1b"
-						></rect>
-						<rect
-							x="-190"
-							y="-22"
-							width="56"
-							height="28"
-							rx="3"
-							fill="#4c4546"
-						></rect>
-						<circle cx="-14" cy="14" r="6" fill="#1b1b1b"></circle>
-						<circle cx="-46" cy="14" r="6" fill="#1b1b1b"></circle>
-						<circle cx="-94" cy="14" r="6" fill="#1b1b1b"></circle>
-						<circle cx="-118" cy="14" r="6" fill="#1b1b1b"></circle>
-						<circle cx="-156" cy="14" r="6" fill="#1b1b1b"></circle>
-						<circle cx="-178" cy="14" r="6" fill="#1b1b1b"></circle>
-					</g>
+
+					<!-- Solución: la vía directa -->
+					<path
+						class="s-accent draw"
+						style={w(0.69, 0.05)}
+						d={`M50 ${DIRECT_Y} L350 ${DIRECT_Y}`}
+						pathLength="100"></path>
+					<rect class="node fade" style={w(0.69, 0.02)} x="38" y={DIRECT_Y - 12} width="24" height="24" rx="6"
+					></rect>
+					<rect
+						class="node node--end fade"
+						style={w(0.72, 0.02)}
+						x="338"
+						y={DIRECT_Y - 12}
+						width="24"
+						height="24"
+						rx="6"></rect>
+					<path
+						class="dot dot--accent travel arrives"
+						style={w(0.74, 0.05)}
+						d={`M50 ${DIRECT_Y} L350 ${DIRECT_Y}`}
+						pathLength="100"></path>
 				</svg>
-			</article>
 
-			<article class="panel" data-panel="architecture" aria-hidden="true">
-				<p class="label-caps panel__tag">02 — Diagnóstico</p>
-				<h2 class="panel__title">Diagnóstico</h2>
-				<p class="panel__copy">{panels[1].copy}</p>
-				<svg
-					class="panel__gfx panel__gfx--architecture"
-					viewBox="0 0 960 360"
-					role="img"
-					aria-label="Mapa de los procesos de la empresa conectados"
-				>
-					<defs>
-						<filter id="archShadow" x="-20%" y="-20%" width="140%" height="140%">
-							<feDropShadow
-								dx="0"
-								dy="2"
-								stdDeviation="3"
-								flood-color="#000"
-								flood-opacity="0.08"
-							></feDropShadow>
-						</filter>
-					</defs>
-
-					<g class="links" fill="none" stroke="#1b1b1b" stroke-width="1.5" stroke-linecap="round">
-						<path data-link="0" d="M 180 90 C 250 90, 270 180, 340 180"></path>
-						<path data-link="1" d="M 180 270 C 250 270, 270 180, 340 180"></path>
-						<path data-link="2" d="M 500 180 C 570 180, 590 90, 660 90"></path>
-						<path data-link="3" d="M 500 180 C 570 180, 590 180, 660 180"></path>
-						<path data-link="4" d="M 500 180 C 570 180, 590 270, 660 270"></path>
-					</g>
-
-					<g class="blocks">
-						<g class="block" data-block="0" transform="translate(60 50)">
-							<rect width="120" height="80" rx="10" fill="#ffffff" stroke="#1b1b1b" stroke-width="1.5" filter="url(#archShadow)"></rect>
-							<circle cx="20" cy="40" r="10" fill="#93c572"></circle>
-							<rect x="40" y="28" width="64" height="8" rx="2" fill="#1b1b1b"></rect>
-							<rect x="40" y="44" width="44" height="6" rx="2" fill="#cfc4c5"></rect>
-							<circle cx="120" cy="40" r="4" fill="#1b1b1b"></circle>
-						</g>
-						<g class="block" data-block="1" transform="translate(60 230)">
-							<rect width="120" height="80" rx="10" fill="#ffffff" stroke="#1b1b1b" stroke-width="1.5" filter="url(#archShadow)"></rect>
-							<rect x="14" y="30" width="20" height="20" rx="3" fill="#1b1b1b"></rect>
-							<rect x="40" y="28" width="64" height="8" rx="2" fill="#1b1b1b"></rect>
-							<rect x="40" y="44" width="50" height="6" rx="2" fill="#cfc4c5"></rect>
-							<circle cx="120" cy="40" r="4" fill="#1b1b1b"></circle>
-						</g>
-						<g class="block" data-block="2" transform="translate(340 140)">
-							<rect width="160" height="80" rx="10" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="1.5" filter="url(#archShadow)"></rect>
-							<circle cx="20" cy="40" r="10" fill="#93c572"></circle>
-							<rect x="40" y="28" width="100" height="8" rx="2" fill="#ffffff"></rect>
-							<rect x="40" y="44" width="70" height="6" rx="2" fill="#7e7576"></rect>
-							<circle cx="0" cy="40" r="4" fill="#1b1b1b"></circle>
-							<circle cx="160" cy="40" r="4" fill="#1b1b1b"></circle>
-						</g>
-						<g class="block" data-block="3" transform="translate(660 50)">
-							<rect width="120" height="80" rx="10" fill="#ffffff" stroke="#1b1b1b" stroke-width="1.5" filter="url(#archShadow)"></rect>
-							<path d="M 14 38 l 8 -8 l 8 8 l -8 8 z" fill="#93c572" stroke="#1b1b1b" stroke-width="1"></path>
-							<rect x="40" y="28" width="64" height="8" rx="2" fill="#1b1b1b"></rect>
-							<rect x="40" y="44" width="40" height="6" rx="2" fill="#cfc4c5"></rect>
-							<circle cx="0" cy="40" r="4" fill="#1b1b1b"></circle>
-						</g>
-						<g class="block" data-block="4" transform="translate(660 140)">
-							<rect width="120" height="80" rx="10" fill="#ffffff" stroke="#1b1b1b" stroke-width="1.5" filter="url(#archShadow)"></rect>
-							<rect x="14" y="30" width="20" height="20" rx="10" fill="#93c572"></rect>
-							<rect x="40" y="28" width="64" height="8" rx="2" fill="#1b1b1b"></rect>
-							<rect x="40" y="44" width="56" height="6" rx="2" fill="#cfc4c5"></rect>
-							<circle cx="0" cy="40" r="4" fill="#1b1b1b"></circle>
-						</g>
-						<g class="block" data-block="5" transform="translate(660 230)">
-							<rect width="120" height="80" rx="10" fill="#ffffff" stroke="#1b1b1b" stroke-width="1.5" filter="url(#archShadow)"></rect>
-							<rect x="14" y="32" width="20" height="16" rx="2" fill="#1b1b1b"></rect>
-							<rect x="40" y="28" width="64" height="8" rx="2" fill="#1b1b1b"></rect>
-							<rect x="40" y="44" width="48" height="6" rx="2" fill="#cfc4c5"></rect>
-							<circle cx="0" cy="40" r="4" fill="#1b1b1b"></circle>
-						</g>
-					</g>
-
-					<g class="pulses">
-						<circle class="pulse" data-pulse="0" r="5" cx="180" cy="90" fill="#93c572"></circle>
-						<circle class="pulse" data-pulse="1" r="5" cx="180" cy="270" fill="#93c572"></circle>
-						<circle class="pulse" data-pulse="2" r="5" cx="500" cy="180" fill="#93c572"></circle>
-						<circle class="pulse" data-pulse="3" r="5" cx="500" cy="180" fill="#93c572"></circle>
-						<circle class="pulse" data-pulse="4" r="5" cx="500" cy="180" fill="#93c572"></circle>
-					</g>
-				</svg>
-			</article>
-
-			<article class="panel" data-panel="execution" aria-hidden="true">
-				<p class="label-caps panel__tag">03 — Solución</p>
-				<h2 class="panel__title">Solución</h2>
-				<p class="panel__copy">{panels[2].copy}</p>
-				<div class="exec-stack">
-					<svg
-						class="exec exec--blueprint"
-						viewBox="0 0 600 360"
-						role="img"
-						aria-label="Plano arquitectónico"
-					>
-						<defs>
-							<pattern
-								id="grid"
-								width="30"
-								height="30"
-								patternUnits="userSpaceOnUse"
-							>
-								<path
-									d="M 30 0 L 0 0 0 30"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="0.6"
-									opacity="0.45"
-								></path>
-							</pattern>
-						</defs>
-						<rect width="600" height="360" fill="url(#grid)"></rect>
-						<rect
-							x="60"
-							y="60"
-							width="220"
-							height="160"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.4"
-						></rect>
-						<rect
-							x="320"
-							y="60"
-							width="220"
-							height="100"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.4"
-						></rect>
-						<rect
-							x="320"
-							y="180"
-							width="220"
-							height="120"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.4"
-						></rect>
-						<line
-							x1="60"
-							y1="260"
-							x2="280"
-							y2="260"
-							stroke="currentColor"
-							stroke-width="1.4"
-						></line>
-						<line
-							x1="60"
-							y1="280"
-							x2="280"
-							y2="280"
-							stroke="currentColor"
-							stroke-width="1.4"
-						></line>
-					</svg>
-
-					<svg
-						class="exec exec--mockup"
-						viewBox="0 0 600 360"
-						role="img"
-						aria-label="Maqueta de interfaz de automatización"
-					>
-						<rect
-							x="20"
-							y="20"
-							width="560"
-							height="320"
-							rx="10"
-							fill="#ffffff"
-							stroke="currentColor"
-							stroke-width="1.2"
-						></rect>
-						<rect
-							x="20"
-							y="20"
-							width="560"
-							height="40"
-							rx="10"
-							fill="#f3f3f3"
-						></rect>
-						<circle cx="44" cy="40" r="5" fill="#cfc4c5"></circle>
-						<circle cx="62" cy="40" r="5" fill="#cfc4c5"></circle>
-						<circle cx="80" cy="40" r="5" fill="#cfc4c5"></circle>
-						<rect
-							x="40"
-							y="80"
-							width="140"
-							height="240"
-							rx="6"
-							fill="#f9f9f9"
-							stroke="currentColor"
-							stroke-width="1"
-						></rect>
-						<rect
-							x="56"
-							y="100"
-							width="108"
-							height="12"
-							rx="2"
-							fill="#1b1b1b"
-						></rect>
-						<rect
-							x="56"
-							y="124"
-							width="80"
-							height="8"
-							rx="2"
-							fill="#cfc4c5"
-						></rect>
-						<rect
-							x="56"
-							y="146"
-							width="92"
-							height="8"
-							rx="2"
-							fill="#cfc4c5"
-						></rect>
-						<rect
-							x="56"
-							y="168"
-							width="70"
-							height="8"
-							rx="2"
-							fill="#cfc4c5"
-						></rect>
-						<rect
-							x="200"
-							y="80"
-							width="360"
-							height="100"
-							rx="6"
-							fill="#f9f9f9"
-							stroke="currentColor"
-							stroke-width="1"
-						></rect>
-						<rect
-							x="220"
-							y="100"
-							width="120"
-							height="14"
-							rx="2"
-							fill="#1b1b1b"
-						></rect>
-						<rect
-							x="220"
-							y="126"
-							width="240"
-							height="8"
-							rx="2"
-							fill="#cfc4c5"
-						></rect>
-						<rect
-							x="220"
-							y="142"
-							width="200"
-							height="8"
-							rx="2"
-							fill="#cfc4c5"
-						></rect>
-						<rect
-							x="200"
-							y="200"
-							width="170"
-							height="120"
-							rx="6"
-							fill="#93c572"
-							opacity="0.18"
-						></rect>
-						<rect
-							x="390"
-							y="200"
-							width="170"
-							height="120"
-							rx="6"
-							fill="#f9f9f9"
-							stroke="currentColor"
-							stroke-width="1"
-						></rect>
-						<polyline
-							points="220,290 260,260 290,275 320,240 360,255"
-							fill="none"
-							stroke="#1b1b1b"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						></polyline>
-					</svg>
-
-				</div>
-			</article>
-
-			<div class="exp__blackout" aria-hidden="true"></div>
+				<a href="/solutions/" class="exp__cta">Ver todas las soluciones</a>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
+	@property --p {
+		syntax: "<number>";
+		inherits: true;
+		initial-value: 1;
+	}
+
+	/* Base = versión estática: es lo que se ve con prefers-reduced-motion o en
+	   navegadores sin scroll-driven animations. Los tres textos van apilados y
+	   el diagrama se muestra en su estado final. La versión animada va abajo. */
 	.exp {
 		position: relative;
 		z-index: 4;
-		margin-top: -150vh;
 	}
 
-	.exp__track {
-		height: 650vh;
-	}
-
-	.exp__stage {
-		position: sticky;
-		top: 0;
-		height: 100vh;
-		overflow: hidden;
-	}
-
-	.panel {
-		position: absolute;
-		inset: 0;
+	.exp__content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 		text-align: center;
-		padding: 0 var(--margin-edge);
-		opacity: 0;
-		transform: scale(0.05);
-		transform-origin: 50% 50%;
-		will-change: transform, opacity;
+		padding: var(--stack-lg) var(--margin-edge);
 		color: var(--on-surface);
 	}
 
-	.panel__tag {
-		color: var(--on-surface-variant);
-		margin-bottom: var(--stack-sm);
+	.exp__steps {
+		display: grid;
+		gap: var(--stack-lg);
 	}
 
-	.panel__title {
+	.step__tag {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.step__title {
 		margin: 0;
 		font-family: "Inter", sans-serif;
 		font-size: clamp(56px, 9vw, 120px);
@@ -454,7 +232,7 @@ const panels = [
 		color: transparent;
 	}
 
-	.panel__copy {
+	.step__copy {
 		max-width: 640px;
 		margin: var(--stack-md) auto 0;
 		font-size: clamp(16px, 1.5vw, 20px);
@@ -462,91 +240,314 @@ const panels = [
 		color: var(--on-surface-variant);
 	}
 
-	.panel__gfx {
+	.exp__gfx {
 		display: block;
-		width: min(80vw, 800px);
-		margin-top: var(--stack-lg);
-		color: var(--on-surface);
+		width: min(80vw, 620px);
+		max-height: 34vh;
+		margin-top: clamp(20px, 5vh, 64px);
+		overflow: visible;
 	}
 
-	/* Strategy */
-	.panel__gfx--strategy .rail-line {
-		stroke-dasharray: 1000;
-		stroke-dashoffset: 1000;
+	.exp__cta {
+		margin-top: clamp(16px, 3vh, 32px);
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		padding: 14px 28px;
+		border-radius: var(--r);
+		font-weight: 600;
+		font-size: 14px;
+		letter-spacing: 0.02em;
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
 	}
 
-	/* Architecture */
-	.panel__gfx--architecture .block {
-		opacity: 0;
-	}
-	.panel__gfx--architecture .links path {
-		stroke-dasharray: 400;
-		stroke-dashoffset: 400;
-	}
-	.panel__gfx--architecture .pulse {
-		opacity: 0;
+	.exp__cta:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
 	}
 
-	/* Execution */
-	.exec-stack {
-		position: relative;
-		width: min(70vw, 600px);
-		height: clamp(220px, 36vh, 360px);
-		margin-top: var(--stack-md);
-	}
-	.exec {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		color: var(--on-surface);
-	}
-	.exec--blueprint {
-		opacity: 0;
-		color: var(--tertiary);
-	}
-	.exec--mockup {
-		opacity: 0;
-	}
-	.exp__blackout {
-		position: absolute;
-		inset: 0;
-		background: #000;
-		opacity: 0;
-		pointer-events: none;
+	/* Diagrama: línea y puntos, el mismo vocabulario que el tren del header.
+	   --p es el avance (1 = estado final, que es lo que se ve sin animación).
+	   Cada pieza calcula sus tramos locales: --t lineal, para los recorridos, y
+	   --e, que desacelera al llegar (1 − (1 − t)⁴). Los "2" son la segunda
+	   ventana, para salir o cambiar de color. */
+	.exp__gfx * {
+		--t: clamp(0, (var(--p) - var(--at, 0)) / var(--len, 1), 1);
+		--e: calc(1 - pow(1 - var(--t), 4));
+		--t2: clamp(0, (var(--p) - var(--at2, 2)) / var(--len2, 1), 1);
+		--e2: calc(1 - pow(1 - var(--t2), 4));
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.exp__track {
-			height: auto;
+	.s-ink,
+	.s-accent {
+		fill: none;
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+	.s-ink {
+		--from: var(--on-surface);
+		stroke: var(--from);
+	}
+	.s-accent {
+		--from: var(--tertiary);
+		stroke: var(--from);
+		stroke-width: 2.5;
+	}
+	.f-ink {
+		fill: var(--on-surface);
+	}
+	.node {
+		fill: var(--surface);
+		stroke: var(--on-surface);
+		stroke-width: 1.5;
+	}
+	.node--end {
+		fill: var(--on-surface);
+	}
+	.ring {
+		stroke-width: 3;
+	}
+
+	/* Comportamientos */
+	.fade {
+		opacity: var(--e);
+	}
+	.draw {
+		stroke-dasharray: 100;
+		stroke-dashoffset: calc(100 * (1 - var(--e)));
+	}
+	/* Se dibuja al paso del punto que la recorre */
+	.trail {
+		stroke-dasharray: 100;
+		stroke-dashoffset: calc(100 * (1 - var(--t)));
+	}
+	/* Lo ya estudiado pasa a gris: es "la ruta de antes" */
+	.to-muted {
+		stroke: color-mix(in srgb, var(--outline) calc(var(--e2) * 100%), var(--from));
+	}
+	.settle {
+		translate: 0 calc(24px * (1 - var(--e)));
+	}
+	.queue {
+		opacity: calc(min(1, var(--t) * 6) * (1 - var(--e2)));
+		translate: calc(var(--dx) * (1 - var(--e)) + var(--ox) * var(--e2))
+			calc(var(--dy) * (1 - var(--e)) + var(--dy) * var(--e2));
+	}
+	.lock {
+		transform-box: fill-box;
+		transform-origin: center;
+		opacity: calc(var(--e) * (1 - var(--e2)));
+		scale: calc(1.7 - 0.7 * var(--e));
+	}
+
+	/* Punto que recorre un trazo: guion de longitud ~0 con extremos redondos */
+	.dot {
+		fill: none;
+		stroke-width: 11;
+		stroke-linecap: round;
+		stroke-dasharray: 0.01 200;
+	}
+	.dot--ink {
+		stroke: var(--on-surface);
+	}
+	.dot--muted {
+		stroke: var(--outline);
+	}
+	.dot--accent {
+		stroke: var(--tertiary);
+		stroke-width: 13;
+	}
+	.travel {
+		stroke-dashoffset: calc(-100 * var(--t));
+	}
+	.leaves {
+		opacity: calc(min(1, var(--t) * 40) * (1 - var(--e2)));
+	}
+	.arrives {
+		opacity: min(1, var(--t) * 40);
+	}
+
+	@media (max-width: 640px) {
+		.exp__gfx {
+			width: 92vw;
 		}
-		.exp__stage {
-			position: static;
-			height: auto;
-			display: flex;
-			flex-direction: column;
+	}
+
+	/* Versión animada. Progreso 0–100 % = .exp__track de "top top" a
+	   "bottom bottom" (550vh de scroll). El escenario queda fijo: solo entra
+	   una vez, cambian los textos y el diagrama se transforma.
+	     0–10 %   entra el bloque (como antes entraba Estudio)
+	     0–31 %   Estudio      · 33.5–64.5 % Diagnóstico · 67–100 % Solución */
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.exp {
+				margin-top: -150vh;
+			}
+
+			.exp__track {
+				height: 650vh;
+				view-timeline: --exp block;
+			}
+
+			.exp__stage {
+				position: sticky;
+				top: 0;
+				height: 100vh;
+				overflow: hidden;
+			}
+
+			.exp__content,
+			.step,
+			.exp__gfx,
+			.exp__cta {
+				animation-timing-function: linear;
+				animation-fill-mode: both;
+				animation-timeline: --exp;
+				animation-range: contain 0% contain 100%;
+			}
+
+			.exp__content {
+				height: 100%;
+				justify-content: center;
+				/* hueco superior para el header y el tren */
+				padding: 104px var(--margin-edge) 0;
+				animation-name: exp-enter;
+				animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1);
+				animation-range: contain 0% contain 10%;
+			}
+
+			/* Los tres textos ocupan el mismo sitio y se relevan */
+			.exp__steps {
+				gap: 0;
+			}
+			.step {
+				grid-area: 1 / 1;
+				will-change: opacity, filter;
+			}
+			.step:nth-child(1) {
+				animation-name: step-1;
+			}
+			.step:nth-child(2) {
+				animation-name: step-2;
+			}
+			.step:nth-child(3) {
+				animation-name: step-3;
+			}
+
+			.exp__gfx {
+				animation-name: gfx-run;
+			}
+
+			.exp__cta {
+				animation-name: exp-cta;
+				animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+				animation-range: contain 70% contain 73.5%;
+			}
 		}
-		.panel {
-			position: relative;
-			inset: auto;
+
+		@media (prefers-reduced-motion: no-preference) and (max-height: 760px) {
+			.exp__gfx {
+				max-height: 27vh;
+			}
+		}
+	}
+
+	@keyframes exp-enter {
+		from {
+			opacity: 0;
+			translate: 0 100%;
+		}
+		to {
 			opacity: 1;
-			transform: none;
-			min-height: 100vh;
-			padding: var(--stack-lg) var(--margin-edge);
+			translate: 0 0;
 		}
-		.exp__blackout {
-			display: none;
-		}
-		.panel__gfx--strategy .rail-line,
-		.panel__gfx--architecture .links path {
-			stroke-dashoffset: 0;
-		}
-		.panel__gfx--architecture .block {
+	}
+
+	/* Relevo de textos: sale rápido hacia arriba, entra desde abajo y enfoca.
+	   visibility evita que el texto oculto se pueda seleccionar o leer dos veces. */
+	@keyframes step-1 {
+		0%,
+		31% {
 			opacity: 1;
-			transform: none;
+			translate: 0 0;
+			filter: blur(0);
+			visibility: visible;
+			animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
 		}
-		.exec--mockup {
+		33.5%,
+		100% {
+			opacity: 0;
+			translate: 0 -14px;
+			filter: blur(6px);
+			visibility: hidden;
+		}
+	}
+
+	@keyframes step-2 {
+		0%,
+		33.5% {
+			opacity: 0;
+			translate: 0 14px;
+			filter: blur(6px);
+			visibility: hidden;
+			animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+		}
+		37%,
+		64.5% {
 			opacity: 1;
+			translate: 0 0;
+			filter: blur(0);
+			visibility: visible;
+			animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+		}
+		67%,
+		100% {
+			opacity: 0;
+			translate: 0 -14px;
+			filter: blur(6px);
+			visibility: hidden;
+		}
+	}
+
+	@keyframes step-3 {
+		0%,
+		67% {
+			opacity: 0;
+			translate: 0 14px;
+			filter: blur(6px);
+			visibility: hidden;
+			animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+		}
+		70.5%,
+		100% {
+			opacity: 1;
+			translate: 0 0;
+			filter: blur(0);
+			visibility: visible;
+		}
+	}
+
+	@keyframes exp-cta {
+		from {
+			opacity: 0;
+			translate: 0 12px;
+			visibility: hidden;
+		}
+		to {
+			opacity: 1;
+			translate: 0 0;
+			visibility: visible;
+		}
+	}
+
+	@keyframes gfx-run {
+		from {
+			--p: 0;
+		}
+		to {
+			--p: 1;
 		}
 	}
 </style>
