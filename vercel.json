@@ -8,8 +8,14 @@
 		{
 			"source": "/(.*)",
 			"headers": [
-				{ "key": "X-Content-Type-Options", "value": "nosniff" },
-				{ "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+				{
+					"key": "X-Content-Type-Options",
+					"value": "nosniff"
+				},
+				{
+					"key": "X-Frame-Options",
+					"value": "SAMEORIGIN"
+				},
 				{
 					"key": "Referrer-Policy",
 					"value": "strict-origin-when-cross-origin"
@@ -23,6 +29,179 @@
 					"value": "geolocation=(), microphone=(), camera=()"
 				}
 			]
+		},
+		{
+			"source": "/(.*)\\.md",
+			"headers": [
+				{
+					"key": "X-Robots-Tag",
+					"value": "noindex, follow"
+				},
+				{
+					"key": "Content-Type",
+					"value": "text/markdown; charset=utf-8"
+				}
+			]
+		},
+		{
+			"source": "/(llms\\.txt|llms-full\\.txt)",
+			"headers": [
+				{
+					"key": "Content-Type",
+					"value": "text/markdown; charset=utf-8"
+				}
+			]
+		},
+		{
+			"source": "/_astro/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=31536000, immutable"
+				}
+			]
+		}
+	],
+	"redirects": [
+		{
+			"source": "/solutions",
+			"destination": "/soluciones/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/",
+			"destination": "/soluciones/",
+			"permanent": true
+		},
+		{
+			"source": "/about",
+			"destination": "/nosotros/",
+			"permanent": true
+		},
+		{
+			"source": "/about/",
+			"destination": "/nosotros/",
+			"permanent": true
+		},
+		{
+			"source": "/contact",
+			"destination": "/contacto/",
+			"permanent": true
+		},
+		{
+			"source": "/contact/",
+			"destination": "/contacto/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/erp",
+			"destination": "/soluciones/erp-a-medida/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/erp/",
+			"destination": "/soluciones/erp-a-medida/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/crm",
+			"destination": "/soluciones/crm-a-medida/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/crm/",
+			"destination": "/soluciones/crm-a-medida/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/automation",
+			"destination": "/soluciones/automatizacion-de-procesos/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/automation/",
+			"destination": "/soluciones/automatizacion-de-procesos/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/process",
+			"destination": "/soluciones/optimizacion-de-procesos/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/process/",
+			"destination": "/soluciones/optimizacion-de-procesos/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/ai",
+			"destination": "/soluciones/inteligencia-artificial/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/ai/",
+			"destination": "/soluciones/inteligencia-artificial/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/api",
+			"destination": "/soluciones/integracion-de-sistemas/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/api/",
+			"destination": "/soluciones/integracion-de-sistemas/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/dashboards",
+			"destination": "/soluciones/cuadros-de-mando/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/dashboards/",
+			"destination": "/soluciones/cuadros-de-mando/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/data",
+			"destination": "/soluciones/analisis-de-datos/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/data/",
+			"destination": "/soluciones/analisis-de-datos/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/cloud",
+			"destination": "/soluciones/cloud/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/cloud/",
+			"destination": "/soluciones/cloud/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/cyber",
+			"destination": "/soluciones/ciberseguridad/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/cyber/",
+			"destination": "/soluciones/ciberseguridad/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/consulting",
+			"destination": "/soluciones/consultoria-tecnologica/",
+			"permanent": true
+		},
+		{
+			"source": "/solutions/consulting/",
+			"destination": "/soluciones/consultoria-tecnologica/",
+			"permanent": true
 		}
 	]
 }

@@ -3,12 +3,20 @@
 
 <section class="hero" id="hero">
 	<div class="hero__inner">
-		<h1 class="hero__title" aria-label="RAIL">
-			<span class="letter letter--r">R</span><span class="letter letter--a"
-				>A</span
-			><span class="letter letter--i">I</span><span class="letter letter--l"
-				>L</span
-			>
+		<h1
+			class="hero__h1"
+			aria-label="RAIL Consulting: consultoría de IA y automatización para empresas"
+		>
+			<span class="hero__title" aria-hidden="true">
+				<span class="letter letter--r">R</span><span class="letter letter--a"
+					>A</span
+				><span class="letter letter--i">I</span><span class="letter letter--l"
+					>L</span
+				>
+			</span>
+			<span class="hero__kicker label-caps">
+				Consultoría de IA y automatización para empresas
+			</span>
 		</h1>
 		<div class="hero__subtitle">
 			<span class="sub sub--1">Ingeniería del futuro</span>
@@ -33,6 +41,28 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
+	}
+
+	/* El h1 agrupa la marca (letras animadas) y la frase que dice qué es RAIL.
+	   La frase va antes en pantalla y después en el HTML: "RAIL · Consultoría…". */
+	.hero__h1 {
+		position: relative;
+		z-index: 1;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font: inherit;
+	}
+
+	.hero__kicker {
+		order: -1;
+		margin-bottom: var(--stack-md);
+		padding: 0 var(--stack-md);
+		text-align: center;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+		will-change: opacity;
 	}
 
 	.hero__title {
@@ -103,7 +133,8 @@
 			}
 
 			.letter,
-			.sub {
+			.sub,
+			.hero__kicker {
 				animation-timing-function: linear;
 				animation-fill-mode: both;
 				animation-timeline: --hero;
@@ -126,7 +157,8 @@
 				--exit: calc(50vw - 0.2904em + 80px);
 				animation-name: hero-exit-2;
 			}
-			.sub--1 {
+			.sub--1,
+			.hero__kicker {
 				animation-name: hero-sub-1;
 			}
 			.sub--2 {

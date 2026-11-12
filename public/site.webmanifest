@@ -1,0 +1,15 @@
+{
+	"name": "RAIL Consulting",
+	"short_name": "RAIL",
+	"description": "Consultoría de IA, automatización y software a medida. Sevilla.",
+	"lang": "es",
+	"start_url": "/",
+	"display": "browser",
+	"background_color": "#f9f9f9",
+	"theme_color": "#93c572",
+	"icons": [
+		{ "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+		{ "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
+		{ "src": "/logo.png", "type": "image/png", "sizes": "512x512" }
+	]
+}

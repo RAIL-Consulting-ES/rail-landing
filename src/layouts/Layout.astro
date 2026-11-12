@@ -1,88 +1,138 @@
 ---
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import interFont from "../assets/fonts/inter-latin-wght-normal.woff2?url";
+import { SITE } from "../data/site";
+import {
+	type Crumb,
+	breadcrumbNode,
+	graph,
+	organizationNode,
+	webPageNode,
+	websiteNode,
+} from "../lib/schema";
 
 interface Props {
 	title?: string;
 	description?: string;
 	ogImage?: string;
 	noindex?: boolean;
+	/** Migas de pan sin "Inicio" (se añade solo). Genera BreadcrumbList. */
+	breadcrumbs?: Crumb[];
+	/** Tipo schema.org de la página: WebPage, AboutPage, ContactPage… */
+	pageType?: string;
+	/** Nodos JSON-LD propios de la página (Service, FAQPage, Article…). */
+	schema?: object[];
+	/** Fechas ISO (YYYY-MM-DD) de publicación y última revisión. */
+	published?: string;
+	modified?: string;
+	ogType?: "website" | "article";
+	/** Título al compartir (redes, mensajería) si debe diferir del <title>. */
+	ogTitle?: string;
+	/** Ruta de la versión Markdown de esta página, si existe. */
+	markdown?: string;
 }
 
+const defaultTitle =
+	"Consultoría de IA y automatización para empresas | RAIL Consulting";
 const defaultDescription =
 	"Estudiamos cómo trabaja tu empresa y encontramos dónde ahorrar tiempo con IA y automatización. Después construimos la solución que lo hace posible.";
 
 const {
-	title = "RAIL — Ingeniería del futuro",
+	title = defaultTitle,
 	description = defaultDescription,
 	ogImage = "/og-image.png",
 	noindex = false,
+	breadcrumbs = [],
+	pageType = "WebPage",
+	schema = [],
+	published,
+	modified,
+	ogType = "website",
+	ogTitle,
+	markdown,
 } = Astro.props;
+
+const shareTitle = ogTitle ?? title;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
+const ogAlt = `${SITE.name} — ${SITE.tagline}`;
 
-const orgSchema = {
-	"@context": "https://schema.org",
-	"@type": "Organization",
-	"@id": "https://railconsulting.es/#organization",
-	name: "RAIL",
-	url: "https://railconsulting.es",
-	email: "contacto@railconsulting.es",
-	description: defaultDescription,
-	founder: [
-		{
-			"@type": "Person",
-			name: "Mario Pantoja Castro",
-			sameAs: "https://www.linkedin.com/in/mario-pantoja-castro/",
-		},
-		{
-			"@type": "Person",
-			name: "David Gutiérrez",
-			sameAs: "https://www.linkedin.com/in/davidgutierreez/",
-		},
-	],
-};
+const jsonLd = graph([
+	organizationNode(),
+	websiteNode(),
+	webPageNode({
+		url: canonical,
+		type: pageType,
+		title,
+		description,
+		hasBreadcrumb: breadcrumbs.length > 0,
+		published,
+		modified,
+	}),
+	...(breadcrumbs.length > 0 ? [breadcrumbNode(canonical, breadcrumbs)] : []),
+	...schema,
+]);
 ---
 
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
-		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+		<meta
+			name="robots"
+			content={noindex
+				? "noindex, follow"
+				: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"}
+		/>
+		<link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		{
+			markdown && (
+				<link
+					rel="alternate"
+					type="text/markdown"
+					href={markdown}
+					title="Esta página en Markdown"
+				/>
+			)
+		}
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			href="/guias/rss.xml"
+			title="Guías de RAIL Consulting"
+		/>
 		<meta name="theme-color" content="#93c572" />
-		<meta property="og:type" content="website" />
-		<meta property="og:site_name" content="RAIL" />
-		<meta property="og:title" content={title} />
+		<meta name="author" content={SITE.name} />
+		<meta name="generator" content={Astro.generator} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content={SITE.name} />
+		<meta property="og:title" content={shareTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogImageUrl} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="RAIL — Ingeniería del futuro" />
+		<meta property="og:image:alt" content={ogAlt} />
 		<meta property="og:locale" content="es_ES" />
+		{published && <meta property="article:published_time" content={published} />}
+		{modified && <meta property="article:modified_time" content={modified} />}
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
+		<meta name="twitter:title" content={shareTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageUrl} />
-		<meta name="twitter:image:alt" content="RAIL — Ingeniería del futuro" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600&display=swap"
-		/>
-		<title>{title}</title>
-		<script
-			type="application/ld+json"
-			set:html={JSON.stringify(orgSchema)}
-		/>
+		<meta name="twitter:image:alt" content={ogAlt} />
+		<script type="application/ld+json" set:html={jsonLd} />
 		<Analytics />
 		<SpeedInsights />
 	</head>

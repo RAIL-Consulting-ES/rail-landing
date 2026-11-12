@@ -1,0 +1,592 @@
+---
+// Calculadora de ahorro: la misma cuenta de la guía, interactiva. Todo el
+// cálculo ocurre en el navegador; no se envía ningún dato.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { faqNode } from "../lib/schema";
+
+const path = "/calculadora-ahorro-automatizacion/";
+const url = new URL(path, Astro.site).href;
+const crumbs = [{ name: "Calculadora de ahorro", path }];
+const UPDATED = "2026-11-12";
+
+const faq = [
+	{
+		question: "¿Cómo calcula el ahorro esta calculadora?",
+		answer: "Multiplica las veces que se hace la tarea a la semana por los minutos que dura y por las semanas de trabajo al año, para obtener las horas anuales. Aplica el porcentaje que se estima automatizable y multiplica las horas recuperadas por el coste de la hora. Si se indica una inversión, calcula además en cuántos meses se recupera.",
+	},
+	{
+		question: "¿Qué coste por hora debo introducir?",
+		answer: "El coste total para la empresa de la persona que hace la tarea: salario bruto anual más cotizaciones, dividido entre las horas que trabaja al año. Es más alto que el salario por hora que percibe el empleado.",
+	},
+	{
+		question: "¿Qué porcentaje automatizable es realista?",
+		answer: "Depende de lo regular que sea la tarea. Cuanto más iguales son los casos entre sí, mayor es la parte que se automatiza. Lo prudente es hacer la cuenta con una cifra conservadora y otra optimista: si solo compensa con la optimista, no es buena candidata.",
+	},
+	{
+		question: "¿Se guardan los datos que introduzco?",
+		answer: "No. El cálculo se hace en tu navegador y los datos no se envían a ningún servidor.",
+	},
+];
+
+const schema = [
+	{
+		"@type": "WebApplication",
+		"@id": `${url}#app`,
+		name: "Calculadora de ahorro de una automatización",
+		url,
+		applicationCategory: "BusinessApplication",
+		operatingSystem: "Cualquiera (navegador web)",
+		inLanguage: "es-ES",
+		description:
+			"Calcula cuántas horas y cuánto dinero ahorra al año automatizar una tarea repetitiva y en cuántos meses se recupera la inversión.",
+		offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+		provider: { "@id": "https://www.railconsulting.es/#organization" },
+	},
+	faqNode(url, faq),
+];
+---
+
+<Layout
+	title="Calculadora de ahorro de una automatización (ROI) | RAIL Consulting"
+	description="Calcula gratis cuántas horas y cuánto dinero ahorra al año automatizar una tarea repetitiva, y en cuántos meses se recupera la inversión. Sin registro."
+	breadcrumbs={crumbs}
+	schema={schema}
+	modified={UPDATED}
+>
+	<Header />
+
+	<main id="contenido" class="calc">
+		<nav class="calc__crumbs" aria-label="Migas de pan">
+			<a href="/">Inicio</a>
+			<span aria-hidden="true">/</span>
+			<span class="calc__crumb-current" aria-current="page">
+				Calculadora de ahorro
+			</span>
+		</nav>
+
+		<header class="calc__intro">
+			<p class="label-caps calc__eyebrow">Herramienta gratuita</p>
+			<h1 class="calc__title">
+				Calculadora de ahorro de una automatización
+			</h1>
+			<p class="calc__lead">
+				Elige una tarea que se repita en tu empresa. Dinos cuántas veces se
+				hace y cuánto dura, y verás las horas y el dinero que se van en ella
+				cada año, y lo que recuperarías al automatizarla.
+			</p>
+		</header>
+
+		<div class="calc__tool">
+			<form class="calc__form" id="calc-form" novalidate>
+				<label class="field">
+					<span class="field__label">Veces que se hace la tarea a la semana</span>
+					<input
+						class="field__input"
+						type="number"
+						name="times"
+						value="120"
+						min="0"
+						step="1"
+						inputmode="numeric"
+					/>
+				</label>
+				<label class="field">
+					<span class="field__label">Minutos que dura cada vez</span>
+					<input
+						class="field__input"
+						type="number"
+						name="minutes"
+						value="5"
+						min="0"
+						step="0.5"
+						inputmode="decimal"
+					/>
+				</label>
+				<label class="field">
+					<span class="field__label">Semanas de trabajo al año</span>
+					<input
+						class="field__input"
+						type="number"
+						name="weeks"
+						value="48"
+						min="1"
+						max="52"
+						step="1"
+						inputmode="numeric"
+					/>
+				</label>
+				<label class="field">
+					<span class="field__label">Coste de la hora para la empresa (€)</span>
+					<input
+						class="field__input"
+						type="number"
+						name="rate"
+						value="22"
+						min="0"
+						step="0.5"
+						inputmode="decimal"
+					/>
+					<span class="field__hint">Salario bruto más cotizaciones, entre horas anuales.</span>
+				</label>
+				<label class="field field--wide">
+					<span class="field__label">
+						Parte de la tarea que se automatiza:
+						<output class="field__value" id="share-out">75 %</output>
+					</span>
+					<input
+						class="field__range"
+						type="range"
+						name="share"
+						value="75"
+						min="10"
+						max="100"
+						step="5"
+					/>
+					<span class="field__hint">Si dudas, prueba una cifra prudente y otra optimista.</span>
+				</label>
+				<fieldset class="calc__optional">
+					<legend class="label-caps">Opcional: plazo de recuperación</legend>
+					<label class="field">
+						<span class="field__label">Inversión inicial (€)</span>
+						<input
+							class="field__input"
+							type="number"
+							name="invest"
+							min="0"
+							step="100"
+							inputmode="numeric"
+							placeholder="6000"
+						/>
+					</label>
+					<label class="field">
+						<span class="field__label">Mantenimiento al año (€)</span>
+						<input
+							class="field__input"
+							type="number"
+							name="upkeep"
+							min="0"
+							step="50"
+							inputmode="numeric"
+							placeholder="900"
+						/>
+					</label>
+				</fieldset>
+			</form>
+
+			<section class="calc__result" aria-live="polite" aria-label="Resultado">
+				<p class="label-caps calc__result-label">Lo que recuperas al año</p>
+				<p class="calc__big"><span id="r-hours">360</span> horas</p>
+				<p class="calc__big calc__big--accent"><span id="r-money">7.920</span> €</p>
+				<dl class="calc__facts">
+					<div>
+						<dt>La tarea consume hoy</dt>
+						<dd><span id="r-total">480</span> horas al año</dd>
+					</div>
+					<div>
+						<dt>Equivale a</dt>
+						<dd><span id="r-weeks">9</span> semanas de trabajo de una persona</dd>
+					</div>
+					<div id="r-payback-row" hidden>
+						<dt>La inversión se recupera en</dt>
+						<dd id="r-payback">—</dd>
+					</div>
+				</dl>
+				<a href="/contacto/" class="calc__btn label-caps">Medirlo en tu empresa</a>
+				<p class="calc__privacy">
+					El cálculo se hace en tu navegador. No se envía ningún dato.
+				</p>
+			</section>
+		</div>
+
+		<article class="calc__prose">
+			<h2>Cómo se calcula</h2>
+			<p>
+				La calculadora aplica la misma fórmula que usamos en un
+				<a href="/estudio-de-procesos/">estudio de procesos</a>:
+			</p>
+			<ul>
+				<li>
+					<strong>Horas al año</strong> = veces a la semana × minutos ÷ 60 ×
+					semanas de trabajo.
+				</li>
+				<li>
+					<strong>Horas recuperadas</strong> = horas al año × parte que se
+					automatiza.
+				</li>
+				<li>
+					<strong>Ahorro anual</strong> = horas recuperadas × coste de la hora.
+				</li>
+				<li>
+					<strong>Plazo de recuperación</strong> = inversión ÷ (ahorro anual −
+					mantenimiento) × 12 meses.
+				</li>
+			</ul>
+			<p>
+				El resultado es una estimación: sirve para comparar tareas entre sí y
+				decidir por cuál empezar, no para firmar un presupuesto. El
+				razonamiento completo, con un ejemplo y los casos en los que no
+				compensa automatizar, está en la guía
+				<a href="/guias/como-calcular-el-ahorro-de-una-automatizacion/"
+					>cómo calcular el ahorro de una automatización</a
+				>.
+			</p>
+
+			<h2>Cómo usarla bien</h2>
+			<ol>
+				<li>
+					<strong>Mide, no estimes.</strong> Cuenta las repeticiones de una
+					semana normal y cronometra varias. Las estimaciones de memoria casi
+					siempre se quedan cortas.
+				</li>
+				<li>
+					<strong>Hazlo con varias tareas.</strong> La cuenta es útil cuando
+					se compara: repítela con las cinco o diez más repetitivas y ordena
+					por horas recuperadas.
+				</li>
+				<li>
+					<strong>Sé prudente con el porcentaje.</strong> Ninguna
+					automatización elimina el cien por cien: quedan excepciones y
+					revisión.
+				</li>
+			</ol>
+			<p>
+				¿No sabes qué tareas probar? Empieza por la lista de
+				<a href="/guias/que-procesos-se-pueden-automatizar-en-una-empresa/"
+					>procesos que se pueden automatizar en una empresa</a
+				>.
+			</p>
+
+			<h2>Preguntas frecuentes</h2>
+			{
+				faq.map((f) => (
+					<>
+						<h3>{f.question}</h3>
+						<p>{f.answer}</p>
+					</>
+				))
+			}
+		</article>
+	</main>
+</Layout>
+
+<script>
+	const form = document.getElementById("calc-form") as HTMLFormElement | null;
+	const nf = new Intl.NumberFormat("es-ES", {
+		maximumFractionDigits: 0,
+		useGrouping: "always",
+	});
+	const set = (id: string, text: string) => {
+		const el = document.getElementById(id);
+		if (el) el.textContent = text;
+	};
+
+	function update() {
+		if (!form) return;
+		const v = (name: string) =>
+			Math.max(0, Number((form.elements.namedItem(name) as HTMLInputElement).value) || 0);
+
+		const share = v("share");
+		const total = (v("times") * v("minutes") * v("weeks")) / 60;
+		const hours = (total * share) / 100;
+		const money = hours * v("rate");
+
+		set("share-out", `${share} %`);
+		set("r-total", nf.format(total));
+		set("r-hours", nf.format(hours));
+		set("r-money", nf.format(money));
+		set("r-weeks", nf.format(hours / 40));
+
+		const invest = v("invest");
+		const row = document.getElementById("r-payback-row");
+		if (!row) return;
+		row.hidden = invest <= 0;
+		if (invest > 0) {
+			const net = money - v("upkeep");
+			set(
+				"r-payback",
+				net > 0
+					? `${nf.format(Math.round((invest / net) * 12))} meses`
+					: "No se recupera con estos datos",
+			);
+		}
+	}
+
+	form?.addEventListener("input", update);
+	update();
+</script>
+
+<style>
+	.calc {
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: 18vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.calc__crumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: var(--stack-lg);
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	.calc__crumb-current {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+
+	.calc__intro {
+		max-width: 760px;
+		margin-bottom: var(--stack-lg);
+	}
+
+	.calc__eyebrow {
+		margin: 0 0 var(--stack-sm);
+		color: var(--on-surface-variant);
+	}
+
+	.calc__title {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(34px, 5.2vw, 58px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-wrap: balance;
+	}
+
+	.calc__lead {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.calc__tool {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr;
+		gap: var(--stack-md);
+		align-items: start;
+		margin-bottom: var(--stack-lg);
+	}
+
+	.calc__form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--stack-md);
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.field--wide,
+	.calc__optional {
+		grid-column: 1 / -1;
+	}
+
+	.field__label {
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.35;
+	}
+
+	.field__value {
+		color: #3d6b2a;
+	}
+
+	.field__input {
+		width: 100%;
+		padding: 12px 14px;
+		font: inherit;
+		font-size: 17px;
+		font-variant-numeric: tabular-nums;
+		color: var(--on-surface);
+		background: var(--surface);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r);
+	}
+
+	.field__input:focus-visible {
+		outline: 2px solid var(--tertiary);
+		outline-offset: 1px;
+		border-color: var(--tertiary);
+	}
+
+	.field__range {
+		width: 100%;
+		accent-color: var(--tertiary);
+	}
+
+	.field__hint {
+		font-size: 13px;
+		line-height: 1.4;
+		color: var(--on-surface-variant);
+	}
+
+	.calc__optional {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--stack-md);
+		margin: 0;
+		padding: var(--stack-md) 0 0;
+		border: none;
+		border-top: 1px solid var(--outline-variant);
+	}
+
+	.calc__optional legend {
+		padding: 0 12px 0 0;
+		color: var(--on-surface-variant);
+	}
+
+	.calc__result {
+		position: sticky;
+		top: 110px;
+		padding: var(--stack-md);
+		background: var(--inverse-surface);
+		color: var(--inverse-on-surface);
+		border-radius: var(--r-xl);
+	}
+
+	.calc__result-label {
+		margin: 0 0 var(--stack-sm);
+		opacity: 0.75;
+	}
+
+	.calc__big {
+		margin: 0;
+		font-size: clamp(34px, 4.6vw, 56px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.calc__big--accent {
+		color: var(--tertiary);
+	}
+
+	.calc__facts {
+		margin: var(--stack-md) 0;
+		display: grid;
+		gap: 12px;
+	}
+
+	.calc__facts div {
+		padding-top: 12px;
+		border-top: 1px solid rgba(255, 255, 255, 0.16);
+	}
+
+	.calc__facts dt {
+		font-size: 13px;
+		opacity: 0.75;
+	}
+
+	.calc__facts dd {
+		margin: 2px 0 0;
+		font-size: 17px;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.calc__btn {
+		display: inline-block;
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		padding: 14px 24px;
+		border-radius: var(--r);
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
+	}
+
+	.calc__btn:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	.calc__privacy {
+		margin: var(--stack-sm) 0 0;
+		font-size: 13px;
+		opacity: 0.7;
+	}
+
+	.calc__prose {
+		max-width: 760px;
+		font-size: 17px;
+		line-height: 1.75;
+		color: var(--on-surface-variant);
+	}
+
+	.calc__prose h2 {
+		margin: var(--stack-lg) 0 var(--stack-sm);
+		font-size: clamp(24px, 3.2vw, 32px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		color: var(--on-surface);
+	}
+
+	.calc__prose h3 {
+		margin: var(--stack-md) 0 8px;
+		font-size: 19px;
+		font-weight: 700;
+		line-height: 1.3;
+		color: var(--on-surface);
+	}
+
+	.calc__prose p {
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.calc__prose ul,
+	.calc__prose ol {
+		margin: 0 0 var(--stack-sm);
+		padding-left: 22px;
+	}
+
+	.calc__prose li {
+		margin-bottom: 8px;
+	}
+
+	.calc__prose strong {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+
+	.calc__prose a {
+		color: var(--on-surface);
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+	}
+
+	@media (max-width: 900px) {
+		.calc__tool {
+			grid-template-columns: 1fr;
+		}
+
+		.calc__result {
+			position: static;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.calc {
+			padding: 16vh var(--stack-md) var(--stack-lg);
+		}
+
+		.calc__form,
+		.calc__optional {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -3,17 +3,28 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Expertise from "../components/Expertise.astro";
+import HomeContent from "../components/HomeContent.astro";
 import FinalCTA from "../components/FinalCTA.astro";
+import { homeFaq } from "../data/faq";
+import { FOUNDERS } from "../data/site";
+import { faqNode, personNode } from "../lib/schema";
+
+const url = new URL("/", Astro.site).href;
+const schema = [faqNode(url, homeFaq), ...FOUNDERS.map(personNode)];
 ---
 
 <Layout
-	title="RAIL — Ingeniería del futuro"
-	description="Estudiamos cómo trabaja tu empresa y encontramos dónde ahorrar tiempo con IA y automatización. Después construimos la solución que lo hace posible."
+	title="Consultoría de IA y automatización para empresas | RAIL Consulting"
+	description="RAIL Consulting estudia cómo trabaja tu empresa, detecta dónde se pierde tiempo y lo recupera con IA, automatización y software a medida. Sevilla."
+	ogTitle="RAIL Consulting — Ingeniería del futuro"
+	schema={schema}
+	modified="2026-11-12"
 >
 	<Header timeline />
 	<main id="contenido">
 		<Hero />
 		<Expertise />
+		<HomeContent />
 		<FinalCTA />
 	</main>
 </Layout>

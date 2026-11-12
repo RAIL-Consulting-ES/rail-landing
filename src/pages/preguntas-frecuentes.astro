@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ContentPage from "../components/ContentPage.astro";
+import { allFaq, faqGroups } from "../data/faq";
+import { faqNode } from "../lib/schema";
+import { resolveRelated } from "../lib/pages";
+
+const crumbs = [
+	{ name: "Preguntas frecuentes", path: "/preguntas-frecuentes/" },
+];
+const url = new URL("/preguntas-frecuentes/", Astro.site).href;
+const UPDATED = "2026-11-12";
+
+const related = await resolveRelated([
+	"/consultoria-ia/",
+	"/estudio-de-procesos/",
+	"/guias/",
+	"/glosario/",
+]);
+---
+
+<Layout
+	title="Preguntas frecuentes | RAIL Consulting"
+	description="Respuestas directas sobre RAIL Consulting: qué hacemos, cómo trabajamos, cuánto cuesta, cuánto tarda y qué pasa con tus datos."
+	breadcrumbs={crumbs}
+	schema={[faqNode(url, allFaq)]}
+	modified={UPDATED}
+>
+	<Header />
+	<ContentPage
+		crumbs={crumbs}
+		eyebrow="Preguntas frecuentes"
+		h1="Preguntas frecuentes sobre RAIL Consulting"
+		lead="Lo que conviene saber antes de empezar, contestado sin rodeos."
+		answer="RAIL Consulting es una consultora de ingeniería de Sevilla que estudia cómo trabaja una empresa, detecta dónde se pierde tiempo y lo recupera con inteligencia artificial, automatización y software a medida. Trabaja en tres pasos —estudio, diagnóstico y solución— y no presupuesta antes de haber medido el problema."
+		answerLabel="En pocas palabras"
+		updated={UPDATED}
+		toc={faqGroups.map((g) => ({ slug: g.id, text: g.title }))}
+		faq={[]}
+		related={related}
+	>
+		{
+			faqGroups.map((g) => (
+				<>
+					<h2 id={g.id}>{g.title}</h2>
+					{g.items.map((f) => (
+						<>
+							<h3>{f.question}</h3>
+							<p>{f.answer}</p>
+						</>
+					))}
+				</>
+			))
+		}
+	</ContentPage>
+</Layout>

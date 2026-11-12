@@ -1,0 +1,522 @@
+---
+// Contenido de la home bajo el método animado: qué hace RAIL, dónde se pierde
+// el tiempo, sectores, guías y preguntas frecuentes. Es el texto que leen
+// buscadores y asistentes de IA, y enlaza al resto del sitio.
+import { getCollection } from "astro:content";
+import { homeFaq } from "../data/faq";
+import { guidePath, pagePath } from "../lib/pages";
+
+const services = [
+	{
+		tag: "01",
+		title: "Estudio de procesos",
+		copy: "Vemos cómo trabaja tu equipo y medimos cuántas horas consume cada tarea. Sales con un diagnóstico ordenado por tiempo recuperable.",
+		href: "/estudio-de-procesos/",
+	},
+	{
+		tag: "02",
+		title: "Consultoría de IA",
+		copy: "Decidimos contigo dónde aplicar inteligencia artificial, dónde basta una automatización y dónde no compensa tocar nada.",
+		href: "/consultoria-ia/",
+	},
+	{
+		tag: "03",
+		title: "Agentes de IA",
+		copy: "Asistentes que leen el correo, consultan tu programa de gestión y dejan el trabajo preparado para que tú solo revises.",
+		href: "/agentes-de-ia/",
+	},
+	{
+		tag: "04",
+		title: "Automatización y software a medida",
+		copy: "Conectamos tus programas y, si el caso lo pide, construimos el ERP, el CRM o la herramienta que tu proceso necesita.",
+		href: "/soluciones/",
+	},
+];
+
+const leaks = [
+	{
+		title: "Copiar datos de un programa a otro",
+		copy: "Del correo al programa de gestión, de una hoja de cálculo a otra.",
+		href: "/soluciones/integracion-de-sistemas/",
+	},
+	{
+		title: "Teclear facturas, pedidos y albaranes",
+		copy: "Leer un documento y volver a escribir lo que ya pone.",
+		href: "/guias/automatizar-facturas-con-ia/",
+	},
+	{
+		title: "Contestar siempre las mismas preguntas",
+		copy: "Plazos, precios, estado de un pedido, documentación.",
+		href: "/agentes-de-ia/",
+	},
+	{
+		title: "Preparar presupuestos a mano",
+		copy: "Cada uno desde cero, con varias versiones y errores de cálculo.",
+		href: "/sectores/industria-y-fabricacion/",
+	},
+	{
+		title: "Montar el mismo informe cada semana",
+		copy: "Exportar, pegar, cuadrar y enviar. Otra vez.",
+		href: "/soluciones/cuadros-de-mando/",
+	},
+	{
+		title: "Perseguir lo que está pendiente",
+		copy: "Aprobaciones, cobros y respuestas que dependen de que alguien se acuerde.",
+		href: "/soluciones/automatizacion-de-procesos/",
+	},
+];
+
+const sectores = (await getCollection("paginas"))
+	.filter((p) => p.data.kind === "sector")
+	.sort((a, b) => a.data.order - b.data.order);
+
+const guias = (await getCollection("guias"))
+	.sort((a, b) => a.data.order - b.data.order)
+	.slice(0, 3);
+---
+
+<div class="hc">
+	<section class="hc__section hc__intro" aria-labelledby="hc-que">
+		<div class="hc__head">
+			<p class="label-caps hc__eyebrow">Qué hacemos</p>
+			<h2 class="hc__h2" id="hc-que">
+				Consultoría de IA y automatización para empresas
+			</h2>
+		</div>
+		<div class="hc__body">
+			<p class="hc__lead">
+				<strong>RAIL Consulting</strong> es una consultora de ingeniería de
+				Sevilla. Estudiamos cómo trabaja tu empresa, detectamos dónde se
+				pierde tiempo y lo recuperamos con inteligencia artificial,
+				automatización y software a medida.
+			</p>
+			<p class="hc__text">
+				No vendemos una herramienta ni un programa concreto. Vendemos horas
+				de vuelta: las que hoy se van en copiar datos, rehacer documentos y
+				esperar respuestas. Por eso empezamos siempre midiendo, y solo
+				construimos lo que los números justifican.
+			</p>
+		</div>
+	</section>
+
+	<section class="hc__section" aria-label="Servicios">
+		<div class="hc__services">
+			{
+				services.map((s) => (
+					<a class="hc__service" href={s.href}>
+						<span class="label-caps hc__service-tag">{s.tag}</span>
+						<h3 class="hc__service-title">{s.title}</h3>
+						<p class="hc__service-copy">{s.copy}</p>
+						<span class="hc__more">Saber más →</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="hc__section" aria-labelledby="hc-tiempo">
+		<div class="hc__head">
+			<p class="label-caps hc__eyebrow">El problema</p>
+			<h2 class="hc__h2" id="hc-tiempo">
+				Dónde se pierde el tiempo en una empresa
+			</h2>
+			<p class="hc__sub">
+				Son tareas que ya nadie ve porque «siempre se ha hecho así». Sumadas,
+				se llevan jornadas enteras cada semana.
+			</p>
+		</div>
+		<ul class="hc__leaks">
+			{
+				leaks.map((l) => (
+					<li>
+						<a class="hc__leak" href={l.href}>
+							<h3 class="hc__leak-title">{l.title}</h3>
+							<p class="hc__leak-copy">{l.copy}</p>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		<p class="hc__note">
+			¿Quieres la lista completa por departamentos? Está en la guía
+			<a href="/guias/que-procesos-se-pueden-automatizar-en-una-empresa/"
+				>qué procesos se pueden automatizar en una empresa</a
+			>. ¿Prefieres ponerle números? Prueba la
+			<a href="/calculadora-ahorro-automatizacion/">calculadora de ahorro</a>.
+		</p>
+	</section>
+
+	<section class="hc__section" aria-labelledby="hc-sectores">
+		<div class="hc__head">
+			<p class="label-caps hc__eyebrow">Sectores</p>
+			<h2 class="hc__h2" id="hc-sectores">Cada sector pierde el tiempo a su manera</h2>
+		</div>
+		<ul class="hc__chips">
+			{
+				sectores.map((s) => (
+					<li>
+						<a class="hc__chip" href={pagePath(s.id)}>
+							{s.data.short}
+						</a>
+					</li>
+				))
+			}
+			<li>
+				<a class="hc__chip hc__chip--accent" href="/consultoria-ia-sevilla/">
+					Empresas de Sevilla
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<section class="hc__section" aria-labelledby="hc-guias">
+		<div class="hc__head hc__head--row">
+			<div>
+				<p class="label-caps hc__eyebrow">Guías</p>
+				<h2 class="hc__h2" id="hc-guias">Antes de automatizar, lee esto</h2>
+			</div>
+			<a class="hc__all" href="/guias/">Todas las guías →</a>
+		</div>
+		<div class="hc__guides">
+			{
+				guias.map((g) => (
+					<a class="hc__guide" href={guidePath(g.id)}>
+						<h3 class="hc__guide-title">{g.data.h1}</h3>
+						<p class="hc__guide-copy">{g.data.lead}</p>
+						<span class="hc__more">Leer la guía →</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="hc__section" aria-labelledby="hc-faq">
+		<div class="hc__head">
+			<p class="label-caps hc__eyebrow">Preguntas frecuentes</p>
+			<h2 class="hc__h2" id="hc-faq">Lo que conviene saber antes de empezar</h2>
+		</div>
+		<div class="hc__faq">
+			{
+				homeFaq.map((f) => (
+					<div class="hc__faq-item">
+						<h3 class="hc__faq-q">{f.question}</h3>
+						<p class="hc__faq-a">{f.answer}</p>
+					</div>
+				))
+			}
+		</div>
+		<p class="hc__note">
+			Más respuestas en <a href="/preguntas-frecuentes/">preguntas frecuentes</a>
+			y definiciones en el <a href="/glosario/">glosario</a>.
+		</p>
+	</section>
+</div>
+
+<style>
+	.hc {
+		position: relative;
+		z-index: 4;
+		background: var(--surface);
+		padding: var(--stack-lg) var(--margin-edge) calc(var(--stack-lg) * 1.5);
+	}
+
+	.hc__section {
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: var(--stack-lg) 0;
+	}
+
+	.hc__section + .hc__section {
+		border-top: 1px solid var(--outline-variant);
+	}
+
+	.hc__intro {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--stack-lg);
+		align-items: start;
+	}
+
+	.hc__intro + .hc__section {
+		border-top: none;
+		padding-top: 0;
+	}
+
+	.hc__head {
+		max-width: 720px;
+		margin-bottom: var(--stack-md);
+	}
+
+	.hc__intro .hc__head {
+		margin-bottom: 0;
+	}
+
+	.hc__head--row {
+		max-width: none;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: var(--stack-md);
+	}
+
+	.hc__eyebrow {
+		margin: 0 0 var(--stack-sm);
+		color: var(--on-surface-variant);
+	}
+
+	.hc__h2 {
+		margin: 0;
+		font-size: clamp(28px, 4vw, 48px);
+		font-weight: 800;
+		letter-spacing: -0.035em;
+		line-height: 1.06;
+		text-wrap: balance;
+	}
+
+	.hc__sub {
+		margin: var(--stack-sm) 0 0;
+		font-size: 18px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.hc__lead {
+		margin: 0 0 var(--stack-sm);
+		font-size: clamp(18px, 2vw, 22px);
+		line-height: 1.5;
+		letter-spacing: -0.01em;
+	}
+
+	.hc__text {
+		margin: 0;
+		font-size: 17px;
+		line-height: 1.7;
+		color: var(--on-surface-variant);
+	}
+
+	.hc__services {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--stack-sm);
+	}
+
+	.hc__service,
+	.hc__guide {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		height: 100%;
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+		transition:
+			transform 200ms ease,
+			border-color 200ms ease,
+			box-shadow 200ms ease;
+	}
+
+	.hc__service:hover,
+	.hc__guide:hover {
+		transform: translateY(-2px);
+		border-color: var(--tertiary);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+	}
+
+	.hc__service-tag {
+		color: #3d6b2a;
+	}
+
+	.hc__service-title,
+	.hc__guide-title {
+		margin: 0;
+		font-size: 20px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.25;
+	}
+
+	.hc__service-copy,
+	.hc__guide-copy {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.hc__more {
+		margin-top: auto;
+		padding-top: 4px;
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	.hc__leaks {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		border-top: 1px solid var(--outline-variant);
+		border-left: 1px solid var(--outline-variant);
+	}
+
+	.hc__leak {
+		display: block;
+		height: 100%;
+		padding: var(--stack-md);
+		border-right: 1px solid var(--outline-variant);
+		border-bottom: 1px solid var(--outline-variant);
+		transition: background 200ms ease;
+	}
+
+	.hc__leak:hover {
+		background: var(--surface-container-lowest);
+	}
+
+	.hc__leak-title {
+		margin: 0 0 8px;
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		line-height: 1.3;
+	}
+
+	.hc__leak-copy {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.55;
+		color: var(--on-surface-variant);
+	}
+
+	.hc__note {
+		margin: var(--stack-md) 0 0;
+		font-size: 16px;
+		color: var(--on-surface-variant);
+	}
+
+	.hc__note a {
+		color: var(--on-surface);
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+	}
+
+	.hc__chips {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.hc__chip {
+		display: inline-block;
+		padding: 12px 20px;
+		font-size: 16px;
+		font-weight: 600;
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: 999px;
+		transition:
+			border-color 200ms ease,
+			background 200ms ease;
+	}
+
+	.hc__chip:hover {
+		border-color: var(--tertiary);
+	}
+
+	.hc__chip--accent {
+		background: var(--tertiary);
+		border-color: var(--tertiary);
+		color: var(--on-tertiary);
+	}
+
+	.hc__all {
+		flex-shrink: 0;
+		font-weight: 600;
+		font-size: 15px;
+		padding-bottom: 6px;
+	}
+
+	.hc__guides {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--stack-sm);
+	}
+
+	.hc__faq {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--stack-md) var(--stack-lg);
+	}
+
+	.hc__faq-item {
+		padding-top: var(--stack-sm);
+		border-top: 1px solid var(--outline-variant);
+	}
+
+	.hc__faq-q {
+		margin: 0 0 8px;
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		line-height: 1.3;
+	}
+
+	.hc__faq-a {
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.65;
+		color: var(--on-surface-variant);
+	}
+
+	/* Timeline de scroll que usa el tren del header (RailTimeline.astro) */
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.hc {
+				view-timeline: --hc block;
+			}
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.hc__services {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.hc__leaks {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hc {
+			padding: var(--stack-md) var(--stack-md) var(--stack-lg);
+		}
+
+		.hc__section {
+			padding: calc(var(--stack-lg) * 0.75) 0;
+		}
+
+		.hc__intro {
+			grid-template-columns: 1fr;
+			gap: var(--stack-md);
+		}
+
+		.hc__services,
+		.hc__leaks,
+		.hc__guides,
+		.hc__faq {
+			grid-template-columns: 1fr;
+		}
+
+		.hc__head--row {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

@@ -1,0 +1,547 @@
+---
+// Plantilla común de las páginas de contenido (servicios, sectores, guías):
+// migas, cabecera, respuesta directa, cuerpo en Markdown, preguntas frecuentes,
+// enlaces relacionados y llamada final.
+import type { Crumb, Faq } from "../lib/schema";
+import { type PageRef, formatDate } from "../lib/pages";
+
+interface Props {
+	crumbs: Crumb[];
+	eyebrow: string;
+	h1: string;
+	lead: string;
+	answer: string;
+	answerLabel?: string;
+	/** Línea de autoría y fecha (guías). */
+	byline?: { name: string; href: string; published: string; updated: string };
+	updated?: string;
+	toc?: { slug: string; text: string }[];
+	faq: Faq[];
+	related: PageRef[];
+	cta?: { title: string; copy: string; label: string };
+}
+
+const {
+	crumbs,
+	eyebrow,
+	h1,
+	lead,
+	answer,
+	answerLabel = "En pocas palabras",
+	byline,
+	updated,
+	toc = [],
+	faq,
+	related,
+	cta = {
+		title: "¿Dónde pierde tiempo tu empresa?",
+		copy: "Cuéntanos cómo trabajáis y te decimos, con números, qué merece la pena automatizar y qué no.",
+		label: "Hablemos",
+	},
+} = Astro.props;
+
+const groupLabel: Record<PageRef["group"], string> = {
+	servicio: "Servicio",
+	sector: "Sector",
+	local: "Sevilla",
+	solucion: "Solución",
+	guia: "Guía",
+	base: "RAIL",
+};
+---
+
+<main id="contenido" class="cp">
+	<nav class="cp__crumbs" aria-label="Migas de pan">
+		<a href="/">Inicio</a>
+		{
+			crumbs.map((c, i) => (
+				<>
+					<span aria-hidden="true">/</span>
+					{i === crumbs.length - 1 ? (
+						<span class="cp__crumb-current" aria-current="page">
+							{c.name}
+						</span>
+					) : (
+						<a href={c.path}>{c.name}</a>
+					)}
+				</>
+			))
+		}
+	</nav>
+
+	<header class="cp__hero">
+		<p class="label-caps cp__eyebrow">{eyebrow}</p>
+		<h1 class="cp__title">{h1}</h1>
+		<p class="cp__lead">{lead}</p>
+		{
+			byline && (
+				<p class="cp__byline">
+					Por <a href={byline.href}>{byline.name}</a> · Publicado el{" "}
+					<time datetime={byline.published}>{formatDate(byline.published)}</time>
+					{byline.updated !== byline.published && (
+						<>
+							{" "}
+							· Actualizado el{" "}
+							<time datetime={byline.updated}>{formatDate(byline.updated)}</time>
+						</>
+					)}
+				</p>
+			)
+		}
+		{
+			!byline && (
+				<a href="/contacto/" class="cp__btn label-caps">
+					Cuéntanos tu caso
+				</a>
+			)
+		}
+	</header>
+
+	<section class="cp__answer" aria-label={answerLabel}>
+		<p class="label-caps cp__answer-label">{answerLabel}</p>
+		<p class="cp__answer-text">{answer}</p>
+	</section>
+
+	{
+		toc.length > 2 && (
+			<nav class="cp__toc" aria-label="Contenido de la página">
+				<p class="label-caps cp__toc-label">En esta página</p>
+				<ol>
+					{toc.map((t) => (
+						<li>
+							<a href={`#${t.slug}`}>{t.text}</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+		)
+	}
+
+	<article class="cp__prose">
+		<slot />
+	</article>
+
+	{
+		faq.length > 0 && (
+			<section class="cp__section" aria-labelledby="faq-title">
+				<h2 class="cp__h2" id="faq-title">
+					Preguntas frecuentes
+				</h2>
+				<div class="cp__faq">
+					{faq.map((f) => (
+						<div class="cp__faq-item">
+							<h3 class="cp__faq-q">{f.question}</h3>
+							<p class="cp__faq-a">{f.answer}</p>
+						</div>
+					))}
+				</div>
+			</section>
+		)
+	}
+
+	{
+		related.length > 0 && (
+			<section class="cp__section" aria-labelledby="rel-title">
+				<h2 class="cp__h2" id="rel-title">
+					Sigue leyendo
+				</h2>
+				<div class="cp__related">
+					{related.map((r) => (
+						<a class="cp__card" href={r.path}>
+							<span class="label-caps cp__card-tag">{groupLabel[r.group]}</span>
+							<span class="cp__card-title">{r.title}</span>
+							<span class="cp__card-copy">{r.description}</span>
+						</a>
+					))}
+				</div>
+			</section>
+		)
+	}
+
+	<section class="cp__final">
+		<h2 class="cp__final-title">{cta.title}</h2>
+		<p class="cp__final-copy">{cta.copy}</p>
+		<a href="/contacto/" class="cp__btn label-caps">{cta.label}</a>
+	</section>
+
+	{
+		updated && (
+			<p class="cp__updated">
+				Última revisión: <time datetime={updated}>{formatDate(updated)}</time> ·{" "}
+				<a href="/nosotros/">RAIL Consulting</a>, Sevilla.
+			</p>
+		)
+	}
+</main>
+
+<style>
+	.cp {
+		max-width: 880px;
+		margin: 0 auto;
+		padding: 18vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.cp__crumbs {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: var(--stack-lg);
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	.cp__crumbs a {
+		transition: color 200ms ease;
+	}
+
+	.cp__crumbs a:hover {
+		color: var(--on-surface);
+	}
+
+	.cp__crumb-current {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+
+	.cp__hero {
+		margin-bottom: var(--stack-lg);
+	}
+
+	.cp__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.cp__title {
+		margin: 0 0 var(--stack-sm);
+		font-size: clamp(34px, 5.2vw, 58px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-wrap: balance;
+	}
+
+	.cp__lead {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(17px, 2vw, 21px);
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+		max-width: 62ch;
+	}
+
+	.cp__byline {
+		margin: 0;
+		font-size: 14px;
+		color: var(--on-surface-variant);
+	}
+
+	.cp__byline a {
+		color: var(--on-surface);
+		font-weight: 600;
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-underline-offset: 3px;
+	}
+
+	.cp__btn {
+		display: inline-block;
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		padding: 14px 24px;
+		border-radius: var(--r);
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
+	}
+
+	.cp__btn:hover {
+		transform: scale(1.02);
+		filter: brightness(0.97);
+	}
+
+	.cp__answer {
+		padding: var(--stack-md);
+		margin-bottom: var(--stack-lg);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-left: 3px solid var(--tertiary);
+		border-radius: var(--r-lg);
+	}
+
+	.cp__answer-label {
+		margin: 0 0 12px;
+		color: #3d6b2a;
+	}
+
+	.cp__answer-text {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 19px);
+		line-height: 1.65;
+	}
+
+	.cp__toc {
+		margin-bottom: var(--stack-lg);
+		padding: var(--stack-md);
+		background: var(--surface-container-low);
+		border-radius: var(--r-lg);
+	}
+
+	.cp__toc-label {
+		margin: 0 0 12px;
+		color: var(--on-surface-variant);
+	}
+
+	.cp__toc ol {
+		margin: 0;
+		padding-left: 20px;
+		display: grid;
+		gap: 6px;
+		font-size: 15px;
+	}
+
+	.cp__toc a:hover {
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-underline-offset: 3px;
+	}
+
+	/* Cuerpo en Markdown */
+	.cp__prose {
+		margin-bottom: var(--stack-lg);
+		font-size: 17px;
+		line-height: 1.75;
+		color: var(--on-surface-variant);
+	}
+
+	.cp__prose :global(h2) {
+		margin: var(--stack-lg) 0 var(--stack-sm);
+		font-size: clamp(24px, 3.2vw, 32px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		color: var(--on-surface);
+		scroll-margin-top: 110px;
+		text-wrap: balance;
+	}
+
+	.cp__prose :global(h2:first-child) {
+		margin-top: 0;
+	}
+
+	.cp__prose :global(h3) {
+		margin: var(--stack-md) 0 8px;
+		font-size: 20px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		line-height: 1.3;
+		color: var(--on-surface);
+		scroll-margin-top: 110px;
+	}
+
+	.cp__prose :global(p) {
+		margin: 0 0 var(--stack-sm);
+		max-width: 70ch;
+	}
+
+	.cp__prose :global(strong) {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+
+	.cp__prose :global(a) {
+		color: var(--on-surface);
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+	}
+
+	.cp__prose :global(a:hover) {
+		text-decoration-color: var(--on-surface);
+	}
+
+	.cp__prose :global(ul),
+	.cp__prose :global(ol) {
+		margin: 0 0 var(--stack-sm);
+		padding-left: 22px;
+		max-width: 70ch;
+	}
+
+	.cp__prose :global(li) {
+		margin-bottom: 8px;
+	}
+
+	.cp__prose :global(li::marker) {
+		color: var(--on-tertiary-container);
+		font-weight: 700;
+	}
+
+	.cp__prose :global(blockquote) {
+		margin: var(--stack-md) 0;
+		padding: var(--stack-sm) var(--stack-md);
+		background: var(--surface-container-low);
+		border-left: 3px solid var(--tertiary);
+		border-radius: var(--r-lg);
+		color: var(--on-surface);
+	}
+
+	.cp__prose :global(blockquote p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.cp__prose :global(table) {
+		display: block;
+		width: 100%;
+		margin: var(--stack-md) 0;
+		overflow-x: auto;
+		border-collapse: collapse;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.cp__prose :global(th),
+	.cp__prose :global(td) {
+		padding: 12px 14px;
+		text-align: left;
+		vertical-align: top;
+		border-bottom: 1px solid var(--outline-variant);
+		min-width: 140px;
+	}
+
+	.cp__prose :global(th) {
+		font-weight: 700;
+		color: var(--on-surface);
+		background: var(--surface-container-low);
+		white-space: nowrap;
+	}
+
+	.cp__prose :global(code) {
+		padding: 2px 6px;
+		font-size: 0.9em;
+		background: var(--surface-container);
+		border-radius: var(--r);
+	}
+
+	.cp__section {
+		margin-bottom: var(--stack-lg);
+	}
+
+	.cp__h2 {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(24px, 3.2vw, 32px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+	}
+
+	.cp__faq {
+		display: flex;
+		flex-direction: column;
+		gap: var(--stack-md);
+	}
+
+	.cp__faq-item {
+		padding-bottom: var(--stack-md);
+		border-bottom: 1px solid var(--outline-variant);
+	}
+
+	.cp__faq-q {
+		margin: 0 0 8px;
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+	}
+
+	.cp__faq-a {
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.7;
+		color: var(--on-surface-variant);
+		max-width: 70ch;
+	}
+
+	.cp__related {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: var(--stack-sm);
+	}
+
+	.cp__card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-lg);
+		transition:
+			transform 200ms ease,
+			border-color 200ms ease;
+	}
+
+	.cp__card:hover {
+		transform: translateY(-2px);
+		border-color: var(--tertiary);
+	}
+
+	.cp__card-tag {
+		color: #3d6b2a;
+	}
+
+	.cp__card-title {
+		font-size: 17px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		line-height: 1.3;
+	}
+
+	.cp__card-copy {
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+	}
+
+	.cp__final {
+		text-align: center;
+		padding: var(--stack-lg) var(--stack-md);
+		margin: var(--stack-lg) 0 var(--stack-md);
+		background: var(--inverse-surface);
+		border-radius: var(--r-xl);
+	}
+
+	.cp__final-title {
+		margin: 0 0 var(--stack-sm);
+		font-size: clamp(26px, 4vw, 38px);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--inverse-on-surface);
+		text-wrap: balance;
+	}
+
+	.cp__final-copy {
+		margin: 0 auto var(--stack-md);
+		max-width: 52ch;
+		font-size: 17px;
+		line-height: 1.6;
+		color: var(--inverse-on-surface);
+		opacity: 0.85;
+	}
+
+	.cp__updated {
+		margin: 0;
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	.cp__updated a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	@media (max-width: 768px) {
+		.cp {
+			padding: 16vh var(--stack-md) var(--stack-lg);
+		}
+	}
+</style>

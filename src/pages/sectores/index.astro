@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import IndexPage from "../../components/IndexPage.astro";
+import { pagePath } from "../../lib/pages";
+
+const sectores = (await getCollection("paginas"))
+	.filter((p) => p.data.kind === "sector")
+	.sort((a, b) => a.data.order - b.data.order);
+const crumbs = [{ name: "Sectores", path: "/sectores/" }];
+---
+
+<Layout
+	title="IA y automatización por sectores | RAIL Consulting"
+	description="Dónde se pierde el tiempo en cada sector y qué se puede automatizar con IA: asesorías, despachos, inmobiliarias, industria, distribución e instaladores."
+	breadcrumbs={crumbs}
+	pageType="CollectionPage"
+	modified="2026-11-12"
+>
+	<Header />
+	<IndexPage
+		crumbs={crumbs}
+		eyebrow="Sectores"
+		h1="Dónde se pierde el tiempo en cada sector"
+		lead="Cada sector tiene sus tareas repetitivas. Estas son las que más horas consumen en cada uno y lo que hoy se puede hacer con IA y automatización para recuperarlas."
+		items={sectores.map((s) => ({
+			path: pagePath(s.id),
+			title: s.data.short,
+			description: s.data.lead,
+			tag: "Sector",
+		}))}
+		more="Ver el sector"
+	>
+		<h2>¿Tu sector no está en la lista?</h2>
+		<p>
+			El método es el mismo en cualquier empresa: estudiar cómo se trabaja,
+			medir dónde se va el tiempo y automatizar lo que compensa. Lo
+			explicamos en el <a href="/estudio-de-procesos/">estudio de procesos</a>.
+			Si quieres saber si tiene sentido en tu caso,
+			<a href="/contacto/">escríbenos</a>.
+		</p>
+	</IndexPage>
+</Layout>

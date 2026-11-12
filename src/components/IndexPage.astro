@@ -1,0 +1,204 @@
+---
+// Página de listado (guías, sectores): cabecera, tarjetas enlazadas y un
+// bloque opcional de texto debajo.
+import type { Crumb } from "../lib/schema";
+
+interface Item {
+	path: string;
+	title: string;
+	description: string;
+	tag?: string;
+}
+
+interface Props {
+	crumbs: Crumb[];
+	eyebrow: string;
+	h1: string;
+	lead: string;
+	items: Item[];
+	more?: string;
+}
+
+const { crumbs, eyebrow, h1, lead, items, more = "Leer" } = Astro.props;
+---
+
+<main id="contenido" class="ip">
+	<nav class="ip__crumbs" aria-label="Migas de pan">
+		<a href="/">Inicio</a>
+		{
+			crumbs.map((c) => (
+				<>
+					<span aria-hidden="true">/</span>
+					<span class="ip__crumb-current" aria-current="page">
+						{c.name}
+					</span>
+				</>
+			))
+		}
+	</nav>
+
+	<header class="ip__intro">
+		<p class="label-caps ip__eyebrow">{eyebrow}</p>
+		<h1 class="ip__title">{h1}</h1>
+		<p class="ip__lead">{lead}</p>
+	</header>
+
+	<section class="ip__grid" aria-label={eyebrow}>
+		{
+			items.map((it) => (
+				<a class="ip__card" href={it.path}>
+					{it.tag && <span class="label-caps ip__tag">{it.tag}</span>}
+					<h2 class="ip__card-title">{it.title}</h2>
+					<p class="ip__card-copy">{it.description}</p>
+					<span class="ip__more">{more} →</span>
+				</a>
+			))
+		}
+	</section>
+
+	<div class="ip__extra">
+		<slot />
+	</div>
+</main>
+
+<style>
+	.ip {
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: 18vh var(--margin-edge) var(--stack-lg);
+	}
+
+	.ip__crumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: var(--stack-lg);
+		font-size: 13px;
+		color: var(--on-surface-variant);
+	}
+
+	.ip__crumbs a:hover {
+		color: var(--on-surface);
+	}
+
+	.ip__crumb-current {
+		color: var(--on-surface);
+		font-weight: 600;
+	}
+
+	.ip__intro {
+		max-width: 760px;
+		margin-bottom: var(--stack-lg);
+	}
+
+	.ip__eyebrow {
+		color: var(--on-surface-variant);
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.ip__title {
+		margin: 0 0 var(--stack-md);
+		font-size: clamp(36px, 5.5vw, 64px);
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		line-height: 1.04;
+		text-wrap: balance;
+	}
+
+	.ip__lead {
+		margin: 0;
+		font-size: clamp(17px, 2vw, 20px);
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.ip__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: var(--stack-md);
+	}
+
+	.ip__card {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding: var(--stack-md);
+		background: var(--surface-container-lowest);
+		border: 1px solid var(--outline-variant);
+		border-radius: var(--r-xl);
+		transition:
+			transform 200ms ease,
+			border-color 200ms ease,
+			box-shadow 200ms ease;
+	}
+
+	.ip__card:hover {
+		transform: translateY(-2px);
+		border-color: var(--tertiary);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+	}
+
+	.ip__tag {
+		color: #3d6b2a;
+	}
+
+	.ip__card-title {
+		margin: 0;
+		font-size: 21px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.25;
+	}
+
+	.ip__card-copy {
+		margin: 0;
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--on-surface-variant);
+	}
+
+	.ip__more {
+		margin-top: auto;
+		font-weight: 600;
+		font-size: 14px;
+	}
+
+	.ip__extra {
+		max-width: 760px;
+		margin-top: var(--stack-lg);
+		font-size: 17px;
+		line-height: 1.75;
+		color: var(--on-surface-variant);
+	}
+
+	.ip__extra :global(h2) {
+		margin: 0 0 var(--stack-sm);
+		font-size: clamp(24px, 3.2vw, 32px);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		color: var(--on-surface);
+	}
+
+	.ip__extra :global(p) {
+		margin: 0 0 var(--stack-sm);
+	}
+
+	.ip__extra :global(a) {
+		color: var(--on-surface);
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+	}
+
+	@media (max-width: 768px) {
+		.ip {
+			padding: 16vh var(--stack-md) var(--stack-lg);
+		}
+
+		.ip__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

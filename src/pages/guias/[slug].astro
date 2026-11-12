@@ -1,0 +1,81 @@
+---
+// Guías (colección `guias`): artículo con autoría, fechas y datos Article.
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import ContentPage from "../../components/ContentPage.astro";
+import { FOUNDERS } from "../../data/site";
+import { articleNode, faqNode, personNode } from "../../lib/schema";
+import { guidePath, resolveRelated } from "../../lib/pages";
+
+export async function getStaticPaths() {
+	const guias = await getCollection("guias");
+	return guias.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content, headings } = await render(entry);
+
+const path = guidePath(entry.id);
+const url = new URL(path, Astro.site).href;
+const author = FOUNDERS.find((f) => f.id === d.author)!;
+const crumbs = [
+	{ name: "Guías", path: "/guias/" },
+	{ name: d.short, path },
+];
+
+const schema = [
+	articleNode({
+		url,
+		headline: d.h1,
+		description: d.description,
+		published: d.published,
+		modified: d.updated,
+		authorId: d.author,
+		keywords: d.keywords,
+	}),
+	personNode(author),
+	...(d.faq.length ? [faqNode(url, d.faq)] : []),
+];
+
+const related = await resolveRelated(d.related);
+const toc = headings
+	.filter((h) => h.depth === 2)
+	.map((h) => ({ slug: h.slug, text: h.text }));
+---
+
+<Layout
+	title={d.title}
+	description={d.description}
+	breadcrumbs={crumbs}
+	schema={schema}
+	published={d.published}
+	modified={d.updated}
+	ogType="article"
+	markdown={`/guias/${entry.id}.md`}
+>
+	<Header />
+	<ContentPage
+		crumbs={crumbs}
+		eyebrow="Guía"
+		h1={d.h1}
+		lead={d.lead}
+		answer={d.answer}
+		answerLabel="Respuesta corta"
+		byline={{
+			name: author.name,
+			href: `/nosotros/#${author.id}`,
+			published: d.published,
+			updated: d.updated,
+		}}
+		toc={toc}
+		faq={d.faq}
+		related={related}
+	>
+		<Content />
+	</ContentPage>
+</Layout>
