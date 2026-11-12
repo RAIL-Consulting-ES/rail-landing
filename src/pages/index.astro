@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Expertise from "../components/Expertise.astro";
-import Solutions from "../components/Solutions.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 ---
 
@@ -11,17 +10,10 @@ import FinalCTA from "../components/FinalCTA.astro";
 	title="RAIL — Ingeniería del futuro"
 	description="Estudiamos cómo trabaja tu empresa y encontramos dónde ahorrar tiempo con IA y automatización. Después construimos la solución que lo hace posible."
 >
-	<Header />
+	<Header timeline />
 	<main id="contenido">
 		<Hero />
 		<Expertise />
-		<Solutions />
 		<FinalCTA />
 	</main>
 </Layout>
-
-<script>
-	import "../scripts/hero.ts";
-	import "../scripts/expertise.ts";
-	import "../scripts/solutions.ts";
-</script>

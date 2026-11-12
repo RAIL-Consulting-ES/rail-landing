@@ -3,7 +3,6 @@
 
 <section class="hero" id="hero">
 	<div class="hero__inner">
-		<div class="hero__glow" aria-hidden="true"></div>
 		<h1 class="hero__title" aria-label="RAIL">
 			<span class="letter letter--r">R</span><span class="letter letter--a"
 				>A</span
@@ -21,7 +20,7 @@
 <style>
 	.hero {
 		position: relative;
-		height: 300vh;
+		height: 100vh;
 		background: var(--surface);
 	}
 
@@ -34,27 +33,6 @@
 		align-items: center;
 		justify-content: center;
 		overflow: hidden;
-	}
-
-	.hero__glow {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		background:
-			radial-gradient(
-				ellipse 60% 50% at 50% 50%,
-				rgba(255, 255, 255, 1) 0%,
-				rgba(255, 255, 255, 0.6) 25%,
-				rgba(147, 197, 114, 0.06) 55%,
-				transparent 75%
-			),
-			radial-gradient(
-				ellipse 80% 60% at 50% 60%,
-				rgba(226, 226, 226, 0.5) 0%,
-				transparent 70%
-			);
-		filter: blur(20px);
-		z-index: 0;
 	}
 
 	.hero__title {
@@ -110,5 +88,105 @@
 
 	.sub--2 {
 		opacity: 0;
+	}
+
+	/* Scroll-driven: progreso 0–100 % = #hero de "top top" a "bottom bottom".
+	   Easings exactos: power1 = cubic-bezier(1/3,0,2/3,1/3) in / (1/3,2/3,2/3,1) out;
+	   power2.in = cubic-bezier(1/3,0,2/3,0).
+	   Distancias de salida: borde de la letra 80px fuera del viewport; los em son
+	   los anchos de avance de Inter 800 (R .6221, A .7297, I .2456, L .5255). */
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.hero {
+				height: 300vh;
+				view-timeline: --hero block;
+			}
+
+			.letter,
+			.sub {
+				animation-timing-function: linear;
+				animation-fill-mode: both;
+				animation-timeline: --hero;
+				animation-range: contain 0% contain 100%;
+			}
+
+			.letter--r {
+				--exit: calc(-50vw + 0.4394em - 80px);
+				animation-name: hero-exit-1;
+			}
+			.letter--l {
+				--exit: calc(50vw - 0.536em + 80px);
+				animation-name: hero-exit-1;
+			}
+			.letter--a {
+				--exit: calc(-50vw - 0.2904em - 80px);
+				animation-name: hero-exit-2;
+			}
+			.letter--i {
+				--exit: calc(50vw - 0.2904em + 80px);
+				animation-name: hero-exit-2;
+			}
+			.sub--1 {
+				animation-name: hero-sub-1;
+			}
+			.sub--2 {
+				animation-name: hero-sub-2;
+			}
+		}
+	}
+
+	@keyframes hero-exit-1 {
+		0% {
+			translate: 0;
+			opacity: 1;
+			animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0);
+		}
+		47.62%,
+		100% {
+			translate: var(--exit);
+			opacity: 0;
+		}
+	}
+
+	@keyframes hero-exit-2 {
+		0%,
+		47.62% {
+			translate: 0;
+			opacity: 1;
+			animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0);
+		}
+		95.24%,
+		100% {
+			translate: var(--exit);
+			opacity: 0;
+		}
+	}
+
+	@keyframes hero-sub-1 {
+		0%,
+		4.76% {
+			opacity: 1;
+			animation-timing-function: cubic-bezier(0.3333, 0.6667, 0.6667, 1);
+		}
+		52.38%,
+		100% {
+			opacity: 0;
+		}
+	}
+
+	/* Pico 0.49: en GSAP el fundido de salida arranca antes de que acabe el de entrada. */
+	@keyframes hero-sub-2 {
+		0%,
+		19.05% {
+			opacity: 0;
+			animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0.3333);
+		}
+		52.38% {
+			opacity: 0.49;
+			animation-timing-function: cubic-bezier(0.3333, 0.6667, 0.6667, 1);
+		}
+		100% {
+			opacity: 0;
+		}
 	}
 </style>

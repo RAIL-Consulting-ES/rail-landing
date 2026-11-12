@@ -73,4 +73,13 @@
 			padding: var(--stack-lg) var(--stack-md);
 		}
 	}
+
+	/* Timeline de scroll que usa el tren del header (RailTimeline.astro) */
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.final-cta {
+				view-timeline: --cta block;
+			}
+		}
+	}
 </style>
