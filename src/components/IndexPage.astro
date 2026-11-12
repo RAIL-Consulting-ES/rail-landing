@@ -1,204 +1,273 @@
 ---
-// Página de listado (guías, sectores): cabecera, tarjetas enlazadas y un
-// bloque opcional de texto debajo.
+// Página de listado (guías, sectores): cada elemento es una parada de la
+// misma línea, con el título a un lado y de qué trata al otro.
+import FinalCTA from "./FinalCTA.astro";
 import type { Crumb } from "../lib/schema";
 
 interface Item {
 	path: string;
 	title: string;
 	description: string;
-	tag?: string;
 }
 
 interface Props {
 	crumbs: Crumb[];
-	eyebrow: string;
 	h1: string;
 	lead: string;
 	items: Item[];
-	more?: string;
 }
 
-const { crumbs, eyebrow, h1, lead, items, more = "Leer" } = Astro.props;
+const { crumbs, h1, lead, items } = Astro.props;
 ---
 
 <main id="contenido" class="ip">
-	<nav class="ip__crumbs" aria-label="Migas de pan">
-		<a href="/">Inicio</a>
-		{
-			crumbs.map((c) => (
-				<>
-					<span aria-hidden="true">/</span>
-					<span class="ip__crumb-current" aria-current="page">
-						{c.name}
-					</span>
-				</>
-			))
-		}
-	</nav>
-
-	<header class="ip__intro">
-		<p class="label-caps ip__eyebrow">{eyebrow}</p>
+	<header class="ip__head">
+		<nav class="ip__crumbs label-caps" aria-label="Migas de pan">
+			<a href="/">Inicio</a>
+			{
+				crumbs.map((c) => (
+					<>
+						<span aria-hidden="true">/</span>
+						<span aria-current="page">{c.name}</span>
+					</>
+				))
+			}
+		</nav>
 		<h1 class="ip__title">{h1}</h1>
 		<p class="ip__lead">{lead}</p>
 	</header>
 
-	<section class="ip__grid" aria-label={eyebrow}>
+	<ol class="ip__list">
 		{
 			items.map((it) => (
-				<a class="ip__card" href={it.path}>
-					{it.tag && <span class="label-caps ip__tag">{it.tag}</span>}
-					<h2 class="ip__card-title">{it.title}</h2>
-					<p class="ip__card-copy">{it.description}</p>
-					<span class="ip__more">{more} →</span>
-				</a>
+				<li>
+					<a class="ip__stop" href={it.path}>
+						<h2 class="ip__stop-title">{it.title}</h2>
+						<p class="ip__stop-copy">{it.description}</p>
+						<svg viewBox="0 0 20 12" aria-hidden="true">
+							<path d="M0 6h18M13 1l5 5-5 5" />
+						</svg>
+					</a>
+				</li>
 			))
 		}
-	</section>
+	</ol>
 
 	<div class="ip__extra">
 		<slot />
 	</div>
 </main>
 
+<FinalCTA />
+
 <style>
 	.ip {
-		max-width: 1120px;
+		max-width: 1200px;
 		margin: 0 auto;
-		padding: 18vh var(--margin-edge) var(--stack-lg);
+		padding: 168px var(--margin-edge) 120px;
 	}
 
 	.ip__crumbs {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 8px;
-		margin-bottom: var(--stack-lg);
-		font-size: 13px;
+		gap: 10px;
+		line-height: 1.5;
 		color: var(--on-surface-variant);
 	}
 
-	.ip__crumbs a:hover {
+	.ip__crumbs a {
+		transition: color 160ms ease-out;
+	}
+
+	.ip__crumbs a:hover,
+	.ip__crumbs [aria-current] {
 		color: var(--on-surface);
-	}
-
-	.ip__crumb-current {
-		color: var(--on-surface);
-		font-weight: 600;
-	}
-
-	.ip__intro {
-		max-width: 760px;
-		margin-bottom: var(--stack-lg);
-	}
-
-	.ip__eyebrow {
-		color: var(--on-surface-variant);
-		margin: 0 0 var(--stack-sm);
 	}
 
 	.ip__title {
-		margin: 0 0 var(--stack-md);
-		font-size: clamp(36px, 5.5vw, 64px);
+		margin: var(--stack-md) 0 0;
+		max-width: 18ch;
+		font-size: clamp(40px, 6.2vw, 80px);
 		font-weight: 800;
 		letter-spacing: -0.04em;
-		line-height: 1.04;
+		line-height: 1.02;
 		text-wrap: balance;
 	}
 
 	.ip__lead {
-		margin: 0;
-		font-size: clamp(17px, 2vw, 20px);
-		line-height: 1.6;
+		margin: var(--stack-md) 0 0;
+		max-width: 52ch;
+		font-size: clamp(18px, 1.7vw, 20px);
+		line-height: 1.55;
 		color: var(--on-surface-variant);
+		text-wrap: pretty;
 	}
 
-	.ip__grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: var(--stack-md);
+	/* La lista cuelga de una línea vertical; cada fila es una estación. */
+	.ip__list {
+		list-style: none;
+		margin: var(--stack-lg) 0 0;
+		padding: 0;
+		border-top: 2px solid var(--on-surface);
 	}
 
-	.ip__card {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		padding: var(--stack-md);
-		background: var(--surface-container-lowest);
-		border: 1px solid var(--outline-variant);
-		border-radius: var(--r-xl);
+	.ip__list li {
+		position: relative;
+		border-bottom: 1px solid var(--outline-variant);
+	}
+
+	.ip__list li::before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		top: 43px;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--surface);
+		border: 2px solid var(--outline-variant);
 		transition:
-			transform 200ms ease,
-			border-color 200ms ease,
-			box-shadow 200ms ease;
+			background 200ms ease-out,
+			border-color 200ms ease-out;
 	}
 
-	.ip__card:hover {
-		transform: translateY(-2px);
+	.ip__list li::after {
+		content: "";
+		position: absolute;
+		left: 4px;
+		top: 0;
+		bottom: -1px;
+		width: 2px;
+		background: var(--outline-variant);
+	}
+
+	.ip__list li:first-child::after {
+		top: 48px;
+	}
+
+	.ip__list li:last-child::after {
+		bottom: auto;
+		height: 48px;
+	}
+
+	.ip__list li:hover::before,
+	.ip__list li:focus-within::before {
+		background: var(--tertiary);
 		border-color: var(--tertiary);
-		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 	}
 
-	.ip__tag {
-		color: #3d6b2a;
+	.ip__stop {
+		display: grid;
+		grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) 20px;
+		column-gap: var(--stack-lg);
+		align-items: baseline;
+		padding: 32px 0 32px 40px;
 	}
 
-	.ip__card-title {
+	.ip__stop-title {
 		margin: 0;
-		font-size: 21px;
+		font-size: clamp(22px, 2.4vw, 32px);
 		font-weight: 700;
-		letter-spacing: -0.02em;
-		line-height: 1.25;
+		letter-spacing: -0.025em;
+		line-height: 1.15;
+		text-wrap: balance;
 	}
 
-	.ip__card-copy {
+	.ip__stop-copy {
 		margin: 0;
-		font-size: 15px;
+		font-size: 16px;
 		line-height: 1.6;
 		color: var(--on-surface-variant);
+		text-wrap: pretty;
 	}
 
-	.ip__more {
-		margin-top: auto;
-		font-weight: 600;
-		font-size: 14px;
+	.ip__stop svg {
+		width: 20px;
+		height: 12px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.5;
+		transition: translate 200ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.ip__stop:hover svg {
+		translate: 4px 0;
 	}
 
 	.ip__extra {
-		max-width: 760px;
-		margin-top: var(--stack-lg);
-		font-size: 17px;
-		line-height: 1.75;
-		color: var(--on-surface-variant);
+		max-width: 680px;
+		margin-top: 96px;
+		font-size: 18px;
+		line-height: 1.7;
 	}
 
 	.ip__extra :global(h2) {
 		margin: 0 0 var(--stack-sm);
-		font-size: clamp(24px, 3.2vw, 32px);
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		line-height: 1.15;
-		color: var(--on-surface);
+		font-size: clamp(26px, 3vw, 32px);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		line-height: 1.12;
 	}
 
 	.ip__extra :global(p) {
 		margin: 0 0 var(--stack-sm);
+		max-width: 64ch;
 	}
 
 	.ip__extra :global(a) {
-		color: var(--on-surface);
 		text-decoration: underline;
 		text-decoration-color: var(--tertiary);
 		text-decoration-thickness: 2px;
 		text-underline-offset: 3px;
 	}
 
-	@media (max-width: 768px) {
-		.ip {
-			padding: 16vh var(--stack-md) var(--stack-lg);
+	@media (max-width: 900px) {
+		.ip__stop {
+			grid-template-columns: minmax(0, 1fr) 20px;
+			column-gap: var(--stack-sm);
+			row-gap: 10px;
+			padding: 28px 0 28px 32px;
 		}
 
-		.ip__grid {
-			grid-template-columns: 1fr;
+		.ip__stop-title {
+			grid-column: 1;
+		}
+
+		.ip__stop-copy {
+			grid-column: 1;
+			grid-row: 2;
+		}
+
+		.ip__stop svg {
+			grid-column: 2;
+			grid-row: 1;
+			align-self: center;
+		}
+
+		.ip__list li::before {
+			top: 36px;
+		}
+
+		.ip__list li:first-child::after {
+			top: 41px;
+		}
+
+		.ip__list li:last-child::after {
+			height: 41px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.ip {
+			padding: 128px var(--stack-md) var(--stack-lg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ip__list li::before,
+		.ip__stop svg {
+			transition: none;
 		}
 	}
 </style>

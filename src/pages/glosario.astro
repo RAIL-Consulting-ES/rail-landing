@@ -25,6 +25,13 @@ const schema = [
 	},
 ];
 
+// Una estación por letra inicial, enlazada al primer término de esa letra.
+const strip = (t: string) =>
+	t.normalize("NFD").replace(/[\u0300-\u036f]/g, "")[0].toUpperCase();
+const toc = glosario
+	.filter((t, i) => i === 0 || strip(t.term) !== strip(glosario[i - 1].term))
+	.map((t) => ({ slug: t.id, text: strip(t.term) }));
+
 const related = await resolveRelated([
 	"/guias/automatizacion-rpa-o-agentes-de-ia/",
 	"/guias/que-procesos-se-pueden-automatizar-en-una-empresa/",
@@ -43,12 +50,10 @@ const related = await resolveRelated([
 	<Header />
 	<ContentPage
 		crumbs={crumbs}
-		eyebrow="Glosario"
 		h1="Glosario de IA y automatización para empresas"
-		lead="Los términos que aparecen en cualquier conversación sobre inteligencia artificial y automatización, explicados sin jerga y en orden alfabético."
 		answer={`Este glosario reúne ${glosario.length} términos de inteligencia artificial, automatización de procesos y software de gestión, cada uno definido en una o dos frases pensadas para quien dirige una empresa y no para quien programa.`}
-		answerLabel="Qué es este glosario"
 		updated={UPDATED}
+		toc={toc}
 		faq={[]}
 		related={related}
 	>
@@ -75,17 +80,14 @@ const related = await resolveRelated([
 
 <style>
 	.glos {
-		margin: 0;
+		margin: var(--stack-lg) 0 0;
+		border-top: 1px solid var(--outline-variant);
 	}
 
 	.glos__item {
 		padding: var(--stack-md) 0;
 		border-bottom: 1px solid var(--outline-variant);
 		scroll-margin-top: 110px;
-	}
-
-	.glos__item:first-child {
-		padding-top: 0;
 	}
 
 	.glos__term {
@@ -98,6 +100,6 @@ const related = await resolveRelated([
 
 	.glos__def {
 		margin: 0;
-		max-width: 70ch;
+		max-width: 64ch;
 	}
 </style>

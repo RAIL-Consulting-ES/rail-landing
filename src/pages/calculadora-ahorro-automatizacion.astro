@@ -3,6 +3,7 @@
 // cálculo ocurre en el navegador; no se envía ningún dato.
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import FinalCTA from "../components/FinalCTA.astro";
 import { faqNode } from "../lib/schema";
 
 const path = "/calculadora-ahorro-automatizacion/";
@@ -57,56 +58,45 @@ const schema = [
 	<Header />
 
 	<main id="contenido" class="calc">
-		<nav class="calc__crumbs" aria-label="Migas de pan">
-			<a href="/">Inicio</a>
-			<span aria-hidden="true">/</span>
-			<span class="calc__crumb-current" aria-current="page">
-				Calculadora de ahorro
-			</span>
-		</nav>
-
-		<header class="calc__intro">
-			<p class="label-caps calc__eyebrow">Herramienta gratuita</p>
-			<h1 class="calc__title">
-				Calculadora de ahorro de una automatización
-			</h1>
+		<header>
+			<nav class="calc__crumbs label-caps" aria-label="Migas de pan">
+				<a href="/">Inicio</a>
+				<span aria-hidden="true">/</span>
+				<span aria-current="page">Calculadora de ahorro</span>
+			</nav>
+			<h1 class="calc__title">Calculadora de ahorro de una automatización</h1>
 			<p class="calc__lead">
-				Elige una tarea que se repita en tu empresa. Dinos cuántas veces se
-				hace y cuánto dura, y verás las horas y el dinero que se van en ella
-				cada año, y lo que recuperarías al automatizarla.
+				Elige una tarea que se repita en tu empresa y completa la frase. Verás
+				las horas y el dinero que se van en ella cada año, y lo que
+				recuperarías al automatizarla.
 			</p>
 		</header>
 
 		<div class="calc__tool">
 			<form class="calc__form" id="calc-form" novalidate>
-				<label class="field">
-					<span class="field__label">Veces que se hace la tarea a la semana</span>
+				<p class="calc__say">
+					La tarea se hace
 					<input
-						class="field__input"
 						type="number"
 						name="times"
 						value="120"
 						min="0"
 						step="1"
 						inputmode="numeric"
+						aria-label="Veces que se hace la tarea a la semana"
 					/>
-				</label>
-				<label class="field">
-					<span class="field__label">Minutos que dura cada vez</span>
+					veces a la semana y dura
 					<input
-						class="field__input"
 						type="number"
 						name="minutes"
 						value="5"
 						min="0"
 						step="0.5"
 						inputmode="decimal"
+						aria-label="Minutos que dura cada vez"
 					/>
-				</label>
-				<label class="field">
-					<span class="field__label">Semanas de trabajo al año</span>
+					minutos cada vez. Se trabaja
 					<input
-						class="field__input"
 						type="number"
 						name="weeks"
 						value="48"
@@ -114,92 +104,93 @@ const schema = [
 						max="52"
 						step="1"
 						inputmode="numeric"
+						aria-label="Semanas de trabajo al año"
 					/>
-				</label>
-				<label class="field">
-					<span class="field__label">Coste de la hora para la empresa (€)</span>
+					semanas al año y cada hora le cuesta a la empresa
 					<input
-						class="field__input"
 						type="number"
 						name="rate"
 						value="22"
 						min="0"
 						step="0.5"
 						inputmode="decimal"
+						aria-label="Coste de la hora para la empresa, en euros"
 					/>
-					<span class="field__hint">Salario bruto más cotizaciones, entre horas anuales.</span>
-				</label>
-				<label class="field field--wide">
-					<span class="field__label">
-						Parte de la tarea que se automatiza:
-						<output class="field__value" id="share-out">75 %</output>
+					€.
+				</p>
+				<p class="calc__hint">
+					El coste de la hora es el salario bruto más las cotizaciones, dividido
+					entre las horas que se trabajan al año.
+				</p>
+
+				<label class="calc__share">
+					<span class="calc__say">
+						Se puede automatizar el
+						<output id="share-out">75 %</output>
+						de la tarea.
 					</span>
-					<input
-						class="field__range"
-						type="range"
-						name="share"
-						value="75"
-						min="10"
-						max="100"
-						step="5"
-					/>
-					<span class="field__hint">Si dudas, prueba una cifra prudente y otra optimista.</span>
+					<input type="range" name="share" value="75" min="10" max="100" step="5" />
+					<span class="calc__hint">
+						Si dudas, prueba una cifra prudente y otra optimista.
+					</span>
 				</label>
-				<fieldset class="calc__optional">
-					<legend class="label-caps">Opcional: plazo de recuperación</legend>
-					<label class="field">
-						<span class="field__label">Inversión inicial (€)</span>
-						<input
-							class="field__input"
-							type="number"
-							name="invest"
-							min="0"
-							step="100"
-							inputmode="numeric"
-							placeholder="6000"
-						/>
-					</label>
-					<label class="field">
-						<span class="field__label">Mantenimiento al año (€)</span>
-						<input
-							class="field__input"
-							type="number"
-							name="upkeep"
-							min="0"
-							step="50"
-							inputmode="numeric"
-							placeholder="900"
-						/>
-					</label>
-				</fieldset>
+
+				<p class="calc__say calc__say--optional">
+					Opcional: construirla cuesta
+					<input
+						type="number"
+						name="invest"
+						min="0"
+						step="100"
+						inputmode="numeric"
+						placeholder="6000"
+						aria-label="Inversión inicial, en euros"
+					/>
+					€ y mantenerla
+					<input
+						type="number"
+						name="upkeep"
+						min="0"
+						step="50"
+						inputmode="numeric"
+						placeholder="900"
+						aria-label="Mantenimiento al año, en euros"
+					/>
+					€ al año.
+				</p>
 			</form>
 
 			<section class="calc__result" aria-live="polite" aria-label="Resultado">
-				<p class="label-caps calc__result-label">Lo que recuperas al año</p>
-				<p class="calc__big"><span id="r-hours">360</span> horas</p>
-				<p class="calc__big calc__big--accent"><span id="r-money">7.920</span> €</p>
-				<dl class="calc__facts">
-					<div>
-						<dt>La tarea consume hoy</dt>
-						<dd><span id="r-total">480</span> horas al año</dd>
-					</div>
-					<div>
-						<dt>Equivale a</dt>
-						<dd><span id="r-weeks">9</span> semanas de trabajo de una persona</dd>
-					</div>
-					<div id="r-payback-row" hidden>
-						<dt>La inversión se recupera en</dt>
-						<dd id="r-payback">—</dd>
-					</div>
-				</dl>
+				<p class="calc__out">
+					Recuperas
+					<strong><span id="r-hours">360</span> horas</strong>
+					al año, que son
+					<strong><span id="r-money">7.920</span> €</strong>.
+				</p>
+
+				<div class="calc__track" id="r-track" aria-hidden="true">
+					<span class="calc__track-fill"></span>
+				</div>
+				<p class="calc__legend">
+					La vía entera son las <span id="r-total">480</span> horas que la tarea
+					consume hoy al año; el tramo verde, las que recuperas. Cada marca es
+					una semana de trabajo.
+				</p>
+
+				<p class="calc__fact">
+					Equivale a <span id="r-weeks">9</span> semanas de trabajo de una
+					persona.
+				</p>
+				<p class="calc__fact" id="r-payback" hidden></p>
+
 				<a href="/contacto/" class="calc__btn label-caps">Medirlo en tu empresa</a>
-				<p class="calc__privacy">
+				<p class="calc__hint">
 					El cálculo se hace en tu navegador. No se envía ningún dato.
 				</p>
 			</section>
 		</div>
 
-		<article class="calc__prose">
+		<article class="prose calc__prose">
 			<h2>Cómo se calcula</h2>
 			<p>
 				La calculadora aplica la misma fórmula que usamos en un
@@ -268,6 +259,8 @@ const schema = [
 			}
 		</article>
 	</main>
+
+	<FinalCTA />
 </Layout>
 
 <script>
@@ -297,18 +290,27 @@ const schema = [
 		set("r-money", nf.format(money));
 		set("r-weeks", nf.format(hours / 40));
 
+		// La vía: longitud = horas actuales; verde = recuperadas; marca = 40 h.
+		const track = document.getElementById("r-track");
+		if (track) {
+			const weeks = total / 40;
+			track.style.setProperty("--share", String(share / 100));
+			track.style.setProperty(
+				"--tick",
+				weeks >= 2 && weeks <= 60 ? `${100 / weeks}%` : "100%",
+			);
+		}
+
 		const invest = v("invest");
-		const row = document.getElementById("r-payback-row");
-		if (!row) return;
-		row.hidden = invest <= 0;
+		const payback = document.getElementById("r-payback");
+		if (!payback) return;
+		payback.hidden = invest <= 0;
 		if (invest > 0) {
 			const net = money - v("upkeep");
-			set(
-				"r-payback",
+			payback.textContent =
 				net > 0
-					? `${nf.format(Math.round((invest / net) * 12))} meses`
-					: "No se recupera con estos datos",
-			);
+					? `La inversión se recupera en ${nf.format(Math.round((invest / net) * 12))} meses.`
+					: "Con estos datos, la inversión no se recupera.";
 		}
 	}
 
@@ -318,186 +320,252 @@ const schema = [
 
 <style>
 	.calc {
-		max-width: 1120px;
+		max-width: 1200px;
 		margin: 0 auto;
-		padding: 18vh var(--margin-edge) var(--stack-lg);
+		padding: 168px var(--margin-edge) 120px;
 	}
 
 	.calc__crumbs {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 8px;
-		margin-bottom: var(--stack-lg);
-		font-size: 13px;
+		gap: 10px;
+		line-height: 1.5;
 		color: var(--on-surface-variant);
 	}
 
-	.calc__crumb-current {
+	.calc__crumbs [aria-current] {
 		color: var(--on-surface);
-		font-weight: 600;
-	}
-
-	.calc__intro {
-		max-width: 760px;
-		margin-bottom: var(--stack-lg);
-	}
-
-	.calc__eyebrow {
-		margin: 0 0 var(--stack-sm);
-		color: var(--on-surface-variant);
 	}
 
 	.calc__title {
-		margin: 0 0 var(--stack-md);
-		font-size: clamp(34px, 5.2vw, 58px);
+		margin: var(--stack-md) 0 0;
+		max-width: 18ch;
+		font-size: clamp(40px, 6.2vw, 80px);
 		font-weight: 800;
 		letter-spacing: -0.04em;
-		line-height: 1.05;
+		line-height: 1.02;
 		text-wrap: balance;
 	}
 
 	.calc__lead {
-		margin: 0;
-		font-size: clamp(17px, 2vw, 20px);
-		line-height: 1.6;
+		margin: var(--stack-md) 0 0;
+		max-width: 52ch;
+		font-size: clamp(18px, 1.7vw, 20px);
+		line-height: 1.55;
 		color: var(--on-surface-variant);
+		text-wrap: pretty;
 	}
 
+	/* A la izquierda se completa una frase; a la derecha se lee otra. */
 	.calc__tool {
 		display: grid;
-		grid-template-columns: 1.2fr 1fr;
-		gap: var(--stack-md);
+		grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+		column-gap: 96px;
 		align-items: start;
-		margin-bottom: var(--stack-lg);
+		margin-top: var(--stack-lg);
+		padding-top: var(--stack-lg);
+		border-top: 2px solid var(--on-surface);
 	}
 
-	.calc__form {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--stack-md);
-		padding: var(--stack-md);
-		background: var(--surface-container-lowest);
-		border: 1px solid var(--outline-variant);
-		border-radius: var(--r-xl);
-	}
-
-	.field {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-	}
-
-	.field--wide,
-	.calc__optional {
-		grid-column: 1 / -1;
-	}
-
-	.field__label {
-		font-size: 14px;
-		font-weight: 600;
-		line-height: 1.35;
-	}
-
-	.field__value {
-		color: #3d6b2a;
-	}
-
-	.field__input {
-		width: 100%;
-		padding: 12px 14px;
-		font: inherit;
-		font-size: 17px;
-		font-variant-numeric: tabular-nums;
-		color: var(--on-surface);
-		background: var(--surface);
-		border: 1px solid var(--outline-variant);
-		border-radius: var(--r);
-	}
-
-	.field__input:focus-visible {
-		outline: 2px solid var(--tertiary);
-		outline-offset: 1px;
-		border-color: var(--tertiary);
-	}
-
-	.field__range {
-		width: 100%;
-		accent-color: var(--tertiary);
-	}
-
-	.field__hint {
-		font-size: 13px;
-		line-height: 1.4;
-		color: var(--on-surface-variant);
-	}
-
-	.calc__optional {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--stack-md);
+	.calc__say {
 		margin: 0;
-		padding: var(--stack-md) 0 0;
-		border: none;
-		border-top: 1px solid var(--outline-variant);
+		font-size: clamp(20px, 2vw, 26px);
+		font-weight: 500;
+		line-height: 1.8;
+		letter-spacing: -0.02em;
 	}
 
-	.calc__optional legend {
-		padding: 0 12px 0 0;
+	.calc__say input,
+	.calc__say output {
+		font: inherit;
+		font-weight: 800;
+		font-variant-numeric: tabular-nums;
+		letter-spacing: inherit;
+		color: inherit;
+	}
+
+	.calc__say input {
+		width: 2.8em;
+		padding: 0 2px;
+		text-align: center;
+		background: none;
+		border: 0;
+		border-bottom: 2px solid var(--on-surface);
+		border-radius: 0;
+		appearance: textfield;
+		-moz-appearance: textfield;
+		transition:
+			border-color 160ms ease-out,
+			background 160ms ease-out;
+	}
+
+	.calc__say input::-webkit-outer-spin-button,
+	.calc__say input::-webkit-inner-spin-button {
+		appearance: none;
+		margin: 0;
+	}
+
+	.calc__say input::placeholder {
+		font-weight: 500;
+		color: var(--outline);
+	}
+
+	.calc__say input:hover {
+		background: var(--surface-container-low);
+	}
+
+	.calc__say input:focus-visible {
+		outline: none;
+		border-bottom-color: var(--tertiary);
+		background: var(--surface-container-lowest);
+	}
+
+	.calc__say--optional {
+		margin-top: var(--stack-md);
+		padding-top: var(--stack-md);
+		border-top: 1px solid var(--outline-variant);
+		font-size: clamp(18px, 1.7vw, 22px);
 		color: var(--on-surface-variant);
+	}
+
+	.calc__say--optional input {
+		width: 3.8em;
+		color: var(--on-surface);
+		border-bottom-color: var(--outline);
+	}
+
+	.calc__hint {
+		display: block;
+		margin: 12px 0 0;
+		max-width: 52ch;
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+	}
+
+	.calc__share {
+		display: block;
+		margin-top: var(--stack-md);
+	}
+
+	/* El control es un tramo de vía con una estación que se desliza. */
+	.calc__share input {
+		display: block;
+		width: 100%;
+		height: 28px;
+		margin: 12px 0 0;
+		background: none;
+		appearance: none;
+		cursor: pointer;
+	}
+
+	.calc__share input::-webkit-slider-runnable-track {
+		height: 2px;
+		background: var(--outline-variant);
+	}
+
+	.calc__share input::-moz-range-track {
+		height: 2px;
+		background: var(--outline-variant);
+	}
+
+	.calc__share input::-webkit-slider-thumb {
+		appearance: none;
+		width: 18px;
+		height: 18px;
+		margin-top: -8px;
+		border-radius: 50%;
+		background: var(--tertiary);
+		border: 2px solid var(--on-surface);
+	}
+
+	.calc__share input::-moz-range-thumb {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: var(--tertiary);
+		border: 2px solid var(--on-surface);
+	}
+
+	.calc__share input:focus-visible {
+		outline: 2px solid var(--on-surface);
+		outline-offset: 4px;
 	}
 
 	.calc__result {
 		position: sticky;
-		top: 110px;
-		padding: var(--stack-md);
-		background: var(--inverse-surface);
-		color: var(--inverse-on-surface);
-		border-radius: var(--r-xl);
+		top: 128px;
 	}
 
-	.calc__result-label {
-		margin: 0 0 var(--stack-sm);
-		opacity: 0.75;
-	}
-
-	.calc__big {
+	.calc__out {
 		margin: 0;
-		font-size: clamp(34px, 4.6vw, 56px);
+		font-size: clamp(30px, 3.6vw, 48px);
 		font-weight: 800;
-		letter-spacing: -0.04em;
-		line-height: 1.05;
+		letter-spacing: -0.035em;
+		line-height: 1.28;
+		text-wrap: balance;
+	}
+
+	.calc__out strong {
+		font-weight: inherit;
 		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 6px;
+		text-underline-offset: 6px;
+		text-decoration-skip-ink: none;
 	}
 
-	.calc__big--accent {
-		color: var(--tertiary);
+	.calc__track {
+		--share: 0.75;
+		--tick: 100%;
+		position: relative;
+		height: 14px;
+		margin-top: var(--stack-lg);
+		background:
+			repeating-linear-gradient(
+					90deg,
+					var(--outline) 0 1px,
+					transparent 1px var(--tick)
+				)
+				0 0 / 100% 100% no-repeat,
+			linear-gradient(var(--outline-variant), var(--outline-variant)) 0 50% /
+				100% 2px no-repeat;
 	}
 
-	.calc__facts {
-		margin: var(--stack-md) 0;
-		display: grid;
-		gap: 12px;
+	.calc__track-fill {
+		position: absolute;
+		inset: 4px 0;
+		background: var(--tertiary);
+		transform-origin: left;
+		scale: var(--share) 1;
+		transition: scale 320ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-	.calc__facts div {
-		padding-top: 12px;
-		border-top: 1px solid rgba(255, 255, 255, 0.16);
+	.calc__legend {
+		margin: 12px 0 0;
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
 	}
 
-	.calc__facts dt {
-		font-size: 13px;
-		opacity: 0.75;
+	.calc__fact {
+		margin: var(--stack-sm) 0 0;
+		font-size: 18px;
+		line-height: 1.5;
 	}
 
-	.calc__facts dd {
-		margin: 2px 0 0;
-		font-size: 17px;
+	.calc__legend span,
+	.calc__fact span {
 		font-weight: 600;
 		font-variant-numeric: tabular-nums;
+		color: var(--on-surface);
 	}
 
 	.calc__btn {
 		display: inline-block;
+		margin-top: var(--stack-md);
 		background: var(--tertiary);
 		color: var(--on-tertiary);
 		padding: 14px 24px;
@@ -512,81 +580,46 @@ const schema = [
 		filter: brightness(0.97);
 	}
 
-	.calc__privacy {
-		margin: var(--stack-sm) 0 0;
-		font-size: 13px;
-		opacity: 0.7;
-	}
-
 	.calc__prose {
-		max-width: 760px;
-		font-size: 17px;
-		line-height: 1.75;
-		color: var(--on-surface-variant);
+		max-width: 680px;
+		margin-top: 120px;
 	}
 
-	.calc__prose h2 {
-		margin: var(--stack-lg) 0 var(--stack-sm);
-		font-size: clamp(24px, 3.2vw, 32px);
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		line-height: 1.15;
-		color: var(--on-surface);
+	.calc__prose :global(h2:first-child) {
+		margin-top: 0;
 	}
 
-	.calc__prose h3 {
-		margin: var(--stack-md) 0 8px;
-		font-size: 19px;
-		font-weight: 700;
-		line-height: 1.3;
-		color: var(--on-surface);
-	}
-
-	.calc__prose p {
-		margin: 0 0 var(--stack-sm);
-	}
-
-	.calc__prose ul,
-	.calc__prose ol {
-		margin: 0 0 var(--stack-sm);
-		padding-left: 22px;
-	}
-
-	.calc__prose li {
-		margin-bottom: 8px;
-	}
-
-	.calc__prose strong {
-		color: var(--on-surface);
-		font-weight: 600;
-	}
-
-	.calc__prose a {
-		color: var(--on-surface);
-		text-decoration: underline;
-		text-decoration-color: var(--tertiary);
-		text-decoration-thickness: 2px;
-		text-underline-offset: 3px;
-	}
-
-	@media (max-width: 900px) {
+	@media (max-width: 1023px) {
 		.calc__tool {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
+			row-gap: var(--stack-lg);
 		}
 
 		.calc__result {
 			position: static;
+			padding-top: var(--stack-lg);
+			border-top: 1px solid var(--outline-variant);
 		}
 	}
 
 	@media (max-width: 768px) {
 		.calc {
-			padding: 16vh var(--stack-md) var(--stack-lg);
+			padding: 128px var(--stack-md) var(--stack-lg);
 		}
 
-		.calc__form,
-		.calc__optional {
-			grid-template-columns: 1fr;
+		.calc__tool {
+			margin-top: 48px;
+			padding-top: 48px;
+		}
+
+		.calc__prose {
+			margin-top: 96px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.calc__track-fill {
+			transition: none;
 		}
 	}
 </style>

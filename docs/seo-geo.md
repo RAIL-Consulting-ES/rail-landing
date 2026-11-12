@@ -82,12 +82,12 @@ sitio nuevo puede entrar.
 
 Las guías captan a quien todavía se está informando y enlazan a los servicios.
 Los servicios enlazan al contacto. Cada página tiene enlaces «Sigue leyendo» a
-las relacionadas, y la home cierra con un índice de todo el sitio, así que nada
-queda a más de dos clics de la home.
+las relacionadas y el pie enlaza todas las páginas clave, así que nada queda a
+más de dos clics de la home.
 
-En la home, todo el contenido pensado para buscadores (definición, índice y
-preguntas frecuentes) va **después del CTA**: el recorrido animado y el CTA no
-se tocan. La cabecera y el pie conservan su diseño original.
+En la home, el contenido pensado para buscadores (definición y preguntas
+frecuentes) va **después del CTA**: el recorrido animado, el hero y la cabecera
+no se tocan.
 
 Las URL pasan a español (`/soluciones/`, `/nosotros/`, `/contacto/`) con
 redirección permanente desde las antiguas (`vercel.json`).

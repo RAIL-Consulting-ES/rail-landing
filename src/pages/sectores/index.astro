@@ -21,16 +21,13 @@ const crumbs = [{ name: "Sectores", path: "/sectores/" }];
 	<Header />
 	<IndexPage
 		crumbs={crumbs}
-		eyebrow="Sectores"
 		h1="Dónde se pierde el tiempo en cada sector"
 		lead="Cada sector tiene sus tareas repetitivas. Estas son las que más horas consumen en cada uno y lo que hoy se puede hacer con IA y automatización para recuperarlas."
 		items={sectores.map((s) => ({
 			path: pagePath(s.id),
 			title: s.data.short,
 			description: s.data.lead,
-			tag: "Sector",
 		}))}
-		more="Ver el sector"
 	>
 		<h2>¿Tu sector no está en la lista?</h2>
 		<p>

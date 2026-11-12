@@ -1,54 +1,8 @@
 ---
-// Bloque que cierra la home, después del CTA: qué es RAIL en un párrafo, el
-// índice de todo el sitio y las preguntas frecuentes. Es el texto que leen
-// buscadores y asistentes de IA; va al final para no interrumpir el método.
-import { getCollection } from "astro:content";
+// Bloque que cierra la home, después del CTA: qué es RAIL en un párrafo y las
+// preguntas frecuentes. Es el texto que leen buscadores y asistentes de IA; va
+// al final para no interrumpir el método. El índice del sitio está en el pie.
 import { homeFaq } from "../data/faq";
-import { guidePath, pagePath } from "../lib/pages";
-
-const sectores = (await getCollection("paginas"))
-	.filter((p) => p.data.kind === "sector")
-	.sort((a, b) => a.data.order - b.data.order);
-
-const guias = (await getCollection("guias")).sort(
-	(a, b) => a.data.order - b.data.order,
-);
-
-const index = [
-	{
-		label: "Servicios",
-		links: [
-			{ text: "Consultoría de IA", href: "/consultoria-ia/" },
-			{ text: "Estudio de procesos", href: "/estudio-de-procesos/" },
-			{ text: "Agentes de IA", href: "/agentes-de-ia/" },
-			{
-				text: "Automatización de procesos",
-				href: "/soluciones/automatizacion-de-procesos/",
-			},
-			{ text: "Todas las soluciones", href: "/soluciones/" },
-		],
-	},
-	{
-		label: "Sectores",
-		links: [
-			...sectores.map((s) => ({ text: s.data.short, href: pagePath(s.id) })),
-			{ text: "Empresas de Sevilla", href: "/consultoria-ia-sevilla/" },
-		],
-	},
-	{
-		label: "Guías",
-		links: guias.map((g) => ({ text: g.data.short, href: guidePath(g.id) })),
-	},
-	{
-		label: "Recursos",
-		links: [
-			{ text: "Calculadora de ahorro", href: "/calculadora-ahorro-automatizacion/" },
-			{ text: "Glosario", href: "/glosario/" },
-			{ text: "Todas las preguntas frecuentes", href: "/preguntas-frecuentes/" },
-			{ text: "Todas las guías", href: "/guias/" },
-		],
-	},
-];
 ---
 
 <div class="hx">
@@ -72,25 +26,11 @@ const index = [
 		</div>
 	</section>
 
-	<nav class="hx__index" aria-label="Índice del sitio">
-		{
-			index.map((row) => (
-				<div class="hx__block hx__row">
-					<h3 class="label-caps hx__label">{row.label}</h3>
-					<ul class="hx__links">
-						{row.links.map((l) => (
-							<li>
-								<a href={l.href}>{l.text}</a>
-							</li>
-						))}
-					</ul>
-				</div>
-			))
-		}
-	</nav>
-
 	<section class="hx__block" aria-labelledby="hx-faq">
-		<h2 class="hx__h2" id="hx-faq">Preguntas frecuentes</h2>
+		<div>
+			<h2 class="hx__h2" id="hx-faq">Preguntas frecuentes</h2>
+			<a class="hx__more" href="/preguntas-frecuentes/">Ver todas</a>
+		</div>
 		<div class="hx__faq">
 			{
 				homeFaq.map((f) => (
@@ -107,8 +47,7 @@ const index = [
 </div>
 
 <style>
-	/* Un solo eje: títulos y etiquetas en la columna izquierda, contenido en la
-	   derecha. Las filas se separan con una línea fina, como el resto del sitio. */
+	/* Un solo eje: títulos en la columna izquierda, contenido en la derecha. */
 	.hx {
 		position: relative;
 		z-index: 4;
@@ -138,11 +77,6 @@ const index = [
 	.hx > .hx__block:first-child {
 		border-top: none;
 		padding-top: 0;
-	}
-
-	.hx__row {
-		padding: 28px 0;
-		align-items: baseline;
 	}
 
 	.hx__h2 {
@@ -175,38 +109,15 @@ const index = [
 		text-wrap: pretty;
 	}
 
-	.hx__label {
-		margin: 0;
-		color: var(--on-surface-variant);
-	}
-
-	.hx__links {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		columns: 2;
-		column-gap: var(--stack-md);
-	}
-
-	.hx__links li {
-		break-inside: avoid;
-		padding: 5px 0;
-	}
-
-	.hx__links a {
-		font-size: 17px;
-		font-weight: 500;
-		line-height: 1.4;
-		letter-spacing: -0.01em;
+	.hx__more {
+		display: inline-block;
+		margin-top: var(--stack-sm);
+		font-size: 16px;
+		font-weight: 600;
 		text-decoration: underline;
-		text-decoration-color: transparent;
+		text-decoration-color: var(--tertiary);
 		text-decoration-thickness: 2px;
 		text-underline-offset: 4px;
-		transition: text-decoration-color 160ms ease-out;
-	}
-
-	.hx__links a:hover {
-		text-decoration-color: var(--tertiary);
 	}
 
 	.hx__q {
@@ -271,10 +182,6 @@ const index = [
 			grid-template-columns: 1fr;
 			row-gap: var(--stack-md);
 		}
-
-		.hx__row {
-			row-gap: var(--stack-sm);
-		}
 	}
 
 	@media (max-width: 768px) {
@@ -284,14 +191,6 @@ const index = [
 
 		.hx__block {
 			padding: calc(var(--stack-lg) * 0.7) 0;
-		}
-
-		.hx__row {
-			padding: 24px 0;
-		}
-
-		.hx__links {
-			columns: 1;
 		}
 	}
 </style>

@@ -178,9 +178,19 @@ const WEB3FORMS_ACCESS_KEY =
 		line-height: 1.6;
 	}
 
+	/* El estilo .cta vive en el header (ámbito local), así que el botón se
+	   declara aquí entero. */
 	.contact__submit {
 		align-self: flex-start;
+		padding: 14px 24px;
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		border: 0;
 		border-radius: var(--r);
+		cursor: pointer;
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
 	}
 
 	.contact__submit:hover {
