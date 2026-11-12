@@ -36,16 +36,13 @@ const schema = [
 	<Header />
 	<IndexPage
 		crumbs={crumbs}
-		eyebrow="Guías"
 		h1="Guías de IA y automatización para empresas"
 		lead="Respuestas claras a las preguntas que se hace una empresa antes de automatizar: qué se puede, cuánto cuesta, por dónde se empieza y qué tecnología conviene. Escritas por quienes lo construimos."
 		items={guias.map((g) => ({
 			path: guidePath(g.id),
 			title: g.data.h1,
 			description: g.data.lead,
-			tag: "Guía",
 		}))}
-		more="Leer la guía"
 	>
 		<h2>¿Buscas una definición rápida?</h2>
 		<p>

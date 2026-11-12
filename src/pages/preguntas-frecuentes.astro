@@ -30,11 +30,8 @@ const related = await resolveRelated([
 	<Header />
 	<ContentPage
 		crumbs={crumbs}
-		eyebrow="Preguntas frecuentes"
 		h1="Preguntas frecuentes sobre RAIL Consulting"
-		lead="Lo que conviene saber antes de empezar, contestado sin rodeos."
 		answer="RAIL Consulting es una consultora de ingeniería de Sevilla que estudia cómo trabaja una empresa, detecta dónde se pierde tiempo y lo recupera con inteligencia artificial, automatización y software a medida. Trabaja en tres pasos —estudio, diagnóstico y solución— y no presupuesta antes de haber medido el problema."
-		answerLabel="En pocas palabras"
 		updated={UPDATED}
 		toc={faqGroups.map((g) => ({ slug: g.id, text: g.title }))}
 		faq={[]}

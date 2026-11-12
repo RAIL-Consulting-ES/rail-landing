@@ -43,11 +43,9 @@ const STOPS = 5;
 			/* Las timelines las declaran las secciones (.exp__track y .final-cta);
 			   timeline-scope las hace visibles desde el header. */
 			:global(body) {
-				timeline-scope: --exp, --cta, --hc;
+				timeline-scope: --exp, --cta, --hx;
 			}
 
-			/* Se oculta mientras se lee el contenido de la home (.hc), donde
-			   taparía el texto, y vuelve al llegar al bloque de contacto. */
 			.rt {
 				display: block;
 				width: 100%;
@@ -55,14 +53,16 @@ const STOPS = 5;
 				margin-top: 20px;
 				padding: 0 var(--gutter);
 				pointer-events: none;
+				/* Solo mientras el índice del final de la home (.hx) pasa por
+				   debajo: ahí la línea tacharía el texto. Antes y después, igual. */
 				opacity: clamp(0, 1 - var(--rt-hide) + var(--rt-show), 1);
 				animation-name: rt-hide, rt-show;
 				animation-timing-function: linear;
 				animation-fill-mode: both;
-				animation-timeline: --hc, --cta;
+				animation-timeline: --hx, --hx;
 				animation-range:
-					entry 70% entry 100%,
-					entry 0% entry 50%;
+					entry 84% entry 96%,
+					exit 88% exit 100%;
 			}
 
 			.rt__line {

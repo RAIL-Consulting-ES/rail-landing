@@ -1,4 +1,7 @@
 ---
+// Contacto: el formulario y, al lado, la línea con lo que pasa después de
+// enviarlo. El formulario se expone también como herramienta WebMCP para que
+// un asistente de IA pueda prepararlo; quien lo envía sigue siendo la persona.
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 
@@ -7,6 +10,16 @@ const email = "contacto@railconsulting.es";
 const WEB3FORMS_ACCESS_KEY =
 	import.meta.env.PUBLIC_WEB3FORMS_KEY ??
 	"REEMPLAZA_CON_TU_ACCESS_KEY_DE_WEB3FORMS";
+
+// Atributos WebMCP (API declarativa). Los navegadores que no la conocen los
+// ignoran y el formulario funciona como siempre. Sin `toolautosubmit`: el
+// navegador se detiene para que la persona revise antes de enviar.
+const tool = {
+	toolname: "send-contact-message",
+	tooldescription:
+		"Prepara un mensaje para RAIL Consulting, consultora de IA y automatización de Sevilla. Úsalo cuando la persona quiera contactar, pedir una primera conversación o contar qué tarea de su empresa quiere automatizar.",
+};
+const param = (text: string) => ({ toolparamdescription: text });
 ---
 
 <Layout
@@ -18,169 +31,478 @@ const WEB3FORMS_ACCESS_KEY =
 	<Header />
 
 	<main id="contenido" class="contact">
-		<header class="contact__intro">
-			<p class="label-caps contact__eyebrow">Contacto</p>
-			<h1 class="contact__title">Cuéntanos tu problema. Construimos la solución.</h1>
+		<header>
+			<nav class="contact__crumbs label-caps" aria-label="Migas de pan">
+				<a href="/">Inicio</a>
+				<span aria-hidden="true">/</span>
+				<span aria-current="page">Contacto</span>
+			</nav>
+			<h1 class="contact__title">
+				Cuéntanos tu problema. Construimos la solución.
+			</h1>
 			<p class="contact__lead">
-				En RAIL estudiamos cómo trabaja tu empresa y encontramos dónde
-				ahorrar tiempo con IA y automatización. Escríbenos y empezamos por
-				entender tu día a día.
+				En RAIL estudiamos cómo trabaja tu empresa y encontramos dónde ahorrar
+				tiempo con IA y automatización. Escríbenos y empezamos por entender tu
+				día a día.
 			</p>
 		</header>
 
-		<form
-			class="contact__form"
-			id="contactForm"
-			method="POST"
-			action="https://api.web3forms.com/submit"
-			aria-label="Formulario de contacto"
-		>
-			<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-			<input
-				type="hidden"
-				name="subject"
-				value="Nuevo contacto desde railconsulting.es"
-			/>
-			<input type="hidden" name="from_name" value="Web RAIL" />
-			<input
-				type="checkbox"
-				name="botcheck"
-				class="hidden"
-				style="display:none"
-				tabindex="-1"
-				autocomplete="off"
-			/>
+		<div class="contact__body">
+			<aside class="contact__next" aria-labelledby="next-title">
+				<h2 class="label-caps" id="next-title">Qué pasa después</h2>
+				<ol class="contact__line">
+					<li data-step="write">
+						<strong>Nos escribes</strong>
+						<span>Con lo que sepas. No hace falta traer nada preparado.</span>
+					</li>
+					<li>
+						<strong>Hablamos</strong>
+						<span>Una conversación para entender cómo trabajáis en el día a día.</span>
+					</li>
+					<li>
+						<strong>Estudio</strong>
+						<span>
+							Si tiene sentido seguir, empezamos por un
+							<a href="/estudio-de-procesos/">estudio de procesos</a>.
+						</span>
+					</li>
+				</ol>
+				<p class="contact__direct">
+					¿Prefieres el correo directo? Escríbenos a
+					<a href={`mailto:${email}`}>{email}</a>.
+				</p>
+			</aside>
 
-			<div class="field">
-				<label class="field__label label-caps" for="name">Nombre</label>
-				<input class="field__input" id="name" name="name" type="text" required />
+			<div class="contact__panel">
+				<form
+					class="contact__form"
+					id="contactForm"
+					method="POST"
+					action="https://api.web3forms.com/submit"
+					aria-label="Formulario de contacto"
+					{...tool}
+				>
+					<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+					<input
+						type="hidden"
+						name="subject"
+						value="Nuevo contacto desde railconsulting.es"
+					/>
+					<input type="hidden" name="from_name" value="Web RAIL" />
+					<input
+						type="checkbox"
+						name="botcheck"
+						style="display:none"
+						tabindex="-1"
+						autocomplete="off"
+						aria-hidden="true"
+					/>
+
+					<div class="field">
+						<label for="name">Nombre</label>
+						<input
+							id="name"
+							name="name"
+							type="text"
+							autocomplete="name"
+							enterkeyhint="next"
+							required
+							data-error="name-error"
+							{...param("Nombre de la persona que escribe.")}
+						/>
+						<p class="field__error" id="name-error">
+							<svg viewBox="0 0 16 16" role="img" aria-label="Error">
+								<path d="M8 1.5 15 14H1L8 1.5Z" /><path d="M8 6.5v3.5M8 12v.5" />
+							</svg>
+							Escribe tu nombre.
+						</p>
+					</div>
+
+					<div class="field">
+						<label for="email">Email</label>
+						<input
+							id="email"
+							name="email"
+							type="email"
+							autocomplete="email"
+							autocapitalize="none"
+							autocorrect="off"
+							spellcheck="false"
+							enterkeyhint="next"
+							required
+							data-error="email-error"
+							{...param("Correo electrónico donde quiere recibir la respuesta.")}
+						/>
+						<p class="field__error" id="email-error">
+							<svg viewBox="0 0 16 16" role="img" aria-label="Error">
+								<path d="M8 1.5 15 14H1L8 1.5Z" /><path d="M8 6.5v3.5M8 12v.5" />
+							</svg>
+							Escribe un email válido, por ejemplo nombre@empresa.es.
+						</p>
+					</div>
+
+					<div class="field">
+						<label for="company">
+							Empresa <span class="field__optional">(opcional)</span>
+						</label>
+						<input
+							id="company"
+							name="company"
+							type="text"
+							autocomplete="organization"
+							enterkeyhint="next"
+							{...param("Nombre de la empresa, si lo ha dicho.")}
+						/>
+					</div>
+
+					<div class="field">
+						<label for="message">Mensaje</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="5"
+							required
+							aria-describedby="message-help"
+							data-error="message-error"
+							{...param(
+								"Qué tarea o proceso quiere mejorar y cualquier contexto útil, con sus propias palabras.",
+							)}></textarea>
+						<p class="field__help" id="message-help">
+							Qué tarea os quita más tiempo o qué queréis resolver. Con dos
+							líneas basta.
+						</p>
+						<p class="field__error" id="message-error">
+							<svg viewBox="0 0 16 16" role="img" aria-label="Error">
+								<path d="M8 1.5 15 14H1L8 1.5Z" /><path d="M8 6.5v3.5M8 12v.5" />
+							</svg>
+							Cuéntanos algo antes de enviar.
+						</p>
+					</div>
+
+					<div class="contact__send">
+						<button class="contact__submit label-caps" type="submit">
+							Enviar mensaje
+						</button>
+						<p class="contact__legal">
+							Al enviar aceptas nuestra
+							<a href="/privacidad/">política de privacidad</a>.
+						</p>
+					</div>
+
+					<p class="contact__status" data-status role="status"></p>
+				</form>
+
+				<div class="contact__done" data-done hidden>
+					<h2 tabindex="-1">Mensaje enviado.</h2>
+					<p>Gracias, te responderemos pronto.</p>
+					<button class="contact__again" type="button" data-again>
+						Enviar otro mensaje
+					</button>
+				</div>
 			</div>
-
-			<div class="field">
-				<label class="field__label label-caps" for="email">Email</label>
-				<input class="field__input" id="email" name="email" type="email" required />
-			</div>
-
-			<div class="field">
-				<label class="field__label label-caps" for="company">
-					Empresa <span class="field__optional">(opcional)</span>
-				</label>
-				<input class="field__input" id="company" name="company" type="text" />
-			</div>
-
-			<div class="field">
-				<label class="field__label label-caps" for="message">Mensaje</label>
-				<textarea
-					class="field__input field__textarea"
-					id="message"
-					name="message"
-					rows="5"
-					required></textarea>
-			</div>
-
-			<button class="contact__submit cta label-caps" type="submit">Enviar mensaje</button>
-
-			<p class="contact__status" data-status role="status" aria-live="polite"></p>
-
-			<p class="contact__legal">
-				Al enviar aceptas nuestra
-				<a href="/privacidad/">política de privacidad</a>.
-			</p>
-		</form>
-
-		<p class="contact__direct">
-			¿Prefieres el correo directo? Escríbenos a
-			<a class="contact__email" href={`mailto:${email}`}>{email}</a>.
-		</p>
-
-		<a href="/" class="contact__home">← Volver al inicio</a>
+		</div>
 	</main>
 </Layout>
 
 <style>
 	.contact {
-		max-width: var(--container-max);
+		max-width: 1200px;
 		margin: 0 auto;
-		padding: 22vh var(--margin-edge) var(--stack-lg);
+		padding: 168px var(--margin-edge) 120px;
 	}
 
-	.contact__intro {
-		max-width: 760px;
-		margin: 0 auto var(--stack-lg);
-		text-align: center;
-	}
-
-	.contact__eyebrow {
+	.contact__crumbs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		line-height: 1.5;
 		color: var(--on-surface-variant);
-		margin: 0 0 var(--stack-sm);
+	}
+
+	.contact__crumbs a {
+		transition: color 160ms ease-out;
+	}
+
+	.contact__crumbs a:hover,
+	.contact__crumbs [aria-current] {
+		color: var(--on-surface);
 	}
 
 	.contact__title {
-		margin: 0 0 var(--stack-md);
-		font-size: clamp(40px, 6vw, 72px);
+		margin: var(--stack-md) 0 0;
+		max-width: 18ch;
+		font-size: clamp(40px, 6.2vw, 80px);
 		font-weight: 800;
 		letter-spacing: -0.04em;
-		line-height: 1.04;
+		line-height: 1.02;
+		text-wrap: balance;
 	}
 
 	.contact__lead {
-		margin: 0;
-		font-size: clamp(17px, 2vw, 20px);
-		line-height: 1.6;
+		margin: var(--stack-md) 0 0;
+		max-width: 52ch;
+		font-size: clamp(18px, 1.7vw, 20px);
+		line-height: 1.55;
+		color: var(--on-surface-variant);
+		text-wrap: pretty;
+	}
+
+	/* A la izquierda, la línea con lo que viene; a la derecha, el formulario. */
+	.contact__body {
+		display: grid;
+		grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+		column-gap: 96px;
+		align-items: start;
+		margin-top: var(--stack-lg);
+		padding-top: var(--stack-lg);
+		border-top: 2px solid var(--on-surface);
+	}
+
+	.contact__next h2 {
+		margin: 0 0 var(--stack-md);
 		color: var(--on-surface-variant);
 	}
 
+	.contact__line {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.contact__line li {
+		position: relative;
+		padding: 0 0 28px 28px;
+	}
+
+	.contact__line li:last-child {
+		padding-bottom: 0;
+	}
+
+	/* Estación y tramo: los mismos que la línea de la home. */
+	.contact__line li::before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		top: 7px;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--surface);
+		border: 2px solid var(--outline-variant);
+		transition:
+			background 320ms ease-out,
+			border-color 320ms ease-out,
+			box-shadow 320ms ease-out;
+	}
+
+	.contact__line li:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		left: 4px;
+		top: 12px;
+		bottom: -12px;
+		width: 2px;
+		background: var(--outline-variant);
+		transition: background 320ms ease-out;
+	}
+
+	/* Al enviar, la primera estación queda hecha y la siguiente, en curso. */
+	.contact__body:has([data-done]:not([hidden])) .contact__line li:first-child::before,
+	.contact__body:has([data-done]:not([hidden])) .contact__line li:nth-child(2)::before {
+		background: var(--tertiary);
+		border-color: var(--tertiary);
+	}
+
+	.contact__body:has([data-done]:not([hidden])) .contact__line li:first-child::after {
+		background: var(--tertiary);
+	}
+
+	.contact__body:has([data-done]:not([hidden])) .contact__line li:nth-child(2)::before {
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--tertiary) 28%, transparent);
+	}
+
+	.contact__line strong {
+		display: block;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.35;
+		letter-spacing: -0.01em;
+	}
+
+	.contact__line span {
+		display: block;
+		margin-top: 4px;
+		max-width: 34ch;
+		font-size: 16px;
+		line-height: 1.55;
+		color: var(--on-surface-variant);
+	}
+
+	.contact__direct {
+		margin: var(--stack-lg) 0 0;
+		max-width: 34ch;
+		font-size: 16px;
+		line-height: 1.55;
+		color: var(--on-surface-variant);
+	}
+
+	.contact__next a,
+	.contact__legal a {
+		color: var(--on-surface);
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
+		transition: text-decoration-color 160ms ease-out;
+	}
+
+	.contact__next a:hover,
+	.contact__legal a:hover {
+		text-decoration-color: var(--on-surface);
+	}
+
+	/* Formulario: campos sobre una línea, sin cajas. */
 	.contact__form {
 		display: flex;
 		flex-direction: column;
-		gap: var(--stack-md);
-		max-width: 640px;
-		margin: 0 auto;
-		padding: var(--stack-md);
-		background: var(--surface-container-lowest);
-		border: 1px solid var(--outline-variant);
-		border-radius: var(--r-xl);
+		gap: 36px;
+	}
+
+	/* `display: flex` taparía el atributo hidden que se pone al enviar. */
+	.contact__form[hidden] {
+		display: none;
 	}
 
 	.field {
 		display: flex;
 		flex-direction: column;
-		gap: var(--stack-sm);
 	}
 
-	.field__label {
-		color: var(--on-surface-variant);
+	.field label {
+		align-self: flex-start;
+		padding: 6px 0;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.4;
 	}
 
 	.field__optional {
-		text-transform: none;
-		letter-spacing: 0;
+		font-weight: 400;
 		color: var(--on-surface-variant);
 	}
 
-	.field__input {
-		font-family: inherit;
-		font-size: 15px;
+	.field input,
+	.field textarea {
+		width: 100%;
+		min-height: 48px;
+		padding: 8px 0 10px;
+		font: inherit;
+		font-size: clamp(18px, 1.8vw, 22px);
+		font-weight: 500;
+		line-height: 1.4;
+		letter-spacing: -0.01em;
 		color: var(--on-surface);
-		background: var(--surface-container-high);
-		border: 1px solid var(--outline-variant);
-		border-radius: var(--r);
-		padding: 12px 14px;
-		transition: border-color 200ms ease;
+		caret-color: var(--on-surface);
+		background: none;
+		border: 0;
+		border-bottom: 2px solid var(--on-surface);
+		border-radius: 0;
+		transition:
+			background 160ms ease-out,
+			border-color 160ms ease-out;
 	}
 
-	.field__input:focus {
-		border-color: var(--tertiary);
-	}
-
-	.field__textarea {
+	.field textarea {
+		field-sizing: content;
+		min-block-size: 4lh;
+		max-block-size: 14lh;
 		resize: vertical;
-		line-height: 1.6;
+	}
+
+	.field input:hover,
+	.field textarea:hover {
+		background: var(--surface-container-low);
+	}
+
+	/* El foco conserva el contorno global y, además, aclara el campo. */
+	.field input:focus-visible,
+	.field textarea:focus-visible {
+		outline-offset: 4px;
+		background: var(--surface-container-lowest);
+	}
+
+	/* Autorrelleno: el navegador pinta un fondo propio; se sustituye por el del
+	   sitio y se marca con un trazo más grueso. */
+	.field input:autofill {
+		box-shadow:
+			inset 0 -2px 0 0 var(--on-surface),
+			inset 0 0 0 100vmax var(--surface-container-low);
+		-webkit-text-fill-color: var(--on-surface);
+		caret-color: var(--on-surface);
+	}
+
+	.field__help {
+		margin: 10px 0 0;
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+	}
+
+	.field__error {
+		display: none;
+		align-items: center;
+		gap: 8px;
+		margin: 10px 0 0;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.5;
+		color: var(--error);
+	}
+
+	.field__error svg {
+		flex: none;
+		width: 16px;
+		height: 16px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	/* El error aparece cuando la persona ha pasado por el campo o ha intentado
+	   enviar; nunca al cargar. */
+	.field :is(input, textarea):user-invalid {
+		border-bottom-color: var(--error);
+	}
+
+	.field:has(:user-invalid) .field__error {
+		display: flex;
+	}
+
+	.field:has(:user-invalid) .field__help {
+		display: none;
+	}
+
+	.contact__send {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 16px 28px;
 	}
 
 	.contact__submit {
-		align-self: flex-start;
+		min-height: 48px;
+		padding: 14px 28px;
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		border: 0;
 		border-radius: var(--r);
+		cursor: pointer;
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
 	}
 
 	.contact__submit:hover {
@@ -188,68 +510,116 @@ const WEB3FORMS_ACCESS_KEY =
 		filter: brightness(0.97);
 	}
 
-	.contact__status {
-		display: none;
-		margin: 0;
-		font-size: 14px;
-		font-weight: 600;
-	}
-
-	.contact__status.is-ok {
-		display: block;
-		color: #3d6b2a;
-	}
-
-	.contact__status.is-error {
-		display: block;
-		color: #ba1a1a;
+	.contact__submit:disabled {
+		cursor: progress;
+		filter: grayscale(0.6);
+		transform: none;
 	}
 
 	.contact__legal {
 		margin: 0;
-		font-size: 13px;
-		color: var(--on-surface-variant);
-	}
-
-	.contact__legal a {
-		color: var(--on-surface-variant);
-		text-decoration: underline;
-	}
-
-	.contact__direct {
-		max-width: 640px;
-		margin: var(--stack-md) auto 0;
-		font-size: 15px;
-		color: var(--on-surface-variant);
-		text-align: center;
-	}
-
-	.contact__email {
-		font-weight: 600;
-		color: var(--on-surface);
-		transition: color 200ms ease;
-	}
-
-	.contact__email:hover {
-		color: var(--tertiary);
-	}
-
-	.contact__home {
-		display: inline-block;
-		margin-top: var(--stack-lg);
-		font-weight: 600;
 		font-size: 14px;
+		line-height: 1.5;
 		color: var(--on-surface-variant);
-		transition: color 200ms ease;
 	}
 
-	.contact__home:hover {
+	.contact__status {
+		margin: -12px 0 0;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.5;
+		color: var(--error);
+	}
+
+	.contact__status:empty {
+		display: none;
+	}
+
+	.contact__status :global(a) {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.contact__done h2 {
+		margin: 0;
+		font-size: clamp(30px, 3.6vw, 48px);
+		font-weight: 800;
+		letter-spacing: -0.035em;
+		line-height: 1.1;
+	}
+
+	.contact__done h2:focus {
+		outline: none;
+	}
+
+	.contact__done p {
+		margin: var(--stack-sm) 0 var(--stack-md);
+		font-size: 20px;
+		line-height: 1.5;
+		color: var(--on-surface-variant);
+	}
+
+	.contact__again {
+		padding: 0;
+		font: inherit;
+		font-size: 16px;
+		font-weight: 600;
 		color: var(--on-surface);
+		background: none;
+		border: 0;
+		cursor: pointer;
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 4px;
+	}
+
+	/* Mientras un asistente de IA rellena el formulario, se marca. */
+	.contact__form:tool-form-active {
+		outline: 2px dashed var(--on-surface);
+		outline-offset: 16px;
+	}
+
+	@media (max-width: 1023px) {
+		.contact__body {
+			grid-template-columns: minmax(0, 1fr);
+			row-gap: var(--stack-lg);
+		}
+
+		/* En pantallas estrechas el formulario va primero. */
+		.contact__panel {
+			order: -1;
+		}
+
+		.contact__next {
+			padding-top: var(--stack-lg);
+			border-top: 1px solid var(--outline-variant);
+		}
 	}
 
 	@media (max-width: 768px) {
 		.contact {
-			padding: 18vh var(--stack-md) var(--stack-lg);
+			padding: 128px var(--stack-md) var(--stack-lg);
+		}
+
+		.contact__body {
+			margin-top: 48px;
+			padding-top: 48px;
+		}
+	}
+
+	@media (pointer: coarse) {
+		.field input,
+		.contact__submit {
+			min-height: 52px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.contact__line li::before,
+		.contact__line li::after {
+			transition: none;
 		}
 	}
 </style>
@@ -258,29 +628,61 @@ const WEB3FORMS_ACCESS_KEY =
 	const form = document.getElementById("contactForm") as HTMLFormElement | null;
 	const status = form?.querySelector<HTMLElement>("[data-status]");
 	const submit = form?.querySelector<HTMLButtonElement>(".contact__submit");
+	const done = document.querySelector<HTMLElement>("[data-done]");
 
-	if (form && status && submit) {
+	if (form && status && submit && done) {
+		type Field = HTMLInputElement | HTMLTextAreaElement;
+		const fields = [
+			...form.querySelectorAll<Field>("input:not([type=hidden], [type=checkbox]), textarea"),
+		];
 		const originalLabel = submit.textContent;
+		const FAIL = "No se pudo enviar. ";
 
-		const setStatus = (message: string, ok: boolean) => {
-			status.textContent = message;
-			status.classList.remove("is-ok", "is-error");
-			status.classList.add(ok ? "is-ok" : "is-error");
+		// La validación la lleva este script: así el error sale junto al campo y
+		// no en un globo del navegador. Sin JavaScript sigue valiendo la nativa.
+		form.noValidate = true;
+
+		// El estado visual es :user-invalid; aquí se refleja para lectores de
+		// pantalla (aria-invalid) y se enlaza el mensaje solo mientras se ve.
+		const sync = (el: Field) => {
+			const invalid = el.matches(":user-invalid");
+			el.setAttribute("aria-invalid", String(invalid));
+			const errorId = el.dataset.error;
+			if (!errorId) return;
+			const ids = (el.getAttribute("aria-describedby") ?? "")
+				.split(/\s+/)
+				.filter((id) => id && id !== errorId);
+			if (invalid) ids.push(errorId);
+			if (ids.length) el.setAttribute("aria-describedby", ids.join(" "));
+			else el.removeAttribute("aria-describedby");
+		};
+		const syncAll = () => fields.forEach(sync);
+		syncAll();
+		form.addEventListener("focusout", (e) => {
+			if (fields.includes(e.target as Field)) sync(e.target as Field);
+		});
+		form.addEventListener("input", (e) => {
+			const el = e.target as Field;
+			if (el.getAttribute("aria-invalid") === "true") sync(el);
+		});
+
+		const fail = () => {
+			status.replaceChildren(
+				FAIL,
+				"Escríbenos a ",
+				Object.assign(document.createElement("a"), {
+					href: "mailto:contacto@railconsulting.es",
+					textContent: "contacto@railconsulting.es",
+				}),
+				".",
+			);
+			return `${FAIL}El servicio de envío no respondió; se puede escribir a contacto@railconsulting.es.`;
 		};
 
-		form.addEventListener("submit", async (event) => {
-			event.preventDefault();
-
-			if (!form.checkValidity()) {
-				form.reportValidity();
-				return;
-			}
-
+		const send = async (): Promise<string> => {
 			submit.disabled = true;
 			submit.textContent = "Enviando…";
-
-			const payload = Object.fromEntries(new FormData(form));
-
+			status.textContent = "";
 			try {
 				const response = await fetch("https://api.web3forms.com/submit", {
 					method: "POST",
@@ -288,28 +690,56 @@ const WEB3FORMS_ACCESS_KEY =
 						"Content-Type": "application/json",
 						Accept: "application/json",
 					},
-					body: JSON.stringify(payload),
+					body: JSON.stringify(Object.fromEntries(new FormData(form))),
 				});
 				const json = await response.json();
+				if (json.success !== true) return fail();
 
-				if (json.success === true) {
-					setStatus("Gracias, te responderemos pronto.", true);
-					form.reset();
-				} else {
-					setStatus(
-						"No se pudo enviar. Escríbenos a contacto@railconsulting.es.",
-						false,
-					);
-				}
+				form.reset();
+				form.hidden = true;
+				done.hidden = false;
+				done.querySelector<HTMLElement>("h2")?.focus();
+				return "Mensaje enviado a RAIL Consulting. Responderán por correo.";
 			} catch {
-				setStatus(
-					"No se pudo enviar. Escríbenos a contacto@railconsulting.es.",
-					false,
-				);
+				return fail();
 			} finally {
 				submit.disabled = false;
 				submit.textContent = originalLabel;
 			}
+		};
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			// WebMCP: si lo envía un asistente, se le devuelve el resultado.
+			const agent = event as SubmitEvent & {
+				agentInvoked?: boolean;
+				respondWith?: (result: Promise<string>) => void;
+			};
+			const reply = (result: Promise<string>) => {
+				if (agent.agentInvoked) agent.respondWith?.(result);
+			};
+
+			syncAll();
+			const invalid = fields.filter((el) => !el.validity.valid);
+			if (invalid.length > 0) {
+				invalid[0].focus();
+				reply(
+					Promise.resolve(
+						`No se ha enviado. Revisa: ${invalid
+							.map((el) => `${el.name} (${el.validationMessage})`)
+							.join(", ")}.`,
+					),
+				);
+				return;
+			}
+			reply(send());
+		});
+
+		document.querySelector("[data-again]")?.addEventListener("click", () => {
+			done.hidden = true;
+			form.hidden = false;
+			syncAll();
+			fields[0].focus();
 		});
 	}
 </script>

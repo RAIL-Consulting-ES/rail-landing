@@ -1,17 +1,24 @@
 ---
+// Cierre común: en la home va tal cual; las páginas interiores pueden cambiar
+// el texto, no el diseño.
+interface Props {
+	title?: string;
+	copy?: string;
+	label?: string;
+}
+
+const {
+	title = "¿Dónde pierde tiempo tu empresa?",
+	copy = "Estudiamos cómo trabajáis y os decimos dónde la IA o una automatización os ahorran horas. Cuéntanos vuestro día a día y empezamos por ahí.",
+	label = "Hablemos",
+} = Astro.props;
 ---
 
 <section class="final-cta" aria-label="Contacto">
 	<div class="final-cta__inner">
-		<h2 class="final-cta__title">
-			¿Dónde pierde tiempo tu empresa?
-		</h2>
-		<p class="final-cta__copy">
-			Estudiamos cómo trabajáis y os decimos dónde la IA o una
-			automatización os ahorran horas. Cuéntanos vuestro día a día y
-			empezamos por ahí.
-		</p>
-		<a href="/contacto/" class="cta label-caps final-cta__btn">Hablemos</a>
+		<h2 class="final-cta__title">{title}</h2>
+		<p class="final-cta__copy">{copy}</p>
+		<a href="/contacto/" class="cta label-caps final-cta__btn">{label}</a>
 	</div>
 </section>
 
