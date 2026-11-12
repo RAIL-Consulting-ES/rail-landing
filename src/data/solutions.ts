@@ -1,16 +1,20 @@
 export type Solution = {
+	/** Clave interna (contenido, imágenes, diagramas). */
 	slug: string;
+	/** Segmento de URL en español: /soluciones/<path>/ */
+	path: string;
 	title: string;
 	copy: string;
 	icon: string;
 };
 
-// Base catalogue shared by the /solutions overview and each /solutions/[slug]
+// Base catalogue shared by the /soluciones overview and each /soluciones/[slug]
 // detail page. Rich SEO content per solution lives in ./solutions-content.json,
 // keyed by slug.
 export const solutions: Solution[] = [
 	{
 		slug: "automation",
+		path: "automatizacion-de-procesos",
 		title: "Automatización",
 		copy: "Workflows orquestados sin fricción.",
 		icon: `<circle cx="28" cy="30" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -24,6 +28,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "process",
+		path: "optimizacion-de-procesos",
 		title: "Procesos",
 		copy: "Throughput, calidad y trazabilidad.",
 		icon: `<rect x="4" y="22" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/>
@@ -34,6 +39,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "ai",
+		path: "inteligencia-artificial",
 		title: "IA",
 		copy: "Modelos integrados con guardrails.",
 		icon: `<circle cx="14" cy="18" r="3" fill="currentColor"/>
@@ -52,6 +58,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "api",
+		path: "integracion-de-sistemas",
 		title: "API Gateway",
 		copy: "Integración segura y observable.",
 		icon: `<path d="M14 10 L8 30 L14 50" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/>
@@ -62,6 +69,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "dashboards",
+		path: "cuadros-de-mando",
 		title: "Dashboards",
 		copy: "Decisiones en tiempo real.",
 		icon: `<polyline points="8,50 24,30 40,38 56,16 72,28" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,6 +78,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "data",
+		path: "analisis-de-datos",
 		title: "Análisis de Datos",
 		copy: "Pipelines y analítica avanzada.",
 		icon: `<line x1="8" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="1"/>
@@ -83,6 +92,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "erp",
+		path: "erp-a-medida",
 		title: "ERP",
 		copy: "Operaciones, finanzas y datos unificados.",
 		icon: `<rect x="6" y="10" width="68" height="40" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -93,6 +103,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "crm",
+		path: "crm-a-medida",
 		title: "CRM",
 		copy: "Relaciones, ventas y soporte a escala.",
 		icon: `<circle cx="40" cy="22" r="9" fill="currentColor"/>
@@ -100,6 +111,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "cloud",
+		path: "cloud",
 		title: "Cloud Native",
 		copy: "Arquitecturas elásticas multi-región.",
 		icon: `<rect x="14" y="40" width="22" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/>
@@ -110,6 +122,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "cyber",
+		path: "ciberseguridad",
 		title: "Ciberseguridad",
 		copy: "Identidad, datos e infraestructura.",
 		icon: `<path d="M40 8 L66 18 L66 36 Q66 50 40 58 Q14 50 14 36 L14 18 Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -117,6 +130,7 @@ export const solutions: Solution[] = [
 	},
 	{
 		slug: "consulting",
+		path: "consultoria-tecnologica",
 		title: "Consultoría",
 		copy: "Acompañamiento end-to-end.",
 		icon: `<circle cx="40" cy="16" r="6" fill="currentColor"/>
@@ -129,3 +143,7 @@ export const solutions: Solution[] = [
 export const solutionsBySlug: Record<string, Solution> = Object.fromEntries(
 	solutions.map((s) => [s.slug, s]),
 );
+
+/** Ruta pública de una solución a partir de su clave interna. */
+export const solutionHref = (slug: string) =>
+	`/soluciones/${solutionsBySlug[slug].path}/`;

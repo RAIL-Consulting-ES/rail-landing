@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import IndexPage from "../../components/IndexPage.astro";
+import { guidePath } from "../../lib/pages";
+
+const guias = (await getCollection("guias")).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+const crumbs = [{ name: "Guías", path: "/guias/" }];
+const url = new URL("/guias/", Astro.site).href;
+
+const schema = [
+	{
+		"@type": "ItemList",
+		"@id": `${url}#list`,
+		itemListElement: guias.map((g, i) => ({
+			"@type": "ListItem",
+			position: i + 1,
+			name: g.data.h1,
+			url: new URL(guidePath(g.id), Astro.site).href,
+		})),
+	},
+];
+---
+
+<Layout
+	title="Guías de IA y automatización para empresas | RAIL Consulting"
+	description="Guías prácticas y sin humo sobre inteligencia artificial y automatización de procesos en la empresa: qué automatizar, cuánto cuesta, cómo empezar y qué tecnología elegir."
+	breadcrumbs={crumbs}
+	pageType="CollectionPage"
+	schema={schema}
+	modified="2026-11-12"
+>
+	<Header />
+	<IndexPage
+		crumbs={crumbs}
+		eyebrow="Guías"
+		h1="Guías de IA y automatización para empresas"
+		lead="Respuestas claras a las preguntas que se hace una empresa antes de automatizar: qué se puede, cuánto cuesta, por dónde se empieza y qué tecnología conviene. Escritas por quienes lo construimos."
+		items={guias.map((g) => ({
+			path: guidePath(g.id),
+			title: g.data.h1,
+			description: g.data.lead,
+			tag: "Guía",
+		}))}
+		more="Leer la guía"
+	>
+		<h2>¿Buscas una definición rápida?</h2>
+		<p>
+			En el <a href="/glosario/">glosario de IA y automatización</a> están
+			los términos que más se usan, explicados en una frase. Y en las
+			<a href="/preguntas-frecuentes/">preguntas frecuentes</a>, cómo
+			trabajamos en RAIL Consulting.
+		</p>
+	</IndexPage>
+</Layout>

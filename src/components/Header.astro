@@ -9,15 +9,17 @@ const { timeline = false } = Astro.props;
 
 const navItems = [
 	{ label: "Método", href: "/#expertise" },
-	{ label: "Soluciones", href: "/solutions/" },
-	{ label: "Nosotros", href: "/about/" },
+	{ label: "Servicios", href: "/consultoria-ia/" },
+	{ label: "Soluciones", href: "/soluciones/" },
+	{ label: "Guías", href: "/guias/" },
+	{ label: "Nosotros", href: "/nosotros/" },
 ];
 ---
 
 <header class="site-header">
 	<div class="rail__card">
-		<a href="/" class="brand">RAIL</a>
-		<nav class="nav" id="primary-nav" aria-label="Primary">
+		<a href="/" class="brand" aria-label="RAIL Consulting, inicio">RAIL</a>
+		<nav class="nav" id="primary-nav" aria-label="Principal">
 			{
 				navItems.map((item) => (
 					<a href={item.href} class="nav__link label-caps">
@@ -26,7 +28,7 @@ const navItems = [
 				))
 			}
 		</nav>
-		<a href="/contact/" class="cta label-caps">Inicia un Proyecto</a>
+		<a href="/contacto/" class="cta label-caps">Inicia un Proyecto</a>
 		<button
 			class="nav-toggle"
 			type="button"

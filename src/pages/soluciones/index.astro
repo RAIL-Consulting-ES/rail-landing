@@ -1,12 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import { solutions } from "../data/solutions";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import { solutions } from "../../data/solutions";
 ---
 
 <Layout
-	title="Soluciones — RAIL"
-	description="Las soluciones llegan después del estudio: automatización, IA, procesos y datos y, cuando hace falta, software a medida como un ERP o un CRM."
+	title="Soluciones de IA, automatización y software a medida | RAIL Consulting"
+	description="Las soluciones llegan después del estudio: automatización de procesos, inteligencia artificial, datos e integraciones y, cuando hace falta, software a medida como un ERP o un CRM."
+	breadcrumbs={[{ name: "Soluciones", path: "/soluciones/" }]}
+	pageType="CollectionPage"
+	modified="2026-11-12"
 >
 	<Header />
 
@@ -25,7 +28,7 @@ import { solutions } from "../data/solutions";
 		<section class="solutions__grid" aria-label="Catálogo de soluciones">
 			{
 				solutions.map((s) => (
-					<a class="solution-card" href={`/solutions/${s.slug}/`}>
+					<a class="solution-card" href={`/soluciones/${s.path}/`}>
 						<svg
 							class="solution-card__icon"
 							viewBox="0 0 80 60"

@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ContentPage from "../components/ContentPage.astro";
+import { glosario } from "../data/glosario";
+import { resolveRelated } from "../lib/pages";
+
+const crumbs = [{ name: "Glosario", path: "/glosario/" }];
+const url = new URL("/glosario/", Astro.site).href;
+const UPDATED = "2026-11-12";
+
+const schema = [
+	{
+		"@type": "DefinedTermSet",
+		"@id": `${url}#terms`,
+		name: "Glosario de IA y automatización para empresas",
+		inLanguage: "es-ES",
+		hasDefinedTerm: glosario.map((t) => ({
+			"@type": "DefinedTerm",
+			"@id": `${url}#${t.id}`,
+			name: t.term,
+			description: t.def,
+			inDefinedTermSet: { "@id": `${url}#terms` },
+		})),
+	},
+];
+
+const related = await resolveRelated([
+	"/guias/automatizacion-rpa-o-agentes-de-ia/",
+	"/guias/que-procesos-se-pueden-automatizar-en-una-empresa/",
+	"/preguntas-frecuentes/",
+	"/consultoria-ia/",
+]);
+---
+
+<Layout
+	title="Glosario de IA y automatización para empresas | RAIL Consulting"
+	description="Definiciones claras, en una frase, de los términos de inteligencia artificial y automatización que más se usan en la empresa: agente de IA, RPA, RAG, LLM, API, ERP, CRM y más."
+	breadcrumbs={crumbs}
+	schema={schema}
+	modified={UPDATED}
+>
+	<Header />
+	<ContentPage
+		crumbs={crumbs}
+		eyebrow="Glosario"
+		h1="Glosario de IA y automatización para empresas"
+		lead="Los términos que aparecen en cualquier conversación sobre inteligencia artificial y automatización, explicados sin jerga y en orden alfabético."
+		answer={`Este glosario reúne ${glosario.length} términos de inteligencia artificial, automatización de procesos y software de gestión, cada uno definido en una o dos frases pensadas para quien dirige una empresa y no para quien programa.`}
+		answerLabel="Qué es este glosario"
+		updated={UPDATED}
+		faq={[]}
+		related={related}
+	>
+		<dl class="glos">
+			{
+				glosario.map((t) => (
+					<div class="glos__item" id={t.id}>
+						<dt class="glos__term">{t.term}</dt>
+						<dd class="glos__def">
+							{t.def}
+							{t.link && (
+								<>
+									{" "}
+									<a href={t.link}>Saber más</a>.
+								</>
+							)}
+						</dd>
+					</div>
+				))
+			}
+		</dl>
+	</ContentPage>
+</Layout>
+
+<style>
+	.glos {
+		margin: 0;
+	}
+
+	.glos__item {
+		padding: var(--stack-md) 0;
+		border-bottom: 1px solid var(--outline-variant);
+		scroll-margin-top: 110px;
+	}
+
+	.glos__item:first-child {
+		padding-top: 0;
+	}
+
+	.glos__term {
+		margin: 0 0 8px;
+		font-size: 20px;
+		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: var(--on-surface);
+	}
+
+	.glos__def {
+		margin: 0;
+		max-width: 70ch;
+	}
+</style>

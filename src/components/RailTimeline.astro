@@ -43,9 +43,11 @@ const STOPS = 5;
 			/* Las timelines las declaran las secciones (.exp__track y .final-cta);
 			   timeline-scope las hace visibles desde el header. */
 			:global(body) {
-				timeline-scope: --exp, --cta;
+				timeline-scope: --exp, --cta, --hc;
 			}
 
+			/* Se oculta mientras se lee el contenido de la home (.hc), donde
+			   taparía el texto, y vuelve al llegar al bloque de contacto. */
 			.rt {
 				display: block;
 				width: 100%;
@@ -53,6 +55,14 @@ const STOPS = 5;
 				margin-top: 20px;
 				padding: 0 var(--gutter);
 				pointer-events: none;
+				opacity: clamp(0, 1 - var(--rt-hide) + var(--rt-show), 1);
+				animation-name: rt-hide, rt-show;
+				animation-timing-function: linear;
+				animation-fill-mode: both;
+				animation-timeline: --hc, --cta;
+				animation-range:
+					entry 70% entry 100%,
+					entry 0% entry 50%;
 			}
 
 			.rt__line {
@@ -139,6 +149,30 @@ const STOPS = 5;
 					width: 40px;
 				}
 			}
+		}
+	}
+
+	@property --rt-hide {
+		syntax: "<number>";
+		inherits: false;
+		initial-value: 0;
+	}
+
+	@property --rt-show {
+		syntax: "<number>";
+		inherits: false;
+		initial-value: 0;
+	}
+
+	@keyframes rt-hide {
+		to {
+			--rt-hide: 1;
+		}
+	}
+
+	@keyframes rt-show {
+		to {
+			--rt-show: 1;
 		}
 	}
 

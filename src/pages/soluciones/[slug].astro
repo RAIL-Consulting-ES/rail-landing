@@ -6,6 +6,7 @@ import { solutions, solutionsBySlug } from "../../data/solutions";
 import { solutionImages } from "../../data/solution-images";
 import { solutionDiagrams } from "../../data/solution-diagrams";
 import contentData from "../../data/solutions-content.json";
+import { faqNode, serviceNode } from "../../lib/schema";
 
 type Approach = { title: string; body: string };
 type Benefit = { title: string; body: string };
@@ -37,70 +38,56 @@ export function getStaticPaths() {
 	const data = contentData as Record<string, unknown>;
 	return solutions
 		.filter((s) => data[s.slug])
-		.map((s) => ({ params: { slug: s.slug } }));
+		.map((s) => ({ params: { slug: s.path }, props: { key: s.slug } }));
 }
 
-const { slug } = Astro.params;
-const base = solutionsBySlug[slug as string];
-const c = content[slug as string];
+// `slug` de la URL va en español (s.path); `key` es la clave interna.
+const { key } = Astro.props as { key: string };
+const base = solutionsBySlug[key];
+const c = content[key];
 
-const SITE = "https://railconsulting.es";
+// Última revisión de contenido de las páginas de solución.
+const UPDATED = "2026-11-12";
+
 const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 const related = c.relatedSlugs
 	.map((rs) => solutionsBySlug[rs])
 	.filter(Boolean);
 
-const imgs = solutionImages[slug as string];
-const diagram = solutionDiagrams[slug as string];
+const imgs = solutionImages[key];
+const diagram = solutionDiagrams[key];
 
-const breadcrumb = {
-	"@context": "https://schema.org",
-	"@type": "BreadcrumbList",
-	itemListElement: [
-		{ "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
-		{
-			"@type": "ListItem",
-			position: 2,
-			name: "Soluciones",
-			item: `${SITE}/solutions/`,
-		},
-		{ "@type": "ListItem", position: 3, name: base.title, item: pageUrl },
-	],
-};
+const breadcrumbs = [
+	{ name: "Soluciones", path: "/soluciones/" },
+	{ name: base.title, path: Astro.url.pathname },
+];
 
-const service = {
-	"@context": "https://schema.org",
-	"@type": "Service",
-	name: c.h1,
-	serviceType: base.title,
-	description: c.definition,
-	provider: { "@id": "https://railconsulting.es/#organization" },
-	areaServed: { "@type": "Country", name: "España" },
-	url: pageUrl,
-};
-
-const faqSchema = {
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	mainEntity: c.faq.map((f) => ({
-		"@type": "Question",
-		name: f.question,
-		acceptedAnswer: { "@type": "Answer", text: f.answer },
-	})),
-};
-
-const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
+const schema = [
+	serviceNode({
+		url: pageUrl,
+		name: c.h1,
+		serviceType: base.title,
+		description: c.definition,
+	}),
+	faqNode(pageUrl, c.faq),
+];
 ---
 
-<Layout title={c.metaTitle} description={c.metaDescription}>
+<Layout
+	title={c.metaTitle}
+	description={c.metaDescription}
+	breadcrumbs={breadcrumbs}
+	schema={schema}
+	modified={UPDATED}
+>
 	<Header />
 
 	<main id="contenido" class="sol-detail">
 		<nav class="breadcrumb" aria-label="Migas de pan">
 			<a href="/">Inicio</a>
 			<span aria-hidden="true">/</span>
-			<a href="/solutions/">Soluciones</a>
+			<a href="/soluciones/">Soluciones</a>
 			<span aria-hidden="true">/</span>
 			<span class="breadcrumb__current" aria-current="page">{base.title}</span>
 		</nav>
@@ -118,7 +105,7 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 			<p class="label-caps sol-detail__eyebrow">Solución · {base.title}</p>
 			<h1 class="sol-detail__title">{c.h1}</h1>
 			<p class="sol-detail__tagline">{c.heroTagline}</p>
-			<a href="/contact/" class="cta label-caps sol-detail__cta">
+			<a href="/contacto/" class="cta label-caps sol-detail__cta">
 				Hablemos de tu proyecto
 			</a>
 		</header>
@@ -263,7 +250,7 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 					<h2 class="sol-detail__h2">Soluciones relacionadas</h2>
 					<div class="related">
 						{related.map((r) => (
-							<a class="related__card" href={`/solutions/${r.slug}/`}>
+							<a class="related__card" href={`/soluciones/${r.path}/`}>
 								<svg
 									class="related__icon"
 									viewBox="0 0 80 60"
@@ -285,12 +272,11 @@ const jsonLd = JSON.stringify([breadcrumb, service, faqSchema]);
 			<p class="sol-detail__final-copy">
 				Cuéntanos tu reto y te proponemos un plan de ingeniería concreto.
 			</p>
-			<a href="/contact/" class="cta label-caps">Iniciar un proyecto</a>
+			<a href="/contacto/" class="cta label-caps">Iniciar un proyecto</a>
 		</section>
 
-		<a href="/solutions/" class="sol-detail__back">← Todas las soluciones</a>
+		<a href="/soluciones/" class="sol-detail__back">← Todas las soluciones</a>
 
-		<script type="application/ld+json" set:html={jsonLd} />
 	</main>
 </Layout>
 

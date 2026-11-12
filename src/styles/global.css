@@ -1,3 +1,22 @@
+/* Fuentes servidas desde el propio dominio (subconjunto latin, suficiente
+   para español): evita la petición bloqueante a Google Fonts. */
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("../assets/fonts/inter-latin-wght-normal.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Space Grotesk";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("../assets/fonts/space-grotesk-latin-600-normal.woff2")
+		format("woff2");
+}
+
 :root {
 	/* Surfaces */
 	--surface: #f9f9f9;

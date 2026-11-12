@@ -1,0 +1,70 @@
+---
+// Páginas de servicio, sector y ámbito local (colección `paginas`).
+import { getCollection, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import ContentPage from "../components/ContentPage.astro";
+import { faqNode, serviceNode } from "../lib/schema";
+import { pagePath, resolveRelated } from "../lib/pages";
+
+export async function getStaticPaths() {
+	const paginas = await getCollection("paginas");
+	return paginas.map((entry) => ({
+		params: { page: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content, headings } = await render(entry);
+
+const path = pagePath(entry.id);
+const url = new URL(path, Astro.site).href;
+const crumbs =
+	d.kind === "sector"
+		? [
+				{ name: "Sectores", path: "/sectores/" },
+				{ name: d.short, path },
+			]
+		: [{ name: d.short, path }];
+
+const schema = [
+	serviceNode({
+		url,
+		name: d.h1,
+		serviceType: d.serviceType,
+		description: d.answer,
+		areaServed: d.areaServed,
+	}),
+	...(d.faq.length ? [faqNode(url, d.faq)] : []),
+];
+
+const related = await resolveRelated(d.related);
+const toc = headings
+	.filter((h) => h.depth === 2)
+	.map((h) => ({ slug: h.slug, text: h.text }));
+---
+
+<Layout
+	title={d.title}
+	description={d.description}
+	breadcrumbs={crumbs}
+	schema={schema}
+	modified={d.updated}
+>
+	<Header />
+	<ContentPage
+		crumbs={crumbs}
+		eyebrow={d.eyebrow}
+		h1={d.h1}
+		lead={d.lead}
+		answer={d.answer}
+		updated={d.updated}
+		toc={toc}
+		faq={d.faq}
+		related={related}
+	>
+		<Content />
+	</ContentPage>
+</Layout>
