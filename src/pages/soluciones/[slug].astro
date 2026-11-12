@@ -369,11 +369,20 @@ const schema = [
 		max-width: 60ch;
 	}
 
-	.sol-detail__cta {
+	/* Botón principal (el estilo .cta del header es de ámbito local a ese
+	   componente, así que aquí hay que declararlo). */
+	.cta {
 		display: inline-block;
+		background: var(--tertiary);
+		color: var(--on-tertiary);
+		padding: 14px 24px;
+		border-radius: var(--r);
+		transition:
+			transform 200ms ease,
+			filter 200ms ease;
 	}
 
-	.sol-detail__cta:hover {
+	.cta:hover {
 		transform: scale(1.02);
 		filter: brightness(0.97);
 	}
