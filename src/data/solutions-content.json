@@ -1,7 +1,7 @@
 {
 	"erp": {
 		"slug": "erp",
-		"metaTitle": "Desarrollo de ERP a medida en España | RAIL",
+		"metaTitle": "ERP a medida: desarrollo para empresas | RAIL Consulting",
 		"metaDescription": "Desarrollo e implantación de ERP a medida que unifica operaciones, finanzas y datos. RAIL diseña software de gestión que escala con tu empresa.",
 		"h1": "ERP a medida: operaciones, finanzas y datos en un único sistema",
 		"heroTagline": "Ingeniería de software que convierte tus procesos de gestión en un ERP propio, escalable y conectado a todo tu negocio.",
@@ -130,7 +130,7 @@
 	},
 	"crm": {
 		"slug": "crm",
-		"metaTitle": "Desarrollo de CRM a medida para empresas | RAIL",
+		"metaTitle": "CRM a medida para empresas | RAIL Consulting",
 		"metaDescription": "Desarrollo e implantación de CRM a medida que unifica ventas, marketing y atención. RAIL diseña un CRM personalizado e integrado con tu ERP.",
 		"h1": "CRM a medida: ventas, marketing y atención sobre una única visión del cliente",
 		"heroTagline": "Ingeniería de software que convierte tu proceso comercial en un CRM propio, integrado con tu operación y diseñado en torno a cómo vende y atiende realmente tu empresa.",
@@ -259,7 +259,7 @@
 	},
 	"automation": {
 		"slug": "automation",
-		"metaTitle": "Automatización de Procesos a Medida | RAIL",
+		"metaTitle": "Automatización de procesos para empresas | RAIL Consulting",
 		"metaDescription": "Automatización de procesos de negocio a medida: orquestación de workflows, RPA, integraciones y reglas que eliminan tareas manuales. Ingeniería RAIL en España.",
 		"h1": "Automatización de procesos de negocio que escala con tu operación",
 		"heroTagline": "Workflows orquestados de extremo a extremo, sin fricción y sin trabajo manual repetitivo.",
@@ -390,7 +390,7 @@
 	},
 	"process": {
 		"slug": "process",
-		"metaTitle": "Optimización de Procesos a Medida | RAIL",
+		"metaTitle": "Optimización de procesos de negocio | RAIL Consulting",
 		"metaDescription": "RAIL diseña y digitaliza procesos de negocio con software a medida: más throughput, calidad consistente y trazabilidad de extremo a extremo. Descúbrelo.",
 		"h1": "Ingeniería y optimización de procesos de negocio",
 		"heroTagline": "Convertimos procesos manuales y opacos en flujos digitales medibles, con throughput, calidad y trazabilidad de extremo a extremo.",
@@ -519,7 +519,7 @@
 	},
 	"ai": {
 		"slug": "ai",
-		"metaTitle": "IA aplicada a empresas | Integración de IA a medida | RAIL",
+		"metaTitle": "IA aplicada a empresas: integración a medida | RAIL Consulting",
 		"metaDescription": "RAIL integra IA aplicada en tu negocio: LLMs, RAG, visión y predicción con guardrails, evaluación y MLOps. Software a medida que escala y cumple.",
 		"h1": "Integración de IA en software empresarial, con guardrails y control",
 		"heroTagline": "De prueba de concepto a producción: modelos de IA gobernados, evaluados y embebidos en tus procesos.",
@@ -650,7 +650,7 @@
 	},
 	"api": {
 		"slug": "api",
-		"metaTitle": "API Gateway a medida | Integración segura | RAIL",
+		"metaTitle": "Integración de sistemas y API Gateway | RAIL Consulting",
 		"metaDescription": "Diseñamos e implantamos tu API Gateway: autenticación, rate limiting, observabilidad y gobierno de APIs para conectar sistemas con seguridad y escala.",
 		"h1": "Desarrollo e implantación de API Gateway para integrar sistemas con seguridad y escala",
 		"heroTagline": "Una capa única de entrada que autentica, protege, gobierna y observa todas tus APIs internas y externas.",
@@ -784,7 +784,7 @@
 	},
 	"dashboards": {
 		"slug": "dashboards",
-		"metaTitle": "Dashboards a medida en tiempo real | RAIL",
+		"metaTitle": "Cuadros de mando y dashboards a medida | RAIL Consulting",
 		"metaDescription": "Cuadros de mando a medida que unifican tus datos y los convierten en decisiones en tiempo real. RAIL diseña dashboards y KPIs accionables para tu negocio.",
 		"h1": "Dashboards y cuadros de mando a medida para decidir en tiempo real",
 		"heroTagline": "Tus datos críticos, en una sola pantalla y siempre actualizados.",
@@ -913,7 +913,7 @@
 	},
 	"data": {
 		"slug": "data",
-		"metaTitle": "Análisis de Datos a Medida para Empresas | RAIL",
+		"metaTitle": "Análisis de datos para empresas | RAIL Consulting",
 		"metaDescription": "RAIL diseña pipelines de datos y analítica avanzada que convierten datos dispersos en decisiones medibles. Data warehouse, ETL/ELT y dashboards fiables.",
 		"h1": "Análisis de Datos: de datos dispersos a decisiones que escalan",
 		"heroTagline": "Pipelines fiables, métricas únicas y analítica avanzada para tomar mejores decisiones de negocio.",
@@ -1042,7 +1042,7 @@
 	},
 	"cloud": {
 		"slug": "cloud",
-		"metaTitle": "Desarrollo Cloud Native a medida | RAIL",
+		"metaTitle": "Desarrollo cloud native a medida | RAIL Consulting",
 		"metaDescription": "Arquitecturas cloud native elásticas y multi-región con Kubernetes, contenedores y microservicios. RAIL diseña, migra y opera tu plataforma escalable en España.",
 		"h1": "Arquitecturas Cloud Native que escalan sin reescribir tu negocio",
 		"heroTagline": "Plataformas elásticas, multi-región y resilientes diseñadas para crecer con tu demanda, no contra ella.",
@@ -1171,7 +1171,7 @@
 	},
 	"cyber": {
 		"slug": "cyber",
-		"metaTitle": "Servicios de ciberseguridad para empresas | RAIL",
+		"metaTitle": "Ciberseguridad para empresas | RAIL Consulting",
 		"metaDescription": "Ciberseguridad de aplicaciones a medida: identidad, cifrado de datos, hardening de infraestructura y cumplimiento ENS/RGPD. Seguridad integrada por RAIL.",
 		"h1": "Ciberseguridad para proteger identidad, datos e infraestructura",
 		"heroTagline": "Seguridad integrada en el ciclo de vida del software, no parcheada al final.",
@@ -1302,7 +1302,7 @@
 	},
 	"consulting": {
 		"slug": "consulting",
-		"metaTitle": "Consultoría tecnológica a medida | RAIL",
+		"metaTitle": "Consultoría tecnológica para empresas | RAIL Consulting",
 		"metaDescription": "Consultoría tecnológica end-to-end en España: auditoría, arquitectura de software, roadmap técnico y acompañamiento de equipos para escalar tu producto.",
 		"h1": "Consultoría tecnológica que convierte decisiones difíciles en software que escala",
 		"heroTagline": "Auditoría, arquitectura y roadmap con acompañamiento end-to-end, de la estrategia al código en producción.",

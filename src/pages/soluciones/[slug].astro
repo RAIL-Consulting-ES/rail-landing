@@ -267,6 +267,22 @@ const schema = [
 			)
 		}
 
+		<section class="sol-detail__section sol-detail__start">
+			<h2 class="sol-detail__h2">Antes de construir, medimos</h2>
+			<p class="sol-detail__prose">
+				Ninguna solución de RAIL Consulting empieza por la tecnología.
+				Primero hacemos un
+				<a href="/estudio-de-procesos/">estudio de procesos</a> para ver cómo
+				trabaja tu equipo y cuántas horas se pierden; con ese diagnóstico
+				decidimos si lo que hace falta es esto, una
+				<a href="/soluciones/automatizacion-de-procesos/">automatización</a>
+				más sencilla o un <a href="/agentes-de-ia/">agente de IA</a>. Si
+				quieres entender las opciones antes de hablar con nadie, empieza por
+				las <a href="/guias/">guías</a> o por la
+				<a href="/consultoria-ia/">consultoría de IA</a>.
+			</p>
+		</section>
+
 		<section class="sol-detail__final">
 			<h2 class="sol-detail__final-title">¿Construimos tu {base.title}?</h2>
 			<p class="sol-detail__final-copy">
@@ -434,6 +450,14 @@ const schema = [
 		line-height: 1.75;
 		color: var(--on-surface-variant);
 		max-width: 68ch;
+	}
+
+	.sol-detail__start a {
+		color: var(--on-surface);
+		text-decoration: underline;
+		text-decoration-color: var(--tertiary);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 3px;
 	}
 
 	.sol-detail__cards {
