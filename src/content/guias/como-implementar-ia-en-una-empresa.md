@@ -1,6 +1,6 @@
 ---
 title: "Cómo implementar IA en una empresa paso a paso | RAIL Consulting"
-description: "Guía práctica para implantar inteligencia artificial en una empresa o pyme: por dónde empezar, qué pasos seguir, qué errores evitar y cómo medir si funciona."
+description: "Guía práctica para implantar inteligencia artificial en una empresa o pyme: por dónde empezar, qué pasos seguir, qué errores evitar y cómo medirlo."
 h1: "Cómo implementar IA en una empresa, paso a paso"
 short: "Cómo implementar IA en una empresa"
 lead: "Implantar IA no empieza eligiendo una herramienta. Empieza eligiendo un problema. Estos son los siete pasos, en orden."

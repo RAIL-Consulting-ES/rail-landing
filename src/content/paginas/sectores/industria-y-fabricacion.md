@@ -1,6 +1,6 @@
 ---
-title: "IA y automatización para industria y fabricación | RAIL Consulting"
-description: "Cómo ahorrar tiempo en una empresa industrial o de fabricación a medida: presupuestos, mediciones, órdenes de fabricación, compras, stock y planificación de instalaciones, con IA y software a medida."
+title: "IA para industria y fabricación | RAIL Consulting"
+description: "Ahorra tiempo en una empresa de fabricación: presupuestos, órdenes de fabricación, materiales, compras, stock e instalaciones, con IA y software a medida."
 h1: "IA y automatización para industria y fabricación"
 eyebrow: "Sector · Industria y fabricación"
 short: "Industria y fabricación"

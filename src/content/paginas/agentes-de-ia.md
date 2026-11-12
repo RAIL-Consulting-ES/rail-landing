@@ -1,6 +1,6 @@
 ---
-title: "Agentes de IA para empresas: qué son y cómo implantarlos | RAIL Consulting"
-description: "Diseñamos e implantamos agentes de IA para empresas: asistentes que leen documentos, consultan tus sistemas y ejecutan tareas completas con supervisión humana. Sevilla y toda España."
+title: "Agentes de IA para empresas | RAIL Consulting"
+description: "Agentes de IA a medida para empresas: leen documentos, consultan tus sistemas y completan tareas enteras con supervisión humana. Qué son y cómo implantarlos."
 h1: "Agentes de IA para empresas"
 eyebrow: "Servicio · Agentes de IA"
 short: "Agentes de IA"

@@ -1,5 +1,5 @@
 ---
-title: "Cómo calcular el ahorro (ROI) de una automatización | RAIL Consulting"
+title: "Cómo calcular el ROI de una automatización | RAIL Consulting"
 description: "Fórmula y ejemplo paso a paso para calcular cuántas horas y cuánto dinero ahorra automatizar un proceso, y en cuánto tiempo se recupera la inversión."
 h1: "Cómo calcular el ahorro de una automatización"
 short: "Cómo calcular el ahorro de una automatización"
@@ -26,6 +26,7 @@ faq:
   - question: "¿Qué beneficios no aparecen en el cálculo?"
     answer: "Menos errores, respuesta más rápida al cliente, no depender de una sola persona y poder crecer sin contratar para tareas administrativas. Son reales pero difíciles de cuantificar, por lo que es mejor dejarlos fuera de la cuenta y tratarlos como un beneficio adicional."
 related:
+  - "/calculadora-ahorro-automatizacion/"
   - "/guias/que-procesos-se-pueden-automatizar-en-una-empresa/"
   - "/guias/cuanto-cuesta-implementar-ia-en-una-empresa/"
   - "/estudio-de-procesos/"
@@ -40,7 +41,7 @@ related:
 >
 > **Plazo de recuperación (meses)** = inversión ÷ (ahorro anual − mantenimiento anual) × 12
 
-Solo hacen falta cinco datos: frecuencia, duración, porcentaje automatizable, coste de la hora y coste de la solución.
+Solo hacen falta cinco datos: frecuencia, duración, porcentaje automatizable, coste de la hora y coste de la solución. Si prefieres no hacer la cuenta a mano, la [calculadora de ahorro](/calculadora-ahorro-automatizacion/) la hace por ti.
 
 ## Paso 1: mide la tarea
 

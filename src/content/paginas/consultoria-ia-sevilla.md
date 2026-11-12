@@ -1,6 +1,6 @@
 ---
 title: "Consultoría de IA y automatización en Sevilla | RAIL Consulting"
-description: "Consultora de inteligencia artificial y automatización de procesos en Sevilla. Estudiamos cómo trabaja tu empresa, en persona, y recuperamos las horas que se pierden en tareas repetitivas."
+description: "Consultora de inteligencia artificial y automatización de procesos en Sevilla. Estudiamos tu empresa en persona y recuperamos las horas que se pierden."
 h1: "Consultoría de IA y automatización de procesos en Sevilla"
 eyebrow: "Sevilla · Andalucía"
 short: "Consultoría de IA en Sevilla"
@@ -66,6 +66,7 @@ Cada sector tiene sus puntos débiles. Los hemos descrito uno por uno:
 - [Inmobiliarias](/sectores/inmobiliarias/): respuesta a contactos de portales, fichas de inmuebles y seguimiento.
 - [Industria y fabricación](/sectores/industria-y-fabricacion/): presupuestos, órdenes de fabricación, compras y control de material.
 - [Distribución y logística](/sectores/distribucion-y-logistica/): pedidos por correo, albaranes, rutas y reclamaciones.
+- [Instaladores y reformas](/sectores/instaladores-y-reformas/): mediciones, presupuestos, material y planificación de obras.
 
 ## Zona de trabajo
 

@@ -1,6 +1,6 @@
 ---
-title: "IA y automatización para asesorías y gestorías | RAIL Consulting"
-description: "Cómo ahorrar horas en una asesoría o gestoría con IA y automatización: recogida de documentación, contabilización de facturas, consultas de clientes y cierres. Estudio previo y solución a medida."
+title: "IA para asesorías y gestorías | RAIL Consulting"
+description: "Cómo ahorrar horas en una asesoría o gestoría con IA: recogida de documentación, contabilización de facturas, consultas de clientes y cierres."
 h1: "IA y automatización para asesorías y gestorías"
 eyebrow: "Sector · Asesorías y gestorías"
 short: "Asesorías y gestorías"

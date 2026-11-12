@@ -1,6 +1,6 @@
 ---
-title: "Qué procesos se pueden automatizar en una empresa (con ejemplos) | RAIL Consulting"
-description: "Lista por departamentos de los procesos que se pueden automatizar en una empresa con IA y automatización, cómo reconocerlos y cuáles conviene dejar como están."
+title: "Qué procesos se pueden automatizar en una empresa | RAIL Consulting"
+description: "Lista por departamentos de los procesos que se pueden automatizar en una empresa con IA, cómo reconocerlos y cuáles conviene dejar como están."
 h1: "Qué procesos se pueden automatizar en una empresa"
 short: "Qué procesos se pueden automatizar"
 lead: "Una lista práctica, por departamentos, de las tareas que hoy se pueden automatizar, las que no, y una forma sencilla de saber por cuál empezar."

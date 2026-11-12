@@ -1,6 +1,6 @@
 ---
-title: "Software a medida o software estándar: cuál elegir | RAIL Consulting"
-description: "Diferencias entre software a medida y software estándar (SaaS), ventajas e inconvenientes de cada uno, cuándo compensa un ERP o CRM a medida y cómo decidir sin equivocarse."
+title: "Software a medida o estándar: cuál elegir | RAIL Consulting"
+description: "Diferencias entre software a medida y estándar (SaaS), ventajas e inconvenientes, cuándo compensa un ERP o CRM a medida y cómo decidir sin equivocarse."
 h1: "Software a medida o software estándar: cómo elegir"
 short: "Software a medida o estándar"
 lead: "La respuesta honesta casi siempre es «estándar, salvo que…». Aquí está el «salvo que», con criterios para decidir."

@@ -1,6 +1,6 @@
 ---
-title: "Automatizar facturas con IA: cómo funciona y por dónde empezar | RAIL Consulting"
-description: "Cómo automatizar la emisión, la recepción y la contabilización de facturas con IA: qué se puede automatizar, cómo funciona la lectura de facturas, qué errores evitar y qué sigue haciendo una persona."
+title: "Automatizar facturas con IA: cómo funciona | RAIL Consulting"
+description: "Cómo automatizar la emisión, recepción y contabilización de facturas con IA: qué se automatiza, cómo se leen, qué errores evitar y qué revisa una persona."
 h1: "Automatizar facturas con IA: cómo funciona y por dónde empezar"
 short: "Automatizar facturas con IA"
 lead: "Las facturas son el ejemplo perfecto de tarea automatizable: muchas, parecidas y con un resultado que se puede comprobar. Así se hace bien."

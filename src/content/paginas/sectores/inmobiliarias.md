@@ -1,6 +1,6 @@
 ---
 title: "IA y automatización para inmobiliarias | RAIL Consulting"
-description: "Cómo usar IA en una inmobiliaria: responder al momento los contactos de portales, cualificar compradores, redactar fichas, coordinar visitas y hacer seguimiento sin que nada se quede sin contestar."
+description: "IA para inmobiliarias: responde al momento los contactos de portales, cualifica compradores, redacta fichas, coordina visitas y no olvida un seguimiento."
 h1: "IA y automatización para inmobiliarias"
 eyebrow: "Sector · Inmobiliarias"
 short: "Inmobiliarias"

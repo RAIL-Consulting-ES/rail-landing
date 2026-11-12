@@ -1,6 +1,6 @@
 ---
-title: "Automatización, RPA o agentes de IA: diferencias y cuándo usar cada uno | RAIL Consulting"
-description: "Qué diferencia hay entre automatización de procesos, RPA, IA generativa y agentes de IA, con una tabla comparativa y un criterio claro para elegir en cada caso."
+title: "Automatización, RPA o agentes de IA: diferencias | RAIL Consulting"
+description: "Qué diferencia hay entre automatización de procesos, RPA, IA generativa y agentes de IA, con tabla comparativa y un criterio claro para elegir."
 h1: "Automatización, RPA o agentes de IA: diferencias y cuándo usar cada uno"
 short: "Automatización, RPA o agentes de IA"
 lead: "Cuatro tecnologías que se confunden a menudo. No compiten entre sí: cada una resuelve un tipo de tarea. Elegir bien es la mitad del proyecto."

@@ -1,6 +1,6 @@
 ---
-title: "Estudio de procesos: dónde pierde tiempo tu empresa | RAIL Consulting"
-description: "Estudiamos cómo trabaja tu empresa, medimos las horas que se pierden en tareas repetitivas y te decimos qué automatizar primero con IA. El primer paso antes de construir nada."
+title: "Estudio de procesos para empresas | RAIL Consulting"
+description: "Estudiamos cómo trabaja tu empresa, medimos las horas que se pierden en tareas repetitivas y te decimos qué automatizar primero con IA."
 h1: "Estudio de procesos: descubre dónde pierde tiempo tu empresa"
 eyebrow: "Servicio · Estudio y diagnóstico"
 short: "Estudio de procesos"
@@ -57,7 +57,7 @@ Para cada tarea anotamos tres datos sencillos:
 | Duración | ¿Cuánto tarda cada vez? | 6 minutos por pedido |
 | Personas | ¿Quién la hace? | 2 personas de administración |
 
-Con eso se calcula el tiempo que consume al año: en el ejemplo, 40 × 6 minutos son 4 horas semanales, unas 200 horas al año. La cuenta completa, con costes y plazo de recuperación, está explicada en [cómo calcular el ahorro de una automatización](/guias/como-calcular-el-ahorro-de-una-automatizacion/).
+Con eso se calcula el tiempo que consume al año: en el ejemplo, 40 × 6 minutos son 4 horas semanales, unas 200 horas al año. La cuenta completa, con costes y plazo de recuperación, está explicada en [cómo calcular el ahorro de una automatización](/guias/como-calcular-el-ahorro-de-una-automatizacion/), y puedes probarla con tus propios números en la [calculadora de ahorro](/calculadora-ahorro-automatizacion/).
 
 ## Qué recibes: el diagnóstico
 

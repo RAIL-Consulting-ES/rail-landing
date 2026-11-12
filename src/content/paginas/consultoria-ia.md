@@ -1,6 +1,6 @@
 ---
-title: "Consultoría de inteligencia artificial para empresas | RAIL Consulting"
-description: "Consultoría de IA para empresas y pymes: estudiamos tus procesos, detectamos dónde la inteligencia artificial ahorra más horas y construimos la solución. Desde Sevilla, para toda España."
+title: "Consultoría de IA para empresas y pymes | RAIL Consulting"
+description: "Consultoría de inteligencia artificial para empresas: estudiamos tus procesos, medimos dónde la IA ahorra más horas y construimos la solución."
 h1: "Consultoría de inteligencia artificial para empresas"
 eyebrow: "Servicio · Consultoría de IA"
 short: "Consultoría de IA"

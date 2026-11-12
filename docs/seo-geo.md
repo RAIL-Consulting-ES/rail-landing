@@ -66,8 +66,9 @@ sitio nuevo puede entrar.
 | Oferta de entrada | estudio de procesos, auditoría de procesos, diagnóstico IA | `/estudio-de-procesos/` |
 | Producto | agentes de IA para empresas, qué es un agente de IA | `/agentes-de-ia/` |
 | Local | consultoría IA Sevilla, automatización procesos Sevilla | `/consultoria-ia-sevilla/` |
-| Sectores | IA para gestorías / despachos de abogados / inmobiliarias / fábricas | `/sectores/*` |
-| Informativas | qué procesos se pueden automatizar, cuánto cuesta implementar IA, cómo implementar IA en una empresa, automatizar facturas, RPA vs IA, n8n vs Make vs Zapier, software a medida vs estándar, ROI automatización | `/guias/*` |
+| Sectores | IA para gestorías / despachos de abogados / inmobiliarias / fábricas / distribución / instaladores | `/sectores/*` |
+| Informativas | qué procesos se pueden automatizar, cuánto cuesta implementar IA, cómo implementar IA en una empresa, automatizar facturas, automatizar atención al cliente, RPA vs IA, n8n vs Make vs Zapier, software a medida vs estándar | `/guias/*` |
+| Herramienta | calculadora ROI automatización, calcular ahorro automatización | `/calculadora-ahorro-automatizacion/` |
 | Definiciones | qué es RPA, RAG, LLM, agente de IA… | `/glosario/` |
 | Marca | rail consulting, RAIL Consulting Sevilla | `/`, `/nosotros/`, `/preguntas-frecuentes/` |
 | Soluciones | automatización de procesos, ERP a medida, CRM a medida… | `/soluciones/*` |

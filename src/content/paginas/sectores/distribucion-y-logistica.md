@@ -1,6 +1,6 @@
 ---
-title: "IA y automatización para distribución y logística | RAIL Consulting"
-description: "Cómo ahorrar tiempo en una empresa de distribución o logística: pedidos por correo y WhatsApp, albaranes, stock, rutas, incidencias y reclamaciones, con IA, automatización e integración de sistemas."
+title: "IA para distribución y logística | RAIL Consulting"
+description: "Ahorra tiempo en distribución y logística: pedidos por correo y WhatsApp, albaranes, stock, avisos de envío e incidencias, con IA e integración de sistemas."
 h1: "IA y automatización para distribución y logística"
 eyebrow: "Sector · Distribución y logística"
 short: "Distribución y logística"

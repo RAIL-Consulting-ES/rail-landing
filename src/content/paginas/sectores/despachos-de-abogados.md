@@ -1,6 +1,6 @@
 ---
-title: "IA para despachos de abogados: usos reales y límites | RAIL Consulting"
-description: "Cómo aplicar inteligencia artificial en un despacho de abogados: búsqueda en expedientes, revisión de documentos, control de plazos y gestión administrativa, con confidencialidad y revisión del letrado."
+title: "IA para despachos de abogados | RAIL Consulting"
+description: "Usos reales de la IA en un despacho de abogados: búsqueda en expedientes, revisión de documentos, plazos y gestión, con confidencialidad y revisión del letrado."
 h1: "IA y automatización para despachos de abogados"
 eyebrow: "Sector · Despachos de abogados"
 short: "Despachos de abogados"

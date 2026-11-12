@@ -52,6 +52,15 @@ const base: PageRef[] = [
 		order: 3,
 	},
 	{
+		path: "/calculadora-ahorro-automatizacion/",
+		title: "Calculadora de ahorro",
+		description:
+			"Calcula cuántas horas y cuánto dinero ahorra al año automatizar una tarea, y en cuántos meses se recupera.",
+		group: "base",
+		updated: SITE_UPDATED,
+		order: 4,
+	},
+	{
 		path: "/glosario/",
 		title: "Glosario de IA y automatización",
 		description:

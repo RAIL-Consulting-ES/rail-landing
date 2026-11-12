@@ -57,6 +57,7 @@ ${solutions.map((s) => line(s.title, abs(`/soluciones/${s.path}/`), s.copy)).joi
 ${line("Nosotros", abs("/nosotros/"), "Quién está detrás de RAIL Consulting y cómo trabaja.")}
 ${line("Preguntas frecuentes", abs("/preguntas-frecuentes/"), "Respuestas sobre método, costes, plazos, datos y software a medida.")}
 ${line("Glosario de IA y automatización", abs("/glosario/"), "Definiciones de los términos más usados.")}
+${line("Calculadora de ahorro de una automatización", abs("/calculadora-ahorro-automatizacion/"), "Herramienta gratuita: horas y euros que ahorra al año automatizar una tarea, y plazo de recuperación.")}
 ${line("Contacto", abs("/contacto/"), "Formulario y correo de contacto.")}
 
 ## Opcional

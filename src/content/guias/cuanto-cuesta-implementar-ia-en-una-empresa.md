@@ -1,6 +1,6 @@
 ---
-title: "Cuánto cuesta implementar IA en una empresa en 2026 | RAIL Consulting"
-description: "De qué depende el coste de implantar inteligencia artificial o una automatización en una empresa: partidas, factores que lo suben o lo bajan y cómo saber si se recupera la inversión."
+title: "Cuánto cuesta implementar IA en una empresa | RAIL Consulting"
+description: "De qué depende el coste de implantar IA o una automatización en una empresa en 2026: partidas, qué lo sube o lo baja y cómo saber si se recupera."
 h1: "Cuánto cuesta implementar IA en una empresa"
 short: "Cuánto cuesta implementar IA"
 lead: "No hay un precio único, pero sí una forma clara de entender de qué depende y de saber, antes de pagar nada, si te va a salir rentable."
@@ -93,7 +93,7 @@ El precio, solo, no dice nada. Lo que importa es compararlo con lo que ahorra:
 3. **Multiplica** por el coste de la hora.
 4. **Compara** ese ahorro anual con la inversión y el coste recurrente.
 
-Un proyecto de 8.000 € que recupera 500 horas al año es barato. Uno de 2.000 € que recupera 20 horas es caro. El método, con un ejemplo completo, está en [cómo calcular el ahorro de una automatización](/guias/como-calcular-el-ahorro-de-una-automatizacion/).
+Un proyecto de 8.000 € que recupera 500 horas al año es barato. Uno de 2.000 € que recupera 20 horas es caro. El método, con un ejemplo completo, está en [cómo calcular el ahorro de una automatización](/guias/como-calcular-el-ahorro-de-una-automatizacion/), y la [calculadora de ahorro](/calculadora-ahorro-automatizacion/) hace la cuenta con tus datos.
 
 ## Cómo reducir el coste sin perder resultado
 
