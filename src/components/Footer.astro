@@ -1,88 +1,65 @@
 ---
-// Pie común a todo el sitio. Además de navegación, es el mapa de enlaces
-// internos que garantiza que cada página clave está a un clic de cualquier otra.
-import { SITE } from "../data/site";
-
-const columns = [
-	{
-		heading: "Servicios",
-		items: [
-			{ label: "Consultoría de IA", href: "/consultoria-ia/" },
-			{ label: "Estudio de procesos", href: "/estudio-de-procesos/" },
-			{ label: "Agentes de IA", href: "/agentes-de-ia/" },
-			{
-				label: "Automatización de procesos",
-				href: "/soluciones/automatizacion-de-procesos/",
-			},
-			{ label: "Todas las soluciones", href: "/soluciones/" },
-		],
-	},
-	{
-		heading: "Sectores",
-		items: [
-			{ label: "Asesorías y gestorías", href: "/sectores/asesorias-y-gestorias/" },
-			{ label: "Despachos de abogados", href: "/sectores/despachos-de-abogados/" },
-			{ label: "Inmobiliarias", href: "/sectores/inmobiliarias/" },
-			{ label: "Industria y fabricación", href: "/sectores/industria-y-fabricacion/" },
-			{ label: "Distribución y logística", href: "/sectores/distribucion-y-logistica/" },
-			{ label: "Instaladores y reformas", href: "/sectores/instaladores-y-reformas/" },
-		],
-	},
-	{
-		heading: "Recursos",
-		items: [
-			{ label: "Guías", href: "/guias/" },
-			{ label: "Calculadora de ahorro", href: "/calculadora-ahorro-automatizacion/" },
-			{ label: "Glosario", href: "/glosario/" },
-			{ label: "Preguntas frecuentes", href: "/preguntas-frecuentes/" },
-			{ label: "Método", href: "/#expertise" },
-		],
-	},
-	{
-		heading: "RAIL",
-		items: [
-			{ label: "Nosotros", href: "/nosotros/" },
-			{ label: "Contacto", href: "/contacto/" },
-			{ label: "IA en Sevilla", href: "/consultoria-ia-sevilla/" },
-			{ label: "Aviso legal", href: "/aviso-legal/" },
-			{ label: "Privacidad", href: "/privacidad/" },
-		],
-	},
+const navItems = [
+	{ label: "Método", href: "/#expertise" },
+	{ label: "Soluciones", href: "/soluciones/" },
+	{ label: "Nosotros", href: "/nosotros/" },
+	{ label: "Contacto", href: "/contacto/" },
 ];
+
+const legalItems = [
+	{ label: "Aviso legal", href: "/aviso-legal/" },
+	{ label: "Privacidad", href: "/privacidad/" },
+];
+
+const email = "contacto@railconsulting.es";
 ---
 
 <footer class="footer">
 	<div class="footer__inner">
 		<div class="footer__brand">
-			<a href="/" class="footer__logo" aria-label="RAIL Consulting, inicio">RAIL</a>
-			<p class="footer__tagline">
-				{SITE.tagline}. Consultoría de IA, automatización y software a medida.
-				Sevilla, España.
-			</p>
-			<a href={`mailto:${SITE.email}`} class="footer__link">{SITE.email}</a>
+			<a href="/" class="footer__logo">RAIL</a>
+			<p class="footer__tagline">Ingeniería del futuro.</p>
 		</div>
 
-		{
-			columns.map((col) => (
-				<nav class="footer__nav" aria-label={col.heading}>
-					<span class="footer__heading label-caps">{col.heading}</span>
-					<ul class="footer__list">
-						{col.items.map((item) => (
-							<li>
-								<a href={item.href} class="footer__link">
-									{item.label}
-								</a>
-							</li>
-						))}
-					</ul>
-				</nav>
-			))
-		}
+		<nav class="footer__nav" aria-label="Pie de página">
+			<span class="footer__heading label-caps">Navegación</span>
+			<ul class="footer__list">
+				{
+					navItems.map((item) => (
+						<li>
+							<a href={item.href} class="footer__link">
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<div class="footer__contact">
+			<span class="footer__heading label-caps">Contacto</span>
+			<a href={`mailto:${email}`} class="footer__link">{email}</a>
+		</div>
+
+		<div class="footer__legal">
+			<span class="footer__heading label-caps">Legal</span>
+			<ul class="footer__list">
+				{
+					legalItems.map((item) => (
+						<li>
+							<a href={item.href} class="footer__link">
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
 	</div>
 
 	<div class="footer__bottom">
 		<p class="footer__copyright">
-			© 2026 RAIL Consulting. Todos los derechos reservados.
+			© 2026 RAIL. Todos los derechos reservados.
 		</p>
 	</div>
 </footer>
@@ -99,7 +76,7 @@ const columns = [
 		max-width: var(--container-max);
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 1.6fr repeat(4, 1fr);
+		grid-template-columns: 2fr 1fr 1fr 1fr;
 		gap: var(--stack-md);
 	}
 
@@ -111,10 +88,10 @@ const columns = [
 	}
 
 	.footer__tagline {
-		margin: var(--stack-sm) 0;
+		margin: var(--stack-sm) 0 0;
 		font-size: 14px;
 		line-height: 1.5;
-		max-width: 32ch;
+		max-width: 28ch;
 	}
 
 	.footer__heading {
@@ -155,28 +132,14 @@ const columns = [
 		color: var(--on-surface-variant);
 	}
 
-	@media (max-width: 1100px) {
-		.footer__inner {
-			grid-template-columns: repeat(4, 1fr);
-		}
-
-		.footer__brand {
-			grid-column: 1 / -1;
-		}
-	}
-
 	@media (max-width: 768px) {
 		.footer {
 			padding: var(--stack-lg) var(--stack-md) var(--stack-md);
 		}
 
 		.footer__inner {
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr;
 			gap: var(--stack-md);
-		}
-
-		.footer__brand {
-			grid-column: 1 / -1;
 		}
 
 		.footer__bottom {
