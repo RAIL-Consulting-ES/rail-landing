@@ -96,6 +96,7 @@ const param = (text: string) => ({ toolparamdescription: text });
 						tabindex="-1"
 						autocomplete="off"
 						aria-hidden="true"
+						{...param("Campo interno contra el spam. No lo marques nunca.")}
 					/>
 
 					<div class="field">
@@ -718,6 +719,13 @@ const param = (text: string) => ({ toolparamdescription: text });
 			const reply = (result: Promise<string>) => {
 				if (agent.agentInvoked) agent.respondWith?.(result);
 			};
+
+			// La casilla antispam forma parte del formulario, así que el navegador
+			// la ofrece al asistente como un parámetro más. Si la marcara, el
+			// servicio de envío descartaría el mensaje: se desmarca siempre.
+			if (agent.agentInvoked) {
+				(form.elements.namedItem("botcheck") as HTMLInputElement).checked = false;
+			}
 
 			syncAll();
 			const invalid = fields.filter((el) => !el.validity.valid);
