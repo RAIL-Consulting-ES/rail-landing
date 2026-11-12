@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
+import SavingsTool from "../components/SavingsTool.astro";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import interFont from "../assets/fonts/inter-latin-wght-normal.woff2?url";
@@ -141,5 +142,6 @@ const jsonLd = graph([
 		<a class="skip-link" href="#contenido">Saltar al contenido</a>
 		<slot />
 		<Footer />
+		<SavingsTool />
 	</body>
 </html>
