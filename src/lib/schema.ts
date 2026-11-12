@@ -48,7 +48,15 @@ export const organizationNode = () => ({
 	areaServed: { "@type": "Country", name: "España" },
 	knowsAbout: SITE.knowsAbout,
 	knowsLanguage: "es",
-	founder: FOUNDERS.map((f) => ({ "@id": founderUrl(f.id) })),
+	// Con nombre y perfil en línea: así el nodo se sostiene solo en las páginas
+	// que no incluyen el Person completo (mismo @id, se fusionan donde sí está).
+	founder: FOUNDERS.map((f) => ({
+		"@type": "Person",
+		"@id": founderUrl(f.id),
+		name: f.name,
+		jobTitle: f.jobTitle,
+		sameAs: [f.linkedin],
+	})),
 	contactPoint: {
 		"@type": "ContactPoint",
 		contactType: "sales",

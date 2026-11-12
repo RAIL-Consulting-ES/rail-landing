@@ -29,6 +29,10 @@ interface Props {
 	published?: string;
 	modified?: string;
 	ogType?: "website" | "article";
+	/** Título al compartir (redes, mensajería) si debe diferir del <title>. */
+	ogTitle?: string;
+	/** Ruta de la versión Markdown de esta página, si existe. */
+	markdown?: string;
 }
 
 const defaultTitle =
@@ -47,7 +51,11 @@ const {
 	published,
 	modified,
 	ogType = "website",
+	ogTitle,
+	markdown,
 } = Astro.props;
+
+const shareTitle = ogTitle ?? title;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
@@ -88,18 +96,28 @@ const jsonLd = graph([
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
+		{
+			markdown && (
+				<link
+					rel="alternate"
+					type="text/markdown"
+					href={markdown}
+					title="Esta página en Markdown"
+				/>
+			)
+		}
 		<link
 			rel="alternate"
-			type="text/markdown"
-			href="/llms.txt"
-			title="Resumen del sitio para asistentes de IA"
+			type="application/rss+xml"
+			href="/guias/rss.xml"
+			title="Guías de RAIL Consulting"
 		/>
 		<meta name="theme-color" content="#93c572" />
 		<meta name="author" content={SITE.name} />
 		<meta name="generator" content={Astro.generator} />
 		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content={SITE.name} />
-		<meta property="og:title" content={title} />
+		<meta property="og:title" content={shareTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogImageUrl} />
@@ -110,7 +128,7 @@ const jsonLd = graph([
 		{published && <meta property="article:published_time" content={published} />}
 		{modified && <meta property="article:modified_time" content={modified} />}
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
+		<meta name="twitter:title" content={shareTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageUrl} />
 		<meta name="twitter:image:alt" content={ogAlt} />
