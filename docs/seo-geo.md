@@ -18,7 +18,7 @@ concreta, una identidad de marca inequívoca y que otros sitios hablen de ti.
 | Posición por «rail consulting» | 6,0 |
 | Páginas indexadas | 7 |
 | Páginas sin indexar | 19 |
-| Rendimiento móvil de la home (Lighthouse) | 68/100, 4 s de bloqueo |
+| Rendimiento móvil de la home (Lighthouse) | 99/100, primer pintado a 1,7 s |
 
 Diagnóstico:
 
@@ -92,8 +92,9 @@ redirección permanente desde las antiguas (`vercel.json`).
   `BreadcrumbList` y, según la página, `Service`, `FAQPage`, `Article`,
   `Person`, `ItemList` o `DefinedTermSet`.
 - **Título y descripción únicos** por página; H1 con la búsqueda objetivo.
-- **Rendimiento**: fuentes servidas desde el propio dominio (sin petición
-  bloqueante a Google Fonts), imágenes optimizadas, caché larga para estáticos.
+- **Rendimiento**: ya era bueno; se quita la petición bloqueante a Google
+  Fonts (fuentes servidas desde el propio dominio), se optimizan las fotos y se
+  da caché larga a los estáticos.
 - **Migas de pan** visibles y en schema.
 
 ## 5. GEO aplicado
