@@ -274,48 +274,143 @@ const schema = [
 		if (el) el.textContent = text;
 	};
 
-	function update() {
-		if (!form) return;
-		const v = (name: string) =>
-			Math.max(0, Number((form.elements.namedItem(name) as HTMLInputElement).value) || 0);
+	const input = (name: string) =>
+		form!.elements.namedItem(name) as HTMLInputElement;
+	const v = (name: string) => Math.max(0, Number(input(name).value) || 0);
 
+	// La cuenta, a partir de lo que hay en el formulario.
+	const compute = () => {
 		const share = v("share");
 		const total = (v("times") * v("minutes") * v("weeks")) / 60;
 		const hours = (total * share) / 100;
 		const money = hours * v("rate");
+		const invest = v("invest");
+		const net = money - v("upkeep");
+		const paybackMonths =
+			invest > 0 && net > 0 ? Math.round((invest / net) * 12) : null;
+		return { share, total, hours, money, invest, net, paybackMonths };
+	};
 
-		set("share-out", `${share} %`);
-		set("r-total", nf.format(total));
-		set("r-hours", nf.format(hours));
-		set("r-money", nf.format(money));
-		set("r-weeks", nf.format(hours / 40));
+	function update() {
+		if (!form) return;
+		const r = compute();
+
+		set("share-out", `${r.share} %`);
+		set("r-total", nf.format(r.total));
+		set("r-hours", nf.format(r.hours));
+		set("r-money", nf.format(r.money));
+		set("r-weeks", nf.format(r.hours / 40));
 
 		// La vía: longitud = horas actuales; verde = recuperadas; marca = 40 h.
 		const track = document.getElementById("r-track");
 		if (track) {
-			const weeks = total / 40;
-			track.style.setProperty("--share", String(share / 100));
+			const weeks = r.total / 40;
+			track.style.setProperty("--share", String(r.share / 100));
 			track.style.setProperty(
 				"--tick",
 				weeks >= 2 && weeks <= 60 ? `${100 / weeks}%` : "100%",
 			);
 		}
 
-		const invest = v("invest");
 		const payback = document.getElementById("r-payback");
 		if (!payback) return;
-		payback.hidden = invest <= 0;
-		if (invest > 0) {
-			const net = money - v("upkeep");
+		payback.hidden = r.invest <= 0;
+		if (r.invest > 0) {
 			payback.textContent =
-				net > 0
-					? `La inversión se recupera en ${nf.format(Math.round((invest / net) * 12))} meses.`
+				r.paybackMonths !== null
+					? `La inversión se recupera en ${nf.format(r.paybackMonths)} meses.`
 					: "Con estos datos, la inversión no se recupera.";
 		}
 	}
 
 	form?.addEventListener("input", update);
 	update();
+
+	// WebMCP: la misma cuenta, disponible como herramienta para un asistente de
+	// IA. Rellena el formulario para que la persona vea lo que se ha calculado.
+	// Solo existe en navegadores que implementan document.modelContext.
+	if (form && "modelContext" in document) {
+		const NUMBER = { type: "number", minimum: 0 } as const;
+		const params = {
+			timesPerWeek: ["times", "Veces que se hace la tarea en una semana normal."],
+			minutesEach: ["minutes", "Minutos que dura la tarea cada vez."],
+			hourlyCost: [
+				"rate",
+				"Coste de una hora de esa persona para la empresa, en euros: salario bruto más cotizaciones, entre las horas anuales.",
+			],
+			weeksPerYear: ["weeks", "Semanas de trabajo al año."],
+			automatableShare: [
+				"share",
+				"Porcentaje de la tarea que se estima automatizable. Conviene una cifra prudente.",
+			],
+			investment: ["invest", "Inversión inicial en euros, si se conoce."],
+			yearlyUpkeep: ["upkeep", "Coste anual de mantenimiento en euros, si se conoce."],
+		} as const;
+		type Param = keyof typeof params;
+		const required: Param[] = ["timesPerWeek", "minutesEach", "hourlyCost"];
+
+		(document as any).modelContext.registerTool({
+			name: "calculate_automation_savings",
+			description:
+				"Calcula cuántas horas y cuánto dinero recupera al año una empresa si automatiza una tarea repetitiva y, si se da la inversión, en cuántos meses se recupera. Úsalo cuando la persona quiera estimar el ahorro o el retorno de automatizar una tarea.",
+			inputSchema: {
+				type: "object",
+				properties: {
+					timesPerWeek: { ...NUMBER, description: params.timesPerWeek[1] },
+					minutesEach: { ...NUMBER, description: params.minutesEach[1] },
+					hourlyCost: { ...NUMBER, description: params.hourlyCost[1] },
+					weeksPerYear: {
+						type: "number",
+						minimum: 1,
+						maximum: 52,
+						default: 48,
+						description: params.weeksPerYear[1],
+					},
+					automatableShare: {
+						type: "number",
+						minimum: 10,
+						maximum: 100,
+						multipleOf: 5,
+						default: 75,
+						description: params.automatableShare[1],
+					},
+					investment: { ...NUMBER, description: params.investment[1] },
+					yearlyUpkeep: { ...NUMBER, description: params.yearlyUpkeep[1] },
+				},
+				required,
+			},
+			execute(args: Partial<Record<Param, unknown>>) {
+				// El navegador no valida contra el esquema: se hace aquí.
+				const bad = (Object.keys(params) as Param[]).filter((key) => {
+					const value = args[key];
+					if (value === undefined) return required.includes(key);
+					return typeof value !== "number" || !Number.isFinite(value) || value < 0;
+				});
+				if (bad.length > 0) {
+					return {
+						error: `Faltan o no son números válidos (mayores o iguales que cero): ${bad.join(", ")}.`,
+					};
+				}
+				const filled = { weeksPerYear: 48, automatableShare: 75, ...args };
+				for (const key of Object.keys(params) as Param[]) {
+					const value = filled[key as keyof typeof filled];
+					input(params[key][0]).value = value === undefined ? "" : String(value);
+				}
+				update();
+				const r = compute();
+				return {
+					hoursSpentPerYearToday: Math.round(r.total),
+					hoursRecoveredPerYear: Math.round(r.hours),
+					savingsPerYearEur: Math.round(r.money),
+					workWeeksRecovered: Math.round(r.hours / 40),
+					paybackMonths: r.paybackMonths,
+					automatableSharePercent: r.share,
+					note: "Estimación orientativa calculada en el navegador; no es un presupuesto.",
+				};
+			},
+			annotations: { readOnlyHint: true },
+		});
+	}
 </script>
 
 <style>

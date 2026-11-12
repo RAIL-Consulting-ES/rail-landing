@@ -127,7 +127,13 @@ Lo que hace que un asistente de IA cite una página:
    lo contiene entero y cada página tiene versión Markdown (`/consultoria-ia.md`).
 6. **Que la entidad esté clara.** Misma definición, mismo nombre y misma ciudad
    en todas partes.
-7. **Que el contenido sea honesto.** Las páginas dicen cuándo *no* hace falta IA
+7. **Que un asistente pueda usar la web, no solo leerla.** El formulario de
+   contacto y la calculadora se exponen como herramientas WebMCP
+   (`send-contact-message` y `calculate_automation_savings`). Hoy solo lo
+   entiende Chromium en vista previa; el resto de navegadores lo ignora. El
+   contacto nunca se envía solo: el navegador se detiene para que la persona
+   revise.
+8. **Que el contenido sea honesto.** Las páginas dicen cuándo *no* hace falta IA
    y no inventan cifras ni clientes. Los modelos premian las fuentes que no
    parecen publicidad, y un dato inventado que se cite es un problema.
 
