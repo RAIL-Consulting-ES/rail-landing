@@ -16,7 +16,7 @@ keywords:
   - "retorno inversión IA"
 faq:
   - question: "¿Cómo se calcula el ROI de una automatización?"
-    answer: "Se resta al ahorro anual el coste anual de mantenimiento y se compara con la inversión inicial. El ahorro anual son las horas recuperadas al año multiplicadas por el coste de la hora. El plazo de recuperación en meses es la inversión dividida entre el ahorro neto anual, multiplicada por doce."
+    answer: "El ROI del primer año es el ahorro anual menos el mantenimiento y menos la inversión, dividido entre la inversión y expresado en porcentaje. El ahorro anual son las horas recuperadas al año multiplicadas por el coste de la hora. Suele acompañarse del plazo de recuperación en meses: la inversión dividida entre el ahorro neto anual, multiplicada por doce."
   - question: "¿Cómo sé cuántas horas consume una tarea?"
     answer: "Midiéndola. Cuenta cuántas veces se hace en una semana normal y cronometra varias repeticiones. Las estimaciones de memoria suelen quedarse cortas, porque no cuentan las interrupciones, las comprobaciones ni las correcciones."
   - question: "¿Qué coste por hora debo usar?"
@@ -40,6 +40,8 @@ related:
 > **Ahorro anual** = horas recuperadas × coste de la hora
 >
 > **Plazo de recuperación (meses)** = inversión ÷ (ahorro anual − mantenimiento anual) × 12
+>
+> **ROI del primer año (%)** = (ahorro anual − mantenimiento anual − inversión) ÷ inversión × 100
 
 Solo hacen falta cinco datos: frecuencia, duración, porcentaje automatizable, coste de la hora y coste de la solución. Si prefieres no hacer la cuenta a mano, la [calculadora de ahorro](/calculadora-ahorro-automatizacion/) la hace por ti.
 
@@ -91,7 +93,7 @@ Una empresa recibe pedidos por correo y una persona de administración los pasa 
 - Horas recuperadas: 480 × 0,75 = **360 horas**
 - Ahorro anual: 360 × 22 € = **7.920 €**
 
-Si construir la automatización costara 6.000 € y mantenerla 900 € al año, el ahorro neto anual sería de 7.020 € y la inversión se recuperaría en unos **10 meses** (6.000 ÷ 7.020 × 12).
+Si construir la automatización costara 6.000 € y mantenerla 900 € al año, el ahorro neto anual sería de 7.020 € y la inversión se recuperaría en unos **10 meses** (6.000 ÷ 7.020 × 12) y el ROI del primer año sería del **17 %** ((7.920 − 900 − 6.000) ÷ 6.000).
 
 Y 360 horas son nueve semanas de trabajo de una persona que quedan libres para otra cosa.
 

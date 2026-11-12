@@ -103,7 +103,7 @@ El mismo asistente puede atender en varios canales con la misma información. El
 
 ## Datos personales y transparencia
 
-Las conversaciones de atención al cliente contienen datos personales, así que se aplica el Reglamento General de Protección de Datos: hay que informar al cliente, limitar los datos que se tratan y elegir proveedores con garantías. Además, el cliente debe saber que está hablando con un sistema automático. Conviene revisar el diseño con el responsable de protección de datos antes de ponerlo en marcha.
+Las conversaciones de atención al cliente contienen datos personales, así que se aplica el Reglamento General de Protección de Datos: hay que informar al cliente, limitar los datos que se tratan y elegir proveedores con garantías. Además, el cliente debe saber que está hablando con un sistema automático. Conviene revisar el diseño con el delegado de protección de datos o el asesor legal antes de ponerlo en marcha.
 
 ## Por dónde empezar
 

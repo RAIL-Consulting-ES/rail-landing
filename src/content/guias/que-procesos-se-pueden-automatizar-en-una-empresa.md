@@ -42,7 +42,7 @@ Un proceso es buen candidato a automatizarse cuando cumple estas cuatro condicio
 3. **Trabaja con información digital.** Correos, documentos, hojas de cálculo, programas de gestión. Lo que está solo en papel o en la cabeza de alguien hay que digitalizarlo antes.
 4. **Tiene un resultado comprobable.** Se puede saber si está bien hecho.
 
-Una pista rápida: si en la descripción de la tarea aparecen los verbos **copiar, pegar, reenviar, comprobar, rellenar, recordar o buscar**, casi seguro hay algo que automatizar.
+Una pista rápida: si en la descripción de la tarea aparecen los verbos **copiar, pegar, reenviar, comprobar, rellenar, recordar o buscar**, casi seguro que hay algo que automatizar.
 
 ## Procesos que se pueden automatizar, por departamento
 
@@ -94,7 +94,7 @@ Lo detallamos en [automatizar facturas con IA](/guias/automatizar-facturas-con-i
 | Alta de empleados | Solicitud de documentación, cuentas, accesos y formación inicial |
 | Vacaciones y ausencias | Solicitud, aprobación y actualización del calendario |
 | Control horario | Registro y consolidación para nóminas |
-| Selección | Clasificación inicial de candidaturas y coordinación de entrevistas |
+| Selección | Coordinación de entrevistas y comunicación con candidatos. La criba automática de candidaturas con IA es un uso de alto riesgo según el Reglamento europeo de IA y exige garantías adicionales |
 
 ### Dirección
 

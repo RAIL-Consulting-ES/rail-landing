@@ -4,7 +4,7 @@ description: "Consultora de inteligencia artificial y automatización de proceso
 h1: "Consultoría de IA y automatización de procesos en Sevilla"
 eyebrow: "Sevilla · Andalucía"
 short: "Consultoría de IA en Sevilla"
-lead: "Somos de Sevilla y trabajamos con empresas de Sevilla. Vamos a tu oficina, tu nave o tu taller, vemos cómo trabaja el equipo y te decimos dónde se va el tiempo."
+lead: "Somos de Sevilla. Vamos a tu oficina, tu nave o tu taller, vemos cómo trabaja el equipo y te decimos dónde se va el tiempo."
 answer: "RAIL Consulting es una consultora de ingeniería con base en Sevilla, fundada por Mario Pantoja Castro y David Gutiérrez, que ayuda a empresas sevillanas y andaluzas a ahorrar tiempo con inteligencia artificial y automatización de procesos. Estudia en persona cómo trabaja cada empresa, entrega un diagnóstico priorizado por horas recuperables y construye la solución: agentes de IA, automatizaciones o software a medida."
 kind: "local"
 serviceType: "Consultoría de inteligencia artificial y automatización de procesos"
@@ -13,11 +13,11 @@ updated: "2026-11-12"
 order: 13
 faq:
   - question: "¿Hay consultoras de inteligencia artificial en Sevilla?"
-    answer: "Sí. RAIL Consulting es una consultora de ingeniería con base en Sevilla especializada en inteligencia artificial, automatización de procesos y software a medida para empresas. Trabaja en persona con empresas de Sevilla y su provincia y en remoto con el resto de España."
+    answer: "Sí. RAIL Consulting es una consultora de ingeniería con base en Sevilla especializada en inteligencia artificial, automatización de procesos y software a medida para empresas. Trabaja en persona en Sevilla y su provincia y, combinando sesiones en remoto y visitas, en el resto de España."
   - question: "¿Venís a la empresa o se hace todo en remoto?"
     answer: "En Sevilla y alrededores, el estudio de procesos se hace preferiblemente en persona: ver trabajar al equipo en su sitio enseña cosas que una videollamada no muestra. El desarrollo y el seguimiento posteriores se hacen en remoto con las visitas que hagan falta."
-  - question: "¿Con qué tipo de empresas trabajáis en Sevilla?"
-    answer: "Con empresas que tienen trabajo administrativo o de coordinación repetitivo: asesorías y gestorías, despachos profesionales, inmobiliarias, empresas industriales y de fabricación, distribución, instaladores y servicios. El tamaño importa menos que las horas que se pierden cada semana."
+  - question: "¿Para qué tipo de empresas de Sevilla tiene sentido?"
+    answer: "Para empresas con trabajo administrativo o de coordinación repetitivo, como asesorías y gestorías, despachos profesionales, inmobiliarias, empresas industriales y de fabricación, distribución, instaladores y servicios. El tamaño importa menos que las horas que se pierden cada semana."
   - question: "¿Trabajáis también fuera de Sevilla?"
     answer: "Sí. RAIL Consulting trabaja con empresas de toda Andalucía y del resto de España. Fuera de Sevilla, el estudio se organiza combinando sesiones en remoto con visitas cuando el proyecto lo necesita."
   - question: "¿Cuánto usan la IA las empresas andaluzas?"
@@ -32,7 +32,7 @@ related:
 
 ## Una consultora de IA de Sevilla, para empresas de Sevilla
 
-RAIL Consulting nace en Sevilla. Sus dos fundadores se formaron en universidades andaluzas —Mario Pantoja Castro en la Universidad de Sevilla y David Gutiérrez en la Universidad Loyola— y aquí empieza su trabajo: con empresas a las que se puede ir a ver en persona.
+RAIL Consulting nace en Sevilla. Sus dos fundadores se formaron en universidades andaluzas —Mario Pantoja Castro en la Universidad de Sevilla y David Gutiérrez en la Universidad Loyola— y su base está aquí, cerca de empresas a las que se puede ir a ver en persona.
 
 Eso tiene una ventaja práctica. Nuestro método empieza por **estudiar cómo trabaja de verdad una empresa**, y eso se hace mejor al lado del equipo que a través de una pantalla. En una visita se ve la hoja de cálculo que alguien rellena a mano, el pedido que se apunta en un papel antes de pasarlo al programa o el correo que se reenvía tres veces. Son las cosas que nadie cuenta en una reunión porque ya no las ve.
 
@@ -70,7 +70,7 @@ Cada sector tiene sus puntos débiles. Los hemos descrito uno por uno:
 
 ## Zona de trabajo
 
-Trabajamos en persona en **Sevilla capital y su área metropolitana** —Dos Hermanas, Alcalá de Guadaíra, Mairena del Aljarafe, La Rinconada, Camas, Tomares y el resto del Aljarafe— y en los polígonos y parques empresariales de la provincia. Con el resto de **Andalucía** y de **España** trabajamos combinando sesiones en remoto y visitas.
+Trabajamos en persona en **Sevilla capital y su área metropolitana** —Dos Hermanas, Alcalá de Guadaíra, La Rinconada y el Aljarafe (Mairena, Camas, Tomares…)— y en los polígonos y parques empresariales de la provincia. Con el resto de **Andalucía** y de **España** trabajamos combinando sesiones en remoto y visitas.
 
 ## Cómo empezar
 

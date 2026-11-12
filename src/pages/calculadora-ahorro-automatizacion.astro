@@ -236,8 +236,8 @@ const schema = [
 			<ol>
 				<li>
 					<strong>Mide, no estimes.</strong> Cuenta las repeticiones de una
-					semana normal y cronometra varias. De memoria casi siempre se queda
-					corto.
+					semana normal y cronometra varias. Las estimaciones de memoria casi
+					siempre se quedan cortas.
 				</li>
 				<li>
 					<strong>Hazlo con varias tareas.</strong> La cuenta es útil cuando
@@ -306,7 +306,7 @@ const schema = [
 			set(
 				"r-payback",
 				net > 0
-					? `${nf.format(Math.ceil((invest / net) * 12))} meses`
+					? `${nf.format(Math.round((invest / net) * 12))} meses`
 					: "No se recupera con estos datos",
 			);
 		}

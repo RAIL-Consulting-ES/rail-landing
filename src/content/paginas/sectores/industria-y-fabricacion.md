@@ -4,7 +4,7 @@ description: "Ahorra tiempo en una empresa de fabricación: presupuestos, órden
 h1: "IA y automatización para industria y fabricación"
 eyebrow: "Sector · Industria y fabricación"
 short: "Industria y fabricación"
-lead: "En una fábrica, el cuello de botella rara vez está en la máquina. Está en la oficina: presupuestos que tardan, órdenes que se pasan a mano y material que nadie sabe si ha llegado."
+lead: "En una fábrica, el cuello de botella muchas veces no está en la máquina. Está en la oficina: presupuestos que tardan, órdenes que se pasan a mano y material que nadie sabe si ha llegado."
 answer: "En una empresa industrial o de fabricación a medida, la automatización y la inteligencia artificial ahorran tiempo sobre todo fuera de la línea de producción: en la preparación de presupuestos, el paso de presupuesto a orden de fabricación, el cálculo de materiales, las compras a proveedores, el control de stock y la planificación de entregas e instalaciones. RAIL Consulting estudia el recorrido completo de un pedido, desde que entra hasta que se cobra, y conecta o construye el software que elimina los pasos manuales."
 kind: "sector"
 serviceType: "Automatización, IA y software a medida para industria y fabricación"
@@ -20,7 +20,7 @@ faq:
   - question: "¿Dónde aporta la IA frente a una automatización normal?"
     answer: "En los pasos donde hay que interpretar: leer un pedido que llega por correo en texto libre, extraer datos de un plano o de un albarán de proveedor, o redactar un presupuesto a partir de una descripción. El resto —cálculos, traspasos, avisos— se resuelve mejor con reglas fijas."
   - question: "¿Hay que parar la producción para implantarlo?"
-    answer: "No. Se trabaja por partes, empezando por un tramo del proceso, en paralelo a la forma actual de trabajar, y se sustituye cuando el nuevo está comprobado."
+    answer: "No. Se trabaja por partes, empezando por un tramo del proceso, en paralelo a la forma actual de trabajar, que solo se sustituye cuando la nueva está comprobada."
 related:
   - "/soluciones/erp-a-medida/"
   - "/soluciones/automatizacion-de-procesos/"

@@ -51,7 +51,7 @@ Lo explicamos con más detalle en la guía [automatizar facturas con IA](/guias/
 
 ## Por dónde empezar
 
-En la mayoría de los despachos, el mayor volumen de horas está en dos sitios: **la recogida de documentación** y **la entrada de facturas**. Suelen ser los primeros candidatos porque se repiten con todos los clientes, todos los meses, y porque el resultado se puede comprobar fácilmente.
+En muchos despachos, el mayor volumen de horas está en dos sitios: **la recogida de documentación** y **la entrada de facturas**. Suelen ser los primeros candidatos porque se repiten con todos los clientes, todos los meses, y porque el resultado se puede comprobar fácilmente.
 
 Aun así, cada despacho es distinto: cambian los programas, el tipo de cliente y la forma de organizarse. Por eso empezamos con un [estudio de procesos](/estudio-de-procesos/) que mide dónde se van las horas en tu caso concreto, antes de proponer nada.
 

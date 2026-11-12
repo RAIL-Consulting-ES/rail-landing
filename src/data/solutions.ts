@@ -59,7 +59,7 @@ export const solutions: Solution[] = [
 	{
 		slug: "api",
 		path: "integracion-de-sistemas",
-		title: "API Gateway",
+		title: "Integración de sistemas",
 		copy: "Integración segura y observable.",
 		icon: `<path d="M14 10 L8 30 L14 50" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/>
 			<path d="M66 10 L72 30 L66 50" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round"/>

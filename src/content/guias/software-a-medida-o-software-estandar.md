@@ -22,9 +22,9 @@ faq:
   - question: "¿Es mejor un ERP a medida o uno estándar?"
     answer: "Para contabilidad, facturación o nóminas, que están reguladas y son iguales en todas las empresas, uno estándar. Para la operación —cómo se presupuesta, se fabrica, se instala o se presta el servicio—, depende de cuánto se parezca a la de otras empresas. Es frecuente combinar ambos: estándar para lo común y a medida para lo propio."
   - question: "¿El software a medida es mucho más caro?"
-    answer: "La inversión inicial es mayor. Pero no se pagan licencias por usuario, y no hay que pagar adaptaciones ni trabajar con herramientas paralelas. La comparación correcta es el coste total a varios años, incluido el tiempo que el equipo pierde con un programa que no encaja."
+    answer: "La inversión inicial es mayor. Pero no se pagan licencias por usuario ni hay que trabajar con herramientas paralelas, y los cambios se hacen sobre código propio. La comparación correcta es el coste total a varios años, incluido el tiempo que el equipo pierde con un programa que no encaja."
   - question: "¿Qué riesgos tiene el software a medida?"
-    answer: "Depender del proveedor que lo construyó, que el alcance crezca sin control y que el mantenimiento se descuide. Se reducen exigiendo la propiedad del código, documentación, entregas por fases y un acuerdo claro de mantenimiento."
+    answer: "Depender del proveedor que lo construyó, que el alcance crezca sin control y que el mantenimiento se descuide. Se reducen pactando la propiedad del código y exigiendo documentación, entregas por fases y un acuerdo claro de mantenimiento."
 related:
   - "/soluciones/erp-a-medida/"
   - "/soluciones/crm-a-medida/"
@@ -51,7 +51,7 @@ Entre los dos hay un terreno intermedio: **programas estándar con desarrollos a
 | Ajuste al proceso | La empresa se adapta al programa | El programa se adapta a la empresa |
 | Evolución | La decide el fabricante | La decide la empresa |
 | Integraciones | Las que ofrezca el fabricante | Las que se necesiten |
-| Propiedad | Se alquila | Es de la empresa |
+| Propiedad | Se alquila | Puede ser de la empresa, si así se pacta |
 | Riesgo principal | Que no encaje y se trabaje por fuera | Depender de quien lo construyó |
 
 ## Cuándo elegir software estándar
@@ -66,8 +66,8 @@ Entre los dos hay un terreno intermedio: **programas estándar con desarrollos a
 - **El proceso es lo que te diferencia.** Si tu forma de presupuestar, fabricar o atender es tu ventaja, meterla en el molde de un programa genérico es perderla.
 - **El estándar no encaja y el equipo trabaja por fuera.** La señal más clara: hojas de cálculo paralelas, datos duplicados, pasos que «el programa no deja hacer».
 - **Hay muchos sistemas que conectar** y ninguno hace de centro.
-- **Las licencias pesan.** Con muchos usuarios, la cuota mensual de varios años supera lo que cuesta construir.
-- **El producto o servicio es a medida.** Cuando cada pedido es distinto, los programas pensados para producto estándar se quedan cortos. Lo vemos a menudo en [industria y fabricación](/sectores/industria-y-fabricacion/).
+- **Las licencias pesan.** Con muchos usuarios, la cuota mensual de varios años puede superar lo que cuesta construir.
+- **El producto o servicio es a medida.** Cuando cada pedido es distinto, los programas pensados para producto estándar se quedan cortos. Es habitual en [industria y fabricación](/sectores/industria-y-fabricacion/).
 
 ## La opción que suele olvidarse: combinar
 
@@ -81,7 +81,7 @@ Y antes de construir nada, comprobar si el problema se resuelve **conectando lo 
 
 ## Cómo decidir: cinco preguntas
 
-1. **¿Este proceso es igual que el de cualquier otra empresa?** Si sí, estándar.
+1. **¿Este proceso es igual que el de cualquier otra empresa?** Si es así, estándar.
 2. **¿He probado de verdad un programa estándar?** Si no, pruébalo antes.
 3. **¿Cuánto trabajo se hace hoy fuera del programa?** Si es mucho, el estándar no está encajando.
 4. **¿Cuánto cuesta el estándar a cinco años**, sumando licencias, adaptaciones y el tiempo perdido?
@@ -91,7 +91,7 @@ Y antes de construir nada, comprobar si el problema se resuelve **conectando lo 
 
 | Riesgo | Cómo se reduce |
 | --- | --- |
-| Depender del proveedor | Propiedad del código y documentación desde el primer día |
+| Depender del proveedor | Pactar la propiedad del código y exigir documentación desde el primer día |
 | Que el alcance crezca sin control | Entregas por fases, cada una con un resultado utilizable |
 | Que tarde demasiado en dar resultado | Empezar por el tramo del proceso que más tiempo ahorra |
 | Mantenimiento descuidado | Acuerdo de mantenimiento con plazos de respuesta |

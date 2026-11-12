@@ -33,7 +33,7 @@ related:
 
 ## Por qué empezar por un estudio
 
-Cuando un proyecto de automatización no da resultado, rara vez es por la tecnología. Lo habitual es que se automatizara lo que alguien creía que era el problema, no lo que de verdad consumía el tiempo.
+Cuando un proyecto de automatización no da resultado, no siempre es por la tecnología. A menudo se automatizó lo que alguien creía que era el problema, no lo que de verdad consumía el tiempo.
 
 Dentro de una empresa es difícil verlo. Las tareas repetitivas se vuelven invisibles: «siempre se ha hecho así». Un estudio de procesos las saca a la luz y les pone un número, que es lo único que permite compararlas y decidir.
 

@@ -24,7 +24,7 @@ faq:
   - question: "¿Se puede automatizar también la emisión de facturas?"
     answer: "Sí. Las facturas a clientes se pueden generar automáticamente a partir de pedidos, albaranes o contratos, enviarse por correo y registrarse en contabilidad. También se pueden automatizar los recordatorios de cobro."
   - question: "¿Tengo que cambiar mi programa de facturación o contabilidad?"
-    answer: "Normalmente no. La automatización se conecta con el programa que ya se usa. Lo que sí hay que comprobar es que ese programa cumple la normativa de facturación vigente, algo que depende de su fabricante."
+    answer: "Normalmente no. La automatización se conecta con el programa que ya se usa. Lo que sí hay que comprobar es que ese programa está adaptado a la normativa de facturación vigente: la obligación de cumplirla es de la empresa que factura, no solo del fabricante."
   - question: "¿Qué normativa española afecta a la facturación?"
     answer: "El Reglamento de facturación, la normativa sobre sistemas informáticos de facturación verificables (conocida como Verifactu) y la obligación de factura electrónica entre empresas prevista en la Ley Crea y Crece. Los plazos de aplicación se han modificado varias veces, por lo que conviene consultar el calendario vigente en la Agencia Tributaria."
 related:
@@ -92,7 +92,7 @@ El objetivo no es quitar a la persona, sino cambiar su trabajo: de teclear cien 
 
 La facturación en España está regulada, y en los últimos años la normativa avanza hacia sistemas de facturación verificables y hacia la factura electrónica obligatoria entre empresas. Los plazos se han modificado varias veces, así que la referencia fiable es el calendario publicado por la [Agencia Tributaria](https://sede.agenciatributaria.gob.es/).
 
-A efectos prácticos: la automatización que describimos trabaja **alrededor** de tu programa de facturación o contabilidad, no en su lugar. Que el programa cumpla la normativa es responsabilidad de su fabricante; que el proceso sea rápido y sin errores es lo que se automatiza.
+A efectos prácticos: la automatización que describimos trabaja **alrededor** de tu programa de facturación o contabilidad, no en su lugar. Cumplir la normativa sigue siendo obligación de la empresa que factura, que debe usar un programa adaptado a ella; lo que se automatiza es que el proceso sea rápido y sin errores.
 
 ## Por dónde empezar
 

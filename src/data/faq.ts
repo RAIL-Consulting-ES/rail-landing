@@ -19,15 +19,15 @@ export const faqGroups: FaqGroup[] = [
 			},
 			{
 				question: "¿Dónde está RAIL Consulting y dónde trabaja?",
-				answer: "RAIL Consulting tiene su base en Sevilla. Trabaja en persona con empresas de Sevilla y su provincia y, combinando sesiones en remoto y visitas, con empresas del resto de Andalucía y de España.",
+				answer: "RAIL Consulting tiene su base en Sevilla. Trabaja en persona en Sevilla y su provincia y, combinando sesiones en remoto y visitas, en el resto de Andalucía y de España.",
 			},
 			{
 				question: "¿Qué significa «ingeniería del futuro»?",
 				answer: "Es la forma en que RAIL Consulting resume su trabajo: aplicar ingeniería —medir, diseñar y construir— a la manera de trabajar de una empresa, usando inteligencia artificial y automatización para que el equipo dedique su tiempo a lo que aporta valor.",
 			},
 			{
-				question: "¿Con qué tipo de empresas trabajáis?",
-				answer: "Con empresas que tienen trabajo administrativo o de coordinación repetitivo, sea cual sea su sector: asesorías, despachos profesionales, inmobiliarias, industria y fabricación, distribución, instaladores y servicios. Importa menos el tamaño que las horas que se pierden cada semana.",
+				question: "¿Para qué tipo de empresas tiene sentido?",
+				answer: "Para empresas con trabajo administrativo o de coordinación repetitivo, sea cual sea su sector: asesorías, despachos profesionales, inmobiliarias, industria y fabricación, distribución, instaladores y servicios. Importa menos el tamaño que las horas que se pierden cada semana.",
 			},
 		],
 	},
@@ -53,7 +53,7 @@ export const faqGroups: FaqGroup[] = [
 			},
 			{
 				question: "¿Cuánto tiempo del equipo hace falta?",
-				answer: "El necesario para enseñar cómo se trabaja: conversaciones cortas con quien hace cada tarea y la posibilidad de verla hacer. Hace falta además una persona de la empresa que decida y sea la referencia del proyecto.",
+				answer: "El necesario para enseñar cómo se trabaja: conversaciones cortas con quien hace cada tarea y poder ver cómo se hace. Hace falta además una persona de la empresa que decida y sea la referencia del proyecto.",
 			},
 		],
 	},
@@ -71,7 +71,7 @@ export const faqGroups: FaqGroup[] = [
 			},
 			{
 				question: "¿Qué pasa cuando la IA se equivoca?",
-				answer: "Se diseña contando con ello. Se añaden comprobaciones automáticas, se registran todas las acciones y los pasos con consecuencias —pagos, envíos a clientes, decisiones sobre personas— pasan por revisión humana. Cuando el sistema no sabe qué hacer, para y pregunta.",
+				answer: "Se diseña contando con ello. Se añaden comprobaciones automáticas, se registran todas las acciones y los pasos con consecuencias —pagos, compromisos con clientes, decisiones sobre personas— pasan por revisión humana. Cuando el sistema no sabe qué hacer, para y pregunta.",
 			},
 			{
 				question: "¿Qué es un agente de IA?",
@@ -111,7 +111,7 @@ export const faqGroups: FaqGroup[] = [
 			},
 			{
 				question: "¿Se usan mis datos para entrenar modelos de IA?",
-				answer: "No. Se trabaja con proveedores y configuraciones que no utilizan los datos del cliente para entrenar sus modelos.",
+				answer: "No: se trabaja con proveedores y configuraciones que no utilizan los datos del cliente para entrenar sus modelos.",
 			},
 			{
 				question: "¿Cumple con el RGPD?",

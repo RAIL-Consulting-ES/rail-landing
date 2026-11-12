@@ -20,7 +20,7 @@ faq:
   - question: "¿Un agente de IA puede equivocarse?"
     answer: "Sí, y por eso se diseña con límites. Se define qué puede hacer solo y qué debe pasar por una persona, se registran todas sus acciones y se empieza en modo supervisado: el agente propone y alguien aprueba. La autonomía se amplía solo cuando los resultados lo justifican."
   - question: "¿Los datos de mi empresa se usan para entrenar la IA?"
-    answer: "No tiene por qué. Se trabaja con proveedores y configuraciones que no usan los datos del cliente para entrenar modelos, y el agente solo accede a la información que necesita para su tarea. Qué datos ve y dónde se procesan se decide y se documenta antes de construirlo."
+    answer: "No: se trabaja con proveedores y configuraciones que no usan los datos del cliente para entrenar modelos, y el agente solo accede a la información que necesita para su tarea. Qué datos ve y dónde se procesan se decide y se documenta antes de construirlo."
   - question: "¿Qué tareas son buenas candidatas para un agente de IA?"
     answer: "Las que se repiten, siguen un procedimiento que se puede explicar y exigen leer o redactar: gestión de pedidos por correo, preparación de presupuestos, atención de consultas frecuentes, registro de facturas o búsqueda de información interna."
 related:
@@ -75,7 +75,7 @@ Estos son ejemplos del tipo de trabajo que un agente puede asumir. Cuáles compe
 
 - **Permisos mínimos.** El agente accede a lo imprescindible para su tarea.
 - **Registro de todo.** Cada acción queda anotada: qué hizo, con qué datos y por qué.
-- **Revisión humana donde importa.** Pagos, envíos a clientes y decisiones con consecuencias pasan por una persona.
+- **Revisión humana donde importa.** Pagos, compromisos con clientes y decisiones con consecuencias pasan por una persona.
 - **Una salida clara.** Cuando no sabe qué hacer, el agente para y pregunta. No inventa.
 
 ## Cuándo un agente de IA no es la solución

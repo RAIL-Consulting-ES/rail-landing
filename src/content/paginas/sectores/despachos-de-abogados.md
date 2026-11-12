@@ -61,7 +61,7 @@ Automatizar el alta de asuntos, calcular y avisar de vencimientos, registrar tie
 | Que la IA invente una cita o un dato | Solo responde a partir de documentos concretos y enlaza la fuente |
 | Confidencialidad y secreto profesional | Se define qué datos trata cada herramienta, dónde y quién accede |
 | Errores en documentos que salen del despacho | Todo lo que se envía lo revisa y firma un letrado |
-| Dependencia de la herramienta | Los documentos y los datos siguen en los sistemas del despacho |
+| Dependencia de la herramienta | Los documentos originales siguen en los sistemas del despacho; la herramienta los consulta, no los sustituye |
 
 ## Cómo empezar
 

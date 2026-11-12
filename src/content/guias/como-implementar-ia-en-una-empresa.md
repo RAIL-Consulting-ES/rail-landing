@@ -116,7 +116,7 @@ Dos marcos legales afectan a casi cualquier uso de IA en una empresa europea:
 - El **Reglamento General de Protección de Datos (RGPD)**, cuando se tratan datos personales de clientes, empleados o terceros.
 - El **Reglamento europeo de Inteligencia Artificial** ([Reglamento (UE) 2024/1689](https://eur-lex.europa.eu/eli/reg/2024/1689/oj/spa)), que clasifica los sistemas de IA por nivel de riesgo, impone obligaciones según ese nivel y se aplica de forma escalonada.
 
-La mayoría de los usos habituales en una pyme —leer facturas, contestar consultas, buscar en documentos— son de riesgo bajo, pero conviene revisar cada caso con el asesor legal antes de ponerlo en producción, sobre todo si interviene en decisiones sobre personas.
+Usos habituales en una pyme como leer facturas o buscar en documentos no figuran entre los sistemas de alto riesgo del Reglamento. Otros sí tienen obligaciones específicas: un asistente que conversa con clientes debe identificarse como sistema automático, y los sistemas que intervienen en la selección de personal están clasificados como de alto riesgo. Conviene revisar cada caso con el asesor legal antes de ponerlo en producción.
 
 ## Resumen
 

@@ -1,11 +1,11 @@
 ---
 title: "IA y automatización para inmobiliarias | RAIL Consulting"
-description: "IA para inmobiliarias: responde al momento los contactos de portales, cualifica compradores, redacta fichas, coordina visitas y no olvida un seguimiento."
+description: "IA para inmobiliarias: responde al momento a los contactos de portales, cualifica compradores, redacta fichas, coordina visitas y no olvida un seguimiento."
 h1: "IA y automatización para inmobiliarias"
 eyebrow: "Sector · Inmobiliarias"
 short: "Inmobiliarias"
 lead: "En una inmobiliaria, cada contacto que tarda en recibir respuesta es una visita que puede acabar en otra agencia. La IA contesta al momento y deja al agente lo que importa: enseñar y cerrar."
-answer: "En una inmobiliaria, la inteligencia artificial y la automatización sirven para responder al instante los contactos que llegan de portales y web, cualificar a compradores e inquilinos, redactar fichas de inmuebles, coordinar visitas y mantener el seguimiento sin olvidos. RAIL Consulting conecta estas automatizaciones con el CRM y los portales que ya usa la agencia, tras estudiar cómo trabaja su equipo comercial."
+answer: "En una inmobiliaria, la inteligencia artificial y la automatización sirven para responder al instante a los contactos que llegan de portales y web, cualificar a compradores e inquilinos, redactar fichas de inmuebles, coordinar visitas y mantener el seguimiento sin olvidos. RAIL Consulting conecta estas automatizaciones con el CRM y los portales que ya usa la agencia, tras estudiar cómo trabaja su equipo comercial."
 kind: "sector"
 serviceType: "Automatización e IA para inmobiliarias"
 updated: "2026-11-12"

@@ -47,7 +47,7 @@ Zapier, Make y n8n son **plataformas de automatización**: permiten dibujar un f
 | Aplicaciones conectables | El catálogo más amplio | Amplio | Amplio, y cualquier API | Cualquiera |
 | Modelo de coste | Por tareas ejecutadas | Por operaciones o créditos | Por ejecuciones en la nube; coste de servidor si es propio | Desarrollo inicial más mantenimiento |
 | Control sobre los datos | Los datos pasan por el proveedor | Los datos pasan por el proveedor | Total si se instala en servidores propios | Total |
-| Pruebas y versiones | Básico | Básico | Mejor, mejorable | Completo |
+| Pruebas y versiones | Básico | Básico | Más completo, con límites | Completo |
 
 Los planes y precios de estas plataformas cambian con frecuencia; conviene consultarlos en la web de cada una antes de decidir.
 
@@ -94,6 +94,6 @@ Programar la automatización directamente. Conviene cuando:
 
 ## Empezar con una plataforma y pasar a medida después
 
-Es una estrategia sensata, y la que más recomendamos: **construir primero con una plataforma** para comprobar que la automatización ahorra el tiempo esperado, y **pasar a un desarrollo a medida solo las piezas** que lo justifiquen por volumen, complejidad o criticidad. Así no se invierte en un desarrollo antes de saber que funciona.
+Es una estrategia sensata cuando el proceso lo permite: **construir primero con una plataforma** para comprobar que la automatización ahorra el tiempo esperado, y **pasar a un desarrollo a medida solo las piezas** que lo justifiquen por volumen, complejidad o criticidad. Así no se invierte en un desarrollo antes de saber que funciona.
 
 En RAIL Consulting elegimos la herramienta después de estudiar el proceso, no antes: lo explicamos en [automatización de procesos](/soluciones/automatizacion-de-procesos/). Y si dudas entre automatización clásica, RPA o IA, la comparación está en [automatización, RPA o agentes de IA](/guias/automatizacion-rpa-o-agentes-de-ia/).

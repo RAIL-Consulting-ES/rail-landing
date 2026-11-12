@@ -18,7 +18,7 @@ faq:
   - question: "¿Hay que cambiar el programa de gestión?"
     answer: "Normalmente no. Lo habitual es conectar lo que ya se usa —el ERP, el programa de almacén, la plataforma del transportista— para que los datos pasen de uno a otro sin copiarlos a mano."
   - question: "¿Se puede avisar automáticamente al cliente del estado de su pedido?"
-    answer: "Sí. Cuando el estado cambia en el sistema —preparado, enviado, entregado, con incidencia— se puede enviar el aviso al cliente por el canal que prefiera, sin que nadie tenga que escribirlo."
+    answer: "Sí. Cuando el estado cambia en el sistema —preparado, enviado, entregado, con incidencia— se puede enviar el aviso al cliente por correo o mensajería sin que nadie tenga que escribirlo. En WhatsApp hace falta el consentimiento previo del cliente y usar plantillas aprobadas."
 related:
   - "/agentes-de-ia/"
   - "/soluciones/integracion-de-sistemas/"
@@ -52,7 +52,7 @@ En distribución casi todo el trabajo administrativo consiste en **mover la mism
 
 ## Empezar por la entrada de pedidos
 
-En la mayoría de las empresas de distribución, **la entrada de pedidos** es el punto con más horas y más errores: es manual, depende de pocas personas y todo lo demás espera a que termine. Resolverla tiene un efecto en cadena, porque el almacén recibe antes los pedidos y con menos fallos.
+En muchas empresas de distribución, **la entrada de pedidos** es el punto con más horas y más errores: es manual, depende de pocas personas y todo lo demás espera a que termine. Resolverla tiene un efecto en cadena, porque el almacén recibe antes los pedidos y con menos fallos.
 
 Aun así, conviene medirlo. Con un [estudio de procesos](/estudio-de-procesos/) contamos cuántos pedidos entran por cada canal, cuánto se tarda en registrarlos y cuántos generan una incidencia. Con esos números se decide por dónde empezar.
 
