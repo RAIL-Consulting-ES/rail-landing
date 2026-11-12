@@ -20,6 +20,13 @@ concreta, una identidad de marca inequívoca y que otros sitios hablen de ti.
 | Páginas sin indexar | 19 |
 | Rendimiento móvil de la home (Lighthouse) | 99/100, primer pintado a 1,7 s |
 
+Línea base en asistentes de IA (Perplexity, 12 nov 2026):
+
+| Pregunta | Respuesta |
+| --- | --- |
+| «¿Qué es RAIL Consulting, la consultora de Sevilla?» | La identifica, pero con el posicionamiento antiguo: «ingeniería de software a medida e integración de IA» |
+| «¿Qué consultoras de IA y automatización hay en Sevilla para pymes?» | No menciona a RAIL |
+
 Diagnóstico:
 
 1. **El sitemap apuntaba al dominio sin `www`**, que redirige. Google veía 17
@@ -158,7 +165,18 @@ Por orden de impacto:
 8. **Datos de la SL** cuando esté constituida: razón social en `legalName` del
    schema y en el aviso legal.
 
-## 8. Cómo medir
+## 8. Después de cada despliegue a producción
+
+1. `npm run indexnow` — avisa a Bing (y con él a ChatGPT y Copilot) de las URL
+   del sitemap.
+2. Search Console → **Sitemaps**: comprobar que `sitemap.xml` se ha leído y el
+   número de páginas descubiertas coincide.
+3. Search Console → **Inspección de URLs** → «Solicitar indexación» para las
+   páginas nuevas o cambiadas (hay un cupo diario de unas diez).
+4. [Prueba de resultados enriquecidos](https://search.google.com/test/rich-results)
+   sobre una página de cada tipo si se ha tocado el schema.
+
+## 9. Cómo medir
 
 | Qué | Dónde | Cuándo |
 | --- | --- | --- |
