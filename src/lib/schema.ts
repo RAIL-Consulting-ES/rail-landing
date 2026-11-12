@@ -68,6 +68,9 @@ export const organizationNode = () => ({
 	sameAs: [...SITE.sameAs, ...FOUNDERS.map((f) => f.linkedin)],
 });
 
+/** Fecha `YYYY-MM-DD` con hora y zona: Google la da por inválida sin ellas. */
+export const isoDate = (day: string) => `${day}T00:00:00+01:00`;
+
 export const websiteNode = () => ({
 	"@type": "WebSite",
 	"@id": WEBSITE_ID,
@@ -110,8 +113,8 @@ export const webPageNode = (opts: {
 	...(opts.hasBreadcrumb
 		? { breadcrumb: { "@id": `${opts.url}#breadcrumb` } }
 		: {}),
-	...(opts.published ? { datePublished: opts.published } : {}),
-	...(opts.modified ? { dateModified: opts.modified } : {}),
+	...(opts.published ? { datePublished: isoDate(opts.published) } : {}),
+	...(opts.modified ? { dateModified: isoDate(opts.modified) } : {}),
 });
 
 export const serviceNode = (opts: {
@@ -158,8 +161,8 @@ export const articleNode = (opts: {
 	headline: opts.headline,
 	description: opts.description,
 	inLanguage: SITE.locale,
-	datePublished: opts.published,
-	dateModified: opts.modified,
+	datePublished: isoDate(opts.published),
+	dateModified: isoDate(opts.modified),
 	author: { "@id": founderUrl(opts.authorId) },
 	publisher: { "@id": ORG_ID },
 	mainEntityOfPage: { "@id": `${opts.url}#webpage` },

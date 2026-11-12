@@ -187,6 +187,29 @@ Por orden de impacto:
 | Citas en asistentes | Preguntar a ChatGPT, Perplexity y Gemini «consultoras de IA en Sevilla» y «qué es RAIL Consulting» | Mensual |
 | Tráfico desde asistentes | Vercel Analytics → Referrers (chatgpt.com, perplexity.ai…) | Mensual |
 
+### Registro
+
+**12 nov 2026 — primer despliegue de la estrategia.**
+
+- Producción verificada: las 41 URL del sitemap responden 200, las URL antiguas
+  redirigen (308) a las nuevas y Lighthouse da 95–100 en rendimiento y 100 en
+  SEO y accesibilidad sobre la home, un servicio y una guía.
+- Search Console: sitemap reenviado y leído el mismo día, **41 páginas
+  descubiertas** (antes 17).
+- Indexación solicitada a mano para 10 URL: `/`, `/consultoria-ia/`,
+  `/consultoria-ia-sevilla/`, `/estudio-de-procesos/`, `/agentes-de-ia/`,
+  `/guias/`, las guías de coste y de procesos automatizables, `/soluciones/` y
+  `/nosotros/`. El resto entra por el sitemap; si en dos semanas alguna sigue
+  «descubierta, sin indexar», solicitarla también.
+- IndexNow: 41 URL enviadas, aceptadas (HTTP 202).
+- Prueba de resultados enriquecidos sobre una guía: artículo, migas de pan y
+  organización válidos. Google ya no muestra el resultado enriquecido de
+  preguntas frecuentes salvo en webs oficiales y de salud; el `FAQPage` se
+  mantiene porque lo leen los asistentes de IA.
+
+Próxima medición: semana del 23 nov 2026 (páginas indexadas y primeras
+impresiones no de marca).
+
 Expectativa realista: la indexación de las páginas nuevas, en días o pocas
 semanas; las primeras impresiones no de marca, en dos a seis semanas; posiciones
 estables, en tres a seis meses y dependiendo sobre todo del punto 7.
