@@ -1,0 +1,11 @@
+---
+// Herramienta WebMCP disponible en todas las páginas: la cuenta de la
+// calculadora de ahorro, para que un asistente de IA pueda hacerla desde
+// cualquier punto del sitio. No pinta nada. Solo se registra en navegadores
+// que implementan document.modelContext; el resto no ejecuta nada.
+---
+
+<script>
+	// El código de la herramienta solo se descarga donde puede usarse.
+	if ("modelContext" in document) import("../lib/savings-tool");
+</script>

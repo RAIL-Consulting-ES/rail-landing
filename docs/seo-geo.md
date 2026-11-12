@@ -129,7 +129,8 @@ Lo que hace que un asistente de IA cite una página:
    en todas partes.
 7. **Que un asistente pueda usar la web, no solo leerla.** El formulario de
    contacto y la calculadora se exponen como herramientas WebMCP
-   (`send-contact-message` y `calculate_automation_savings`). Hoy solo lo
+   (`send-contact-message`, solo en `/contacto/`, y
+   `calculate_automation_savings`, en todas las páginas). Hoy solo lo
    entiende Chromium en vista previa; el resto de navegadores lo ignora. El
    contacto nunca se envía solo: el navegador se detiene para que la persona
    revise.
